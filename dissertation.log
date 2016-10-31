@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.1415926-2.5-0.9999.3 (MiKTeX 2.9 64-bit) (preloaded format=xelatex 2015.3.24)  30 OCT 2016 22:33
+This is XeTeX, Version 3.1415926-2.5-0.9999.3 (MiKTeX 2.9 64-bit) (preloaded format=xelatex 2015.3.24)  31 OCT 2016 01:17
 entering extended mode
 **dissertation.tex
 (D:\Software\GitHub\Repository\Dissertation\dissertation.tex
@@ -79,7 +79,26 @@ File: xetex.def 2013/04/29 v0.96 LaTeX color/graphics driver for XeTeX (RRM/JK)
 \Gin@req@height=\dimen103
 \Gin@req@width=\dimen104
 )
-\c@theorem=\count88
+(D:\Software\Miktex\tex\latex\tools\tabularx.sty
+Package: tabularx 1999/01/07 v2.07 `tabularx' package (DPC)
+
+(D:\Software\Miktex\tex\latex\tools\array.sty
+Package: array 2008/09/09 v2.4c Tabular extension package (FMi)
+\col@sep=\dimen105
+\extrarowheight=\dimen106
+\NC@list=\toks22
+\extratabsurround=\skip46
+\backup@length=\skip47
+)
+\TX@col@width=\dimen107
+\TX@old@table=\dimen108
+\TX@old@col=\dimen109
+\TX@target=\dimen110
+\TX@delta=\dimen111
+\TX@cols=\count88
+\TX@ftn=\toks23
+)
+\c@theorem=\count89
 
 (D:\Software\GitHub\Repository\Dissertation\dissertation.aux)
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 40.
@@ -154,23 +173,23 @@ Requested font "msbm7" at 6.0pt
  [4]
 Requested font "cmbx12" at 14.4pt
 
-[5]
+[5] [6] [7] [8] [9]
 Requested font "cmti12" at 12.0pt
 
-Underfull \hbox (badness 10000) in paragraph at lines 139--143
+Underfull \hbox (badness 10000) in paragraph at lines 152--156
 []\OT1/cmr/m/n/12 J. Howie, \OT1/cmr/m/it/12 Gen-er-alised tri-an-gle groups of
  type $\OT1/cmr/m/n/12 (3\OML/cmm/m/it/12 ; \OT1/cmr/m/n/12 5\OML/cmm/m/it/12 ;
  \OT1/cmr/m/n/12 2)$,
  []
 
-[6] (D:\Software\GitHub\Repository\Dissertation\dissertation.aux) ) 
+[10] (D:\Software\GitHub\Repository\Dissertation\dissertation.aux) ) 
 Here is how much of TeX's memory you used:
- 1006 strings out of 429025
- 10914 string characters out of 3169303
- 56730 words of memory out of 3000000
- 4300 multiletter control sequences out of 15000+200000
+ 1094 strings out of 429025
+ 11833 string characters out of 3169303
+ 59816 words of memory out of 3000000
+ 4383 multiletter control sequences out of 15000+200000
  13358 words of font info for 51 fonts, out of 3000000 for 9000
  912 hyphenation exceptions out of 8191
- 25i,6n,26p,359b,198s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 25i,8n,26p,359b,190s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on dissertation.pdf (6 pages).
+Output written on dissertation.pdf (10 pages).
