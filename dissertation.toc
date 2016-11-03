@@ -6,4 +6,6 @@
 \contentsline {subsection}{\numberline {3.1}System Requirements}{7}
 \contentsline {subsection}{\numberline {3.2}Usability Requirements}{7}
 \contentsline {section}{\numberline {4}Strategy for testing and evaluation}{8}
+\contentsline {subsection}{\numberline {4.1}Testing}{8}
+\contentsline {subsection}{\numberline {4.2}Evaluating}{8}
 \contentsline {section}{\numberline {5}Project Plan and Professional, Legal, Ethical and Social Issues}{9}
