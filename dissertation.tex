@@ -42,7 +42,7 @@ Peter J King}
 
 \begin{document}
 \maketitle
-
+\pagenumbering{gobble}
 \newpage 
 
 \textbf{\Large{Declaration}} \\[2em]
@@ -69,7 +69,10 @@ The project aim is to develop a web application that will be used to improve mar
 
 
 \newpage                     % optional page break
+
 \section{Aims, Objectives and Project Description}
+\setcounter{page}{1}
+\pagenumbering{arabic}
 
 \subsection{Aim}
 
@@ -77,6 +80,18 @@ The project aim is to develop a web application that will be used to improve mar
 
 \newpage
 \section{Literature Review}
+
+This section contains the current academic literature relating to the digitalisation of marking systems. 
+\subsection{Digital Marking Systems}
+The aim of digitalising marking systems is to mirror current paper based marking systems but  \cite{EssayType}
+
+"What we want to achieve in our system is to provide a marking environment that mirrors these paper-based marking techniques plus takes advantage of the electronic environment", \textit{Online Marking of Essay-type Assignements} \cite{EssayType}.
+
+
+\subsection{User Dependant Views}
+
+
+\subsection{something}
 
 \newpage
 \section{Requirements}
@@ -123,10 +138,7 @@ Once the system is completed a useability case study will be conducted to evalua
 %
 %     Bibliography
 %
-%     Use an easy-to-remember tag for each entry - eg \bibitem{How97} for an article/book by Howie in 1997
-%     To cite this publication in your text, write \cite{How97}.  To include more details such as
-%     page, Chapter, Theorem numbers, use the form \cite[Theorem 6.3, page 42]{How97}.
-%
+
 \newpage
 \begin{thebibliography}{99}
 
