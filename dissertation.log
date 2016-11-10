@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.10.15)  3 NOV 2016 13:25
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.10.15)  10 NOV 2016 16:16
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -191,7 +191,7 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-Underfull \hbox (badness 10000) in paragraph at lines 48--55
+Underfull \hbox (badness 10000) in paragraph at lines 49--56
 
  []
 
@@ -199,31 +199,31 @@ Underfull \hbox (badness 10000) in paragraph at lines 48--55
 \tf@toc=\write3
 \openout3 = `dissertation.toc'.
 
- [4] [5] [6] [7]
-Underfull \hbox (badness 10000) in paragraph at lines 105--106
+ [4] [1] [2] [3]
+Underfull \hbox (badness 10000) in paragraph at lines 123--124
 
  []
 
-[8] [9]
-Underfull \hbox (badness 5316) in paragraph at lines 145--148
+[4] [5]
+Underfull \hbox (badness 5316) in paragraph at lines 167--170
 []\OT1/cmr/m/n/12 E. Hein-rich, Y. Wang, \OT1/cmr/m/it/12 On-line Mark-ing of E
 ssay-type As-sign-ments\OT1/cmr/m/n/12 ;
  []
 
 
-Overfull \hbox (49.25026pt too wide) in paragraph at lines 145--148
+Overfull \hbox (49.25026pt too wide) in paragraph at lines 167--170
 \OT1/cmr/m/n/12 2003.(http://www-ist.massey.ac.nz/MarkTool/Publications/EdMedia
 2003Onscreen.pdf) 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 174--178
+Underfull \hbox (badness 10000) in paragraph at lines 196--200
 []\OT1/cmr/m/n/12 J. Howie, \OT1/cmr/m/it/12 Gen-er-alised tri-an-gle groups of
  type $\OT1/cmr/m/n/12 (3\OML/cmm/m/it/12 ; \OT1/cmr/m/n/12 5\OML/cmm/m/it/12 ;
  \OT1/cmr/m/n/12 2)$,
  []
 
-[10] (./dissertation.aux) ) 
+[6] (./dissertation.aux) ) 
 Here is how much of TeX's memory you used:
  2051 strings out of 494910
  27832 string characters out of 6179835
@@ -232,14 +232,14 @@ Here is how much of TeX's memory you used:
  13358 words of font info for 51 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
  37i,8n,26p,359b,190s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/share/texlive/texmf-dist/fonts/type1/public/am
-sfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
-/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cm
-mi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pf
-b></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr
-/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/
-texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on dissertation.pdf (10 pages, 97132 bytes).
+</usr/share/texlive/texmf-dist/fonts/type1/public/ams
+fonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
+cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmm
+i12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb
+></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/
+share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/t
+exlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb>
+Output written on dissertation.pdf (10 pages, 98425 bytes).
 PDF statistics:
  65 PDF objects out of 1000 (max. 8388607)
  45 compressed objects within 1 object stream
