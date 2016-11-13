@@ -4,6 +4,7 @@
 
 \usepackage{tabularx}
 \usepackage{setspace}
+\usepackage[nottoc,notlot,notlof]{tocbibind}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
@@ -54,7 +55,7 @@ Signed: Lewis McNeill
 \\
 Date: \today
 
-\newpage                     % optional page break
+\newpage                    
 \begin{abstract}
 
 The project aim is to develop a web application that will be used to improve marking of computing labs. The application will be designed to be used by Students to quickly know their grade, by Lab Helpers to easily mark labs and Lecturers to see marking immedatly as it is done.
@@ -63,7 +64,7 @@ The project aim is to develop a web application that will be used to improve mar
 
 \end{abstract}
 
-\newpage                     % optional page break
+\newpage                     
 
 \singlespacing
 \tableofcontents
@@ -71,7 +72,7 @@ The project aim is to develop a web application that will be used to improve mar
 
 
 
-\newpage                     % optional page break
+\newpage        
 
 \section{Aims, Objectives and Project Description}
 \setcounter{page}{1}
@@ -81,6 +82,13 @@ The project aim is to develop a web application that will be used to improve mar
 The aim of this dissertation is to design and implement a system for the digital marking and analysis of computer labs, to help improve the speed at which they are marked
 
 \subsection{Objectives}
+\begin{itemize}
+\item Simplify the way that labs marks are currently processed.
+\item Allow lecturers to create marking schemes on-line that lab helps can access and mark students against in labs.
+\item Develop a system that allows lab helps to mark labs using an on-line application.
+\item Allow students to see the mark they got from the lab instantly.
+\item Provide useful statistics and graphs to lecturers.
+\end{itemize}
 
 \newpage
 \section{Literature Review}
@@ -120,10 +128,10 @@ R2&Test&Test&Test&Test\\ \hline
 \section{Strategy for testing and evaluation}
 
 \subsection{Testing}
-Testing and evalutation of the system will be done in two parts. To start with throughout the development of the the system unit tests will be used to make sure that the system is robust and functional. \\
+Throughout the development of the system, unit tests will be used to make sure that the system is robust and functional. \\
 
 \subsection{Evaluating}
-Once the system is completed a useability case study will be conducted to evaluate how successful the development of the marking system  was and how later versions can be improved.
+To properly evaluate how successful I have been at creating a new Lab Marking System I will conduct a usability case study. Lecturers, lab helpers and students will be asked to use the systems and provide feed back, to help evaluate the system and discover what improvements can be made to make it better.
 
 
 \newpage
@@ -131,9 +139,28 @@ Once the system is completed a useability case study will be conducted to evalua
 
 \subsection{Project Plan}
 
+\subsection{Risk Analysis}
+\newcounter{risk} \stepcounter{risk}
+
+\begin{tabularx}{\textwidth}{|l|X|X|X|}
+
+\hline
+  \textbf{ID} & \textbf{Risk} & \textbf{Importance} & \textbf{Likelihood }
+\\
+\hline
+R\arabic{risk} &Test&Test&Test\\ \hline \stepcounter{risk}
+R\arabic{risk} &Test&Test&Test\\ \hline \stepcounter{risk}
+R\arabic{risk} &Test&Test&Test\\ \hline \stepcounter{risk}
+R\arabic{risk} &Test&Test&Test\\ \hline \stepcounter{risk}
+R\arabic{risk} &Test&Test&Test\\ \hline \stepcounter{risk}
+
+
+\end{tabularx}
+
 \subsection{Professional}
 
 \subsection{Legal}
+Their are multiple legal issues relating to this project. The most important one is the Data Protection Act, since the systems will be designed to store data about student I will have to make sure that 
 
 \subsection{Ethical}
 
@@ -150,6 +177,8 @@ Once the system is completed a useability case study will be conducted to evalua
 %
 
 \newpage
+
+
 \begin{thebibliography}{99}
 
 % 
