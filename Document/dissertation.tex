@@ -6,6 +6,7 @@
 \usepackage{setspace}
 \usepackage[nottoc,notlot,notlof]{tocbibind}
 
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 %    Page size commands.  Don't worry about these
@@ -31,7 +32,6 @@
 \theoremstyle{remark}
 \newtheorem{remark}[theorem]{Remark}
 \newtheorem{example}[theorem]{Example} 
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 %        Preamble material specific to your essay
@@ -79,7 +79,9 @@ The project aim is to develop a web application that will be used to improve mar
 \pagenumbering{arabic}
 
 \subsection{Aim}
-The aim of this dissertation is to design and implement a system for the digital marking and analysis of computer labs, to help improve the speed at which they are marked
+The aim of this dissertation is to design and implement a system for the digital marking and analysis of computer labs, to help improve the speed at which they are marked.
+
+And provide statics on how the class is proforming as a whole
 
 
 \subsection{Objectives}
@@ -101,12 +103,16 @@ The aim of this dissertation is to design and implement a system for the digital
 
 This section contains the current academic literature relating to the digitalisation of marking systems. 
 \subsection{Digital Marking Systems}
-Digital marking systems are designed to mirror current paper based marking systems but take advantage of the electronic enviroment \cite{EssayType} 
+Digital marking systems are designed to mirror current paper based marking systems but take advantage of the electronic enviroment \cite{joy_effective_1998}
 
 \subsection{User Dependant Views}
 
 
 \subsection{Data to Graphics}
+
+
+
+
 
 \newpage
 \section{Requirements}
@@ -127,6 +133,11 @@ R2&Test&Test&Test&Test\\ \hline
 \subsection{Usability Requirements}
 
 
+
+
+
+
+
 \newpage
 \section{Strategy for testing and evaluation}
 
@@ -135,6 +146,16 @@ Throughout the development of the system, unit tests will be used to make sure t
 
 \subsection{Evaluating}
 To properly evaluate how successful I have been at creating a new Lab Marking System I will conduct a usability case study. Lecturers, lab helpers and students will be asked to use the systems and provide feed back, to help evaluate the system and discover what improvements can be made to make it better.
+
+Efficency of the code
+
+
+
+
+
+
+
+
 
 
 \newpage
@@ -146,7 +167,7 @@ The gantt chart for this dissertation can be seen in figure(\ref{fig:ganttchart}
 \textbf{Design Stage} Starts at the end of semester 1 to allow myself time to complete other course work. In this stage I will create mock-ups for the user interface, a database schema and define what will be occuring in each of my sprints in the next stage.\\
 \textbf{Development Stage:} Starts once the holidays are over. It consists of three two week sprints each it a weeks break inbetween to allow for write ups and other coursework. When the three sprint finishs I go straigh into the evaluation stage.\\ 
 \textbf{Evaluation Stage: } on last for two week, in this period I will conduct a useability case study and write up the remainder of my diseration for the draft handin.\\
-\textbf{Dissertation Stage:} This stage is for me to focus on feedback from the draft hand-in and make sure my Dissertation is of a high enough standard.\\
+\textbf{Final Deliverable Stage:} This stage is for me to focus on feedback from the draft hand-in and make sure my Dissertation is of a high enough standard.\\
 \textbf{Poster Stage:} This stage entirely dedicated to the design and creation of my disertation poster.
 
 \begin{figure}[!htbp]
@@ -157,10 +178,16 @@ The gantt chart for this dissertation can be seen in figure(\ref{fig:ganttchart}
 
 \end{figure}
 
+
+
+
 \subsection{Risk Analysis}
 \newcounter{risk} \stepcounter{risk}
+The risk relating to this dissertation are shown in tabel(\ref{table:risk})
 
-\begin{tabularx}{\textwidth}{|l|X|X|X|}
+\begin{table}[h]
+\begin{tabular}{|p{0.05\textwidth}|p{0.5\textwidth}|p{0.22\textwidth}|p{0.22\textwidth}|}
+
 
 \hline
   \textbf{ID} & \textbf{Risk} & \textbf{Importance} & \textbf{Likelihood }
@@ -171,11 +198,24 @@ R\arabic{risk} &Test&Test&Test\\ \hline \stepcounter{risk}
 R\arabic{risk} &Test&Test&Test\\ \hline \stepcounter{risk}
 R\arabic{risk} &Test&Test&Test\\ \hline \stepcounter{risk}
 R\arabic{risk} &Test&Test&Test\\ \hline \stepcounter{risk}
+R\arabic{risk} &Test&Test&Test\\ \hline
 
 
-\end{tabularx}
+\end{tabular}
+
+\caption{Risk Analysis}
+\label{table:risk}
+
+\end{table}
+
+
+
+
+
 
 \subsection{Professional}
+ The professional part of this project will be done by following coding standards for the languages that I decide to use.
+ As this project will be a Web application I will that both the html and css are validated an
 
 \subsection{Legal}
 There are multiple legal issues relating to this project. The most important one is the Data Protection Act, since the systems will be designed to store data about student I will have to make sure that 
@@ -184,13 +224,13 @@ There are multiple legal issues relating to this project. The most important one
 
 A major ethical requirement of this project is to do with the storage of students personal information on a digital system. Is it ethical to keep all 
 
+no decieving see their own marks
+
 \subsection{Social}
 
 A few social issues are raised by this project. Such as if students can see the mark they have recieved straight away, will this result in markers raising grades to try and not offend the students.
 
 Will this system result in a reduction of lab helps being required to mark labs. If the system speeds up the time to mark students less lab helps may-be need to run labs, resulting in people looking work.
-
-
 
 
 
@@ -201,55 +241,12 @@ Will this system result in a reduction of lab helps being required to mark labs.
 
 \newpage
 
-
-\begin{thebibliography}{99}
-
-% 
-% The usual convention for mathematical bibliographies is to list alphabetically
-% by first-named author (then second, third  etc. author then date)
-% websites with no author names should go by the site name
-%
+\bibliographystyle{plain}
+\addcontentsline(toc){chapter}{Bibliography}
+\bibliography{references}
 
 
 
-% Typical layout for reference to a journal article
-%
-
-\bibitem{EssayType}
-E. Heinrich, Y. Wang,
-{\em Online Marking of Essay-type Assignments};
-2003.(http://www-ist.massey.ac.nz/MarkTool/Publications/EdMedia2003Onscreen.pdf)
-
-\bibitem{Bovey}
-J. D. Bovey, M. M. Dodson,                         % author(s)
-The Hausdorff dimension of systems of linear forms % article name
-{\em Acta Arithmetica}                             % journal name - italics
-{\bf 45}                                           % volume number - bold
-(1986), 337--358.                                   % (year), page range
-
-% Typical layout for reference to a book
-%
-\bibitem{Cassels}
-J. W. S. Cassels,                                  % author(s)
-{\em An Introduction to Diophantine Approximation},% title - italics
-Cambridge University Press, Cambridge, 1965.       % Publisher, place, date.
-
-% Typical layout for reference to a website
-%
-\bibitem{GAP}
-The GAP Group, GAP -- Groups, Algorithms, and Programming,  % Site name
-Version 4.5.6; 2012. % other information
-(http://www.gap-system.org)  % URL
-
-
-% Typical layout for reference to an online article
-%
-\bibitem{Howie}
-J. Howie,                                            % author(s)
-{\em Generalised triangle groups of type $(3,5,2)$}, % article name - italics
-http://arxiv.org/abs/1102.2073                       % URL
-(2011).                                              % (year)
-\end{thebibliography}
 \end{document}
 
 
