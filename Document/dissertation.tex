@@ -5,6 +5,7 @@
 \usepackage{tabularx}
 \usepackage{setspace}
 \usepackage[nottoc,notlot,notlof]{tocbibind}
+\usepackage{float}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -58,7 +59,7 @@ Date: \today
 \newpage                    
 \begin{abstract}
 
-The project aim is to develop a web application that will be used to improve marking of computing labs. The application will be designed to be used by Students to quickly know their grade, by Lab Helpers to easily mark labs and Lecturers to see marking immedatly as it is done.
+The project aim is to develop a web application that will be used to improve marking of computing labs. The application will be designed to be used by Students to quickly know their grade, by Lab Helpers to easily mark labs and Lecturers to see marking immediately as it is done.
 
 
 
@@ -71,17 +72,19 @@ The project aim is to develop a web application that will be used to improve mar
 \doublespacing
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%										%
+%     		Introduction				%
+%										%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \newpage        
-
 \section{Aims, Objectives and Project Description}
 \setcounter{page}{1}
 \pagenumbering{arabic}
 
 \subsection{Aim}
-The aim of this dissertation is to design and implement a system for the digital marking and analysis of computer labs, to help improve the speed at which they are marked.
-
-And provide statics on how the class is proforming as a whole
+The aim of this dissertation is to design and implement a system for the digital marking and analysis of computer labs, to help improve the speed at which they are marked. The system will also provide useful statics to both lecturers and students.
 
 
 \subsection{Objectives}
@@ -96,7 +99,11 @@ And provide statics on how the class is proforming as a whole
 
 
 
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%										%
+%     	   Literature Review			%
+%										%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \newpage
 \section{Literature Review}
@@ -112,34 +119,104 @@ Digital marking systems are designed to mirror current paper based marking syste
 
 
 
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%										%
+%     		 Requirments				%
+%										%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \newpage
 \section{Requirements}
-\subsection{System Requirements}
+\newcounter{requirement} \stepcounter{requirement}
 
-\begin{table}
-\begin{tabularx}{\textwidth}{|l|X|X|X|X|}
-\hline
-  \textbf{ID} & \textbf{Requirement} & \textbf{Type} & \textbf{Description} & \textbf{Priority} 
+\subsection{Functional}
+\def\arraystretch{1.5}
+\subsubsection{User Requirements}
+
+\begin{table}[ht]
+
+\begin{tabular}{|p{0.05\linewidth}|p{0.7\linewidth}|p{0.11\linewidth}|p{0.11\linewidth}|}\hline
+\textbf{ID} & \textbf{Requirement} & \textbf{Type} & \textbf{Priority} 
 \\
-\hline
-R1&Test&Test&Test&Test\\ \hline
-R2&Test&Test&Test&Test\\ \hline
+\hline \hline
 
+R\arabic{requirement} &Test&Test&Test\\ \hline \stepcounter{requirement}
+R\arabic{requirement} &Test&Test&Test\\ \hline
 
-\end{tabularx}
-\label{table:requirements}
-\caption{Functional Requirements}
+\end{tabular}
+\label{table:funct-user}
+
 \end{table}
-
-\subsection{Usability Requirements}
-
-
+\vspace*{-\baselineskip}
+\setcounter{requirement}{1}
 
 
 
+\subsubsection{System Requirements}
 
+\begin{table}[ht]
+\def\arraystretch{1.5}
+\begin{tabular}{|p{0.05\linewidth}|p{0.7\linewidth}|p{0.11\linewidth}|p{0.11\linewidth}|}\hline
+
+\textbf{ID} & \textbf{Requirement} & \textbf{Type} & \textbf{Priority} 
+\\
+\hline \hline
+
+R\arabic{requirement} &Test&Test&Test\\ \hline \stepcounter{requirement}
+R\arabic{requirement} &Test&Test&Test\\ \hline
+
+\end{tabular}
+\label{table:funct-user}
+
+\end{table}
+\vspace*{-\baselineskip}
+\setcounter{requirement}{1}
+
+
+
+\subsection{Non-Functional Requirements}
+
+\begin{table}[h]
+\def\arraystretch{1.5}
+\begin{tabular}{|p{0.05\linewidth}|p{0.7\linewidth}|p{0.11\linewidth}|p{0.11\linewidth}|}\hline
+
+\textbf{ID} & \textbf{Requirement} & \textbf{Type} & \textbf{Priority} 
+\\
+\hline \hline
+
+R\arabic{requirement} & All personal data should be encrypted & System & High\\ \hline \stepcounter{requirement}
+R\arabic{requirement} & Stats Should be updated as lab marks submit grades & System & High\\ \hline \stepcounter{requirement}
+R\arabic{requirement} & Stats Calculations should take less than 2 seconds & System & High
+\\ \hline \stepcounter{requirement}
+R\arabic{requirement} &Loading Student Marks should take less than 2 seconds & System & Low\\ \hline \stepcounter{requirement}
+R\arabic{requirement} &All php should use prepared statements & System & High\\ \hline \stepcounter{requirement}
+R\arabic{requirement} &System must function on a wide variety of smartphones and tablets & System & High\\ \hline \stepcounter{requirement}
+R\arabic{requirement} &The system must be able to handle a large number of users without any faults & System & Medium\\ \hline \stepcounter{requirement}
+R\arabic{requirement} &Password must contain alphanumerics and have a minimum and maximum length & User & Medium\\ \hline \stepcounter{requirement}
+R\arabic{requirement} &Test&Test&Test\\ \hline
+
+
+
+
+
+
+
+
+\end{tabular}
+\label{table:non-func}
+
+\end{table}
+\vspace*{-\baselineskip}
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%										%
+%     		Testing & Eval				%
+%										%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \newpage
 \section{Strategy for testing and evaluation}
@@ -159,10 +236,14 @@ To evaluate how effective the code is I will create test cases. These will test 
 
 
 
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%										%
+%     		Project Plan				%
+%										%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \newpage
-\section{Project Plan and Professional, Legal, Ethical and Social Issues}
+\section{Project Plan and P.L.E.S Issues}
 
 \subsection{Project Plan}
 
@@ -182,7 +263,11 @@ The gantt chart for this dissertation can be seen in figure(\ref{fig:ganttchart}
 \end{figure}
 
 
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%										%
+%     		Risk Analysis				%
+%										%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Risk Analysis}
 \newcounter{risk} \stepcounter{risk}
@@ -213,10 +298,13 @@ R\arabic{risk} &Test&Test&Test\\ \hline
 
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%										%
+%     			 P.L.E.S				%
+%										%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-
-
-\subsection{Professional}
+\subsection{Professional Issues}
  The professional part of this project will be done by following coding standards for the languages that I decide to use.
  As this project will be a Web application I will that both the html and css are validated an
  
@@ -225,16 +313,16 @@ R\arabic{risk} &Test&Test&Test\\ \hline
  development of user and developer documentation
  
 
-\subsection{Legal}
+\subsection{Legal Issues}
 There are multiple legal issues relating to this project. The most important one is the Data Protection Act, since the systems will be designed to store data about student I will have to make sure that 
 
-\subsection{Ethical}
+\subsection{Ethical Issues}
 
 A major ethical requirement of this project is to do with the storage of students personal information on a digital system. Is it ethical to keep all 
 
 no decieving see their own marks
 
-\subsection{Social}
+\subsection{Social Issues}
 
 A few social issues are raised by this project. Such as if students can see the mark they have recieved straight away, will this result in markers raising grades to try and not offend the students.
 
@@ -243,18 +331,13 @@ Will this system result in a reduction of lab helps being required to mark labs.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-%     Bibliography
-%
+%										%
+%     		Bibliography				%
+%										%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \newpage
-
 \bibliographystyle{plain}
-\addcontentsline(toc){chapter}{Bibliography}
 \bibliography{references}
 
-
-
 \end{document}
-
-
