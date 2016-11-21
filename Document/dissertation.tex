@@ -9,8 +9,12 @@
 \usepackage{setspace}
 \usepackage[nottoc,notlot,notlof]{tocbibind}
 \usepackage{float}
+\usepackage[backend=bibtex,sorting=nyt,firstinits=true]{biblatex}
+\usepackage{hyperref}
 
 
+
+\addbibresource{references.bib} 
 
 
 \usepackage[margin=2cm]{geometry}
@@ -19,39 +23,12 @@
 
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%										%
+%     			Title					%
+%										%
 
-
-
-
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-%    Definitions of environments for theorems etc.
-%
-\newtheorem{theorem}{Theorem}[section]          % Theorems numbered within sections - eg Theorem 2.1 in Section 2.
-\newtheorem{corollary}[theorem]{Corollary}      % Corollaries etc. will be counted as Theorems for numbering
-\newtheorem{lemma}[theorem]{Lemma}              % eg Lemma 3.1, ... Theorem 3.2, ... Corollary 3.3.
-\newtheorem{proposition}[theorem]{Proposition}
-\newtheorem{conjecture}[theorem]{Conjecture}
-
-
-
-
-\theoremstyle{definition}
-\newtheorem{definition}[theorem]{Definition}
-
-
-
-
-\theoremstyle{remark}
-\newtheorem{remark}[theorem]{Remark}
-\newtheorem{example}[theorem]{Example}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-%        Preamble material specific to your essay
-%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \title{Digital Lab Marking System \\~\\  \large{Heriot-Watt University} \\~\\ Final Year Dissertation}
 \author{Lewis McNeill\\
 supervised by
@@ -83,22 +60,21 @@ Date: \today
 \newpage                  
 \begin{abstract}
 
+\noindent
 The aim of this dissertation project is to replace the current system for the marking of computer labs with a new digital system. This will enable lecturers to create a marking scheme online. Lab helpers will select the student they are marking and the marking scheme will then be loaded, marks will be entered and then made immediately available for both student and lecturers to view. It will also provide useful statistics for both student and lecturers.
 
 \end{abstract}
-\newpage                   
 
-\singlespacing
+\newpage                   
 \tableofcontents
-\doublespacing
+
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %										%
 %     		Introduction				%
 %										%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-
 
 \newpage      
 \section{Aims, Objectives and Project Description}
@@ -141,17 +117,24 @@ Current marking systems rely on lecturers marking and returning results quickly 
 
 
 \subsection{Digital Marking Systems}
-Digital marking systems are designed to mirror current paper based marking systems but take advantage of the electronic environment \cite{joy_effective_1998}.
+Digital marking systems are designed to mirror current paper based marking systems but take advantage of the electronic environment \citetitle{joy_effective_1998}.
 
 
 \subsection{User Dependant Views}
 
 
 \subsection{Custom Website Forms}
+Survey monkey \cite{finley_surveymonkey_1999} is an example of custom web forms being created by users. Founded by Ryan Finley in 1999 Survey Monkey enables users to create there own surveys and easily distribute them. It builds the surveys by letting the user select the contence of the question and what the response type will be: The user can also decided if the response are completely anonymous by default the participants ip address is stored when they complete the survey. The user can continue to add as many questions as they would like, even after the survey is initially created. They then choose how they would like to have their survey distributed; they can select from a web link, socialmedia, email or enbed on website .  
+
+As participants complete the survey the results are immedatly stored
+The results of the survey are visible to the user by login into their account on surveymonkey. They can choose to look at the responses indavidually or look at metrics about how participants responded. \\
+
+\noindent
+The patent "Customizing Forms In Electronic Mail Systems" \cite{holt_customizing_2006}
 
 
-\subsection{Data to Graphics}
-
+\subsection{D3}
+\cite{bostock_d3.js_????}
 
 
 
@@ -179,13 +162,13 @@ The access levels are: 1-Admin, 2-Lecturers, 3-Lab Helpers and 4-Students
 
 \begin{table}[ht]
 \caption{Functional User Requirements}
-\begin{tabular}{|p{0.06\linewidth}|p{0.7\linewidth}|p{0.1\linewidth}|p{0.1\linewidth}|}\hline
-\textbf{ID} & \textbf{Requirement} & \textbf{Priority} & \textbf{Access}
+\begin{tabular}{|p{0.06\linewidth}|p{0.75\linewidth}|p{0.1\linewidth}|}\hline
+\textbf{ID} & \textbf{Requirement} & \textbf{Priority}
 \\
 \hline \hline
 
-FR\arabic{requirement} &Test&Test&Test\\ \hline \stepcounter{requirement}
-FR\arabic{requirement} &Test&Test&Test\\ \hline
+FR\arabic{requirement} &Test&Test\\ \hline \stepcounter{requirement}
+FR\arabic{requirement} &Test&Test\\ \hline
 
 \end{tabular}
 \label{table:funct-user}
@@ -209,7 +192,7 @@ SR\arabic{requirement} &Test&Test\\ \hline \stepcounter{requirement}
 SR\arabic{requirement} &Test&Test\\ \hline
 
 \end{tabular}
-\label{table:funct-user}
+\label{table:funct-sys}
 \end{table}
 \vspace*{-\baselineskip}
 \setcounter{requirement}{1}
@@ -306,7 +289,7 @@ The Gantt chart for this dissertation can be seen in figure(\ref{fig:ganttchart}
 
 \subsection{Risk Analysis}
 \newcounter{risk} \stepcounter{risk}
-The risks relating to this dissertation are shown in table(\ref{table:risk})
+The risks relating to this dissertation are shown in table(\ref{table:risk}) each risk has an associated Likelihood, Impact and a Mitigation Strategy. Likelihood and Impact values can be low, medium or high.
 
 
 \begin{table}[h]
@@ -317,7 +300,7 @@ The risks relating to this dissertation are shown in table(\ref{table:risk})
 \textbf{ID} & \textbf{Risk} & \textbf{Likelihood} & \textbf{Impact } & \textbf{Mitigation Strategy}
 \\
 \hline
-+
+
 R\arabic{risk} &Superviser Leaves & Low & Medium & Inform alisdair and request a new supervisor\\ \hline \stepcounter{risk}
 
 R\arabic{risk} &Software Licenses Expire & Low & Low & Check licenses for all software i will be using during the project to make sure they are valid for length of project\\ \hline \stepcounter{risk}
@@ -326,7 +309,7 @@ R\arabic{risk} &Loss of data & Low & High & Back-ups will be stored throughout t
 
 R\arabic{risk} &Lecturers can’t create custom marking schemes & Medium & High\\ \hline \stepcounter{risk}
 
-R\arabic{risk} &TRequirements changed & Medium & Medium & Evaluate requirements before starting development phase and evaluate requirements regularly during project to notice any required changes before it causes a major issue \\ \hline \stepcounter{risk}
+R\arabic{risk} &Requirements changed & Medium & Medium & Evaluate requirements before starting development phase and evaluate requirements regularly during project to notice any required changes before it causes a major issue \\ \hline \stepcounter{risk}
 
 R\arabic{risk} &System speed is slow & Medium & Medium\\ \hline \stepcounter{risk}
 
@@ -361,14 +344,15 @@ R\arabic{risk} &Test&Test&Test&test\\ \hline
 
 \subsection{Professional Issues}
 The professional part of this project will be done by following coding standards for the languages that I decide to use.\\
-As this project will be a Web application I will ensure that both the html and css are validated.\\
+As this project will be a web application I will ensure that both the html and css are validated.\\
 The system will be made open source to allow other people to look at and improve the system once I have completed it.\\
 The project will be provided with a  user and developer documentation allow for easy development and implementation of the system.
 
 
 \subsection{Legal Issues}
-There are multiple legal issues relating to this project. The most important one is the Data Protection Act. Since the systems will be designed to store data about students I will have to make sure that all data is encrypted and securely stored.
-I will make sure that any software included in the development of the system is open source and that I am meeting all the terms of service to use it.
+There are multiple legal issues relating to this project. The most important one is the Data Protection Act. Since the systems will be designed to store data about students I will have to make sure that all data is encrypted and securely stored.\\
+I will make sure that any software included in the development of the system is open source and that I am meeting all the terms of service to use it.\\
+
 
 
 \subsection{Ethical Issues}
@@ -392,9 +376,7 @@ Will this system result in a reduction of lab helpers being required to mark lab
 
 
 \newpage
-\bibliographystyle{plain}
-\bibliography{references}
-
+\printbibliography
 
 
 
