@@ -4,21 +4,22 @@
 
 
 
-
-\usepackage{tabularx}
+\usepackage[capposition=top]{floatrow}
 \usepackage{setspace}
-\usepackage[nottoc,notlot,notlof]{tocbibind}
 \usepackage{float}
 \usepackage[backend=bibtex,sorting=nyt,firstinits=true]{biblatex}
 \usepackage{hyperref}
+\usepackage{longtable}
+\usepackage{wrapfig}
 
-
+\usepackage{lipsum}
 
 \addbibresource{references.bib} 
 
 
 \usepackage[margin=2cm]{geometry}
 
+\newcommand{\rid}[1]{\centering #1-\ifnum\value{requirement}<10 0\fi\arabic{requirement} \stepcounter{requirement}}
 
 
 
@@ -109,32 +110,76 @@ The aim of this dissertation is to design and implement a system for the digital
 
 \newpage
 \section{Literature Review}
-This section contains the current academic literature relating to anything relevant to the creations of a digital marking system.
+This section contains the current academic literature relating to anything relevant to current marking systems and the development of the new digital marking system.
 
 
 \subsection {Marking Systems}
-Current marking systems rely on lecturers marking and returning results quickly to allow for student improvement. As the number of students increases on courses the amount of time required to mark assignments naturally takes longer and in some cases can actually be scrapped completely \cite{brown_assessment_1999}. To cope with increasing class sizes courses are beginning to move towards peer marking.
 
+\subsubsection{Lecturer Based}
+The way lectuerer based marking works is that students complete their assignment, the lecturer or tutor marks it and provides result in a timely mannor to help the student improve.\\
+The advantage of this style of marking is that it provides useful feedback.
+A downside to this style of marking is that the number of students increases on courses the amount of time required to mark assignments naturally takes longer and in some cases can actually cause marking to be scrapped completely \cite{brown_assessment_1999}.  
 
+\subsubsection{Peer Based}
+To cope with increasing class sizes some courses are beginning to move towards peer marking.\\
+Peer marking system works by having students assess each other and some cases have the student think up there own marking criteria \cite{orsmond_use_2000}. This style allows for students to gain experince in evaluating other people work, which some graduates feel is a necessary skill to have \cite{langan_insights_????} \\
+Peer marking has its own set of problems for example, "Students may have a less well developed sense of the criteria compared to the lecturer which could lead to a lack of reliability of student marking." \cite{orsmond_use_2000}. \\ 
+
+\newpage
 \subsection{Digital Marking Systems}
-Digital marking systems are designed to mirror current paper based marking systems but take advantage of the electronic environment \citetitle{joy_effective_1998}.
+
+\subsubsection{Reasons for Digital Marking}
+Digital marking systems are designed to mirror current paper based marking systems but take advantage of the electronic environment \cite{heinrich_online_2003}. These systems help to reduce the increasing work caused by more and more students taking courses. Along with this it also allows administative tasks associated with coursework to be automated enabling more time for other tasks.\cite{joy_effective_1998}  
+
+\subsubsection{Warwick BOSS System}
+
+\subsubsection{TurnItIn}
+There currently exists an electronic plagarism system called TurnItIn \cite{_turnitin_????} currently being used my many universitys around the world. It allows students to upload there essay assignments online. it then checks for plagirism in the document by searching the internet and using a large database of documents. After it process the document it assigns a plagarism percentage and highlights any areas that were plagarised. Lecturers can then login and view all the submited documents and mark them online.\\
+An artical titled \citetitle{dahl_turnitin_2007} \cite{dahl_turnitin_2007} conducting a questionaire found that students felt that the system was easy to use and more conveniant than having to had to provide paper copies. It also found that 50\% agreed and 33.3\% of students prefered to have there grade shown online rather than have a cover sheet.
 
 
-\subsection{User Dependant Views}
+
+\newpage
+\subsection{User Access Views}
+
+Controlling the view that users have based on their access level is common practise, for example website like facebook allow users to limit what other users can see. This means that if another user is a friend then they can see there whole feed, while someone who is not may only see there profile picture.\\
+User 
 
 
-\subsection{Custom Website Forms}
-Survey monkey \cite{finley_surveymonkey_1999} is an example of custom web forms being created by users. Founded by Ryan Finley in 1999 Survey Monkey enables users to create there own surveys and easily distribute them. It builds the surveys by letting the user select the contence of the question and what the response type will be: The user can also decided if the response are completely anonymous by default the participants ip address is stored when they complete the survey. The user can continue to add as many questions as they would like, even after the survey is initially created. They then choose how they would like to have their survey distributed; they can select from a web link, socialmedia, email or enbed on website .  
+\subsection{Custom Input Forms}
+
+
+\subsubsection{SurveyMonkey}
+Survey monkey \cite{finley_surveymonkey_1999} is an example of custom web forms being created by users. Founded by Ryan Finley in 1999 Survey Monkey enables users to create there own surveys and easily distribute them. It builds the surveys by letting the user select the contence of the question and what the response type will be: The user can also decided if the response are completely anonymous by default the participants ip address is stored when they complete the survey. The user can continue to add as many questions as they would like, even after the survey is initially created. After designing the survey the user chooses how they would like to have their survey distributed. The avalible options that can select are a web link, socialmedia, email or enbeable on a website .  
 
 As participants complete the survey the results are immedatly stored
-The results of the survey are visible to the user by login into their account on surveymonkey. They can choose to look at the responses indavidually or look at metrics about how participants responded. \\
+The results of the survey are visible to the user by login into their account on surveymonkey. They can choose to look at the responses indavidually or look at metrics about how participants responded.
+
+\subsubsection{Customizing Forms In Electronic Mail Systems}
+\noindent
+The patent \citetitle{holt_customizing_2006} \cite{holt_customizing_2006} describes a process for user-customisable forms in an e-mail system were the administrator selects customised field types and behaviors.  For example current e-mail
+
+
+\begin{wrapfigure}[7]{r}{0.5\textwidth}
+\vspace*{-\baselineskip}
+\begin{figure}[H]
+   \includegraphics[width=0.7\textwidth]{images/emailform.png}
+	\caption{Example Form (Patent \cite{holt_customizing_2006})}
+	\label{fig:emailform}
+\end{figure} 
+\end{wrapfigure}
 
 \noindent
-The patent "Customizing Forms In Electronic Mail Systems" \cite{holt_customizing_2006}
+forms have a field for address, subject and one for the the actual message to be sent. While an example of what the patent is suggesting can be seen in figure \ref{fig:emailform}, it shows the adding of additonal fields allowing for wide varity of form to be created and not force users to use the few forms that are precreated.\\
+This 
+
+%User-customizable forms in an electronic mail system enable an administrator to select customized field types and customized behaviors. The electronic mail system provides for the receiving and displaying of mail information in conjunction with the use of a user-customizable form. An administrator creates a customized field of a customized form by selecting a field type from a among multiple defined field types and a behavior from among multiple behaviors. When data is entered by a user to the customized field having the selected field type, the selected behavior is applied to the data. In this manner, the administrator has the flexibility of creating a variety of customized forms in the electronic mail system, and is not limited to a relatively small number of predefined forms.
 
 
-\subsection{D3}
-\cite{bostock_d3.js_????}
+\subsection{D3: Data Visualisation}
+D3 \cite{bostock_d3.js_????} is a javascript libary was designed for the creation of interactive visualisations of data and was first developed in 2011. D3 uses precreated Javascript functions to create scaleable vector graphics (SVG's) which are embeded into the html of websites. To change the look of an SVG a Cascading Style Sheet (CSS) can be used.  \\
+Datasets can be bound to an SVG allowing for visual way to interperate the dataset, and as the dataset changes the SVG will be changed allowing for a dynamic display.   
+
 
 
 
@@ -160,70 +205,134 @@ Along with this, each requirement has a description stating what the requirement
 Functional requirements also include an access column which defines what users should be able to use. Some items are restricted to lecturers as some requirements should only be be usable by lecturers and lab-helpers and not by students.\\
 The access levels are: 1-Admin, 2-Lecturers, 3-Lab Helpers and 4-Students
 
-\begin{table}[ht]
-\caption{Functional User Requirements}
-\begin{tabular}{|p{0.06\linewidth}|p{0.75\linewidth}|p{0.1\linewidth}|}\hline
-\textbf{ID} & \textbf{Requirement} & \textbf{Priority}
-\\
+
+\begin{spacing}{1.2}
+\begin{longtable}{|p{0.09\linewidth}|p{0.6\linewidth}|p{0.1\linewidth}|
+p{0.1\linewidth}|}
+\caption{Functional User Requirements} \label{table:funct-user} \\
+\hline
+
+\textbf{ID} & \textbf{Requirement} & \textbf{Access} & \textbf{Priority}\\
 \hline \hline
 
-FR\arabic{requirement} &Test&Test\\ \hline \stepcounter{requirement}
-FR\arabic{requirement} &Test&Test\\ \hline
+\rid{UR} & Should be able to create marking schemes & 2 & High\\ \hline
+\rid{UR} & Should be able to look up students in lab & 2,3 & High\\ \hline
+\rid{UR} & Should display generated stats & 2 & High\\ \hline
+\rid{UR} & Should be able to access Marking Scheme & 3 & High\\ \hline
+\rid{UR} & Should be able to enter selected students mark & 3 & High\\ \hline
+\rid{UR} & Should be able to submit student mark & 3 & High\\ \hline
+\rid{UR} & Should be able to create peer marking scheme & 2 & Medium\\ \hline
+\rid{UR} & Should be able to see current mark & 4 & High\\ \hline
+\rid{UR} & Should be able to select the lab they are helping in & 3 & High\\ \hline
+\rid{UR} & Should be able to generate end of year spread sheets & 2 & Medium\\ \hline
+\rid{UR} & Should be able  to select students from lab list & 2,3 & High\\ \hline
+\rid{UR} & Should be able to login using university ID & 1,2,3,4 & Low\\ \hline
+\rid{UR} & Should allow editing of students in class & 2 & Medium\\ \hline
+\rid{UR} & Should be able to leave comments about students & 2,3 & High\\ \hline
+\rid{UR} & Should be able to set what parts of the marking scheme students can see & 2 & Medium\\ \hline
+\rid{UR} & Should have to login to view system & 1,2,3,4 & High\\ \hline
+\rid{UR} & Should have accounts created for them & 1,2,3,4 & High\\ \hline
+\rid{UR} & Should be able to change password & 1,2,3,4 & High\\ \hline
+\rid{UR} & Should be able to assign students to courses & 1 & Medium\\ \hline
+\rid{UR} & Should be able to remove students from courses & 1, 2 & High\\ \hline
+\rid{UR} & Should be able to look at students stats & 2 & Medium\\ \hline
+\rid{UR} & Should be able to see submited marks & 2 & High\\ \hline
+\rid{UR} & Should be able to search for student by name & 2,3 & Medium\\ \hline
 
-\end{tabular}
-\label{table:funct-user}
-
-\end{table}
-\vspace*{-\baselineskip}
+\end{longtable}
+\end{spacing}
 \setcounter{requirement}{1}
 
-
-
+\newpage
 \subsubsection{System Requirements}
 
-\begin{table}[ht]
-\def\arraystretch{1.5}
-\begin{tabular}{|p{0.06\linewidth}|p{0.75\linewidth}|p{0.1\linewidth}|}\hline
-\textbf{ID} & \textbf{Requirement} & \textbf{Priority}
-\\
+All the functional system requirements for the digital marking system are listed in the Table \ref{table:funct-sys}. The systems requirements are functionality that the system should be able to do without users.
+
+\begin{spacing}{1.2}
+\begin{longtable}{|p{0.09\linewidth}|p{0.7\linewidth}|p{0.1\linewidth}|}
+\caption{Functional System Requirements} \label{table:funct-sys} \\
+\hline
+
+\textbf{ID} & \textbf{Requirement} & \textbf{Priority}\\
 \hline \hline
 
-SR\arabic{requirement} &Test&Test\\ \hline \stepcounter{requirement}
-SR\arabic{requirement} &Test&Test\\ \hline
 
-\end{tabular}
-\label{table:funct-sys}
-\end{table}
-\vspace*{-\baselineskip}
+\rid{SR} & Should show different displays depending on access level & High\\ \hline
+\rid{SR} & Should load students current lab mark scheme & High\\ \hline
+\rid{SR} & Should allow marks to updated & High\\ \hline
+\rid{SR} & Should apply penalty for late lab completion & High\\ \hline
+\rid{SR} & Should create a set of useful stats based on lab & High\\ \hline
+\rid{SR} & Should store what class student belong too & High\\ \hline
+\rid{SR} & Should have a list of all students in class & High\\ \hline
+\rid{SR} & Should list all students that did not attend the lab & Medium\\ \hline
+\rid{SR} & Should track how long it takes to mark a student & Medium \\ \hline
+\rid{SR} & Should enable results to be importable to vision & Low\\ \hline
+\rid{SR} & Should retrieve student Image from university system & Low\\ \hline
+\rid{SR} & Should display what students have been marked & Low\\ \hline
+\rid{SR} & Should backup database regularly & Low\\ \hline
+
+\rid{SR} & & \\ \hline
+
+ 
+\end{longtable}
+\end{spacing}
 \setcounter{requirement}{1}
 
 
+\newpage
 \subsection{Non-Functional Requirements}
 
-\begin{table}[h]
-\def\arraystretch{1.5}
-\begin{tabular}{|p{0.06\linewidth}|p{0.75\linewidth}|p{0.1\linewidth}|}\hline
-\textbf{ID} & \textbf{Requirement} & \textbf{Priority}
-\\
+Table \ref{table:non-func} lists all the non-functional requirements for the development of the system. They are ranked in order of priority.
+
+\begin{spacing}{1.2}
+\begin{longtable}{|p{0.1\linewidth}|p{0.7\linewidth}|p{0.1\linewidth}|}
+\caption{Non-Function Requirements} \label{table:non-func}\\ 
+\hline
+
+\textbf{ID} & \textbf{Requirement} & \textbf{Priority}\\
 \hline \hline
 
 
-NFR\arabic{requirement} & All personal data should be encrypted & High\\ \hline \stepcounter{requirement}
-NFR\arabic{requirement} & Stats Should be updated as lab marks submit grades & High\\ \hline \stepcounter{requirement}
-NFR\arabic{requirement} & Stats Calculations should take less than 2 seconds & High
-\\ \hline \stepcounter{requirement}
-NFR\arabic{requirement} & Loading Student Marks should take less than 2 seconds & Low\\ \hline \stepcounter{requirement}
-NFR\arabic{requirement} & All php should use prepared statements & High\\ \hline \stepcounter{requirement}
-NFR\arabic{requirement} & System must function on a wide variety of smartphones and tablets  & High\\ \hline \stepcounter{requirement}
-NFR\arabic{requirement} & The system must be able to handle a large number of users without any faults  & Medium\\ \hline \stepcounter{requirement}
-NFR\arabic{requirement} & Password must contain alphanumerics and have a minimum and maximum length  & Medium\\ \hline \stepcounter{requirement}
-NFR\arabic{requirement} & Test&Test\\ \hline
+\rid{NFR} & Should have all person data encrypted & High\\ \hline
 
+\rid{NFR} & Should update stats as marks are entered & High\\ \hline 
 
-\end{tabular}
-\label{table:non-func}
-\end{table}
-\vspace*{-\baselineskip}
+\rid{NFR} & Should take less than 2 seconds to generate stats  & High\\ \hline
+
+\rid{NFR} & PHP Should use prepared statements & High\\ \hline
+
+\rid{NFR} & Should be dynamically designed & High\\ \hline
+
+\rid{NFR} & HTML, CSS and Javascript should be validated & High\\ \hline
+
+\rid{NFR} & Should make sure inputs are valid & High\\ \hline
+
+\rid{NFR} & Should prevent SQL Injection & High\\ \hline
+
+\rid{NFR} & Should function on a wide variety of smartphones and tablets & Medium\\ \hline
+
+\rid{NFR} & Should be able to handle a large number of users without any faults & Medium\\ \hline
+
+\rid{NFR} & Should make sure passwords contain alphanumerics and have a minimum and maximum length  & Medium\\ \hline
+
+\rid{NFR} & Should autosave marks as they are entered & Medium\\ \hline
+
+\rid{NFR} & Should record what lab help marked what student & Medium\\ \hline
+
+\rid{NFR} & Should have disability options (Increase text size, colour layout) & Low\\ \hline
+
+\rid{NFR} & Should be readable by screen readers & Low\\ \hline
+
+\rid{NFR} & Should take less than 2 second to load student marking scheme & Low\\ \hline
+
+\rid{NFR} & Test&Test\\ \hline
+
+ 
+\end{longtable}
+\end{spacing}
+
+\setcounter{requirement}{1}
+
 
 
 
@@ -238,7 +347,7 @@ NFR\arabic{requirement} & Test&Test\\ \hline
 
 \subsection{Testing}
 During each sprint unit tests will be created and run on modules of code to make sure that they function correctly and to check that the system is ready for the next module to be developed.\\
-Each sprint will have sprint set requirements that are to be developed by the end of the sprint. Each requirement will have a testable case that will be run at the end of the sprint to make sure that it is successfully implemented.
+Each sprint will have set requirements that are to be developed by the end of the sprint. Each requirement will have a testable case that will be run at the end of the sprint to make sure that it is successfully implemented.
 
 
 \subsection{Evaluating}
@@ -262,7 +371,7 @@ To evaluate how effective the code is I will create test cases. These will test 
 
 \subsection{Project Plan}
 
-The Gantt chart for this dissertation can be seen in figure(\ref{fig:ganttchart}). It is broken down into 5 sections: Design, Development, Evaluation, Dissertation and Poster.\\
+The Gantt chart for this dissertation can be seen in figure(\ref{fig:ganttchart}). It is broken down into 5 stages: Design, Development, Evaluation, Dissertation and Poster. Each of these stages have multiple tasks that are expected to be completed during the course of the stage. A summary of each stage and their key tasks are stated below. \\
 \textbf{Design Stage} Starts at the end of semester 1 to allow myself time to complete other course work. In this stage I will create mock-ups for the user interface, a database schema and define what will be occurring in each of my sprints in the next stage.\\
 \textbf{Development Stage:} Starts once the holidays are over. It consists of three two week sprints with  a week's break in between to allow for evaluation, write ups and other coursework. When the three sprint finishes I will go straight into the evaluation stage.\\
 \textbf{Evaluation Stage: } During the final two weeks before the draft handin, I will conduct a usability case study and write up the remainder of my dissertation for the draft handin.\\
@@ -288,50 +397,56 @@ The Gantt chart for this dissertation can be seen in figure(\ref{fig:ganttchart}
 
 
 \subsection{Risk Analysis}
-\newcounter{risk} \stepcounter{risk}
-The risks relating to this dissertation are shown in table(\ref{table:risk}) each risk has an associated Likelihood, Impact and a Mitigation Strategy. Likelihood and Impact values can be low, medium or high.
+
+The risks relating to this dissertation are shown in table(\ref{table:risks}), each risk has an associated Likelihood, Impact and a Mitigation Strategy. Likelihood and Impact values can be low, medium or high. The table is sorted by likelihood and then by the impact
 
 
-\begin{table}[h]
 
-\caption{Risk Analysis}
-\begin{tabular}{|p{0.05\textwidth}|p{0.25\textwidth}|p{0.15\textwidth}|p{0.1\textwidth}|p{0.33\textwidth}|}
-\hline
-\textbf{ID} & \textbf{Risk} & \textbf{Likelihood} & \textbf{Impact } & \textbf{Mitigation Strategy}
-\\
+
+\begin{spacing}{1.2}
+\begin{longtable}[c]{|p{0.05\textwidth}|p{0.25\textwidth}|p{0.15\textwidth}|p{0.1\textwidth}|p{0.33\textwidth}|}
+\caption{Risk Analysis} \label{table:risks} \\
 \hline
 
-R\arabic{risk} &Superviser Leaves & Low & Medium & Inform alisdair and request a new supervisor\\ \hline \stepcounter{risk}
+\textbf{ID} & \textbf{Risk} & \textbf{Likelihood} & \textbf{Impact } & \textbf{Mitigation Strategy}\\
+\hline
 
-R\arabic{risk} &Software Licenses Expire & Low & Low & Check licenses for all software i will be using during the project to make sure they are valid for length of project\\ \hline \stepcounter{risk}
+\rid{R} &Superviser Leaves & Low & Medium & Inform alisdair and request a new supervisor\\ \hline
 
-R\arabic{risk} &Loss of data & Low & High & Back-ups will be stored throughout the project\\ \hline \stepcounter{risk}
+\rid{R} &Software Licenses Expire & Low & Low & Check licenses for all software i will be using during the project to make sure they are valid for length of project\\ \hline 
 
-R\arabic{risk} &Lecturers can’t create custom marking schemes & Medium & High\\ \hline \stepcounter{risk}
+\rid{R} &Loss of data & Low & High & Back-ups will be stored throughout the project\\ \hline
 
-R\arabic{risk} &Requirements changed & Medium & Medium & Evaluate requirements before starting development phase and evaluate requirements regularly during project to notice any required changes before it causes a major issue \\ \hline \stepcounter{risk}
+\rid{R} &Lecturers can’t create custom marking schemes & Medium & High & Create selectable forms that lecturers can edit.\\ \hline 
 
-R\arabic{risk} &System speed is slow & Medium & Medium\\ \hline \stepcounter{risk}
+\rid{R} &Requirements changed & Medium & Medium & Evaluate requirements before starting development phase and evaluate requirements regularly during project to notice any required changes before it causes a major issue \\ \hline
 
-R\arabic{risk} &Users cannot understand the system & Medium & Medium\\ \hline \stepcounter{risk}
+\rid{R} & System speed is slow & Medium & Medium & Make sure system is well factored and follow coding standards \\ \hline
 
-R\arabic{risk} &Browsers compatibility & High & High\\ \hline \stepcounter{risk}
-R\arabic{risk} &Personal Injury & Low & High & Development would have to be delayed and discussions made with supervisor about how to continue\\ \hline \stepcounter{risk}
-R\arabic{risk} &Test&Test&Test&test\\ \hline \stepcounter{risk}
-R\arabic{risk} &Test&Test&Test&test\\ \hline
+\rid{R} &Users cannot understand the system & Medium & Medium & Usability Study is being run at the end of the project to evaulation future improvements\\ \hline 
+
+\rid{R} &Browsers compatibility & High & High & Constatly test browser compatibility after each sprint\\ \hline
+
+\rid{R} &Personal Injury & Low & High & Development would have to be delayed and discussions made with supervisor about how to continue\\ \hline
+
+\rid{R} & Cannot get D3 to work & Medium & Low & Just display stats as plain text\\ \hline
+
+\rid{R} & Server hosting the project crashes & Low & Medium & Contact the host and enquire about what has happened\\ \hline
+
+\rid{R} & Used libary get updated and causes error & High & Low & Read update information before upgrading to understand were errors might occur\\ \hline
+
+\rid{R} & Other University Coursework & High & Medium & Make sure to allocate adaquit amount of time to other courses.\\ \hline
+
+\rid{R} & Power failure & Low & High  & \\ \hline
+
+\rid{R} &  & Test & Test & test\\ \hline
+
+\rid{R} & Test&Test&Test&test\\ \hline
 
 
 
-
-
-
-
-
-
-
-\end{tabular}
-\label{table:risk}
-\end{table}
+\end{longtable}
+\end{spacing}
 
 
 
@@ -351,7 +466,7 @@ The project will be provided with a  user and developer documentation allow for 
 
 \subsection{Legal Issues}
 There are multiple legal issues relating to this project. The most important one is the Data Protection Act. Since the systems will be designed to store data about students I will have to make sure that all data is encrypted and securely stored.\\
-I will make sure that any software included in the development of the system is open source and that I am meeting all the terms of service to use it.\\
+I will make sure that I follow the terms and services for any software or libarys I used as part of the project, as to make sure I am not breaking any laws.
 
 
 
