@@ -62,14 +62,17 @@ The aim of this dissertation project is to replace the current system for the ma
 %										%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage     
-\section{Aims, Objectives and Project Description}
+
 \setcounter{page}{1}
 \pagenumbering{arabic}
 
-\subsection{Project Description}
+\section{Introduction}
 
+The current system for marking of computing science lab is to use multiple lab helpers each given a list of students and the marking scheme for them. There are multiple problems that can arise from this: students can get marked by two helpers and get different grade from both, the lab helper puts in the marks for the wrong student or lab sheets can get lost. \\
+After the lab helpers have completed their marking, the sheets are provided to the lecturer who colates them all together into one spread sheet and then enters it into vision. This increases the chances of tanscription errors as the lecturer might 
 
-
+\newpage
+\section{Aims and Objectives}
 \subsection{Aim}
 The aim of this dissertation is to design and implement a system for the digital marking and analysis of computer labs and to help improve the speed at which they are marked. The system will also provide useful statistics for both lecturers and students.
 
@@ -118,12 +121,14 @@ Peer marking however has its own set of problems - for example, "Students may ha
 \subsection{Digital Marking Systems}
 
 \subsubsection{Reasons for Digital Marking}
-Digital marking systems are designed to mirror the current paper based marking systems but with the advantage of the electronic environment \cite{heinrich_online_2003}. These systems help to reduce the increasing workload caused by more and more students taking courses. Along with this it also allows administrative tasks associated with coursework to be automated enabling more time for other tasks.\cite{joy_effective_1998} 
+Digital marking systems are designed to mirror the current paper based marking systems but with the advantage of the electronic environment \cite{heinrich_online_2003}. These systems help to reduce the increasing workload caused by more and more students taking courses. Along with this it also allows administrative tasks associated with coursework to be automated enabling more time for other tasks.\cite{joy_effective_1998}.
 
 \subsubsection{TurnItIn}
 There currently exists an online electronic plagiarism system called TurnItIn, \cite{_turnitin_????} currently being used by many universities around the world. It allows students to upload their essay assignments online. It then checks for plagiarism in the document by searching the internet and using a large database of documents. After it processes the document it assigns a plagiarism percentage and highlights any areas that were plagiarised. Lecturers can then login and view all the submitted documents and mark them online.\\
 Current research highlighted \cite{dahl_turnitin_2007} conducted a questionnaire and found that students felt that the system was easy to use and more convenient than having to had to provide paper copies. It also found that 50\% agreed and 33.3\% of students prefered to have their grade shown online rather than have a cover sheet.
 
+
+\subsection{Lab Helpers}
 
 
 \newpage
@@ -144,7 +149,7 @@ When participants complete the survey their results are immediately stored and t
 
 \subsubsection{Customizing Forms In Electronic Mail Systems}
 \noindent
-The patent \citetitle{holt_customizing_2006} \cite{holt_customizing_2006} describes a process for user-customisable forms in an e-mail system where the administrator selects custom field types and behaviours.  For example current e-mail
+A patent \cite{holt_customizing_2006} describes a process for user-customisable forms in an e-mail system where the administrator selects custom field types and behaviours.  For example current e-mail forms have 
 
 \begin{wrapfigure}[7]{r}{0.5\textwidth}
 \vspace*{-\baselineskip}
@@ -156,11 +161,12 @@ The patent \citetitle{holt_customizing_2006} \cite{holt_customizing_2006} descri
 \end{wrapfigure}
 
 \noindent
-forms have a field for address, subject and one for the the actual message to be sent. While an example of what the patent is suggesting can be seen in figure \ref{fig:emailform}, it shows the adding of additional fields allowing for wide variety of form to be created and not limit the  users to use the few forms that are precreated.\\
+a field for address, subject and one for the the actual message to be sent. While an example of what the patent is suggesting can be seen in figure \ref{fig:emailform}, it shows the adding of additional fields allowing for wide variety of form to be created and not limit the  users to use the few forms that are precreated.\\
 This increased flexibility in email forms would allow for easier  interpretation of messages, making responding or providing information via email a lot simpler and quicker.
 
 
-\subsection{D3: Data Visualisation}
+\subsection{Data Visualisation}
+\subsubsection{D3}
 D3 \cite{bostock_d3.js_????} is a javascript library, which was designed for the creation of interactive visualisations of data and was first developed in 2011. D3 uses precreated Javascript functions to create scalable vector graphics (SVG's) which are embedded into the html of websites."SVG is a language for describing two-dimensional graphics in XML"\cite{ferraiolo_scalable_2000} and can have displays changed  using Cascading Style Sheet (CSS).  \\
 Datasets can also be bound to an SVG allowing for a visual way to interpret the dataset, and as the dataset changes the SVG will be changed allowing for a dynamic display.  
 
@@ -181,7 +187,8 @@ Datasets can also be bound to an SVG allowing for a visual way to interpret the 
 
 \subsection{Functional}
 Requirements for the system are each given an idea depending on the type of requirement: FR for functional requirements, NFR for non-functional requirement and SR for system requirements.\\
-Along with this, each requirement has a description stating what the requirement is and a priority. The priority value can be low, medium or high, which shows which requirements will be implemented first into the system.
+Along with this, each requirement has a description stating what the requirement is and a priority. The priority value can be low, medium or high, which shows which requirements will be implemented first into the system.\\
+For this project I will be attempting to implementing all of the high priority functional and non-functional requirements, I will also try and implement the medium and low priority requirement that improve the system a whole. 
 
 
 \def\arraystretch{1.5}
@@ -192,7 +199,7 @@ The access levels are: 1-Admin, 2-Lecturers, 3-Lab Helpers and 4-Students
 
 
 
-\begin{spacing}{1.2}
+\begin{spacing}{1.5}
 \begin{longtable}{|p{0.09\linewidth}|p{0.6\linewidth}|p{0.1\linewidth}|
 p{0.1\linewidth}|}
 \caption{Functional User Requirements} \label{table:funct-user} \\
@@ -203,80 +210,54 @@ p{0.1\linewidth}|}
 \hline \hline
 
 
-\rid{UR} & Should have to login to view system & 1,2,3,4 & High\\ \hline
-\rid{UR} & Should have accounts created for them & 1,2,3,4 & High\\ \hline
-\rid{UR} & Should be able to change password & 1,2,3,4 & High\\ \hline
-\rid{UR} & Should be able to login using university ID & 1,2,3,4 & Low\\ \hline
-\rid{UR} & Should be able to logout & 1,2,3,4 & High \\ \hline
+\rid{FR} & Should have to login to view system & 1,2,3,4 & High\\ \hline
+\rid{FR} & Should have accounts created for them & 1,2,3,4 & High\\ \hline
+\rid{FR} & Should be able to change password & 1,2,3,4 & High\\ \hline
+\rid{FR} & Should be able to login using university ID & 1,2,3,4 & Low\\ \hline
+\rid{FR} & Should be able to logout & 1,2,3,4 & High \\ \hline
 
-\rid{UR} & Should be able to remove students from courses & 1, 2 & High\\ \hline
-\rid{UR} & Should be able to update student accounts & 1,3 & Low \\ \hline
+\rid{FR} & Should be able to remove students from courses & 1, 2 & High\\ \hline
+\rid{FR} & Should be able to update student accounts & 1,3 & Low \\ \hline
 
-\rid{UR} & Should be able to look up students in lab & 2,3 & High\\ \hline
-\rid{UR} & Should be able  to select students from lab list & 2,3 & High\\ \hline
-\rid{UR} & Should be able to leave comments about students & 2,3 & High\\ \hline
-\rid{UR} & Should be able to search for student by name & 2,3 & Medium\\ \hline
-\rid{UR} & Should be able to mark student even if they are not in the system & 2,3 & Medium \\ \hline
+\rid{FR} & Should be able to look up students in lab & 2,3 & High\\ \hline
+\rid{FR} & Should be able  to select students from lab list & 2,3 & High\\ \hline
+\rid{FR} & Should be able to leave comments about students & 2,3 & High\\ \hline
+\rid{SR} & Should be able to save marks & 2,3 & High\\ \hline
+\rid{SR} & Should be able to update marks & 2,3 & High\\ \hline
+\rid{SR} & Should be able to delete marks & 2,3 & High\\ \hline
+\rid{FR} & Should be able to search for student by name & 2,3 & Medium\\ \hline
+\rid{FR} & Should be able to mark student even if they are not in the system & 2,3 & Medium \\ \hline
 
-\rid{UR} & Should be able to assign students to courses & 1 & Medium\\ \hline
-\rid{UR} & Should be able to assign lectures to courses & 1 & Medium \\ \hline
+\rid{FR} & Should be able to assign students to courses & 1 & Medium\\ \hline
+\rid{FR} & Should be able to assign lectures to courses & 1 & Medium \\ \hline
 
-\rid{UR} & Should be able to create marking schemes & 2 & High\\ \hline
-\rid{UR} & Should display generated stats & 2 & High\\ \hline
-\rid{UR} & Should be able to see submited marks & 2 & High\\ \hline
-\rid{UR} & Should be able to generate end of year spread sheets & 2 & Medium\\ \hline
-\rid{UR} & Should allow editing of students in class & 2 & Medium\\ \hline
-\rid{UR} & Should be able to create peer marking scheme & 2 & Medium\\ \hline
-\rid{UR} & Should be able to look at students stats & 2 & Medium\\ \hline
-\rid{UR} & Should be able to set what parts of the marking scheme students can see & 2 & Medium\\ \hline
-\rid{UR} & Should be able to update marking scheme & 2 & Medium \\ \hline
-\rid{UR} & Should be able to able to assign students to set labs & 2 & Low \\ \hline
-\rid{UR} & Should be able to set penalties for late marking & 2 & Low \\ \hline
+\rid{FR} & Should be able to create marking schemes & 2 & High\\ \hline
+\rid{FR} & Should display generated stats & 2 & High\\ \hline
+\rid{FR} & Should be able to see submited marks & 2 & High\\ \hline
+\rid{FR} & Should be able to generate end of year spread sheets & 2 & Medium\\ \hline
+\rid{FR} & Should allow editing of students in class & 2 & Medium\\ \hline
+\rid{FR} & Should be able to create peer marking scheme & 2 & Medium\\ \hline
+\rid{FR} & Should be able to look at students stats & 2 & Medium\\ \hline
+\rid{FR} & Should be able to set what parts of the marking scheme students can see & 2 & Medium\\ \hline
+\rid{FR} & Should be able to update marking scheme & 2 & Medium \\ \hline
+\rid{FR} & Should be able to delete marking schemes & 2 & Medium\\ \hline
+\rid{FR} & Should be able to able to assign students to set labs & 2 & Low \\ \hline
+\rid{FR} & Should be able to set penalties for late marking & 2 & Low \\ \hline
+\rid{FR} & Should able to export to vision & 2 & Low\\ \hline
 
-\rid{UR} & Should be able to access Marking Scheme & 3 & High\\ \hline
-\rid{UR} & Should be able to enter selected students mark & 3 & High\\ \hline
-\rid{UR} & Should be able to submit student mark & 3 & High\\ \hline
-\rid{UR} & Should be able to select the lab they are helping in & 3 & High\\ \hline
+\rid{FR} & Should be able to access Marking Scheme & 3 & High\\ \hline
+\rid{FR} & Should be able to enter selected students mark & 3 & High\\ \hline
+\rid{FR} & Should be able to submit student mark & 3 & High\\ \hline
+\rid{FR} & Should be able to select the lab they are helping in & 3 & High\\ \hline
 
+\rid{FR} & Should be able to see current mark & 4 & High\\ \hline
 
-\rid{UR} & Should be able to see current mark & 4 & High\\ \hline
-
-\end{longtable}
-\end{spacing}
-\setcounter{requirement}{1}
-
-\newpage
-\subsubsection{System Requirements}
-
-
-All the functional system requirements for the digital marking system are listed in the Table \ref{table:funct-sys}. The system requirements are non-user dependant functions which the system should be able to do.
-
-
-\begin{spacing}{1.2}
-\begin{longtable}{|p{0.09\linewidth}|p{0.7\linewidth}|p{0.1\linewidth}|}
-\caption{Functional System Requirements} \label{table:funct-sys} \\
-\hline
-
-
-\textbf{ID} & \textbf{Requirement} & \textbf{Priority}\\
-\hline \hline
-
-\rid{SR} & Should show different displays depending on access level & High\\ \hline
-\rid{SR} & Should load students current lab mark scheme & High\\ \hline
-\rid{SR} & Should allow marks to updated & High\\ \hline
-\rid{SR} & Should apply penalty for late lab completion & High\\ \hline
-\rid{SR} & Should create a set of useful stats based on lab & High\\ \hline
-\rid{SR} & Should store what class student belong too & High\\ \hline
-\rid{SR} & Should have a list of all students in class & High\\ \hline
-\rid{SR} & Should list all students that did not attend the lab & Medium\\ \hline
-\rid{SR} & Should track how long it takes to mark a student & Medium \\ \hline
-\rid{SR} & Should enable results to be importable to vision & Low\\ \hline
-\rid{SR} & Should retrieve student Image from university system & Low\\ \hline
-\rid{SR} & Should display what students have been marked & Low\\ \hline
-\rid{SR} & Should backup database regularly & Low\\ \hline
-
-\rid{SR} & & \\ \hline
-
+\rid{FR} & Should show different displays depending on access level & & High\\ \hline
+\rid{FR} & Should load students current lab mark scheme & & High\\ \hline
+\rid{FR} & Should apply penalty for late lab completion & & High\\ \hline
+\rid{FR} & Should create a set of useful stats based on lab & & High\\ \hline
+\rid{FR} & Should store what class student belong too & & High\\ \hline
+\rid{FR} & Should have a list of all students in class & & High\\ \hline
 
 \end{longtable}
 \end{spacing}
@@ -286,10 +267,9 @@ All the functional system requirements for the digital marking system are listed
 \newpage
 \subsection{Non-Functional Requirements}
 
-Table \ref{table:non-func} lists all the non-functional requirements for the development of the system. They are ranked in order of priority.
+Table \ref{table:non-func} lists all the non-functional requirements for the development of the system, they are ranked in order of priority.
 
-
-\begin{spacing}{1.2}
+\begin{spacing}{1.5}
 \begin{longtable}{|p{0.1\linewidth}|p{0.7\linewidth}|p{0.1\linewidth}|}
 \caption{Non-Function Requirements} \label{table:non-func}\\
 \hline
@@ -310,13 +290,18 @@ Table \ref{table:non-func} lists all the non-functional requirements for the dev
 \rid{NFR} & Should make sure passwords contain alphanumerics and have a minimum and maximum length  & Medium\\ \hline
 \rid{NFR} & Should autosave marks as they are entered & Medium\\ \hline
 \rid{NFR} & Should record what lab help marked what student & Medium\\ \hline
+\rid{NFR} & Should list all students that did not attend the lab & Medium\\ \hline
+\rid{NFR} & Should track how long it takes to mark a student & Medium \\ \hline
 
 \rid{NFR} & Should have disability options (Increase text size, colour layout) & Low\\ \hline
 \rid{NFR} & Should be readable by screen readers & Low\\ \hline
 \rid{NFR} & Should take less than 2 second to load student marking scheme & Low\\ \hline
-\rid{NFR} & Test@Test\\ \hline
+\rid{NFR} & Should be able to group marked people & Low \\ \hline
+\rid{NFR} & Should retrieve student images from university system & Low\\ \hline
+\rid{NFR} & Should backup database regularly & Low\\ \hline
 
 
+\rid{NFR} & Should  &  \\ \hline
 \end{longtable}
 \end{spacing}
 
@@ -391,7 +376,7 @@ The Gantt chart for this dissertation can be seen in figure(\ref{fig:ganttchart}
 
 The risks relating to this dissertation are shown in table(\ref{table:risks}), each risk has an associated Likelihood, Impact and a Mitigation Strategy. Likelihood and Impact values can be low, medium or high. The table is sorted by likelihood and then by the impact.
 
-\begin{spacing}{1.2}
+\begin{spacing}{1.5}
 \begin{longtable}{|p{0.05\textwidth}|p{0.25\textwidth}|p{0.15\textwidth}|p{0.1\textwidth}|p{0.33\textwidth}|}
 \caption{Risk Analysis} \label{table:risks} \\
 \hline
@@ -501,6 +486,7 @@ Will this system result in a reduction of lab helpers being required to mark lab
 
 \newpage
 \printbibliography[heading=bibintoc]
+
 
 
 \end{document}
