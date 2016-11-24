@@ -8,12 +8,18 @@
 \usepackage{hyperref}
 \usepackage{longtable}
 \usepackage{wrapfig}
+\usepackage[titletoc,title]{appendix}
+\usepackage{pdfpages}
+
+
 
 \usepackage{lipsum}
 \usepackage[margin=2cm]{geometry}
 
 \addbibresource{references.bib}
 \newcommand{\rid}[1]{\centering #1-\ifnum\value{requirement}<10 0\fi\arabic{requirement} \stepcounter{requirement}}
+
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -68,8 +74,11 @@ The aim of this dissertation project is to replace the current system for the ma
 
 \section{Introduction}
 
-The current system for marking of computing science lab is to use multiple lab helpers each given a list of students and the marking scheme for them. There are multiple problems that can arise from this: students can get marked by two helpers and get different grade from both, the lab helper puts in the marks for the wrong student or lab sheets can get lost. \\
-After the lab helpers have completed their marking, the sheets are provided to the lecturer who colates them all together into one spread sheet and then enters it into vision. This increases the chances of tanscription errors as the lecturer might 
+The current system for marking of computing science lab is to use multiple lab helpers each given a list of students and the marking scheme for them, generally marking schemes are a selection of tasks students must have completed and lab helpers tick them off if they have. The biggest problem with this part of the marking is the time it takes lab helpers to find students on the list this causes increased wait times for students. There are multiple other issues that can arise from this: students can get marked by two helpers and get different grade from both, the lab helper doesn't tick of a completed task, they puts the marks for the wrong student on the sheet or simple they miss place the marking sheet.
+
+After the lab helpers have completed their marking, the sheets are provided to the lecturer who collates them all together into one spreadsheet to calculate marks, after that it is entered it into vision. This can cause it own set of problems, it increases the chances of transcription errors as the lecturer may miss read marks when they are transferring them across. The lecturer may not enter the marks immediately into the spread sheet increasing the chance that a marking sheet goes missing, and finally this system means that students are having to wait even longer to get their marks back.
+
+The objective is to develop a system that will reduce and hopefully eliminate the problems of the current system. Along with this it should attempt to reduce the amount of time taken to mark students and therefore speed up labs in general. It should also students to immediately see there grades, allow lecturer to see the result of the assignments as they are being marks and make marking quick for lab helpers. 
 
 \newpage
 \section{Aims and Objectives}
@@ -100,49 +109,61 @@ The aim of this dissertation is to design and implement a system for the digital
 
 \newpage
 \section{Literature Review}
-This section contains the summarys of literature relating to the topic of developing a digital marking system. Covering what marking systems are currently being used, what current digital marking systems exist and why they are an improvement. Along with this it will also cover how to control what users are allowed to see, aswell as explaing systems for creation of custom website forms, and finally it will cover the graphical displaying of statistics.
+This section contains the summary's of literature relating to the topic and help to create a context for the developing a digital marking system . Covering what marking systems are currently being used, what current digital marking systems exist and why they are an improvement. Along with this it will also cover how to control what users are allowed to see, as well as explaining systems for creation of custom website forms, and finally it will cover the graphical displaying of statistics.
 %conclusion
 
 
 \subsection{Marking Systems}
 
 \subsubsection{Lecturer Based}
-The way lecturer based marking works is that students complete their assignment, the lecturer or tutor marks it and provides result in a timely manner to help the student improve. The advantage of this style of marking is that it provides useful feedback for individual students.
-A downside to this style of marking is that as the number of students increases on courses the amount of time required to mark assignments consequently takes longer and in some cases can actually cause marking to be scrapped completely \cite{brown_assessment_1999}. 
+The way lecturer based marking works is that students complete their assignment, the lecturer or tutor marks it and provides result in a timely manner with useful feeback which can be majorly important in helping students improve \cite{tang_investigating_2011}.
+ 
+The advantage of this style of marking is that students can get useful feedback from their lecturer that can help improve their learning, an article study \cite{higgins_conscientious_2002} found that of the students they surveyed 82\% agreed to the question "I pay close attention to the comments I get" in response to assignment feedback.
+
+A downside to this style of marking is that as the number of students increases on courses the amount of time required to mark assignments consequently takes longer and in some cases this can actually cause marked assessments to be scrapped completely as they take too long to get feedback to students \cite{brown_assessment_1999}. 
 
 
 \subsubsection{Peer Based}
-To cope with increasing class sizes some courses are beginning to move towards peer marking.\\
-Peer marking system works by having students assess each other and in some cases  the student produced their own marking criteria \cite{orsmond_use_2000}. This style allows  students to gain experience in evaluating other people's work, which some graduates feel is a necessary skill to possess. \cite{langan_insights_????}. Peer marking also deals with increasing amounts of students very well, this is because as the number students increase the number of markers also increases!  \\
+To cope with increasing class sizes some courses are beginning to move towards peer marking. Peer marking system works by having students assess each other and in some cases  the student produced their own marking criteria \cite{orsmond_use_2000}. 
+
+This style allows  students to gain experience in evaluating other people's work, which some graduates feel is a necessary skill to possess. \cite{langan_insights_????}. Peer marking also deals with increasing amounts of students very well, this is because as the number students increase the number of markers also increases!
+
 Peer marking however has its own set of problems - for example, "Students may have a less well developed sense of the criteria compared to the lecturer which could lead to a lack of reliability of student marking." \cite{orsmond_use_2000}. 
 
 
-\newpage
+
 \subsection{Digital Marking Systems}
 
 \subsubsection{Reasons for Digital Marking}
-Digital marking systems are designed to mirror the current paper based marking systems but with the advantage of the electronic environment \cite{heinrich_online_2003}. These systems help to reduce the increasing workload caused by more and more students taking courses. Along with this it also allows administrative tasks associated with coursework to be automated enabling more time for other tasks.\cite{joy_effective_1998}.
+Digital marking systems are designed to mirror the current paper based marking systems but with the advantage of the electronic environment \cite{heinrich_online_2003}. These systems help to reduce the increasing workload caused by more and more students taking courses. Along with this it also allows administrative tasks associated with coursework to be automated enabling more time for other tasks.\cite{joy_effective_1998}. 
+
+For students digital marking is great as they allow for quick feedback in one study\cite{dahl_turnitin_2007} they found that 78\% of students would like electronic feedback
 
 \subsubsection{TurnItIn}
-There currently exists an online electronic plagiarism system called TurnItIn, \cite{_turnitin_????} currently being used by many universities around the world. It allows students to upload their essay assignments online. It then checks for plagiarism in the document by searching the internet and using a large database of documents. After it processes the document it assigns a plagiarism percentage and highlights any areas that were plagiarised. Lecturers can then login and view all the submitted documents and mark them online.\\
-Current research highlighted \cite{dahl_turnitin_2007} conducted a questionnaire and found that students felt that the system was easy to use and more convenient than having to had to provide paper copies. It also found that 50\% agreed and 33.3\% of students prefered to have their grade shown online rather than have a cover sheet.
+There currently exists an on-line electronic plagiarism system called TurnItIn, \cite{_turnitin_????} currently being used by many universities around the world. It allows students to upload their essay assignments on-line. It then checks for plagiarism in the document by searching the internet and using a large database of documents. After it processes the document it assigns a plagiarism percentage and highlights any areas that were plagiarised. Lecturers can then login and view all the submitted documents and mark them .\\
+Current research highlighted \cite{dahl_turnitin_2007} conducted a questionnaire and found that students felt that the system was easy to use and more convenient than having to had to provide paper copies. It also found that 50\% of students strongly agreed and 33.3\% just agreed that they preferred to have their grade shown on-line rather than have a cover sheet.
 
+\subsubsection{BOSS System}
+The BOSS system  was developed at the University of Warwick to help deal with their problem of having too many students for the number of staff and wanting students to have accurate and quickly available feedback \cite{joy_boss_2005}. 
+ 
+It is an electronic submission and assessment system created to allow computing science student to submit their programming assignments and have it tested and marked on-line \cite{joy_effective_1998}    
 
 \subsection{Lab Helpers}
+Lab helps are students usually master but can also be 4th years, who are employed by the university to assist in the marking of coursework in the computing science lab.   
 
 
-\newpage
 \subsection{User Access Views}
 
-Controlling the view that users have, based on their access level, is common practice. Social media websites for instance allow users to limit what others  can see. This means that if another user is a friend then they are allowed to see their whole feed, while other users may only see their profile picture.
+Controlling the view that users have, based on their access level, is common practice. Social media websites for instance allow users to limit what others  can see. This means that if another user is a friend then they are allowed to see their whole feed, while other users may only see their profile name.
 
-The patent titled \citetitle{baker_system_1997} \cite{baker_system_1997}, describes a system of limiting user web page access through the use of relation databases. The system would work by using two databases; one would hold a list of all the url's and associated access level, while the second database would hold all the user id's along with their assigned access level. When a user requests a webpage, the access level for that webpage and the user are looked up. If the users do not have the appropriate access they are denied permission to load the page and depending on implementation may be redirected to another webpage.
+The patent highlighted \cite{baker_system_1997}, describes a system of limiting user web page access through the use of relation databases. The system would work by using two databases; one would hold a list of all the url's and associated access level, while the second database would hold all the user id's along with their assigned access level. When a user requests a webpage, the access level for that webpage and the user are looked up. If the users do not have the appropriate access they are denied permission to load the page and depending on implementation may be redirected to another webpage
+The design of this system is well suited for scalability since no matter how large the two datasets are only one piece of data is need from each database to confirm wither a user is allowed access.
 
 
 \subsection{Custom Input Forms}
 
 \subsubsection{SurveyMonkey}
-Survey Monkey \cite{finley_surveymonkey_1999} is an example of custom web forms being created by users. Founded by Ryan Finley in 1999 Survey Monkey enables users to create their own surveys and easily distribute them. It builds the surveys by letting the user select the contents of the question and what the response type will be: The user can also decide if the responses are completely anonymous by default and the participants’ ip address is stored when they complete the survey. The users can continue to add as many questions as they would like, even after the survey is initially created. After designing the survey the user chooses how they would like to have their survey distributed. The available options that can be selected are a web link, social media, email or embeddable on a website \cite{waclawski_how_2012} . 
+Survey Monkey \cite{finley_surveymonkey_1999} is an example of custom web forms being created by users. Founded by Ryan Finley in 1999 Survey Monkey enables users to create their own surveys and easily distribute them. It builds the surveys by letting the user select the contents of the question and what the response type will be: The user can also decide if the responses are completely anonymous by default and the participants ip address is stored when they complete the survey. The users can continue to add as many questions as they would like, even after the survey is initially created. After designing the survey the user chooses how they would like to have their survey distributed. The available options that can be selected are a web link, social media, email or embeddable on a website \cite{waclawski_how_2012} . 
 
 When participants complete the survey their results are immediately stored and the results of the survey are visible to the user by login into their account on surveymonkey. They can choose to look at the responses individually or look at metrics about how participants responded.
 
@@ -165,11 +186,13 @@ a field for address, subject and one for the the actual message to be sent. Whil
 This increased flexibility in email forms would allow for easier  interpretation of messages, making responding or providing information via email a lot simpler and quicker.
 
 
-\subsection{Data Visualisation}
+\subsection{Development Tools}
 \subsubsection{D3}
 D3 \cite{bostock_d3.js_????} is a javascript library, which was designed for the creation of interactive visualisations of data and was first developed in 2011. D3 uses precreated Javascript functions to create scalable vector graphics (SVG's) which are embedded into the html of websites."SVG is a language for describing two-dimensional graphics in XML"\cite{ferraiolo_scalable_2000} and can have displays changed  using Cascading Style Sheet (CSS).  \\
 Datasets can also be bound to an SVG allowing for a visual way to interpret the dataset, and as the dataset changes the SVG will be changed allowing for a dynamic display.  
 
+\subsubsection{CakePHP}
+CakePHP is an opensource framework for php, it is developed to help with rapid development of web application and make them simpler,fast and less complex to build \cite{_cakephp_????}.  
 
 
 
@@ -188,7 +211,7 @@ Datasets can also be bound to an SVG allowing for a visual way to interpret the 
 \subsection{Functional}
 Requirements for the system are each given an idea depending on the type of requirement: FR for functional requirements, NFR for non-functional requirement and SR for system requirements.\\
 Along with this, each requirement has a description stating what the requirement is and a priority. The priority value can be low, medium or high, which shows which requirements will be implemented first into the system.\\
-For this project I will be attempting to implementing all of the high priority functional and non-functional requirements, I will also try and implement the medium and low priority requirement that improve the system a whole. 
+For this project I will be attempting to implementing all of the high priority functional and non-functional requirements, I will also try and implement as many medium and low priority requirements that I can starting with ones that best improve the system. 
 
 
 \def\arraystretch{1.5}
@@ -347,21 +370,32 @@ To evaluate how effective the code is I will create test cases. These will test 
 \subsection{Project Plan}
 
 
-The Gantt chart for this dissertation can be seen in figure(\ref{fig:ganttchart}). It is broken down into 5 stages: Design, Development, Evaluation, Dissertation and Poster. Each of these stages has multiple tasks that are expected to be completed during the course of the stage. A summary of each stage and their key tasks are stated below. \\
-\textbf{Design Stage} Starts at the end of semester 1 to allow myself time to complete other course work. In this stage I will create mock-ups for the user interface, a database schema and define what will be occurring in each of my sprints in the next stage.\\
-\textbf{Development Stage:} Starts once the holidays are over. It consists of three two week sprints with  a week's break in between to allow for evaluation, write ups and other coursework. When the third sprint finishes I will go straight into the evaluation stage.\\
-\textbf{Evaluation Stage: } During the final two weeks before the draft handin, I will conduct a usability case study and write up the remainder of my dissertation for the draft handin.\\
-\textbf{Final Deliverable Stage:} This stage  for me is the time to focus on feedback from the draft hand-in and make sure my Dissertation is of a high enough standard.\\
+The Gantt chart and its accompanied task table for this dissertation can be seen in appendix (\ref{appendix:gantt}). It is broken down into 5 stages: Design, Development, Evaluation, Dissertation and Poster. Each of these stages has multiple tasks that are expected to be completed during the course of the stage. A summary of each stage and their key tasks are stated below.\bigskip
+
+\noindent
+\textbf{Design Stage} Starts at the end of semester 1 to allow myself time to complete other course work. In this stage I will create mock-ups for the user interface, a database schema and Unified Modeling Language (UML) diagram, to help improve the development time of the system and create an idea of what the system will look like. Also along with this I will also be deciding requirements will be added in each of my sprints in the next stage.\bigskip
+
+\noindent
+\textbf{Development Stage:} Starts once the holidays are over. It is consists of five sprints, four of which are one week long and one that is two weeks long, each sprint has its own aim. 
+
+\noindent Sprint 1 - will be aimed toward developing the basic user interface that will be used for the other sprints.\\ 
+Sprint 2 - Is for develop the back-end of the system, developing the database login system and any other functionality that will be needed for the next sprint.\\
+Sprint 3 - This is the two week sprint this is because the aim is to enable the creation of custom marking schemes and I do not know what exact functionality will be required to make it work so I gave myself more time to develop it.\\
+Sprint 4 - Aims to build on the previous sprint by developing lab helpers functionality.\\ 
+Sprint 5 - Is for general improvements of the system mostly to focus on the user interface.\\
+After sprints 2 and 5 there is a planned week for evaluation and documentation for the functionality implemented in the sprints that have occurred.\bigskip
+
+\newpage
+\noindent
+\textbf{Evaluation Stage: } This stage occurs at the final two weeks before the draft handin, I will consist of the creation of a usability case study (UCS) using the final result of the development stage, The UCS will be run and using the evaluated results to develop improvements for the system in the future. During the course of this stage I will also be completing the draft of my dissertation ready for the handin at the start of the next stage\bigskip
+
+\noindent
+\textbf{Final Deliverable Stage:} This stage start with the handin of my draft dissertation, it is followed by a weeks break to allow for my supervisor to assess my draft. After that using the feedback I receive from both my supervisor and my second reader I will go about improving my dissertation so that it is of a high enough standard for the final handin.\bigskip
+
+\noindent
 \textbf{Poster Stage:} This stage will be entirely dedicated to the design and creation of my dissertation poster.
 
 
-\begin{figure}[!htbp]
-
-\includegraphics[width=\textwidth]{images/ganttchart.png}
-\caption{Project Gantt Chart}
-\label{fig:ganttchart}
-
-\end{figure}
 
 
 
@@ -371,7 +405,7 @@ The Gantt chart for this dissertation can be seen in figure(\ref{fig:ganttchart}
 %     		Risk Analysis				%
 %										%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+\newpage
 \subsection{Risk Analysis}
 
 The risks relating to this dissertation are shown in table(\ref{table:risks}), each risk has an associated Likelihood, Impact and a Mitigation Strategy. Likelihood and Impact values can be low, medium or high. The table is sorted by likelihood and then by the impact.
@@ -471,7 +505,7 @@ The last ethical issue relating to this project is privacy. I have to  ensure th
 
 \subsection{Social Issues}
 A few social issues are raised by this project. Such as if students can see the mark they have received straight away, will lab helpers feel pressurised into giving higher grades.\\
-Will this system result in a reduction of lab helpers being required to mark labs? If the system speeds up the time to mark students’ work, less lab helpers may be required to run labs, resulting in people looking for work.
+Will this system result in a reduction of lab helpers being required to mark labs? If the system speeds up the time to mark students work, less lab helpers may be required to run labs, resulting in people looking for work.
 
 
 
@@ -486,6 +520,27 @@ Will this system result in a reduction of lab helpers being required to mark lab
 
 \newpage
 \printbibliography[heading=bibintoc]
+\let\cleardoublepage\clearpage
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%										%
+%     		Appendice					%
+%										%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{appendices}
+
+\let\cleardoublepage\clearpage
+\section{Project Plan}
+\label{appendix:gantt}
+\subsection{Gantt Chart}
+\centering {\includegraphics[height=0.9\textheight]{images/projectplan.jpg}}
+
+\includepdf[scale=0.85, pages={2}, pagecommand=\subsection{Task List}]{pdf/projectplan.pdf}
+
+\end{appendices}
 
 
 
