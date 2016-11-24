@@ -137,7 +137,9 @@ Peer marking however has its own set of problems - for example, "Students may ha
 \subsubsection{Reasons for Digital Marking}
 Digital marking systems are designed to mirror the current paper based marking systems but with the advantage of the electronic environment \cite{heinrich_online_2003}. These systems help to reduce the increasing workload caused by more and more students taking courses. Along with this it also allows administrative tasks associated with coursework to be automated enabling more time for other tasks.\cite{joy_effective_1998}. 
 
-For students digital marking is great as they allow for quick feedback in one study\cite{dahl_turnitin_2007} they found that 78\% of students would like electronic feedback
+For students digital marking is great as they allow for quick feedback, the assessor is able provide students feedback immediately after they have written is, insted of having to wait for a class to receive it. In one study\cite{dahl_turnitin_2007} they found that 78\% of students would like get their feedback  electronicly .
+
+According to the highlighted article \cite{derby_duplication_2008} plagiarism is on the raise amongst student, this is were digital marking can help to reduce plagiarism as are able to do what human marker cannot. They can compare a submission thousands of document and judge is a person has plagiarised it, they can also help to show patterns assignments and marks that normally might go unnoticed.  
 
 \subsubsection{TurnItIn}
 There currently exists an on-line electronic plagiarism system called TurnItIn, \cite{_turnitin_????} currently being used by many universities around the world. It allows students to upload their essay assignments on-line. It then checks for plagiarism in the document by searching the internet and using a large database of documents. After it processes the document it assigns a plagiarism percentage and highlights any areas that were plagiarised. Lecturers can then login and view all the submitted documents and mark them .\\
@@ -146,15 +148,15 @@ Current research highlighted \cite{dahl_turnitin_2007} conducted a questionnaire
 \subsubsection{BOSS System}
 The BOSS system  was developed at the University of Warwick to help deal with their problem of having too many students for the number of staff and wanting students to have accurate and quickly available feedback \cite{joy_boss_2005}. 
  
-It is an electronic submission and assessment system created to allow computing science student to submit their programming assignments and have it tested and marked on-line \cite{joy_effective_1998}    
+It is an electronic submission and assessment system created to allow computing science student to submit their programming assignments and have it tested and marked on-line \cite{joy_effective_1998}. The system is not designed to remove human markers complete, instead simply "assist the instructor in achieving a quicker, more accurate and more consistent assessment of programming assignment"\cite{joy_boss_2005}
 
-\subsection{Lab Helpers}
-Lab helps are students usually master but can also be 4th years, who are employed by the university to assist in the marking of coursework in the computing science lab.   
+When a file is first submitted it is run through a plagiarism check to make sure that the submission is actually the students it also checks that the submission passes pre-set tests to make sure it works. After this it goes into the evaluations stage, since evaluation attributes of code can be very subjective what the second step does is generate metrics about the submitted program. Some of these metric are number of comments and percentage of methods declared \cite{joy_effective_1998}, they will help human markers evaluate the submission quicker.  
+  
 
-
+\newpage
 \subsection{User Access Views}
 
-Controlling the view that users have, based on their access level, is common practice. Social media websites for instance allow users to limit what others  can see. This means that if another user is a friend then they are allowed to see their whole feed, while other users may only see their profile name.
+Controlling the view that users have, based on their access level, is common practice. Social media websites for instance allow users to limit what others  can see, through the use of privacy setting. This means that if another user is a friend then they are allowed to see their whole feed, while other users may only see their profile name.
 
 The patent highlighted \cite{baker_system_1997}, describes a system of limiting user web page access through the use of relation databases. The system would work by using two databases; one would hold a list of all the url's and associated access level, while the second database would hold all the user id's along with their assigned access level. When a user requests a webpage, the access level for that webpage and the user are looked up. If the users do not have the appropriate access they are denied permission to load the page and depending on implementation may be redirected to another webpage
 The design of this system is well suited for scalability since no matter how large the two datasets are only one piece of data is need from each database to confirm wither a user is allowed access.
@@ -192,7 +194,8 @@ D3 \cite{bostock_d3.js_????} is a javascript library, which was designed for the
 Datasets can also be bound to an SVG allowing for a visual way to interpret the dataset, and as the dataset changes the SVG will be changed allowing for a dynamic display.  
 
 \subsubsection{CakePHP}
-CakePHP is an opensource framework for php, it is developed to help with rapid development of web application and make them simpler,fast and less complex to build \cite{_cakephp_????}.  
+CakePHP is an opensource framework for php, it is developed to help with rapid development of web application and make them simpler,fast and less complex to build \cite{_cakephp_????}. 
+  
 
 
 
@@ -216,7 +219,7 @@ For this project I will be attempting to implementing all of the high priority f
 
 \def\arraystretch{1.5}
 \subsubsection{User Requirements}
-Functional requirements also include an access column which defines what users should be able to use. Some items are restricted to lecturers as some requirements should only be be usable by lecturers and lab-helpers and not by students.\\
+Functional requirements also include an access column which defines what users should be able to use. Some items are restricted to lecturers as some requirements should only be be usable by lecturers and lab-helpers and not by students. The table is sorted first by access level starting with widest allowed access then sorted in access order 1 - 4, it is secondly sorted by priority.\\
 The access levels are: 1-Admin, 2-Lecturers, 3-Lab Helpers and 4-Students
 
 
@@ -324,7 +327,6 @@ Table \ref{table:non-func} lists all the non-functional requirements for the dev
 \rid{NFR} & Should backup database regularly & Low\\ \hline
 
 
-\rid{NFR} & Should  &  \\ \hline
 \end{longtable}
 \end{spacing}
 
