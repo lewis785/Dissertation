@@ -21,11 +21,12 @@
 
 
     <!--JavaScripts -->
+    <script type="text/javascript">setnavbar()</script>
 
     <title>Admin Page</title>
 </head>
 
-<body onload="checkKey()">
+<body>
 
 <div id="navbar_area"></div>
 
