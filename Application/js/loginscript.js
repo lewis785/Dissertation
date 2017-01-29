@@ -1,5 +1,5 @@
 
-function () {
+function testing () {
     $(document).ready(function () {
         $(document).mousemove(function (e) {
             TweenLite.to($('body'), .5, {

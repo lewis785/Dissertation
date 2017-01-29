@@ -17,11 +17,14 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="../../bootstrap/js/bootstrap.js"></script>
     <script src="../../js/admins.js"></script>
-    <script src="../../js/include_navbar.js"></script>
+    <script src="../../js/navbar.js"></script>
+    <script src="../../js/sidebar.js"></script>
 
 
     <!--JavaScripts -->
-    <script type="text/javascript">setnavbar()</script>
+    <script type="text/javascript">include_navbar();</script>
+    <script type="text/javascript">include_sidebar("sidebar_area");</script>
+
 
     <title>Admin Page</title>
 </head>
@@ -33,26 +36,7 @@
 <div class="container-fluid">
     <div class="row">
 
-        <nav class="navbar navbar-default sidebar" role="navigation">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-sidebar-navbar-collapse-1">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                </div>
-                <div class="col-sm-3 col-md-2 sidebar" id="bs-sidebar-navbar-collapse-1">
-                    <ul class="nav nav-sidebar">
-                        <li class="active"><a href="admin.php">Overview<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-home"></span></a></li>
-                        <li ><a href="manageusers.php">Manage Users<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-user"></span></a></li>
-                        <li ><a href="managewebpage.php">Manage Webpages<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-globe"></span></a></li>
-                        <li ><a href="settings.php">Manage Admin Settings<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-wrench"></span></a></li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
+        <div id="sidebar_area"></div>
 
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
             <h1 class="page-header">Webpage Dashboard</h1>
