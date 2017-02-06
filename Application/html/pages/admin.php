@@ -11,58 +11,72 @@
     <!--CSS Links -->
     <link href="../../bootstrap/css/bootstrap.css" rel="stylesheet">
     <link href="../../admincss/ie10-viewport-bug-workaround.css" rel="stylesheet">
-    <link href="../../admincss/dashboard.css" rel="stylesheet">
+    <link href="../../css/sidebar.css" rel="stylesheet">
 
     <!--JS Links -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="../../bootstrap/js/bootstrap.js"></script>
     <script src="../../js/admins.js"></script>
+    <script src="../../js/navbar.js"></script>
+    <script src="../../js/sidebar.js"></script>
 
 
     <!--JavaScripts -->
+    <script type="text/javascript">include_navbar();</script>
+    <script type="text/javascript">include_sidebar("sidebar_area");</script>
+
 
     <title>Admin Page</title>
 </head>
 
-<body onload="checkKey()">
-<nav class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container-fluid">
-        <div id="navbar" class="navbar-collapse collapse">
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">Dashboard</a></li>
-                <li><a href="settings.php">Settings</a></li>
-                <li><a href="../profile.php">Profile</a></li>
-                <li><a href="#">Help</a></li>
-            </ul>
-        </div>
-    </div>
-</nav>
+<body>
+
+<div id="navbar_area"></div>
+
 <div class="container-fluid">
     <div class="row">
 
-        <nav class="navbar navbar-default sidebar" role="navigation">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-sidebar-navbar-collapse-1">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                </div>
-                <div class="col-sm-3 col-md-2 sidebar" id="bs-sidebar-navbar-collapse-1">
-                    <ul class="nav nav-sidebar">
-                        <li class="active"><a href="admin.php">Overview<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-home"></span></a></li>
-                        <li ><a href="manageusers.php">Manage Users<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-user"></span></a></li>
-                        <li ><a href="managewebpage.php">Manage Webpages<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-globe"></span></a></li>
-                        <li ><a href="settings.php">Manage Admin Settings<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-wrench"></span></a></li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
+        <div id="sidebar_area"></div>
 
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
             <h1 class="page-header">Webpage Dashboard</h1>
+
+            <form method="post" action="../../php/admin/adduser.php">
+                <div class="form-group row">
+                    <label for="firstname-label-input" class="col-2 col-form-label">Firstname</label>
+                    <div class="col-10">
+                        <input class="form-control" type="text" value="" name="firstname" id="firstname-input">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="surname-label-input" class="col-2 col-form-label">Surname</label>
+                    <div class="col-10">
+                        <input class="form-control" type="text" value="" name="surname" id="surname-input">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="matric-label-input" class="col-2 col-form-label">Matriculation Number</label>
+                    <div class="col-10">
+                        <input class="form-control" type="text" value="" name="matric" id="matric-input">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="sel1">Select list (select one):</label>
+                    <select class="form-control" id="sel1">
+                        <option selected value="no-selection">Select Access Level</option>
+                        <?php include "../../php/admin/accessoptions.php"; ?>
+                    </select>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-10">
+                        <input class="form-control" type="submit" value="Submit">
+                    </div>
+                </div>
+            </form>
 
             <div class="col-lg-12">
 
@@ -70,8 +84,6 @@
         </div>
 
     </div>
-
-
 </div>
 
 

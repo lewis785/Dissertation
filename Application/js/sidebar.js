@@ -11,3 +11,6 @@ function include_sidebar (inputarea){
         $("#"+inputarea).load("../components/sidebar.php #sidebar_code");
     });
 }
+
+
+
