@@ -19,10 +19,6 @@ $values = '<option selected value="no-selection">Select Value</option>
             <option value="9">9</option>';
 
 
-
-if (isset($_POST["q"])) {
-
-    $question = $_POST["q"];
     $id = $_POST["count"];
     $qNum = $_POST["qnum"];
 
@@ -60,5 +56,3 @@ $data = '<div class="col-sm-6 col-sm-offset-3 col-mid-8 col-md-offset-2 tile"  i
 //    onclick="$('. "'" . '#question-'.$id. "'" . ').remove()"></span> <div>';
 
     echo json_encode(array('data'=>$data));
-
-}

@@ -13,9 +13,7 @@ if (isset($_SESSION['username']) && isset($_SESSION['password'])) {
     mysqli_stmt_execute($verify);
     $result = mysqli_stmt_get_result($verify);
     $user = $result -> fetch_row();
-
     $verified =  ($user[0] == 1);
-
 }
 
 //verify is called from form and the user name and pass are set run code
@@ -28,10 +26,9 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
 //	$encrypt_password = crypt($pass,"Ba24JDAkfjerio892pp309lE"); //Encrypts pass and stores it as another variable
 
 	$verify = mysqli_stmt_init($link);
-	mysqli_stmt_prepare($verify, 'SELECT count(*), accessLevel FROM user_login WHERE username= ? AND password= ?'); //Counts how many users exist with the Username and Password
+	mysqli_stmt_prepare($verify, 'SELECT count(*) FROM user_login WHERE username= ? AND password= ?'); //Counts how many users exist with the Username and Password
 	mysqli_stmt_bind_param($verify, 'ss', $user, $encrypt_password);
-	mysqli_stmt_execute($verify); 
-
+	mysqli_stmt_execute($verify);
 	$result = mysqli_stmt_get_result($verify)-> fetch_row();
 
     echo $result[0];
@@ -39,10 +36,16 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
 	if ($result[0] == 1) {
 	    $_SESSION["username"] = $user;
 	    $_SESSION["password"] = $pass;
-	    $_SESSION["accesslevel"] = $result[1];
+
+        $verify = mysqli_stmt_init($link);
+        mysqli_stmt_prepare($verify, 'SELECT accessLevel FROM user_login WHERE username= ? AND password= ?'); //Counts how many users exist with the Username and Password
+        mysqli_stmt_bind_param($verify, 'ss', $user, $encrypt_password);
+        mysqli_stmt_execute($verify);
+        $level = mysqli_stmt_get_result($verify)-> fetch_row();
+
+	    $_SESSION["accesslevel"] = $level[0];
 		$verified = true; //Sets verified to true showing user exists
 	}
-
 }
 
 //Checks if user if verified if not then if statement runs

@@ -18,19 +18,41 @@ function update_numbers(number)
 
 
 
-function add_scale_question(quest)
+function add_scale_question()
 {
     $.ajax({
         type: 'POST',
         url: "../../html/components/questions_create/scale_question.php",
         dataType: 'json',
-        data: {q: quest, count: qCount, qnum: maxQ},
+        data: {count: qCount, qnum: maxQ},
         cache: false,
         success: function(result){
 
         $("#main-text-area").append(result.data);
         qCount++;
         maxQ ++;
+
+        },
+        error: function(xhr, status, error) {
+            alert(xhr);
+        }
+    });
+
+}
+
+function add_boolean_question()
+{
+    $.ajax({
+        type: 'POST',
+        url: "../../html/components/questions_create/boolean_question.php",
+        dataType: 'json',
+        data: { count: qCount, qnum: maxQ},
+        cache: false,
+        success: function(result){
+
+            $("#main-text-area").append(result.data);
+            qCount++;
+            maxQ ++;
 
         },
         error: function(xhr, status, error) {

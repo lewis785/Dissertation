@@ -1,10 +1,8 @@
 <?php
-
 include 'connection.php';
-include 'validCookie.php';
+session_start();
 
-if($verified){
-	header("Location:http://badapple/HTML/profile.php");
+if (isset($_SESSION['username'])){
+	$redirect = "../../html/pages/home.php";
+	header("Location:".$redirect);
 }
-
-?>

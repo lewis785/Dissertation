@@ -5,8 +5,8 @@
 
 
 <div id="sidebar_code">
-    <nav class="navbar navbar-default sidebar" role="navigation">
-        <div class="container-fluid">
+    <nav  class="navbar navbar-default sidebar" role="navigation">
+        <div  class="container-fluid">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-sidebar-navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span>
@@ -15,7 +15,7 @@
                     <span class="icon-bar"></span>
                 </button>
             </div>
-            <div class="col-sm-3 col-md-2 sidebar" id="bs-sidebar-navbar-collapse-1">
+            <div class="col-sm-3 col-md-2 sidebar side_nav_area" id="bs-sidebar-navbar-collapse-1">
                 <ul class="nav nav-sidebar">
                     <li class="active"><a href="admin.php">Overview<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-home"></span></a></li>
                     <li ><a href="manageusers.php">Manage Users<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-user"></span></a></li>

@@ -25,6 +25,7 @@
     <script src="../../js/sidebar.js"></script>
     <script src="../../js/question_adding.js"></script>
 
+
     <!--JavaScripts -->
     <script type="text/javascript">include_navbar();</script>
     <script type="text/javascript">include_sidebar("sidebar_area");</script>
@@ -43,9 +44,9 @@
 
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
             <h1 class="page-header">Webpage Dashboard</h1>
-            <span class="glyphicon glyphicon-remove" aria-hidden="true" onclick="$('#question-1').remove()"></span>
             <button onclick="add_scale_question('testing <br>')">Add question</button>
 
+            <button onclick="add_boolean_question('testing <br>')">Add question</button>
 
 
 

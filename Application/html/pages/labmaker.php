@@ -1,3 +1,6 @@
+
+
+<?php include "../../php/core/verify.php"; ?>
 <html lang="en">
 <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
@@ -9,24 +12,26 @@
     <meta name="author" content="Lewis McNeill">
 
     <!--CSS Links -->
-    <link href="../../../bootstrap/css/bootstrap.css" rel="stylesheet">
-    <link href="../../../admincss/ie10-viewport-bug-workaround.css" rel="stylesheet">
-    <link href="../../../css/sidebar.css" rel="stylesheet">
+    <link href="../../bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="../../admincss/ie10-viewport-bug-workaround.css" rel="stylesheet">
+    <link href="../../css/sidebar.css" rel="stylesheet">
+    <link href="../../css/main.css" rel="stylesheet">
 
     <!--JS Links -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="../../../bootstrap/js/bootstrap.js"></script>
-    <script src="../../../js/admins.js"></script>
-    <script src="../../../js/navbar.js"></script>
-    <script src="../../../js/sidebar.js"></script>
-
+    <script src="../../bootstrap/js/bootstrap.js"></script>
+    <script src="../../js/admins.js"></script>
+    <script src="../../js/navbar.js"></script>
+    <script src="../../js/sidebar.js"></script>
+    <script src="../../js/question_adding.js"></script>
+    <script src="../../js/labs/lab_sidebar.js"></script>
 
     <!--JavaScripts -->
     <script type="text/javascript">include_navbar();</script>
-    <script type="text/javascript">include_sidebar("sidebar_area");</script>
+<!--    <script type="text/javascript">include_sidebar("sidebar_area");</script>-->
+    <script type="text/javascript">make_lab_layout("sidebar_area");</script>
 
-
-    <title>Admin Page</title>
+    <title>Home Page</title>
 </head>
 
 <body>
@@ -40,8 +45,13 @@
 
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
             <h1 class="page-header">Webpage Dashboard</h1>
+            <button onclick="add_scale_question('testing <br>')">Add question</button>
 
-            <div class="col-lg-12">
+            <button onclick="add_boolean_question('testing <br>')">Add question</button>
+
+
+
+            <div class="col-lg-12" id="main-text-area">
 
             </div>
         </div>
