@@ -3,7 +3,7 @@
 <script src="../../bootstrap/js/bootstrap.js"></script>
 
 <div id="navbar_code">
-    <nav class="navbar navbar-default">
+    <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
@@ -31,21 +31,7 @@
                 <!--Right hand side of the navigation bar-->
                 <ul class="nav navbar-nav navbar-right">
 
-                    <!--Drop Down Menu-->
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Account<span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li id="profilebtn"><a href="#">Profile</a></li>
-                            <li><a href="#">something</a></li>
-                            <li><a href="#">Something else here</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li id="signoutbtn"><a href="#">Signout</a></li>
-                        </ul>
-                    </li>
-
-                    <li class="active"><a href="#" >Home</a></li>
-
-                    <?php include "../../php/addbutton.php"; ?>
+                    <?php include "../../php/layout/nav-bar-buttons.php"; ?>
 
                 </ul>
 

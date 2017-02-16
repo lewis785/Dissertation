@@ -81,6 +81,44 @@
             <div class="col-lg-12">
 
             </div>
+
+
+            <form class="form-horizontal" action="../../php/core/cvs_handling.php" method="post" name="upload_excel" enctype="multipart/form-data">
+                <fieldset>
+
+                    <!-- Form Name -->
+                    <legend>Form Name</legend>
+
+                    <!-- File Button -->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="filebutton">Select File</label>
+                        <div class="col-md-4">
+                            <input type="file" name="file" id="file" class="input-large">
+                        </div>
+                    </div>
+
+                    <!-- Button -->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="singlebutton">Import data</label>
+                        <div class="col-md-4">
+                            <button type="submit" id="submit" name="Import" class="btn btn-primary button-loading" data-loading-text="Loading...">Import</button>
+                        </div>
+                    </div>
+
+                </fieldset>
+            </form>
+
+
+
+
+            <form class="form-horizontal" action="../../php/core/cvs_handling.php" method="post" name="upload_excel"
+                  enctype="multipart/form-data">
+                <div class="form-group">
+                    <div class="col-md-4 col-md-offset-4">
+                        <input type="submit" name="Export" class="btn btn-success" value="export to excel"/>
+                    </div>
+                </div>
+            </form>
         </div>
 
     </div>

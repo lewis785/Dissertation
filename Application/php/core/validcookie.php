@@ -1,23 +1,16 @@
 <?php
+include 'connection.php';
+session_start();
 
-$verified = false;
+if (isset($_SESSION['login_session'])) {
 
-if (isset($_COOKIE['confirmation'])) {
-
-	$temp = unserialize($_COOKIE['confirmation']);
 	$verify = mysqli_stmt_init($link);
-	mysqli_stmt_prepare($verify, "select count(*), UserID from userlogin where UserName= ? and Password = ?");
-	mysqli_stmt_bind_param($verify, 'ss', $temp['user'], $temp['pass']);
+	mysqli_stmt_prepare($verify, "select count(*), user_login from userlogin where username= ? and password = ?");
+	mysqli_stmt_bind_param($verify, 'ss', $_SESSION['login_session']['username'], $_SESSION['login_session']['password']);
 	mysqli_stmt_execute($verify);
-
 	$result = mysqli_stmt_get_result($verify);
 	$user = $result -> fetch_row();
 
-
-	if ($user[0] == 1) {
-		$verified = true;
-	}
+    $verified = $user[0] == 1;
 
 }
-
-?>

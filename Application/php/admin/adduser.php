@@ -19,6 +19,7 @@ if (!empty($_POST['firstname']) && !empty($_POST['surname']) && !empty($_POST['a
 			add_user($link, $firstname,$surname,$matric_number, $accessLevel);
 		}
 		elseif ($matric_number == "") {
+			$matric_number = NULL;
 			add_user($link, $firstname,$surname,$matric_number, $accessLevel);
 		}
 	}

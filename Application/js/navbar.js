@@ -5,7 +5,7 @@
 function include_navbar () {
 
     $(document).ready(function(){
-        $("#navbar_area").load("./components/navbar.php #navbar_code");
+        $("#navbar_area").load("../components/navbar.php #navbar_code");
     });
 }
 

@@ -1,0 +1,14 @@
+.tile
+{
+    position: relative;
+    border: solid darkred 1px;
+    background-color: darkgray;
+    margin-bottom: 10px;
+}
+
+.close-btn
+{
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
