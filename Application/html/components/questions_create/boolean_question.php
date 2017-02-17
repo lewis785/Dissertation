@@ -23,7 +23,8 @@ $values = '<option selected value="no-selection">Select Value</option>
     $qNum = $_POST["qnum"];
 
     $data = '<div class="col-sm-6 col-sm-offset-3 col-mid-8 col-md-offset-2 tile"  id="question-'. $id .'">
-            <div class="col-12">Question Number: <div id="question-number">'.($qNum).'</div></div>
+            <div class="col-md-5 col-md-offset-1"><label for="sel1">Question Number: <div id="question-number">'.$qNum.'</div></label></div>
+            <div class="col-md-5 col-md-offset-1">Type: Boolean</div>
                 <span class="glyphicon glyphicon-remove close-btn" aria-hidden="true" onclick="update_numbers(' .$id . ')"></span>
 
                 <div class="form-group row">

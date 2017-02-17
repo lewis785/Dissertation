@@ -7,4 +7,5 @@ if (!$link) {
 } 
 
 mysqli_select_db($link,"lab-marker"); //Selects the Database
+session_start();
 

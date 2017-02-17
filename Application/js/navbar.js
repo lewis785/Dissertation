@@ -10,5 +10,13 @@ function include_navbar () {
 }
 
 
+function include_bottom_navbar () {
+
+    $(document).ready(function(){
+        $("#bottom-nav-area").load("../components/bottom-navbar.php #bottom-bar-code");
+    });
+}
+
+
 
 

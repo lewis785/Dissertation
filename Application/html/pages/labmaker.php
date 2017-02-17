@@ -30,6 +30,7 @@
     <script type="text/javascript">include_navbar();</script>
 <!--    <script type="text/javascript">include_sidebar("sidebar_area");</script>-->
     <script type="text/javascript">make_lab_layout("sidebar_area");</script>
+    <script type="text/javascript">include_bottom_navbar();</script>
 
     <title>Home Page</title>
 </head>
@@ -44,10 +45,30 @@
         <div id="sidebar_area"></div>
 
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-            <h1 class="page-header">Webpage Dashboard</h1>
-            <button onclick="add_scale_question('testing <br>')">Add question</button>
 
-            <button onclick="add_boolean_question('testing <br>')">Add question</button>
+<!--            Main area top-->
+            <div class="page-header col-md-12">
+                <div class="form-group col-md-4 col-md-offset-1">
+                    <label for="course-input" class="col-md-4 col-form-label">Course:</label>
+                    <div class="col-md-8">
+                        <select class="form-control " name="access" id="sel1">
+                            <option selected value="no-selection">Select Access Level</option>
+                            <?php include "../../php/labs/get_courses.php"; ?>
+                        </select>
+                    </div>
+                </div>
+
+
+                <div class="form-group col-md-4 col-md-offset-2 ">
+                    <label for="labname-input" class="col-md-3 col-form-label">Lab Title</label>
+                    <div class="col-md-9">
+                        <input class="form-control" type="text" value="" name="lab-name" id="labname-input">
+                    </div>
+                </div>
+            </div>
+
+
+
 
 
 
@@ -59,6 +80,7 @@
     </div>
 </div>
 
+<footer class="panel-footer" id="bottom-nav-area" ></footer>
 
 </body>
 </html>

@@ -13,3 +13,5 @@ while($row = mysqli_fetch_assoc($result)){
 	echo "<option value='".$row["access_id"]."'>".$row["access_name"]."</option>";
 
 }
+
+mysqli_close($link);

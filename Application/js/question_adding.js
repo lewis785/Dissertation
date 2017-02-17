@@ -28,10 +28,9 @@ function add_scale_question()
         cache: false,
         success: function(result){
 
-        $("#main-text-area").append(result.data);
+        $.when($("#main-text-area").append(result.data)).then(scroll_bottom());
         qCount++;
         maxQ ++;
-
         },
         error: function(xhr, status, error) {
             alert(xhr);
@@ -40,24 +39,29 @@ function add_scale_question()
 
 }
 
+
+
 function add_boolean_question()
 {
     $.ajax({
         type: 'POST',
         url: "../../html/components/questions_create/boolean_question.php",
         dataType: 'json',
-        data: { count: qCount, qnum: maxQ},
+        data: {count: qCount, qnum: maxQ},
         cache: false,
         success: function(result){
-
-            $("#main-text-area").append(result.data);
             qCount++;
             maxQ ++;
-
+            $.when($("#main-text-area").append(result.data)).then(scroll_bottom());
         },
         error: function(xhr, status, error) {
             alert(xhr);
         }
     });
 
+}
+
+
+function scroll_bottom(){
+    $("html, body").animate({ scrollTop: $(document).height() }, "slow")
 }

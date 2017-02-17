@@ -2,7 +2,6 @@
 
 $verified = false;
 include 'connection.php';  //Runs all the code in the connection.php file before carrying on
-session_start();
 
 //Checks if cookie already exists
 if (isset($_SESSION['username']) && isset($_SESSION['password'])) {
@@ -55,4 +54,4 @@ if (!$verified) {
 	header("Location: ".$redirect);
 }
 
-//mysqli_close($link);
+mysqli_close($link);

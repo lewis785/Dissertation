@@ -1,3 +1,7 @@
+.main{
+    padding-top: 50px;
+}
+
 .tile
 {
     position: relative;
@@ -11,4 +15,24 @@
     position: absolute;
     right: 10px;
     top: 10px;
+}
+
+
+#sidebar_code *{
+    z-index: 5;
+}
+
+#bottom-bar-code *{
+    z-index: 1;
+}
+
+#bottom-bar-code {
+    /*height: 10%;*/
+}
+
+#bottom-nav-area {
+    position: fixed;
+    /*height: 100px;*/
+    bottom: 0;
+    width: 100%;
 }
