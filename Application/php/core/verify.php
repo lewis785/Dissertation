@@ -37,7 +37,7 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
 	    $_SESSION["password"] = $pass;
 
         $verify = mysqli_stmt_init($link);
-        mysqli_stmt_prepare($verify, 'SELECT accessLevel FROM user_login WHERE username= ? AND password= ?'); //Counts how many users exist with the Username and Password
+        mysqli_stmt_prepare($verify, 'SELECT ua.access_level FROM user_login as ul JOIN user_access as ua on ul.accessLevel = ua.access_id  WHERE username= ? AND password= ?'); //Counts how many users exist with the Username and Password
         mysqli_stmt_bind_param($verify, 'ss', $user, $encrypt_password);
         mysqli_stmt_execute($verify);
         $level = mysqli_stmt_get_result($verify)-> fetch_row();

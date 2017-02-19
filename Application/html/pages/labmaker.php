@@ -1,5 +1,3 @@
-
-
 <?php include "../../php/core/verify.php"; ?>
 <html lang="en">
 <head>
@@ -25,7 +23,7 @@
     <script src="../../js/sidebar.js"></script>
     <script src="../../js/question_adding.js"></script>
     <script src="../../js/labs/lab_sidebar.js"></script>
-    <script src="../../js/labs/display_questions.js"></script>
+
 
     <!--JavaScripts -->
     <script type="text/javascript">include_navbar();</script>
@@ -73,10 +71,6 @@
 
             </form>
 
-            <div class="col-lg-12" id="main-text-area">
-                <button onclick="load_lab('Lab 1', 'Data Management')">Load Lab</button>
-
-            </div>
 
 
         </div>

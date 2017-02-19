@@ -12,11 +12,29 @@ function load_lab(labname, coursename)
         data: {lab: labname, course: coursename},
         cache: false,
         success: function(result){
-            $("#main-text-area").html(result.html);
+            $("#question-area").html(result.html);
         },
         error: function(xhr, status, error) {
             alert(xhr);
         }
     });
 
+}
+
+
+function swap_value(buttonID)
+{
+    if($("#"+buttonID).val() === "no")
+    {
+        $("#" + buttonID).val("yes");
+        $("#" + buttonID ).addClass( "btn-success" );
+        $("#" + buttonID ).removeClass( "btn-danger" );
+
+    }
+    else
+    {
+        $("#" + buttonID).val("no");
+        $("#" + buttonID ).addClass( "btn-danger" );
+        $("#" + buttonID ).removeClass( "btn-success" );
+    }
 }

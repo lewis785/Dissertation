@@ -41,10 +41,16 @@ mysqli_close($link);
 
 function display_question($question)
 {
-    $html = question_start($question);
+    $html = '<div class="col-sm-6 col-sm-offset-3 col-md-8 col-md-offset-2 tile"  id="question-'. $question[0] .'">
+                <div class="col-md-5 col-md-offset-1"><label for="sel1">Question Number: <div id="question-number">'.$question[0].'</div></label></div>
+                <input type="hidden" name="type[]" value="boolean">
+                <div class="form-group row">
+                    <label for="question-label-input" class="col-md-12 col-md-offset-1 col-form-label">'.$question[2].'</label>
+                </div>';
+
     switch ($question[1]) {                                       //Case statement checking what type each question is
         case "boolean":                                 //Inserts boolean type questions
-            $html = $html . question_boolean();
+            $html = $html . question_boolean($question[0]);
             break;
         case "scale":                                   //Inserts scale type questions
             $html = $html . question_scale($question[3], $question[4]);
@@ -60,16 +66,6 @@ function display_question($question)
 }
 
 
-function question_start($question){
-    $data = '<div class="col-sm-6 col-sm-offset-3 col-mid-8 col-md-offset-2 tile"  id="question-'. $question[0] .'">
-                <div class="col-md-5 col-md-offset-1"><label for="sel1">Question Number: <div id="question-number">'.$question[0].'</div></label></div>
-                <input type="hidden" name="type[]" value="boolean">
-                <div class="form-group row">
-                    <label for="question-label-input" class="col-md-12 col-md-offset-1 col-form-label">'.$question[2].'</label>
-                </div>';
-    return $data;
-}
-
 function question_scale($start, $end)
 {
     $scale = '<div class="form-group col-md-4 col-md-offset-4">
@@ -83,10 +79,11 @@ function question_scale($start, $end)
     return  $scale.'</select></div>';
 }
 
-function question_boolean()
+function question_boolean($id)
 {
-    return '<div class="radio">
-                <label><input type="checkbox" name="mark[]"></label>
+    $id = "'boolean-button-".$id."'";
+    return '<div class="col-md-4 col-md-offset-4">
+                <input id='.$id.' class="btn btn-danger col-md-12" style="width:100%;"type="button" name="mark[]" value="no" onclick="swap_value('. $id .')">
             </div>';
 }
 

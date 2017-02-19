@@ -50,37 +50,6 @@
 
 
 
-
-
-            <div class="col-sm-6 col-sm-offset-3 col-mid-8 col-md-offset-2 tile">
-                <div class="col-12">Question Number: <div id="question-number"></div></div>
-                <span class="glyphicon glyphicon-remove close-btn" aria-hidden="true" onclick="$('#question-1').remove()"></span>
-
-                <div class="form-group row">
-                    <label for="surname-label-input" class="col-md-12 col-md-offset-1 col-form-label">Question</label>
-                    <div class="col-md-10 col-md-offset-1">
-                        <input class="form-control" type="text" value="" name="surname" id="surname-input">
-                    </div>
-                </div>
-
-                <div class="form-group col-md-4 col-md-offset-1">
-                    <label for="sel1">Select list (select one):</label>
-                    <select class="form-control" name="access" id="sel1">
-                        <option selected value="no-selection">Select Access Level</option>
-                        <?php include "../../php/admin/accessoptions.php"; ?>
-                    </select>
-                </div>
-
-                <div class="form-group col-md-4 col-md-offset-2">
-                    <label for="sel1">Select list (select one):</label>
-                    <select class="form-control" name="access" id="sel1">
-                        <option selected value="no-selection">Select Access Level</option>
-                        <?php include "../../php/admin/accessoptions.php"; ?>
-                    </select>
-                </div>
-            </div>
-
-
             <div class="col-lg-12" id="main-text-area">
 
             </div>
