@@ -29,7 +29,6 @@ if(has_access_level($link,"lecturer"))
             echo "<option value='".$course."'>".$course."</option>";
         }
     }
-
 }
 else
     {

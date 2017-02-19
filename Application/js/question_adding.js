@@ -28,7 +28,7 @@ function add_scale_question()
         cache: false,
         success: function(result){
 
-        $.when($("#main-text-area").append(result.data)).then(scroll_bottom());
+        $.when($("#form-area").append(result.data)).then(scroll_bottom());
         qCount++;
         maxQ ++;
         },
@@ -52,7 +52,7 @@ function add_boolean_question()
         success: function(result){
             qCount++;
             maxQ ++;
-            $.when($("#main-text-area").append(result.data)).then(scroll_bottom());
+            $.when($("#form-area").append(result.data)).then(scroll_bottom());
         },
         error: function(xhr, status, error) {
             alert(xhr);

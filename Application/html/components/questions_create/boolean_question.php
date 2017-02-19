@@ -26,16 +26,16 @@ $values = '<option selected value="no-selection">Select Value</option>
             <div class="col-md-5 col-md-offset-1"><label for="sel1">Question Number: <div id="question-number">'.$qNum.'</div></label></div>
             <div class="col-md-5 col-md-offset-1">Type: Boolean</div>
                 <span class="glyphicon glyphicon-remove close-btn" aria-hidden="true" onclick="update_numbers(' .$id . ')"></span>
-
+                <input type="hidden" name="type[]" value="boolean">
                 <div class="form-group row">
-                    <label for="surname-label-input" class="col-md-12 col-md-offset-1 col-form-label">Question</label>
+                    <label for="question-label-input" class="col-md-12 col-md-offset-1 col-form-label">Question</label>
                     <div class="col-md-10 col-md-offset-1">
-                        <input class="form-control" type="text" value="" name="surname" id="surname-input">
+                        <input class="form-control" type="text" value="" name="question[]" id="bolean-input">
                     </div>
                 </div>
             <div class="form-group col-md-4 col-md-offset-4">
-                <label for="sel1">Select list (select one):</label>
-                <select class="form-control" name="access" id="sel1">'.
+                <label for="sel1">Select Question Value (select one):</label>
+                <select class="form-control" name="max-value[]" id="sel1">'.
         $values
         .'</select>
             </div>

@@ -25,6 +25,7 @@
     <script src="../../js/sidebar.js"></script>
     <script src="../../js/question_adding.js"></script>
     <script src="../../js/labs/lab_sidebar.js"></script>
+    <script src="../../js/labs/display_questions.js"></script>
 
     <!--JavaScripts -->
     <script type="text/javascript">include_navbar();</script>
@@ -47,40 +48,43 @@
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 
 <!--            Main area top-->
-            <div class="page-header col-md-12">
-                <div class="form-group col-md-4 col-md-offset-1">
-                    <label for="course-input" class="col-md-4 col-form-label">Course:</label>
-                    <div class="col-md-8">
-                        <select class="form-control " name="access" id="sel1">
-                            <option selected value="no-selection">Select Access Level</option>
-                            <?php include "../../php/labs/get_courses.php"; ?>
-                        </select>
+            <form class="col-lg-12" id="form-area" accept-charset="UTF-8" role="form"  name="create-lab-form" method="post" action="../../php/labs/create_lab.php">
+                <div class="page-header col-md-12">
+                    <div class="form-group col-md-4 col-md-offset-1">
+                        <label for="course-input" class="col-md-4 col-form-label">Course:</label>
+                        <div class="col-md-8">
+                            <select class="form-control " name="course-name" id="sel1">
+                                <option selected value="no-selection">Select Access Level</option>
+                                <?php include "../../php/labs/get_courses.php"; ?>
+                            </select>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group col-md-4 col-md-offset-2 ">
+                        <label for="labname-input" class="col-md-3 col-form-label">Lab Title</label>
+                        <div class="col-md-9">
+                            <input class="form-control" type="text" value="" name="lab-name" id="labname-input">
+                        </div>
                     </div>
                 </div>
 
 
-                <div class="form-group col-md-4 col-md-offset-2 ">
-                    <label for="labname-input" class="col-md-3 col-form-label">Lab Title</label>
-                    <div class="col-md-9">
-                        <input class="form-control" type="text" value="" name="lab-name" id="labname-input">
-                    </div>
-                </div>
-            </div>
 
-
-
-
-
+            </form>
 
             <div class="col-lg-12" id="main-text-area">
+                <button onclick="load_lab('Lab 1', 'Data Management')">Load Lab</button>
 
             </div>
+
+
         </div>
 
     </div>
 </div>
 
-<footer class="panel-footer" id="bottom-nav-area" ></footer>
+<footer class="panel-footer" id="bottom-nav-area" onclick = "$('#form-area').get(0).submit();"></footer>
 
 </body>
 </html>

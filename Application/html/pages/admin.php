@@ -78,6 +78,37 @@
                 </div>
             </form>
 
+
+
+            <form method="post" action="../../php/labs/display_lab.php">
+
+
+                <div class="form-group row">
+                    <label for="matric-label-input" class="col-2 col-form-label">Lab Name</label>
+                    <div class="col-10">
+                        <input class="form-control" type="text" value="" name="lab" id="matric-input">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="sel1">Select list (select one):</label>
+                    <select class="form-control" name="course" id="sel1">
+                        <option selected value="no-selection">Select Access Level</option>
+                        <?php include "../../php/labs/get_courses.php"; ?>
+                    </select>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-10">
+                        <input class="form-control" type="submit" value="Submit">
+                    </div>
+                </div>
+            </form>
+
+
+
+
+
             <div class="col-lg-12">
 
             </div>

@@ -5,7 +5,7 @@
 
 function make_lab_layout(inputarea){
 
-    var new_sidebar = "";
+    var new_sidebar = "<div id='question-options-div'>";
     var questionTypes = ["scale","boolean", "value", "text"];
     for(type in questionTypes) {
         t = questionTypes[type];
@@ -15,7 +15,7 @@ function make_lab_layout(inputarea){
             '</div>' +
             '</div>';
     }
-
+    new_sidebar += "</div>";
 
 
     $(document).ready(function() {

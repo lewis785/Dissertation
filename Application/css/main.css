@@ -1,7 +1,10 @@
 .main{
     padding-top: 50px;
+    padding-bottom: 50px;
 }
 
+
+/*Layout out for creating question tiles*/
 .tile
 {
     position: relative;
@@ -10,6 +13,7 @@
     margin-bottom: 10px;
 }
 
+/*Places close button in top right corner of parent div*/
 .close-btn
 {
     position: absolute;
@@ -17,22 +21,24 @@
     top: 10px;
 }
 
-
+/*Side bar set to in front of other divs*/
 #sidebar_code *{
     z-index: 5;
 }
 
+/*Adds margin to top of question buttons box*/
+#question-options-div{
+    margin-top: 120px;
+}
+
+/*Sets bottom bar to be behind other divs*/
 #bottom-bar-code *{
     z-index: 1;
 }
 
-#bottom-bar-code {
-    /*height: 10%;*/
-}
-
+/*Fixes bottom bar to bottom of screen*/
 #bottom-nav-area {
     position: fixed;
-    /*height: 100px;*/
     bottom: 0;
     width: 100%;
 }
