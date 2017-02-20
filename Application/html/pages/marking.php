@@ -22,6 +22,7 @@
     <script src="../../bootstrap/js/bootstrap.js"></script>
     <script src="../../js/navbar.js"></script>
     <script src="../../js/labs/display_questions.js"></script>
+    <script src="../../js/marking.js"></script>
 
 
 
@@ -41,14 +42,14 @@
 
         <div id="sidebar_area"></div>
 
-        <div class="col-sm-12 col-md-12 main">
+        <div class="col-sm-8 col-md-8 col-md-offset-2 col-sm-offset-2 main">
             <h1 class="page-header">Webpage Dashboard</h1>
             <div class="col-lg-12" id="main-text-area">
                 <button onclick="load_lab('Lab 1', 'Data Management')">Load Lab</button>
             </div>
 
-            <div class="col-lg-12" id="question-area">
-
+            <div class="col-md-12" id="question-area">
+                <?php include "../../php/courses/get_courses.php"; courses_button(); ?>
 
 
             </div>

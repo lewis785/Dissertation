@@ -52,12 +52,11 @@
                         <label for="course-input" class="col-md-4 col-form-label">Course:</label>
                         <div class="col-md-8">
                             <select class="form-control " name="course-name" id="sel1">
-                                <option selected value="no-selection">Select Access Level</option>
-                                <?php include "../../php/labs/get_courses.php"; ?>
+                                <option selected value="no-selection">Select Course</option>
+                                <?php include "../../php/courses/get_courses.php"; courses_dropdown();?>
                             </select>
                         </div>
                     </div>
-
 
                     <div class="form-group col-md-4 col-md-offset-2 ">
                         <label for="labname-input" class="col-md-3 col-form-label">Lab Title</label>
@@ -68,9 +67,7 @@
                 </div>
 
 
-
             </form>
-
 
 
         </div>
@@ -78,7 +75,7 @@
     </div>
 </div>
 
-<footer class="panel-footer" id="bottom-nav-area" onclick = "$('#form-area').get(0).submit();"></footer>
+<footer class="panel-footer" id="bottom-nav-area"></footer>
 
 </body>
 </html>

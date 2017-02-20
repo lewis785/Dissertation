@@ -7,7 +7,7 @@
  */
 include(dirname(__FILE__)."/../core/connection.php");
 include 'already_exists.php';
-include 'get_course_id.php';
+include(dirname(__FILE__)."/../courses/get_course_id.php");
 
 
 if(isset($_POST['lab']) && isset($_POST['course']))
@@ -29,11 +29,11 @@ if(isset($_POST['lab']) && isset($_POST['course']))
         mysqli_stmt_execute($retrieveQuestions);
         $result = mysqli_stmt_get_result($retrieveQuestions);
 
-        $outputHtml = "";
+        $outputHtml = "<form class=\"col-lg-12\" id=\"form-area\" accept-charset=\"UTF-8\" role=\"form\"  name=\"marking-form\" method=\"post\" action=\"*\">";
         while ($question = $result->fetch_row()) {
             $outputHtml = $outputHtml . display_question($question);
         }
-        echo json_encode(array('html'=>$outputHtml."</div>"));
+        echo json_encode(array('html'=>$outputHtml."</form>"));
     }
 }
 mysqli_close($link);

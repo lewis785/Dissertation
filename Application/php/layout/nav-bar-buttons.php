@@ -15,8 +15,7 @@ $nav_bar_content = '<li class="dropdown">
                     </li>
                     <li class="active"><a href="home.php" >Home</a></li>';
 
-
-if(get_access_value($link,"lab helper") <= $_SESSION["accesslevel"]) {
+if(get_access_value($link, "lab helper") <= $_SESSION["accesslevel"]) {
     $nav_bar_content = '<li><a href="marking.php"> Marking Section </a></li>' . $nav_bar_content;
 
     if (get_access_value($link, "lecturer") <= $_SESSION["accesslevel"]) {

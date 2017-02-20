@@ -42,3 +42,18 @@
     bottom: 0;
     width: 100%;
 }
+
+
+/*CSS for marking page*/
+
+#btn-course {
+    width: 100% !important;
+    height: 100px;
+    margin-bottom: 25px;
+}
+
+
+
+/*End of CSS for marking page*/
+
+
