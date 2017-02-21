@@ -6,7 +6,8 @@
  * Time: 17:52
  */
 include(dirname(__FILE__)."/../core/connection.php");
-include 'get_course_id.php';
+
+include(dirname(__FILE__)."/../courses/get_course_id.php");
 include 'already_exists.php';
 
 $successful = false;

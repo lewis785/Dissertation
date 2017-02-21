@@ -3,6 +3,7 @@
  */
 
 
+//Function displays all the labs for a given course
 function display_labs_for(course)
 {
     $.ajax({
@@ -20,6 +21,7 @@ function display_labs_for(course)
     });
 }
 
+//Displays all the students in a given lab
 function display_students_for(lab)
 {
     $.ajax({
@@ -35,4 +37,38 @@ function display_students_for(lab)
             alert(xhr);
         }
     });
+}
+
+//Displays the labs schema for a lab
+function display_schema_for(student)
+{
+    $.ajax({
+        type: 'POST',
+        url: "../../php/labs/display_lab.php",
+        dataType: 'json',
+        data: {student:student},
+        cache: false,
+        success: function(result){
+            $("#question-area").html(result.html);
+        },
+        error: function(xhr, status, error) {
+            alert(xhr);
+        }
+    });
+}
+
+
+function back_to_courses()
+{
+
+}
+
+function back_to_labs()
+{
+
+}
+
+function back_to_students()
+{
+
 }

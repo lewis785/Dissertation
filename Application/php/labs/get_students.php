@@ -24,7 +24,7 @@ function get_students_buttons($lab)
         $buttons = "";
         while ($student = $result->fetch_row()) {
             $buttons .= "<div class='col-md-6 col-md-offset-3'>
-                      <button class='btn btn-success' id='btn-course' onclick='display_students_for(\"" . $student[2] . "\")'>" . $student[0] ." ". $student[1] . "</button>
+                      <button class='btn btn-success' id='btn-student' onclick='display_schema_for(\"" . $student[2] . "\")'>" . $student[0] ." ". $student[1] . "</button>
                      </div>";
         }
         echo json_encode(array('successful' => true, 'buttons' => $buttons));

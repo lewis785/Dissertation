@@ -8,12 +8,26 @@
 include(dirname(__FILE__)."/../core/connection.php");
 include 'already_exists.php';
 include(dirname(__FILE__)."/../courses/get_course_id.php");
-
+include(dirname(__FILE__)."/../courses/course_checks.php");
 
 if(isset($_POST['lab']) && isset($_POST['course']))
 {
-    $courseID = get_course_id($_POST['course']);
-    $labName = $_POST['lab'];
+    $course = $_POST["course"];
+    $lab = $_POST['lab'];
+}
+else
+{
+    if(isset($_POST["student"]))
+        $_SESSION["MARKING_STUDENT"] = $_POST["student"];
+    $course = $_SESSION["MARKING_COURSE"];
+    $lab = $_SESSION["MARKING_LAB"];
+}
+
+
+if(can_mark_course($link,$course))
+{
+    $courseID = get_course_id($course);
+    $labName = $lab;
 
     if(lab_already_exists($courseID,$labName))
     {
@@ -59,7 +73,7 @@ function display_question($question)
 
             break;
         default:
-            echo "default";                             //Default if type doesn't exist
+//            echo "default";                             //Default if type doesn't exist
     }
 
     return $html."</div>";
