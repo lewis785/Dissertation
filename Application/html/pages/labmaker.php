@@ -75,7 +75,7 @@
     </div>
 </div>
 
-<footer class="panel-footer" id="bottom-nav-area"></footer>
+<footer class="panel-footer fix-bottom" id="bottom-nav-area"></footer>
 
 </body>
 </html>

@@ -23,7 +23,7 @@ function get_students_buttons($lab)
         $result = get_students($_SESSION["MARKING_COURSE"]);
         $buttons = "";
         while ($student = $result->fetch_row()) {
-            $buttons .= "<div class='col-md-6 col-md-offset-3'>
+            $buttons .= "<div class='col-md-6 col-md-offset-3 col-sm-12'>
                       <button class='btn btn-success' id='btn-student' onclick='display_schema_for(\"" . $student[2] . "\")'>" . $student[0] ." ". $student[1] . "</button>
                      </div>";
         }

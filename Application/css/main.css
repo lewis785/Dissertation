@@ -21,6 +21,13 @@
     top: 10px;
 }
 
+.fix-bottom
+{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
 /*Side bar set to in front of other divs*/
 #sidebar_code *{
     z-index: 5;
@@ -38,9 +45,6 @@
 
 /*Fixes bottom bar to bottom of screen*/
 #bottom-nav-area {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
 }
 
 
@@ -62,6 +66,9 @@
     font-weight: bold;
 }
 
+#back-btn {
+    height: 50px;
+}
 
 
 /*End of CSS for marking page*/
