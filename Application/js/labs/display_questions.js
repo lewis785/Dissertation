@@ -27,6 +27,7 @@ function swap_value(buttonID)
     if($("#"+buttonID).val() === "no")
     {
         $("#" + buttonID).val("yes");
+        $("#" + buttonID + "-hidden").val("true");
         $("#" + buttonID ).addClass( "btn-success" );
         $("#" + buttonID ).removeClass( "btn-danger" );
 
@@ -34,6 +35,7 @@ function swap_value(buttonID)
     else
     {
         $("#" + buttonID).val("no");
+        $("#" + buttonID + "-hidden").val("false");
         $("#" + buttonID ).addClass( "btn-danger" );
         $("#" + buttonID ).removeClass( "btn-success" );
     }

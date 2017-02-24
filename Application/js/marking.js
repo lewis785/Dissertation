@@ -55,7 +55,8 @@ function display_schema_for(student)
         success: function(result){
             $("#question-area").html(result.html);
             $("#back-btn").attr("onclick","back_to_students()");
-            $("#marking-submit-bar").append('<button class="btn btn-success col-md-2 col-md-offset-1" id="lab-submit-btn">Submit</button></footer>');
+            $("#marking-submit-bar").append('<button onclick="$(\'#form-area\').get(0).submit()"'+
+                'class="btn btn-success col-md-2 col-md-offset-1" id="lab-submit-btn">Submit</button></footer>');
         },
         error: function(xhr, status, error) {
             alert(xhr);

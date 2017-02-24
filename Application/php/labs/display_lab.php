@@ -43,7 +43,7 @@ if(can_mark_course($link,$course))
         mysqli_stmt_execute($retrieveQuestions);
         $result = mysqli_stmt_get_result($retrieveQuestions);
 
-        $outputHtml = "<form class=\"col-lg-12\" id=\"form-area\" accept-charset=\"UTF-8\" role=\"form\"  name=\"marking-form\" method=\"post\" action=\"*\">";
+        $outputHtml = "<form class=\"col-lg-12\" id=\"form-area\" accept-charset=\"UTF-8\" role=\"form\"  name=\"marking-form\" method=\"post\" action=\"../../php/marking/submit_mark.php\">";
         while ($question = $result->fetch_row()) {
             $outputHtml = $outputHtml . display_question($question);
         }
@@ -80,6 +80,7 @@ function display_question($question)
 }
 
 
+//Returns the layout for a scale question
 function question_scale($start, $end)
 {
     $scale = '<div class="form-group col-md-4 col-md-offset-4">
@@ -93,11 +94,14 @@ function question_scale($start, $end)
     return  $scale.'</select></div>';
 }
 
+
+//Returns the layout for a boolean question
 function question_boolean($id)
 {
-    $id = "'boolean-button-".$id."'";
+    $id = "boolean-button-".$id;
     return '<div class="col-md-4 col-md-offset-4">
-                <input id='.$id.' class="btn btn-danger col-md-12" style="width:100%;"type="button" name="mark[]" value="no" onclick="swap_value('. $id .')">
+                <input id="'.$id.'-hidden" type = "hidden" name="mark[]" value = "false"/>
+                <input id="'.$id.'" class="btn btn-danger col-md-12" style="width:100%;"type="button" value="no" onclick="swap_value(\''. $id .'\')">
             </div>';
 }
 
