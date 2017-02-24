@@ -26,6 +26,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="create_lab.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/php/labs/create_lab.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="467">
+              <caret line="67" column="13" lean-forward="true" selection-start-line="44" selection-start-column="12" selection-end-line="67" selection-end-column="13" />
+              <folding>
+                <marker date="1487686982162" expanded="true" signature="5858:5918" ph="SELECT quest... question_types" />
+                <marker date="1487686982162" expanded="true" signature="7108:7171" ph="INSERT INTO labs... " />
+                <marker date="1487686982162" expanded="true" signature="7930:8047" ph="INSERT INTO lab_questions... " />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="marking.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/marking.js">
           <provider selected="true" editor-type-id="text-editor">
@@ -48,11 +62,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="submit_mark.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="submit_mark.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/php/marking/submit_mark.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="17" column="12" lean-forward="false" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="12" />
+            <state relative-caret-position="416">
+              <caret line="30" column="43" lean-forward="false" selection-start-line="30" selection-start-column="43" selection-end-line="30" selection-end-column="43" />
               <folding>
                 <element signature="e#6#87#0#PHP" expanded="true" />
               </folding>
@@ -93,18 +107,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="goback_students.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/php/marking/goback_students.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="21" column="47" lean-forward="false" selection-start-line="21" selection-start-column="47" selection-end-line="21" selection-end-column="47" />
-              <folding>
-                <element signature="e#6#87#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="marking.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/html/pages/marking.php">
           <provider selected="true" editor-type-id="text-editor">
@@ -129,7 +131,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="display_lab.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="display_lab.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/php/labs/display_lab.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="366">
@@ -213,9 +215,9 @@
         <option value="$PROJECT_DIR$/php/marking/goback_courses.php" />
         <option value="$PROJECT_DIR$/php/marking/goback_students.php" />
         <option value="$PROJECT_DIR$/js/marking.js" />
-        <option value="$PROJECT_DIR$/php/marking/submit_mark.php" />
         <option value="$PROJECT_DIR$/js/labs/display_questions.js" />
         <option value="$PROJECT_DIR$/php/labs/display_lab.php" />
+        <option value="$PROJECT_DIR$/php/marking/submit_mark.php" />
       </list>
     </option>
   </component>
@@ -608,12 +610,12 @@
       <workItem from="1487685506314" duration="3839000" />
       <workItem from="1487703057495" duration="1959000" />
       <workItem from="1487866322403" duration="4491000" />
-      <workItem from="1487939311499" duration="4471000" />
+      <workItem from="1487939311499" duration="5341000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="143256000" />
+    <option name="totallyTimeSpent" value="144126000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -626,11 +628,11 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13489583" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2344245" sideWeight="0.50208336" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2344245" sideWeight="0.50208336" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32946146" sideWeight="0.49791667" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
@@ -923,18 +925,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/php/labs/create_lab.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="128">
-          <caret line="131" column="56" lean-forward="false" selection-start-line="131" selection-start-column="56" selection-end-line="131" selection-end-column="56" />
-          <folding>
-            <marker date="1487686982162" expanded="true" signature="5858:5918" ph="SELECT quest... question_types" />
-            <marker date="1487686982162" expanded="true" signature="7108:7171" ph="INSERT INTO labs... " />
-            <marker date="1487686982162" expanded="true" signature="7930:8047" ph="INSERT INTO lab_questions... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/php/courses/get_courses.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
@@ -1016,16 +1006,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/php/marking/submit_mark.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" column="12" lean-forward="false" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="12" />
-          <folding>
-            <element signature="e#6#87#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/php/labs/get_labs.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
@@ -1056,14 +1036,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/html/pages/marking.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="791">
-          <caret line="61" column="7" lean-forward="true" selection-start-line="61" selection-start-column="7" selection-end-line="61" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/php/labs/display_lab.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="366">
@@ -1076,6 +1048,36 @@
             <marker date="1487946412210" expanded="true" signature="3900:4025" ph="..." />
             <marker date="1487946412210" expanded="true" signature="3900:4160" ph="..." />
             <marker date="1487946412210" expanded="false" signature="4069:4080" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/html/pages/marking.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="791">
+          <caret line="61" column="7" lean-forward="true" selection-start-line="61" selection-start-column="7" selection-end-line="61" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/php/labs/create_lab.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="467">
+          <caret line="67" column="13" lean-forward="true" selection-start-line="44" selection-start-column="12" selection-end-line="67" selection-end-column="13" />
+          <folding>
+            <marker date="1487686982162" expanded="true" signature="5858:5918" ph="SELECT quest... question_types" />
+            <marker date="1487686982162" expanded="true" signature="7108:7171" ph="INSERT INTO labs... " />
+            <marker date="1487686982162" expanded="true" signature="7930:8047" ph="INSERT INTO lab_questions... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/php/marking/submit_mark.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="416">
+          <caret line="30" column="43" lean-forward="false" selection-start-line="30" selection-start-column="43" selection-end-line="30" selection-end-column="43" />
+          <folding>
+            <element signature="e#6#87#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
