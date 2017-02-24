@@ -17,12 +17,13 @@ if(isset($_POST["mark"]))
 {
     $answers = ($_POST["mark"]);
     $qNum = 1;
-    $questionID = get_course_id($_SESSION["MARKING_COURSE"]);
+
     $labID =    get_lab_id(get_course_id($_SESSION["MARKING_COURSE"]), $_SESSION["MARKING_LAB"]);
     $studentID = get_studentID($_SESSION["MARKING_STUDENT"]);
 
-
-    foreach($type as $_POST["type"]) {
+    mysqli_autocommit($link, FALSE);                    //Sets up transaction for database insertion
+    foreach($_POST["type"] as $type) {
+        $questionID = get_questionID($labID, $qNum);
         switch ($type) {                                       //Case statement checking what type each question is
             case "boolean":                                 //Inserts boolean type questions
                 $successful = insert_answer($questionID, $studentID, NULL, $answers[$qNum - 1], NULL, "-1");
@@ -49,7 +50,7 @@ mysqli_close($link);
 
 
 
-function get_studentID()
+function get_studentID($student)
 {
     $link = $GLOBALS["link"];
 
@@ -57,9 +58,9 @@ function get_studentID()
     mysqli_stmt_prepare($get_studentsID, "SELECT s.socID FROM students_on_courses AS s 
                                           JOIN user_details as d ON s.student = d.detailsID 
                                           WHERE d.studentID = ?");
-    mysqli_stmt_bind_param($get_studentsID, 's', $course);
+    mysqli_stmt_bind_param($get_studentsID, 's', $student);
     mysqli_stmt_execute($get_studentsID);
-    $result = mysqli_stmt_get_result($get_studentsID);
+    $result = mysqli_stmt_get_result($get_studentsID)->fetch_row();
 
     return $result[0];
 }
@@ -73,7 +74,7 @@ function get_questionID($labID, $questionNum)
     mysqli_stmt_prepare($get_questionID, "SELECT questionID FROM lab_questions WHERE labRef = ? AND questionNumber = ?");
     mysqli_stmt_bind_param($get_questionID, 'ii', $labID, $questionNum);
     mysqli_stmt_execute($get_questionID);
-    $result = mysqli_stmt_get_result($get_questionID);
+    $result = mysqli_stmt_get_result($get_questionID)->fetch_row();
 
     return $result[0];
 }
@@ -82,8 +83,9 @@ function get_questionID($labID, $questionNum)
 function insert_answer($questionID, $studentID, $ansNum, $ansBool, $ansText, $mark)
 {
     $link = $GLOBALS["link"];
+    echo "qid: ".$questionID ." sid: " .$studentID ." qnum: ". $ansNum ." ansB: ". $ansBool . "ansT: ".$ansText ." mark: ". $mark;
 
-    $insertAnswerQuery = 'INSERT INTO lab_answers (labQuestionRef, socRef, answerNumber, answerBoolean, answerText, mark) VALUES (?, ?, ?, ?, ?)';
+    $insertAnswerQuery = 'INSERT INTO lab_answers (labQuestionRef, socRef, answerNumber, answerBoolean, answerText, mark) VALUES (?, ?, ?, ?, ?, ?)';
     $insertAnswer = mysqli_stmt_init($link);
     mysqli_stmt_prepare($insertAnswer, $insertAnswerQuery);
     mysqli_stmt_bind_param($insertAnswer, 'iisssi',$questionID, $studentID, $ansNum, $ansBool, $ansText, $mark);
