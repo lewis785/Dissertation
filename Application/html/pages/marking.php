@@ -51,18 +51,11 @@
             <div class="col-md-12" id="question-area">
                 <?php include "../../php/courses/get_courses.php"; courses_button(); ?>
 
-
             </div>
         </div>
 
     </div>
 </div>
-
-
-<footer class="panel-footer fix-bottom" id="marking-submit-bar">
-    <button class="btn btn-default col-md-2 col-md-offset-2" id="back-btn">Back</button>
-    <button class="btn btn-success col-md-2 col-md-offset-1">Submit</button>
-</footer>
 
 
 </body>

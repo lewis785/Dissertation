@@ -21,7 +21,6 @@ function courses_dropdown(){
 function courses_button()
 {
     $result = get_courses();
-
     foreach ($result as $row) {
         foreach ($row as $course) {
             echo "<div class='col-md-6 col-md-offset-3'>
@@ -29,7 +28,6 @@ function courses_button()
                   </div>";
         }
     }
-    
 }
 
 function get_courses()

@@ -12,10 +12,10 @@ if(isset($_POST["lab"])) {
     get_students_buttons($_POST["lab"]);
 }
 
+//Returns all students on a course as clickable buttons
 function get_students_buttons($lab)
 {
     include(dirname(__FILE__)."/../core/connection.php");
-
 
     if (can_mark_course($link,$_SESSION["MARKING_COURSE"]))
     {

@@ -14,5 +14,15 @@
         </SOURCES>
       </library>
     </orderEntry>
+    <orderEntry type="module-library">
+      <library name="PHARS">
+        <CLASSES>
+          <root url="phar://$MODULE_DIR$/phpunit-6.0.7.phar/" />
+        </CLASSES>
+        <SOURCES>
+          <root url="phar://$MODULE_DIR$/phpunit-6.0.7.phar/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
   </component>
 </module>

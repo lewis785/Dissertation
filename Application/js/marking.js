@@ -14,6 +14,10 @@ function display_labs_for(course)
         cache: false,
         success: function(result){
             $("#question-area").html(result.buttons);
+
+            $(document.body).append('<footer class="panel-footer fix-bottom" id="marking-submit-bar">'+
+                '<button class="btn btn-warning col-md-2 col-md-offset-2" id="back-btn" onclick="back_to_courses()">Back</button>' +
+                '<button class="btn btn-success col-md-2 col-md-offset-1">Submit</button></footer>');
         },
         error: function(xhr, status, error) {
             alert(xhr);
@@ -32,6 +36,7 @@ function display_students_for(lab)
         cache: false,
         success: function(result){
             $("#question-area").html(result.buttons);
+            $("#back-btn").attr("onclick","back_to_labs()");
         },
         error: function(xhr, status, error) {
             alert(xhr);
@@ -60,12 +65,25 @@ function display_schema_for(student)
 
 function back_to_courses()
 {
-
+    $.ajax({
+        type: 'POST',
+        url: "../../php/labs/goback_marking.php",
+        dataType: 'json',
+        data: {type: "course"},
+        cache: false,
+        success: function(result){
+            $("#question-area").html(result.buttons);
+            $("#marking-submit-bar").remove();
+        },
+        error: function(xhr, status, error) {
+            alert(xhr);
+        }
+    });
 }
 
 function back_to_labs()
 {
-
+    alert("lab");
 }
 
 function back_to_students()
