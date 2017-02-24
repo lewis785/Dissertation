@@ -6,19 +6,18 @@
  * Time: 01:45
  */
 
-include "get_students.php";
-include "get_labs.php";
-include(dirname(__FILE__)."/../courses/get_courses.php");
+include(dirname(__FILE__) . "/../courses/get_courses.php");
 
 
 if(isset($_POST["type"]))
 {
     if($_POST["type"] == "course")
-        courses_button_json();
+        session_start();
+        $_SESSION["MARKING_COURSE"] = "";
+        courses_button_back();
 }
-courses_button_json();
 
-function courses_button_json()
+function courses_button_back()
 {
     $result = get_courses();
     $output = "";
@@ -29,5 +28,7 @@ function courses_button_json()
                   </div>";
         }
     }
+
     echo json_encode(array('buttons'=>$output));
+
 }

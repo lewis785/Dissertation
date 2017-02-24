@@ -16,8 +16,7 @@ function display_labs_for(course)
             $("#question-area").html(result.buttons);
 
             $(document.body).append('<footer class="panel-footer fix-bottom" id="marking-submit-bar">'+
-                '<button class="btn btn-warning col-md-2 col-md-offset-2" id="back-btn" onclick="back_to_courses()">Back</button>' +
-                '<button class="btn btn-success col-md-2 col-md-offset-1">Submit</button></footer>');
+                '<button class="btn btn-warning col-md-2 col-md-offset-2" id="back-btn" onclick="back_to_courses()">Back</button>');
         },
         error: function(xhr, status, error) {
             alert(xhr);
@@ -55,19 +54,30 @@ function display_schema_for(student)
         cache: false,
         success: function(result){
             $("#question-area").html(result.html);
+            $("#back-btn").attr("onclick","back_to_students()");
+            $("#marking-submit-bar").append('<button class="btn btn-success col-md-2 col-md-offset-1" id="lab-submit-btn">Submit</button></footer>');
         },
         error: function(xhr, status, error) {
             alert(xhr);
         }
     });
 }
+/*--------------------------------------*/
+/*End of functions for selecting marking*/
+/*--------------------------------------*/
 
+
+
+
+/*------------------------------------------*/
+/*Beginning of functions for go back button */
+/*------------------------------------------*/
 
 function back_to_courses()
 {
     $.ajax({
         type: 'POST',
-        url: "../../php/labs/goback_marking.php",
+        url: "../../php/marking/goback_courses.php",
         dataType: 'json',
         data: {type: "course"},
         cache: false,
@@ -83,10 +93,39 @@ function back_to_courses()
 
 function back_to_labs()
 {
-    alert("lab");
+    $.ajax({
+        type: 'POST',
+        url: "../../php/marking/goback_labs.php",
+        dataType: 'json',
+        data: {type: "labs"},
+        cache: false,
+        success: function(result){
+            $("#question-area").html(result.buttons);
+            $("#back-btn").attr("onclick","back_to_courses()");
+        },
+        error: function(xhr, status, error) {
+            alert(xhr);
+        }
+    });
+
 }
 
 function back_to_students()
 {
+    $.ajax({
+        type: 'POST',
+        url: "../../php/marking/goback_students.php",
+        dataType: 'json',
+        data: {type: "students"},
+        cache: false,
+        success: function(result){
+            $("#question-area").html(result.buttons);
+            $("#back-btn").attr("onclick","back_to_labs()");
+            $("#lab-submit-btn").remove();
+        },
+        error: function(xhr, status, error) {
+            alert(xhr);
+        }
+    });
 
 }
