@@ -57,7 +57,6 @@ function display_question($question)
 {
     $html = '<div class="col-sm-6 col-sm-offset-3 col-md-8 col-md-offset-2 tile"  id="question-'. $question[0] .'">
                 <div class="col-md-5 col-md-offset-1"><label for="sel1">Question Number: <div id="question-number">'.$question[0].'</div></label></div>
-                <input type="hidden" name="type[]" value="boolean">
                 <div class="form-group row">
                     <label for="question-label-input" class="col-md-12 col-md-offset-1 col-form-label">'.$question[2].'</label>
                 </div>';
@@ -84,8 +83,9 @@ function display_question($question)
 function question_scale($start, $end)
 {
     $scale = '<div class="form-group col-md-4 col-md-offset-4">
+                <input type="hidden" class="question-type" name="type[]" value="scale">
                 <label for="sel1">Select Mark (select one):</label>
-                <select class="form-control" name="mark[]" id="sel1">
+                <select class="form-control mark-input" name="mark[]" id="sel1">
                 <option selected value="no-selection">Select Value</option>';
     for($i = $start; $i<=$end; $i++)
     {
@@ -100,7 +100,8 @@ function question_boolean($id)
 {
     $id = "boolean-button-".$id;
     return '<div class="col-md-4 col-md-offset-4">
-                <input id="'.$id.'-hidden" type = "hidden" name="mark[]" value = "false"/>
+                <input type="hidden" class="question-type" name="type[]" value="boolean">
+                <input id="'.$id.'-hidden" class="mark-input" type = "hidden" name="mark[]" value = "false"/>
                 <input id="'.$id.'" class="btn btn-danger col-md-12" style="width:100%;"type="button" value="no" onclick="swap_value(\''. $id .'\')">
             </div>';
 }

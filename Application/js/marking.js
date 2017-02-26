@@ -3,6 +3,10 @@
  */
 
 
+/*--------------------------------------------*/
+/*Beginning of functions for selecting marking*/
+/*--------------------------------------------*/
+
 //Function displays all the labs for a given course
 function display_labs_for(course)
 {
@@ -55,7 +59,7 @@ function display_schema_for(student)
         success: function(result){
             $("#question-area").html(result.html);
             $("#back-btn").attr("onclick","back_to_students()");
-            $("#marking-submit-bar").append('<button onclick="$(\'#form-area\').get(0).submit()"'+
+            $("#marking-submit-bar").append('<button onclick="submit_mark()"'+
                 'class="btn btn-success col-md-2 col-md-offset-1" id="lab-submit-btn">Submit</button></footer>');
         },
         error: function(xhr, status, error) {
@@ -130,3 +134,30 @@ function back_to_students()
     });
 
 }
+
+/*------------------------------------------*/
+/*  End of functions for go back button     */
+/*------------------------------------------*/
+
+
+
+/*--------------------------------------------*/
+/*Beginning of functions for submitting marks */
+/*--------------------------------------------*/
+
+function submit_mark(){
+    var result = $.post("../../php/marking/submit_mark.php", $("#form-area").serialize());
+    alert (result);
+    back_to_students();
+
+
+}
+
+
+
+
+
+
+/*--------------------------------------*/
+/*End of functions for submitting marks */
+/*--------------------------------------*/
