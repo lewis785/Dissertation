@@ -23,7 +23,6 @@
     <script src="../../js/admins.js"></script>
     <script src="../../js/navbar.js"></script>
     <script src="../../js/sidebar.js"></script>
-    <script src="../../js/question_adding.js"></script>
 
 
     <!--JavaScripts -->
@@ -44,9 +43,6 @@
 
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
             <h1 class="page-header">Webpage Dashboard</h1>
-            <button onclick="add_scale_question('testing <br>')">Add question</button>
-
-            <button onclick="add_boolean_question('testing <br>')">Add question</button>
 
 
 

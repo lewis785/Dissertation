@@ -33,14 +33,22 @@ if($_SESSION["MARKING_COURSE"] && $_SESSION["MARKING_LAB"] && $_SESSION["MARKING
                                             JOIN user_details AS ud ON soc.student = ud.detailsId 
                                             WHERE labQuestionRef = ? AND ud.studentID = ? ");
 
+        $answers = [];
         while ( $question = $result->fetch_row()){
 
-            echo ($question[0] . $student);
             mysqli_stmt_bind_param($get_answers, 'is', $question[0], $student );
             mysqli_stmt_execute($get_answers);
-            $answerID = mysqli_stmt_get_result($get_answers)->fetch_row();
-            print_r($answerID);
+            $answer = mysqli_stmt_get_result($get_answers);
+            $rows = mysqli_num_rows($answer);
+            $hasMark = $rows === 1;
+            if($rows === 1) {
+                array_push($answers, $answer->fetch_row());
+            }
+            else{
+                break;
+            }
         }
+        echo json_encode(array("marked"=>$hasMark, "answers"=>$answers));
     }
 }
 

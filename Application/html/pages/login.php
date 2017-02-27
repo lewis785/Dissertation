@@ -12,7 +12,7 @@
 
     <!--JavaScript -->
 
-
+    <title>Login Page</title>
 </head>
 
 <body>

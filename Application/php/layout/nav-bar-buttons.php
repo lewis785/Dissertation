@@ -25,7 +25,7 @@ if(get_access_value($link, "lab helper") <= $_SESSION["accesslevel"]) {
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Labs<span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li><a href="#">Lab Results</a></li>
-                                <li><a href="#">List of Labs</a></li>
+                                <li><a href="labmanager.php">List of Labs</a></li>
                                 <li role="separator" class="divider"></li>
                                 <li><a href="labmaker.php">Make Lab</a></li>
                                 <li><a href="#">Edit Lab</a></li>

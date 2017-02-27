@@ -61,6 +61,7 @@ function display_schema_for(student)
             $("#back-btn").attr("onclick","back_to_students()");
             $("#marking-submit-bar").append('<button onclick="submit_mark()"'+
                 'class="btn btn-success col-md-2 col-md-offset-1" id="lab-submit-btn">Submit</button></footer>');
+            get_student_marks();
         },
         error: function(xhr, status, error) {
             alert(xhr);
@@ -130,6 +131,7 @@ function back_to_students()
         },
         error: function(xhr, status, error) {
             alert(xhr);
+            alert("error going back students");
         }
     });
 
@@ -147,16 +149,64 @@ function back_to_students()
 
 function submit_mark(){
     var result = $.post("../../php/marking/submit_mark.php", $("#form-area").serialize());
-    alert (result);
     back_to_students();
-
-
 }
 
+/*--------------------------------------*/
+/*End of functions for submitting marks */
+/*--------------------------------------*/
 
 
 
 
+/*--------------------------------------------*/
+/*Beginning of functions for submitting marks */
+/*--------------------------------------------*/
+
+function get_student_marks(){
+
+    $.ajax({
+        type: 'POST',
+        url: "../../php/marking/get_student_answer.php",
+        dataType: 'json',
+        data: {},
+        cache: false,
+        success: function(result){
+
+            if (result.marked === true) {
+
+                var types = [];
+
+                $(".question-type").each(function () {
+                    types.push($(this).val());
+                });
+
+                var count = 0;
+                $(".lab-input").each(function () {
+
+                    switch (types[count]) {
+                        case "scale":
+                            $(this).val(result.answers[count][0]);
+                            break;
+                        case "boolean":
+                            var value = result.answers[count][1];
+                            $("#boolean-button-" + (count + 1) + "-hidden").val(value);
+                            if (value === "true")
+                                swap_value("boolean-button-" + (count + 1));
+                            break;
+                        default:
+                            break;
+                    }
+                    count++;
+                })
+            }
+        },
+        error: function(xhr, status, error) {
+            alert(xhr);
+        }
+    });
+
+}
 
 /*--------------------------------------*/
 /*End of functions for submitting marks */

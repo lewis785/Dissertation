@@ -6,7 +6,6 @@
  * Time: 17:45
  */
 
-include(dirname(__FILE__) . "/../core/check_access_level.php");
 
 
 function courses_dropdown(){
@@ -33,6 +32,7 @@ function courses_button()
 function get_courses()
 {
     include(dirname(__FILE__) . "/../core/connection.php");
+    require_once(dirname(__FILE__) . "/../core/check_access_level.php");
 
     if (has_access_level($link, "lecturer")) {
         $get_courses = mysqli_stmt_init($link);
@@ -56,8 +56,3 @@ function get_courses()
     }
     mysqli_close($link);
 }
-
-
-
-
-

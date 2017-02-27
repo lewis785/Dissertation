@@ -31,7 +31,7 @@
     <script type="text/javascript">make_lab_layout("sidebar_area");</script>
     <script type="text/javascript">include_bottom_navbar();</script>
 
-    <title>Home Page</title>
+    <title>Create Lab Page</title>
 </head>
 
 <body>

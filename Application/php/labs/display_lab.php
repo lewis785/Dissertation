@@ -85,7 +85,7 @@ function question_scale($start, $end)
     $scale = '<div class="form-group col-md-4 col-md-offset-4">
                 <input type="hidden" class="question-type" name="type[]" value="scale">
                 <label for="sel1">Select Mark (select one):</label>
-                <select class="form-control mark-input" name="mark[]" id="sel1">
+                <select class="form-control mark-input lab-input" name="mark[]" id="scale-input">
                 <option selected value="no-selection">Select Value</option>';
     for($i = $start; $i<=$end; $i++)
     {
