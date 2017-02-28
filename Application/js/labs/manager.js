@@ -2,6 +2,30 @@
  * Created by Lewis on 27/02/2017.
  */
 
+function display_table()
+{
+    $.ajax({
+        type: 'POST',
+        url: "../../php/labs/display_lab_table.php",
+        dataType: 'json',
+        data: {display_table: "manage-table"},
+        cache: false,
+        success: function (result) {
+            if (result.success)
+                $("#main-text-area").html(result.table);
+            else
+                $("#main-text-area").html(result.error - message);
+        },
+        error: function (xhr, status, error) {
+            alert("Error Occurred Try To Load Lab Table: " + xhr);    //Displays an alert if error occurred
+        }
+    });
+
+
+}
+
+
+
 
 //Creates a popup to confirm the deletion of a lab
 function delete_popup(labID)

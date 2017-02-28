@@ -43,7 +43,8 @@
             <h1 class="page-header">Lab Management Table</h1>
 
             <div class="col-lg-12" id="main-text-area">
-                <?php include "../../php/labs/display_lab_table.php" ?>
+
+                <script type="text/javascript">display_table();</script>
 
             </div>
         </div>

@@ -15,6 +15,5 @@ function already_marked($studentID, $labQID)
     mysqli_stmt_bind_param($check_already_marked, 'ii', $studentID, $labQID);
     mysqli_stmt_execute($check_already_marked);
     $result = mysqli_stmt_get_result($check_already_marked)->fetch_row();
-
-    return $result[0 === 1];
+    return $result[0] === 1;
 }

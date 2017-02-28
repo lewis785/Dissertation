@@ -21,7 +21,7 @@ if(isset($_POST["mark"]))
 {
     $qNum = 1;
     $answers = ($_POST["mark"]);
-    $labID =    get_lab_id(, get_course_id($_SESSION["MARKING_COURSE"]), $_SESSION["MARKING_LAB"]);
+    $labID =    get_lab_id($link,$_SESSION["MARKING_COURSE"], $_SESSION["MARKING_LAB"]);
     $studentID = get_studentID($_SESSION["MARKING_STUDENT"]);
     $questionID = get_questionID($labID, $qNum);
 
@@ -31,6 +31,7 @@ if(isset($_POST["mark"]))
 
     mysqli_autocommit($link, FALSE);                    //Sets up transaction for database insertion
     foreach($_POST["type"] as $type) {
+        echo $answers[$qNum-1];
         switch ($type) {                                       //Case statement checking what type each question is
             case "boolean":                                 //Inserts boolean type questions
                 $successful = insert_answer($already_present, $questionID, $studentID, NULL, $answers[$qNum - 1], NULL, "-1");
@@ -65,13 +66,13 @@ mysqli_close($link);
 function get_questionID($labID, $questionNum)
 {
     $link = $GLOBALS["link"];
+    echo "lab: ".$labID."quest: ".$questionNum;
 
     $get_questionID = mysqli_stmt_init($link);
     mysqli_stmt_prepare($get_questionID, "SELECT questionID FROM lab_questions WHERE labRef = ? AND questionNumber = ?");
     mysqli_stmt_bind_param($get_questionID, 'ii', $labID, $questionNum);
     mysqli_stmt_execute($get_questionID);
     $result = mysqli_stmt_get_result($get_questionID)->fetch_row();
-
     return $result[0];
 }
 
@@ -80,13 +81,13 @@ function insert_answer($already_present, $questionID, $studentID, $ansNum, $ansB
 {
     $link = $GLOBALS["link"];
     $successful = false;
-//    echo "qid: ".$questionID ." sid: " .$studentID ." qnum: ". $ansNum ." ansB: ". $ansBool . "ansT: ".$ansText ." mark: ". $mark;
+    echo "present: ".$already_present."qid: ".$questionID ." sid: " .$studentID ." qnum: ". $ansNum ." ansB: ". $ansBool . "ansT: ".$ansText ." mark: ". $mark;
     if (!$already_present) {
-        require "insert_answer.php";
+        require"insert_answer.php";
     }
     else
     {
-        require "update_answer.php";
+        require"update_answer.php";
     }
     if (!$successful) {                                 //checks if insert or update failed
         mysqli_rollback($link);                         //Undoes all the inserts all ready done to the database

@@ -148,7 +148,7 @@ function back_to_students()
 /*--------------------------------------------*/
 
 function submit_mark(){
-    var result = $.post("../../php/marking/submit_mark.php", $("#form-area").serialize());
+    $.post("../../php/marking/submit_mark.php", $("#form-area").serialize());
     back_to_students();
 }
 
