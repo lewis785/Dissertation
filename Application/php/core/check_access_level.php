@@ -26,7 +26,7 @@ if (!function_exists("get_access_value")) {
 if (!function_exists("has_access_level")) {
     function has_access_level($link, $access_name)
     {
-        $required_access = get_access_value($link, $access_name);
-        return ($_SESSION["accesslevel"] >= $required_access);
+        $required_access = get_access_value($link, $access_name);           //Gets access value for required accessname
+        return ($_SESSION["accesslevel"] >= $required_access);              //Returns True if useraccess is greater or equal to required accesslevel
     }
 }

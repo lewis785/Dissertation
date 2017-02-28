@@ -102,7 +102,7 @@ function question_boolean($id)
     return '<div class="col-md-4 col-md-offset-4">
                 <input type="hidden" class="question-type" name="type[]" value="boolean">
                 <input id="'.$id.'-hidden" class="mark-input" type = "hidden" name="mark[]" value = "false"/>
-                <input id="'.$id.'" class="btn btn-danger col-md-12" style="width:100%;"type="button" value="no" onclick="swap_value(\''. $id .'\')">
+                <input id="'.$id.'" class="btn btn-danger col-md-12 lab-input" style="width:100%;"type="button" value="no" onclick="swap_value(\''. $id .'\')">
             </div>';
 }
 

@@ -74,8 +74,8 @@
 /*End of CSS for marking page*/
 
 
-/*Start of CSS for Labs Table*/
 
+/*Start of CSS for Labs Table*/
 
 .labs-table td {
 
@@ -94,6 +94,48 @@
     background-color: lightblue;
 }
 
-
 /*End of CSS for Labs Table*/
+
+
+/*CSS for Popup Elements*/
+#mask{
+    z-index: 100;
+    position: fixed;
+    opacity: 0.5;
+    background-color: #ccc;
+    height: 100%;
+    width: 100%;
+    top: 0px;
+    left: 0px;
+}
+
+.popup {
+    display:block;
+    position:fixed;
+    margin:0 auto;
+    z-index: 101;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0px 0px 50px 2px #000;
+    padding: 5px;
+    border: solid 2px black;
+    background-color: white;
+    opacity: 1 !important;
+}
+
+.popup-text{
+    font-weight: bolder;
+    padding-bottom: 10px;
+    text-align: center;
+}
+
+#popin{
+    cursor: pointer;
+    cursor: hand;
+}
+
+
+
+/*End of CSS for Popup Elements*/
 

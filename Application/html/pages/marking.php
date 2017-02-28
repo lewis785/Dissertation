@@ -45,7 +45,6 @@
         <div class="col-sm-8 col-md-8 col-md-offset-2 col-sm-offset-2 main">
             <h1 class="page-header">Webpage Dashboard</h1>
             <div class="col-lg-12" id="main-text-area">
-                <button onclick="load_lab('Lab 1', 'Data Management')">Load Lab</button>
             </div>
 
             <div class="col-md-12" id="question-area">

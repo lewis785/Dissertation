@@ -21,7 +21,7 @@ if(isset($_POST["mark"]))
 {
     $qNum = 1;
     $answers = ($_POST["mark"]);
-    $labID =    get_lab_id(get_course_id($_SESSION["MARKING_COURSE"]), $_SESSION["MARKING_LAB"]);
+    $labID =    get_lab_id(, get_course_id($_SESSION["MARKING_COURSE"]), $_SESSION["MARKING_LAB"]);
     $studentID = get_studentID($_SESSION["MARKING_STUDENT"]);
     $questionID = get_questionID($labID, $qNum);
 

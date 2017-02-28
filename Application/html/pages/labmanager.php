@@ -21,6 +21,8 @@
     <script src="../../js/admins.js"></script>
     <script src="../../js/navbar.js"></script>
 
+    <script src="../../js/labs/manager.js"></script>
+
 
     <!--JavaScripts -->
     <script type="text/javascript">include_navbar();</script>
@@ -40,9 +42,8 @@
         <div class="col-sm-6 col-sm-offset-3 col-md-8 col-md-offset-2 main">
             <h1 class="page-header">Lab Management Table</h1>
 
-            <?php include "../../php/labs/display_lab_table.php" ?>
-
             <div class="col-lg-12" id="main-text-area">
+                <?php include "../../php/labs/display_lab_table.php" ?>
 
             </div>
         </div>

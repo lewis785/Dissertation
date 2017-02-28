@@ -21,7 +21,8 @@ if(isset($_POST["type"])){
 
     $questionText = $_POST["question"];                     //Array of all questions text
     $maxMarks = $_POST["max-value"];                        //Array of maximum marks for each question
-    $minMarks = $_POST["min-value"];                        //Array of minimum marks for related questions
+    if(isset($_POST["min-value"]))
+        $minMarks = $_POST["min-value"];                    //Array of minimum marks for related questions
     $types = $_POST["type"];                                //Array of each questions type
 
     $booleanTypeID = get_type_ID("boolean");                //ID value of boolean type question
@@ -72,11 +73,13 @@ if(isset($_POST["type"])){
 }
 mysqli_close($link);
 
-if(!$successful)
-{
+if($successful)
+    $redirect = "../../html/pages/labmanager.php";
+else
     $redirect = "../../html/pages/labmaker.php";
-    header("Location: ".$redirect);                                 //Redirects to labmaker page if insert failed
-}
+
+header("Location: ".$redirect);                                 //Redirects to webpage
+
 
 
 
@@ -96,10 +99,11 @@ function valid_input()
                         if (!is_numeric($mark))
                             return false;                           //Returns false if a mark was not of type int
 
-                    foreach ($GLOBALS["minMarks"] as $mark)          //Checks all questions have min mark set
-                        if (!is_numeric($mark))
-                            return false;                           //Returns false if a mark was not of type int
-
+                    if(isset($_POST["min-value"])) {
+                        foreach ($GLOBALS["minMarks"] as $mark)          //Checks all questions have min mark set
+                            if (!is_numeric($mark))
+                                return false;                           //Returns false if a mark was not of type int
+                    }
                     echo "valid input";
                     return true;                                    //Returns true if all tests are passed
                 }
