@@ -7,13 +7,12 @@
  */
 
 
-function lab_total_mark($courseName, $labName)
+function lab_total_mark($link, $courseName, $labName)
 {
-    $link = $GLOBALS["link"];
     $labTotalMark = mysqli_stmt_init($link);
     mysqli_stmt_prepare($labTotalMark, "SELECT SUM(maxMark) FROM lab_questions as lq 
                                         JOIN labs AS l ON lq.labRef = l.labID
-                                        JOIN courses AS c ON l.course = c.courseID
+                                        JOIN courses AS c ON l.courseRef = c.courseID
                                         WHERE c.courseName = ? AND l.labName = ? ");
     mysqli_stmt_bind_param($labTotalMark, "ss", $courseName, $labName);
 

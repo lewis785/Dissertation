@@ -7,6 +7,7 @@
  */
 
 require "lab_total_mark.php";                                                                               //Includes functions to get labs total marks
+require "can_mark_lab.php";
 require_once (dirname(__FILE__)."/../courses/get_courses.php");                                             //Includes functions to get courses
 require_once (dirname(__FILE__)."/../labs/get_labs.php");                                                   //Includes functions to get labs
 
@@ -20,8 +21,6 @@ else
 {
     echo json_encode(array("success"=>false, "error-message"=>"Failed to post required information"));      //Echos JSON Object with error message
 }
-
-
 //Function returns a JSON object containing the html for the labs table
 function display_lab_table()
 {
@@ -39,10 +38,21 @@ function display_lab_table()
             if(sizeof($labs) > 0) {                                                         //Checks that there is at least one lab
                 foreach ($labs as $lab) {                                                   //For loop through each lab the course has
                     $id = get_lab_id($link, $course[0], $lab);                              //Gets the labID for the lab
-                    $output .= "<tr id='lab-".$id."'><td class='lab-row col-md-8'>" . $lab . "</td>
-                              <td class='col-md-2'><button class='btn btn-warning col-md-6 col-md-offset-3'onclick='*'>Edit</button></td>
-                              <td class='col-md-2'><button class='btn btn-danger col-md-6 col-md-offset-3' onclick='delete_popup(".$id.")'>Delete</button></td></tr>";
-                }                                                                           //Adds a new row with the lab name and edit button and a delete button
+                    $totalMark = lab_total_mark($link, $course[0],$lab);
+
+                    if (is_lab_markable($link,$course[0],$lab))
+                        $buttonChecked = "checked='checked' onclick='lab_markable(".$id.",\"false\")'";
+                    else
+                        $buttonChecked = "onclick='lab_markable(".$id.",\"true\")'";
+
+
+                    $output .= "<tr id='lab-".$id."'><td class='lab-row col-md-6'>" . $lab . "</td>";
+                    $output .= "<td class='col-md-1'>".$totalMark."</td>";
+                    $output .= "<td class='col-md-1'><input id='check-".$id."' type='checkbox'".$buttonChecked." value=''></td>";
+                    $output .= "<td class='col-md-2'><button class='btn btn-warning col-md-6 col-md-offset-3'onclick='*'>Edit</button></td>";
+                    $output .= "<td class='col-md-2'><button class='btn btn-danger col-md-6 col-md-offset-3' onclick='delete_popup(".$id.")'>Delete</button>";
+                    $output .= "</td></tr>";
+                }
             }
             else                                                                            //If course has no labs
                 $output .= "<tr><td colspan=3><div class='col-md-offset-5 col-md-3'>No Labs Exist</div></td></tr>";     //Adds row stating course has no labs

@@ -17,11 +17,44 @@ function display_table()
                 $("#main-text-area").html(result.error - message);
         },
         error: function (xhr, status, error) {
-            alert("Error Occurred Try To Load Lab Table: " + xhr);    //Displays an alert if error occurred
+            alert("Error Occurred Try To Load Lab Table: " + xhr + status + error);    //Displays an alert if error occurred
         }
     });
 
 
+}
+
+function lab_markable(id,state)
+{
+    $.ajax({
+        type: 'POST',
+        url: "../../php/labs/change_lab_markable.php",
+        dataType: 'json',
+        data: {labID: id, newState: state},
+        cache: false,
+        success: function(result) {
+            if(result.success)
+            {
+                if (state === "true")
+                    state = "false";
+                else
+                    state = "true";
+                $("#check-"+id).attr("onclick",'lab_markable('+id+',"'+state+'")')
+            }
+            else
+            {
+                if (state === "true")
+                    $('#myCheckbox').attr('checked', false);
+                else
+                    $('#myCheckbox').attr('checked', true);
+                alert("Failed to update please refresh and try again");
+            }
+
+        },
+        error: function(xhr, status, error) {
+            alert("Error Occurred Trying To Update If Lab Can Be Marked" + xhr);    //Displays an alert if error occurred
+        }
+    });
 }
 
 

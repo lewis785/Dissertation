@@ -15,7 +15,7 @@ function get_lab_id($link, $course, $lab)
 {
     $getLabIDQuery = 'SELECT labID FROM labs AS l
                       JOIN courses AS c ON l.courseRef = c.courseID
-                      WHERE courseName = ? AND labName = ?';                //Query gets lab ID for course name and lab name
+                      WHERE c.courseName = ? AND l.labName = ?';                //Query gets lab ID for course name and lab name
     $getLabID = mysqli_stmt_init($link);                                    //Init Prepared Statement
     mysqli_stmt_prepare($getLabID, $getLabIDQuery);
     mysqli_stmt_bind_param($getLabID, 'is',$course, $lab);                  //Bind course and lab variables

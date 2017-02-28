@@ -29,8 +29,8 @@ if (!function_exists("is_lecturer_of_course")) {
 }
 
     //Returns true if user is a lab helper of the course
-if (!function_exists("is_lecturer_of_course")) {
-    function is_labhelper_of_course($link, $course)
+if (!function_exists("is_lab_helper_of_course")) {
+    function is_lab_helper_of_course($link, $course)
     {
 
         $check_if_lab_helper = mysqli_stmt_init($link);                                             //Init prepared statement
@@ -53,7 +53,7 @@ if (!function_exists("can_mark_course")) {
         if (has_access_level($link, "lecturer")) {                                                  //Checks if user is a lecturer
             return is_lecturer_of_course($link, $course);                                           //Returns true if user is lecturer of specified course
         } elseif (has_access_level($link, "lab helper")) {                                          //Checks if user is a lab helper
-            return is_labhelper_of_course($link, $course);                                          //Returns true if user is lab helper of specified course
+            return is_lab_helper_of_course($link, $course);                                          //Returns true if user is lab helper of specified course
         }
     }
 }

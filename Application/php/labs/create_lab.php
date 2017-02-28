@@ -12,7 +12,7 @@ include 'already_exists.php';
 
 $successful = false;
 
-if(isset($_POST["type"])){
+if(isset($_POST["type"]) && isset($_POST['lab-name']) && isset($_POST['course-name'])){
 
     $qNum = 1;                                              //Question Number
     $minPos = 0;                                            //Array position of minMarks
@@ -21,9 +21,11 @@ if(isset($_POST["type"])){
 
     $questionText = $_POST["question"];                     //Array of all questions text
     $maxMarks = $_POST["max-value"];                        //Array of maximum marks for each question
-    if(isset($_POST["min-value"]))
-        $minMarks = $_POST["min-value"];                    //Array of minimum marks for related questions
     $types = $_POST["type"];                                //Array of each questions type
+
+    if(isset($_POST["min-value"]))                          //Checks if any minimum marks were posted
+        $minMarks = $_POST["min-value"];                    //Array of minimum marks for related questions
+
 
     $booleanTypeID = get_type_ID("boolean");                //ID value of boolean type question
     $scaleTypeID = get_type_ID("scale");                    //ID value of scale type questions
@@ -32,13 +34,11 @@ if(isset($_POST["type"])){
 
     $course = get_course_id($_POST['course-name']);         //ID value of course
     $lab_name = $_POST['lab-name'];                         //Variable containing lab title
-    $totalMark = calc_max_mark($maxMarks);                  //Calculates total available marks
-
 
     if (valid_input()) {                                    //Checks that input is valid before attempting to insert
         mysqli_autocommit($link, FALSE);                    //Sets up transaction for database insertion
 
-        $labID = insert_lab_name($course, $lab_name, $totalMark);   //Inserts new lab in to labs table and gets the new ID it creates
+        $labID = insert_lab_name($course, $lab_name);   //Inserts new lab in to labs table and gets the new ID it creates
 
 
         if ($labID !== false) {                                     //Checks that lab was successfully inserted
@@ -109,7 +109,7 @@ function valid_input()
                 }
             }
             else
-                echo "already exists";
+                return false;                               //Returns false if a lab already exists with the inputed name
     }
     return false;                                           //Returns false if course is not of type int
 }
@@ -128,24 +128,14 @@ function get_type_ID($typeName)
     return $result[0];                                              //Returns result value
 }
 
-
-//Calculates total number of marks and returns value
-function calc_max_mark($questions)
-{
-    $totalMark = 0;                         //Sets total mark to 0
-    foreach ($questions as $mark)           //For loop of max mark for each question
-        $totalMark += $mark;                //Adds mark to total mark
-    return $totalMark;                      //Returns total mark
-}
-
-
 //Inserts the name of the lab and course into the database and returns its ID number or false if it failed
-function insert_lab_name($course, $name, $max)
+function insert_lab_name($course, $name)
 {
     $link = $GLOBALS['link'];
+    $state = "false";
     $insertLab = mysqli_stmt_init($link);                                                                   //Initialises prepared statement
-    mysqli_stmt_prepare($insertLab, "INSERT INTO labs (courseRef, labName, maxMark) VALUES (?, ?, ?)");     //Prepares the statement
-    mysqli_stmt_bind_param($insertLab, 'isi', $course, $name, $max);                                        //Binds parameter
+    mysqli_stmt_prepare($insertLab, "INSERT INTO labs (courseRef, labName, canMark) VALUES (?, ?, ?)");     //Prepares the statement
+    mysqli_stmt_bind_param($insertLab, 'iss', $course, $name, $state);                                        //Binds parameter
 
     if (! mysqli_stmt_execute($insertLab) ){    //Executes statement and check if it failed
         mysqli_rollback($link);                 //Undoes all inserts into the database

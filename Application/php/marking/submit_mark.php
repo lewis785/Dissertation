@@ -31,7 +31,6 @@ if(isset($_POST["mark"]))
 
     mysqli_autocommit($link, FALSE);                    //Sets up transaction for database insertion
     foreach($_POST["type"] as $type) {
-        echo $answers[$qNum-1];
         switch ($type) {                                       //Case statement checking what type each question is
             case "boolean":                                 //Inserts boolean type questions
                 $successful = insert_answer($already_present, $questionID, $studentID, NULL, $answers[$qNum - 1], NULL, "-1");
@@ -66,7 +65,6 @@ mysqli_close($link);
 function get_questionID($labID, $questionNum)
 {
     $link = $GLOBALS["link"];
-    echo "lab: ".$labID."quest: ".$questionNum;
 
     $get_questionID = mysqli_stmt_init($link);
     mysqli_stmt_prepare($get_questionID, "SELECT questionID FROM lab_questions WHERE labRef = ? AND questionNumber = ?");
@@ -81,7 +79,7 @@ function insert_answer($already_present, $questionID, $studentID, $ansNum, $ansB
 {
     $link = $GLOBALS["link"];
     $successful = false;
-    echo "present: ".$already_present."qid: ".$questionID ." sid: " .$studentID ." qnum: ". $ansNum ." ansB: ". $ansBool . "ansT: ".$ansText ." mark: ". $mark;
+//    echo "present: ".$already_present."qid: ".$questionID ." sid: " .$studentID ." qnum: ". $ansNum ." ansB: ". $ansBool . "ansT: ".$ansText ." mark: ". $mark;
     if (!$already_present) {
         require"insert_answer.php";
     }
