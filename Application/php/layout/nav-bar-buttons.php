@@ -32,6 +32,8 @@ if(get_access_value($link, "lab helper") <= $_SESSION["accesslevel"]) {
                             </ul>
                         </li>' . $nav_bar_content;
 
+        $nav_bar_content = '<li><a href="coursemanager.php"> Course Manager </a></li>' . $nav_bar_content;
+
         if (get_access_value($link, "admin") <= $_SESSION["accesslevel"]) {
             $nav_bar_content = '<li><a href="admin.php"> Admin Section </a></li>' . $nav_bar_content;
         }

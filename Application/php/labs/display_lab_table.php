@@ -48,7 +48,7 @@ function display_lab_table()
 
                     $output .= "<tr id='lab-".$id."'><td class='lab-row col-md-6'>" . $lab . "</td>";
                     $output .= "<td class='col-md-1'>".$totalMark."</td>";
-                    $output .= "<td class='col-md-1'><input id='check-".$id."' type='checkbox'".$buttonChecked." value=''></td>";
+                    $output .= "<td class='col-md-1'><input id='check-".$id."' type='checkbox'".$buttonChecked." value=''>Markable</td>";
                     $output .= "<td class='col-md-2'><button class='btn btn-warning col-md-6 col-md-offset-3'onclick='*'>Edit</button></td>";
                     $output .= "<td class='col-md-2'><button class='btn btn-danger col-md-6 col-md-offset-3' onclick='delete_popup(".$id.")'>Delete</button>";
                     $output .= "</td></tr>";
