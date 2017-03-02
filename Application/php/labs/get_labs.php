@@ -49,13 +49,19 @@ function marking_labs_buttons($course)
 
     $buttons = "";
 
-    foreach($result as $lab)
-    {
-        if($isLecturer || $lab[1] === "true")
-            $buttons .= "<div class='col-md-6 col-md-offset-3'>
-                          <button class='btn btn-success' id='btn-marking' onclick='display_students_for(\"".$lab[0]."\")'>". $lab[0]."</button>
+    if(sizeof($result)>0) {
+        foreach ($result as $lab) {
+            if ($isLecturer || $lab[1] === "true")
+                $buttons .= "<div class='col-md-6 col-md-offset-3'>
+                          <button class='btn btn-success' id='btn-marking' onclick='display_students_for(\"" . $lab[0] . "\")'>" . $lab[0] . "</button>
                          </div>";
+        }
     }
+    else
+        $buttons = "<div class='col-md-6 col-md-offset-3'>
+                        No Labs Currently exist to be marked
+                    </div>";
+
     echo json_encode(array('successful'=>true, 'buttons'=>$buttons));
 
     mysqli_close($link);

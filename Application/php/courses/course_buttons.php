@@ -32,11 +32,13 @@ function courses_marking_button()
 {
     $result = get_courses();
     $output = "";
-    foreach ($result as $courses) {
-        foreach ($courses as $course) {
-            $output .= "<div class='col-md-6 col-md-offset-3'>
+    if(sizeof($result) > 0) {
+        foreach ($result as $courses) {
+            foreach ($courses as $course) {
+                $output .= "<div class='col-md-6 col-md-offset-3'>
                     <button class='btn btn-success' id='btn-marking' onclick='display_labs_for(\"" . $course . "\")'>" . $course . "</button>
                     </div>";
+            }
         }
     }
     echo json_encode(array("buttons"=>$output));

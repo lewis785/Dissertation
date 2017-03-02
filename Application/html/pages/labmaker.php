@@ -53,7 +53,7 @@
                         <div class="col-md-8">
                             <select class="form-control " name="course-name" id="sel1">
                                 <option selected value="no-selection">Select Course</option>
-                                <?php include "../../php/courses/get_courses.php"; courses_dropdown();?>
+                                <?php include "../../php/courses/course_buttons.php"; courses_dropdown();?>
                             </select>
                         </div>
                     </div>

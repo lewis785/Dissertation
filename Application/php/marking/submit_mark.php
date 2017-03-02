@@ -33,7 +33,12 @@ if(isset($_POST["mark"]))
     foreach($_POST["type"] as $type) {
         switch ($type) {                                       //Case statement checking what type each question is
             case "boolean":                                 //Inserts boolean type questions
-                $successful = insert_answer($already_present, $questionID, $studentID, NULL, $answers[$qNum - 1], NULL, "-1");
+                if($answers[$qNum - 1] === "true")
+                    $mark = get_avalible_marks($questionID);
+                else
+                    $mark = 0;
+
+                $successful = insert_answer($already_present, $questionID, $studentID, NULL, $answers[$qNum - 1], NULL, $mark);
                 break;
             case "scale":                                   //Inserts scale type questions
                 $successful = insert_answer($already_present, $questionID, $studentID, $answers[$qNum - 1],NULL, NULL, $answers[$qNum - 1]);
@@ -73,6 +78,19 @@ function get_questionID($labID, $questionNum)
     $result = mysqli_stmt_get_result($get_questionID)->fetch_row();
     return $result[0];
 }
+
+function get_avalible_marks($questionID)
+{
+    $link= $GLOBALS["link"];
+
+    $get_max_mark = mysqli_stmt_init($link);
+    mysqli_stmt_prepare($get_max_mark, "SELECT maxMark FROM lab_questions WHERE questionID = ?");
+    mysqli_stmt_bind_param($get_max_mark, 'i', $questionID);
+    mysqli_stmt_execute($get_max_mark);
+    $result = mysqli_stmt_get_result($get_max_mark)->fetch_row();
+    return $result[0];
+}
+
 
 
 function insert_answer($already_present, $questionID, $studentID, $ansNum, $ansBool, $ansText, $mark)
