@@ -7,28 +7,6 @@
  */
 
 
-
-function courses_dropdown(){
-    $result = get_courses();
-    foreach ($result as $row) {
-        foreach ($row as $course) {
-            echo "<option value='" . $course . "'>" . $course . "</option>";
-        }
-    }
-}
-
-function courses_button()
-{
-    $result = get_courses();
-    foreach ($result as $row) {
-        foreach ($row as $course) {
-            echo "<div class='col-md-6 col-md-offset-3'>
-                     <button class='btn btn-success' id='btn-course' onclick='display_labs_for(\"".$course."\")'>".$course."</button>
-                  </div>";
-        }
-    }
-}
-
 function get_courses()
 {
     include(dirname(__FILE__) . "/../core/connection.php");

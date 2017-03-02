@@ -18,16 +18,16 @@
     <!--JS Links -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="../../bootstrap/js/bootstrap.js"></script>
-    <script src="../../js/admins.js"></script>
     <script src="../../js/navbar.js"></script>
     <script src="../../js/sidebar.js"></script>
+    <script src="../../js/lecturer/course_manager.js"></script>
 
 
     <!--JavaScripts -->
-    <script type="text/javascript">include_navbar();</script>
-    <script type="text/javascript">include_sidebar("sidebar_area");</script>
+    <script type="text/javascript">include_navbar("course");</script>
+    <script type="text/javascript">display_manageable_courses();</script>
 
-    <title>Home Page</title>
+    <title>Course Manage Page</title>
 </head>
 
 <body>
@@ -39,12 +39,10 @@
 
         <div id="sidebar_area"></div>
 
-        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-            <h1 class="page-header">Webpage Dashboard</h1>
-
-
-
+        <div class="col-sm-6 col-sm-offset-3 col-md-8 col-md-offset-2 main">
+            <h1 class="page-header">Course Manager</h1>
             <div class="col-lg-12" id="main-text-area">
+
 
             </div>
         </div>

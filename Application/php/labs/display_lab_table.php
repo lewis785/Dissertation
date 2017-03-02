@@ -37,18 +37,18 @@ function display_lab_table()
             $output.= "<tr><td class='btn-info course-row'\" colspan=3>".$course[0]."</td></tr>";   //Insert Row to filling it with the course title
             if(sizeof($labs) > 0) {                                                         //Checks that there is at least one lab
                 foreach ($labs as $lab) {                                                   //For loop through each lab the course has
-                    $id = get_lab_id($link, $course[0], $lab);                              //Gets the labID for the lab
-                    $totalMark = lab_total_mark($link, $course[0],$lab);
+                    $id = get_lab_id($link, $course[0], $lab[0]);                              //Gets the labID for the lab
+                    $totalMark = lab_total_mark($link, $course[0],$lab[0]);
 
-                    if (is_lab_markable($link,$course[0],$lab))
+                    if (is_lab_markable($link,$course[0],$lab[0]))
                         $buttonChecked = "checked='checked' onclick='lab_markable(".$id.",\"false\")'";
                     else
                         $buttonChecked = "onclick='lab_markable(".$id.",\"true\")'";
 
 
-                    $output .= "<tr id='lab-".$id."'><td class='lab-row col-md-6'>" . $lab . "</td>";
-                    $output .= "<td class='col-md-1'>".$totalMark."</td>";
-                    $output .= "<td class='col-md-1'><input id='check-".$id."' type='checkbox'".$buttonChecked." value=''>Markable</td>";
+                    $output .= "<tr id='lab-".$id."'><td class='lab-row col-md-4'>" . $lab[0] . "</td>";
+                    $output .= "<td class='col-md-2'>Max Mark: ".$totalMark."</td>";
+                    $output .= "<td class='col-md-2'><input id='check-".$id."' type='checkbox'".$buttonChecked." value=''> Markable</td>";
                     $output .= "<td class='col-md-2'><button class='btn btn-warning col-md-6 col-md-offset-3'onclick='*'>Edit</button></td>";
                     $output .= "<td class='col-md-2'><button class='btn btn-danger col-md-6 col-md-offset-3' onclick='delete_popup(".$id.")'>Delete</button>";
                     $output .= "</td></tr>";
