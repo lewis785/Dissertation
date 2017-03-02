@@ -25,8 +25,8 @@
     <script src="../../js/labs/lab_sidebar.js"></script>
 
 
-    <!--JavaScripts -->
-    <script type="text/javascript">include_navbar();</script>
+    <!--JavaScripts Functions -->
+    <script type="text/javascript">include_navbar("labs");</script>
 <!--    <script type="text/javascript">include_sidebar("sidebar_area");</script>-->
     <script type="text/javascript">make_lab_layout("sidebar_area");</script>
     <script type="text/javascript">include_bottom_navbar();</script>

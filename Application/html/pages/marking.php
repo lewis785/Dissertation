@@ -27,7 +27,8 @@
 
 
     <!--JavaScripts -->
-    <script type="text/javascript">include_navbar();</script>
+    <script type="text/javascript">include_navbar("marking");</script>
+    <script type="text/javascript">display_courses();</script>
 
 
     <title>Marking Page</title>
@@ -48,7 +49,7 @@
             </div>
 
             <div class="col-md-12" id="question-area">
-                <?php include "../../php/courses/get_courses.php"; courses_button(); ?>
+
 
             </div>
         </div>

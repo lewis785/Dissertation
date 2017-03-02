@@ -22,7 +22,7 @@
 
 
     <!--JavaScripts -->
-    <script type="text/javascript">include_navbar();</script>
+    <script type="text/javascript">include_navbar("admin");</script>
     <script type="text/javascript">include_sidebar("sidebar_area");</script>
 
 

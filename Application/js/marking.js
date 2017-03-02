@@ -7,6 +7,28 @@
 /*Beginning of functions for selecting marking*/
 /*--------------------------------------------*/
 
+function display_courses()
+{
+    $.ajax({
+        type: 'POST',
+        url: "../../php/courses/course_buttons.php",
+        dataType: 'json',
+        data: {type:"marking"},
+        cache: false,
+        success: function(result){
+            $("#question-area").html(result.buttons);
+
+        },
+        error: function(xhr, status, error) {
+            alert(xhr);
+        }
+    });
+
+}
+
+
+
+
 //Function displays all the labs for a given course
 function display_labs_for(course)
 {
@@ -14,7 +36,7 @@ function display_labs_for(course)
         type: 'POST',
         url: "../../php/labs/get_labs.php",
         dataType: 'json',
-        data: {course: course},
+        data: {course: course, type:"marking"},
         cache: false,
         success: function(result){
             $("#question-area").html(result.buttons);
@@ -81,20 +103,8 @@ function display_schema_for(student)
 
 function back_to_courses()
 {
-    $.ajax({
-        type: 'POST',
-        url: "../../php/marking/goback_courses.php",
-        dataType: 'json',
-        data: {type: "course"},
-        cache: false,
-        success: function(result){
-            $("#question-area").html(result.buttons);
-            $("#marking-submit-bar").remove();
-        },
-        error: function(xhr, status, error) {
-            alert(xhr);
-        }
-    });
+    display_courses();
+    $("#marking-submit-bar").remove();
 }
 
 function back_to_labs()

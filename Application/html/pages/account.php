@@ -26,7 +26,7 @@
 
 
     <!--JavaScripts -->
-    <script type="text/javascript">include_navbar();</script>
+    <script type="text/javascript">include_navbar("account");</script>
     <script type="text/javascript">include_sidebar("sidebar_area");</script>
 
     <title>Home Page</title>

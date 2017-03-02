@@ -3,6 +3,9 @@
     padding-bottom: 50px;
 }
 
+.login-div{
+    margin-top: 75%;
+}
 
 /*Layout out for creating question tiles*/
 .tile
@@ -50,7 +53,7 @@
 
 /*CSS for marking page*/
 
-#btn-course {
+#btn-marking {
     width: 100%;
     height: 100px;
     margin-bottom: 25px;
@@ -135,7 +138,22 @@
     cursor: hand;
 }
 
-
-
 /*End of CSS for Popup Elements*/
 
+
+/*Start of CSS for management buttons*/
+
+.manage-btn{
+    height: 150px;
+    margin-bottom: 50px;
+    font-size: 2em;
+    font-weight: bolder;
+    background-color: #2e6da4;
+}
+
+.manage-back-btn{
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+/*End of CSS for management buttons*/

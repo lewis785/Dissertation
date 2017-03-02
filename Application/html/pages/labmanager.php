@@ -18,16 +18,14 @@
     <!--JS Links -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="../../bootstrap/js/bootstrap.js"></script>
-    <script src="../../js/admins.js"></script>
     <script src="../../js/navbar.js"></script>
+    <script src="../../js/lecturer/lab_manager.js"></script>
 
-    <script src="../../js/labs/manager.js"></script>
 
+    <!--JavaScripts Functions -->
+    <script type="text/javascript">include_navbar("labs");</script>
 
-    <!--JavaScripts -->
-    <script type="text/javascript">include_navbar();</script>
-
-    <title>Home Page</title>
+    <title>Lab Manager Page</title>
 </head>
 
 <body>
