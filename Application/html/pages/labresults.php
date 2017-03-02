@@ -1,5 +1,3 @@
-
-
 <?php include "../../php/core/verify.php"; ?>
 <html lang="en">
 <head>
@@ -18,10 +16,11 @@
     <link href="../../css/main.css" rel="stylesheet">
 
     <!--JS Links -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="../../bootstrap/js/bootstrap.js"></script>
-    <script src="../../js/navbar.js"></script>
-    <script src="../../js/sidebar.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script type="text/javascript" src="../../bootstrap/js/bootstrap.js"></script>
+    <script type="text/javascript" src="../../js/navbar.js"></script>
+    <script type="text/javascript" src="../../js/sidebar.js"></script>
+
 
 
     <!--JavaScripts Functions -->
@@ -41,7 +40,7 @@
         <div id="sidebar_area"></div>
 
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-            <h1 class="page-header">Webpage Dashboard</h1>
+            <h1 class="page-header">Lab Results</h1>
 
             <div class="col-lg-12" id="main-text-area">
 

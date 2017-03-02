@@ -16,10 +16,10 @@
     <link href="../../css/main.css" rel="stylesheet">
 
     <!--JS Links -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="../../bootstrap/js/bootstrap.js"></script>
-    <script src="../../js/navbar.js"></script>
-    <script src="../../js/lecturer/lab_manager.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script type="text/javascript" src="../../bootstrap/js/bootstrap.js"></script>
+    <script type="text/javascript" src="../../js/navbar.js"></script>
+    <script type="text/javascript" src="../../js/lecturer/lab_manager.js"></script>
 
 
     <!--JavaScripts Functions -->
