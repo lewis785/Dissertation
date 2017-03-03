@@ -6,10 +6,8 @@
  * Time: 21:41
  */
 
-function get_studentID($student)
+function get_studentID($link, $student)
 {
-    $link = $GLOBALS["link"];
-
     $get_studentsID = mysqli_stmt_init($link);
     mysqli_stmt_prepare($get_studentsID, "SELECT s.socID FROM students_on_courses AS s 
                                           JOIN user_details as d ON s.student = d.detailsID 

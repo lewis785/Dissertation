@@ -33,7 +33,7 @@ function display_lab_table()
         $courses = get_courses();                                                           //Gets all the courses the lecturer has access to
 
         while ($course = $courses->fetch_row()) {                                           //For loop through each course
-            $labs = get_labs($course[0]);                                                   //Stores all the labs relating to the course
+            $labs = get_markable_labs($course[0]);                                                   //Stores all the labs relating to the course
             $output.= "<tr><td class='btn-info course-row'\" colspan=3>".$course[0]."</td></tr>";   //Insert Row to filling it with the course title
             if(sizeof($labs) > 0) {                                                         //Checks that there is at least one lab
                 foreach ($labs as $lab) {                                                   //For loop through each lab the course has

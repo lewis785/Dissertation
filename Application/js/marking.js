@@ -158,8 +158,11 @@ function back_to_students()
 /*--------------------------------------------*/
 
 function submit_mark(){
-    $.post("../../php/marking/submit_mark.php", $("#form-area").serialize());
-    back_to_students();
+    $.post("../../php/marking/submit_mark.php", $("#form-area").serialize(), function (data) {
+        back_to_students();
+    });
+    // $("#form-area").submit();
+
 }
 
 /*--------------------------------------*/
@@ -170,7 +173,7 @@ function submit_mark(){
 
 
 /*--------------------------------------------*/
-/*Beginning of functions for submitting marks */
+/*Beginning of functions for getting student marks */
 /*--------------------------------------------*/
 
 function get_student_marks(){

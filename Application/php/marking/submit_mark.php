@@ -14,7 +14,7 @@ include(dirname(__FILE__)."/../labs/get_lab_id.php");
 require "check_if_marked.php";                              //Includes the already_marked() function to check if student has already been marked
 
 require (dirname(__FILE__)."/../students/get_student_id.php");
-
+require_once (dirname(__FILE__)."/../labs/get_question_id.php");
 
 
 if(isset($_POST["mark"]))
@@ -22,11 +22,11 @@ if(isset($_POST["mark"]))
     $qNum = 1;
     $answers = ($_POST["mark"]);
     $labID =    get_lab_id($link,$_SESSION["MARKING_COURSE"], $_SESSION["MARKING_LAB"]);
-    $studentID = get_studentID($_SESSION["MARKING_STUDENT"]);
-    $questionID = get_questionID($labID, $qNum);
+    $studentID = get_studentID($link, $_SESSION["MARKING_STUDENT"]);
+    $questionID = get_questionID($link, $labID, $qNum);
 
     $already_present = false;
-    if(already_marked($studentID, $questionID))
+    if(already_marked($link, $studentID, $questionID))
         $already_present = true;
 
     mysqli_autocommit($link, FALSE);                    //Sets up transaction for database insertion
@@ -54,7 +54,7 @@ if(isset($_POST["mark"]))
         if (!$successful)                                   //Checks if insertion was successful
             break;                                          //If not ends the loop
         $qNum++;                                            //Increments the question number
-        $questionID = get_questionID($labID, $qNum);
+        $questionID = get_questionID($link, $labID, $qNum);
     }
     mysqli_commit($link);
 }
@@ -67,17 +67,6 @@ mysqli_close($link);
 
 
 
-function get_questionID($labID, $questionNum)
-{
-    $link = $GLOBALS["link"];
-
-    $get_questionID = mysqli_stmt_init($link);
-    mysqli_stmt_prepare($get_questionID, "SELECT questionID FROM lab_questions WHERE labRef = ? AND questionNumber = ?");
-    mysqli_stmt_bind_param($get_questionID, 'ii', $labID, $questionNum);
-    mysqli_stmt_execute($get_questionID);
-    $result = mysqli_stmt_get_result($get_questionID)->fetch_row();
-    return $result[0];
-}
 
 function get_avalible_marks($questionID)
 {

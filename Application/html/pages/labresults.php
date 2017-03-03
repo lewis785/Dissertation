@@ -39,11 +39,10 @@
 
         <div id="sidebar_area"></div>
 
-        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+        <div class="col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2 main">
             <h1 class="page-header">Lab Results</h1>
-
             <div class="col-lg-12" id="main-text-area">
-
+                <?php include"../../php/students/display_lab_marks.php"?>
             </div>
         </div>
 

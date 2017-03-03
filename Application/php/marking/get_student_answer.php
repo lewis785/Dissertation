@@ -34,20 +34,24 @@ if($_SESSION["MARKING_COURSE"] && $_SESSION["MARKING_LAB"] && $_SESSION["MARKING
                                             WHERE labQuestionRef = ? AND ud.studentID = ? ");
 
         $answers = [];
-        while ( $question = $result->fetch_row()){
+        if(sizeof($result) > 0) {
+            while ($question = $result->fetch_row()) {
 
-            mysqli_stmt_bind_param($get_answers, 'is', $question[0], $student );
-            mysqli_stmt_execute($get_answers);
-            $answer = mysqli_stmt_get_result($get_answers);
-            $rows = mysqli_num_rows($answer);
-            $hasMark = $rows === 1;
-            if($rows === 1) {
-                array_push($answers, $answer->fetch_row());
-            }
-            else{
-                break;
+                mysqli_stmt_bind_param($get_answers, 'is', $question[0], $student);
+                mysqli_stmt_execute($get_answers);
+                $answer = mysqli_stmt_get_result($get_answers);
+                $rows = mysqli_num_rows($answer);
+                $hasMark = ($rows === 1);
+                if ($rows === 1) {
+                    array_push($answers, $answer->fetch_row());
+                } else {
+                    break;
+                }
             }
         }
+        else
+            $hasMark = false;
+
         echo json_encode(array("marked"=>$hasMark, "answers"=>$answers));
     }
 }
