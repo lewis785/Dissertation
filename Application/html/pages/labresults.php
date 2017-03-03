@@ -20,6 +20,7 @@
     <script type="text/javascript" src="../../bootstrap/js/bootstrap.js"></script>
     <script type="text/javascript" src="../../js/navbar.js"></script>
     <script type="text/javascript" src="../../js/sidebar.js"></script>
+    <script type="text/javascript" src="../../js/student/lab_results.js"></script>
 
 
 
