@@ -23,7 +23,7 @@
     <script src="../../js/sidebar.js"></script>
     <script src="../../js/question_adding.js"></script>
     <script src="../../js/labs/lab_sidebar.js"></script>
-
+    <script src="../../js/lecturer/check_valid_lab.js"></script>
 
     <!--JavaScripts Functions -->
     <script type="text/javascript">include_navbar("labs");</script>
@@ -51,7 +51,7 @@
                     <div class="form-group col-md-4 col-md-offset-1">
                         <label for="course-input" class="col-md-4 col-form-label">Course:</label>
                         <div class="col-md-8">
-                            <select class="form-control " name="course-name" id="sel1">
+                            <select class="form-control " name="course-name" id="course-selector">
                                 <option selected value="no-selection">Select Course</option>
                                 <?php include "../../php/courses/course_buttons.php"; courses_dropdown();?>
                             </select>

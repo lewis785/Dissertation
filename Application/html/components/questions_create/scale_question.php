@@ -29,18 +29,18 @@ $data = '<div class="col-sm-6 col-sm-offset-3 col-mid-8 col-md-offset-2 tile"  i
                 <div class="form-group row">
                     <label for="question-label-input" class="col-md-12 col-md-offset-1 col-form-label">Question</label>
                     <div class="col-md-10 col-md-offset-1">
-                        <input class="form-control" type="text" value="" name="question[]" id="question-input">
+                        <input class="form-control question-input" type="text" value="" name="question[]">
                     </div>
                 </div>
             <div class="form-group col-md-4 col-md-offset-1">
                 <label for="sel1">Select list (select one):</label>
-                <select class="form-control" name="min-value[]" id="sel1">'.
+                <select class="form-control dropdown-input" name="min-value[]">'.
                     $values
                 .'</select>
             </div>
             <div class="form-group col-md-4 col-md-offset-2">
                 <label for="sel1">Select list (select one):</label>
-                <select class="form-control" name="max-value[]" id="sel1">'.
+                <select class="form-control dropdown-input" name="max-value[]">'.
                     $values
                 .'</select>
             </div>

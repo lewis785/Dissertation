@@ -7,7 +7,7 @@
         <div class="container col-md-12">
 
                             <div class="col-md-4 col-md-offset-6 col-sm-offset-6">
-                                <button class="btn btn-warning" onclick = "$('#form-area').get(0).submit()"; value="Create Lab">Create Lab</button>
+                                <button class="btn btn-warning" onclick = "submit_new_lab()"; value="Create Lab">Create Lab</button>
                             </div>
 
         </div><!-- /.container-fluid -->

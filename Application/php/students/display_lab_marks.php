@@ -6,10 +6,14 @@
  * Time: 00:54
  */
 
+include (dirname(__FILE__)."/../core/connection.php");
+
 require_once "get_student_courses.php";
 require_once (dirname(__FILE__)."/../labs/get_labs.php");
 require_once (dirname(__FILE__)."/../labs/get_lab_id.php");
+require_once (dirname(__FILE__)."/../labs/lab_total_mark.php");
 require_once "student_lab_answers.php";
+require_once "student_lab_total_mark.php";
 
 
 $courses = get_student_courses();
@@ -19,33 +23,29 @@ $id = 0;
 foreach($courses as $course)
 {
     $labs = get_labs($course);
-    $resultsTable.="<div class='col-md-12 results-course-row'><div class='col-md-6 col-md-offset-3'>$course</div></div>";
+    $resultsTable.="<div class='col-md-12 results-course-row'><div class='col-md-6 col-md-offset-3'>$course</div></div><ul class='labs-list'>";
 
 
     $length = (sizeof($labs)-1);
-    foreach($labs as $index=>$lab)
+    foreach($labs as $lab)
     {
-        $curvedEdge = "";
-//        $labID = get_lab_id($link,$course, $lab);
+
+        $resultsTable.= get_lab_summary($link,$course, $lab[0], $id);
+
         $labAnswers = student_lab_answers($course, $lab[0]);
 
-        if($index == $length )
-            $curvedEdge = "last-lab-row";
-
-        $resultsTable.="<div class='col-md-12 results-lab-row $curvedEdge' id='result-row-$id' onclick='change_div_size($id)'>
-                            <div class='result-align-center result-summary col-md-12'>
-                                <div id='result-row-arrow-$id' class='result-align-center col-md-1 glyphicon glyphicon-triangle-right'></div>
-                                <div class='col-md-3 col-md-offset-3'>$lab[0]</div>
-                            </div>
-                            <ul class='labs-list'>";
-
-
         $rowNumOdd = true;
+
+        $answersTable = "<li class='col-md-12 answer-row' id='answer-header'>
+                            <div class='col-md-4'>Question</div>
+                            <div class='col-md-4'>Submitted Answer</div>
+                            <div class='col-md-4'>Mark</div>
+                        </li>";
         foreach ($labAnswers as $answer)
         {
             switch ($answer[1]) {                               //Case statement checking what type each question is
                 case "boolean":                                 //Inserts boolean type questions
-                    $answerText = $answer[3];
+                    $answerText = ($answer[3] == "true") ? "Yes" : "No";
                     break;
                 case "scale":                                   //
                     $answerText = $answer[2];
@@ -68,18 +68,55 @@ foreach($courses as $course)
                 $rowColor = "answer-color-even";
             }
 
-            $resultsTable.="<li class='col-md-12 answer-row $rowColor'>
-                            <div id='question' class='col-md-4'>Question: <br> $answer[0]</div>
-                            <div id='answer' class='col-md-4'>Answer: <br> $answerText</div>
-                            <div id='answer-mark' class='col-md-4'>Mark:<br> $answer[5] / $answer[6]</div>
+            $answersTable.="<li class='col-md-12 answer-row $rowColor'>
+                            <div id='question' class='col-md-4'> $answer[0]</div>
+                            <div id='answer' class='col-md-4'>$answerText</div>
+                            <div id='answer-mark' class='col-md-4'>$answer[5] / $answer[6]</div>
                             </li>";
         }
 
 
         $id++;
-        $resultsTable.= "</div>";
+        $resultsTable.= $answersTable."</ul></li>";
     }
+    $resultsTable.="</ul>";
 
 
 }
 echo $resultsTable;
+
+mysqli_close($link);
+
+function get_lab_summary($link, $course, $lab, $id)
+{
+    $curvedEdge = "";
+    $labMark = student_lab_mark($link,$course, $lab);
+    $maxMark = lab_total_mark($link, $course, $lab);
+
+    if ($labMark != "") {
+        $onclick = "onclick='change_div_size($id)'" ;
+        $arrow = "glyphicon glyphicon-triangle-right";
+        $mark = $labMark ." / ". $maxMark;
+        if($maxMark != 0)
+            $markPercentage = number_format((($labMark / $maxMark) * 100),2,".","") . "%";
+    }
+    else
+    {
+        $onclick = $arrow = "";
+        $mark = $markPercentage = "Lab Not Marked Yet";
+    }
+
+
+
+
+    $output ="<li class='col-md-12 results-lab-row' id='result-row-$id' $onclick>
+                            <div class='result-align-center result-summary col-md-12'>
+                                <div id='result-row-arrow-$id' class='result-align-center col-md-1  glyphicon $arrow'></div>
+                                <div class='col-md-3 col-md-offset-1'>Lab Name: $lab  </div>
+                                <div class='col-md-3'>Mark: $mark</div>
+                                <div class='col-md-3'>Percentage: $markPercentage</div>
+                            </div>
+                            <ul class='answers-list'>";
+
+    return $output;
+}

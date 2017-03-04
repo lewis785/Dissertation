@@ -22,6 +22,7 @@ if(isset($_POST["type"]) && isset($_POST['lab-name']) && isset($_POST['course-na
     $questionText = $_POST["question"];                     //Array of all questions text
     $maxMarks = $_POST["max-value"];                        //Array of maximum marks for each question
     $types = $_POST["type"];                                //Array of each questions type
+    $visibility = $_POST["visibility"];
 
     if(isset($_POST["min-value"]))                          //Checks if any minimum marks were posted
         $minMarks = $_POST["min-value"];                    //Array of minimum marks for related questions
@@ -46,15 +47,15 @@ if(isset($_POST["type"]) && isset($_POST['lab-name']) && isset($_POST['course-na
             foreach ($types as $t) {                                //Loops through each question by its type
                 switch ($t) {                                       //Case statement checking what type each question is
                     case "boolean":                                 //Inserts boolean type questions
-                        $successful = insert_question($labID, $booleanTypeID, $qNum, $questionText[$qNum - 1], NULL, $maxMarks[$maxPos]);
+                        $successful = insert_question($labID, $booleanTypeID, $qNum, $questionText[$qNum - 1], NULL, $maxMarks[$maxPos], $visibility[$qNum-1] );
                         $maxPos++;
                         break;
                     case "scale":                                   //Inserts scale type questions
-                        $successful = insert_question($labID, $scaleTypeID, $qNum, $questionText[$qNum - 1], $minMarks[$minPos], $maxMarks[$minPos]);
+                        $successful = insert_question($labID, $scaleTypeID, $qNum, $questionText[$qNum - 1], $minMarks[$minPos], $maxMarks[$minPos], $visibility[$qNum-1]);
                         $maxPos++; $minPos++;
                         break;
                     case "value":                                   //Inserts value type questions
-                        $successful = insert_question($labID, $valueTypeID, $qNum, $questionText[$qNum - 1], NULL, $maxMarks[$minPos]);
+                        $successful = insert_question($labID, $valueTypeID, $qNum, $questionText[$qNum - 1], NULL, $maxMarks[$minPos], $visibility[$qNum-1]);
                         $maxPos++; $minPos++;
                         break;
                     default:
@@ -147,13 +148,13 @@ function insert_lab_name($course, $name)
 
 
 //Inserts question into the lab_questions table
-function insert_question($labID, $type, $number, $question, $minValue, $maxValue)
+function insert_question($labID, $type, $number, $question, $minValue, $maxValue, $visible)
 {
     $link = $GLOBALS['link'];
-    $insertQuestionQuery = 'INSERT INTO lab_questions (labRef, questionType, questionNumber, question, minMark, maxMark) VALUES (?, ?, ?,?, ?, ?)';
+    $insertQuestionQuery = 'INSERT INTO lab_questions (labRef, questionType, questionNumber, question, minMark, maxMark, private) VALUES (?, ?, ?,?, ?, ?, ?)';
     $insertQuestion = mysqli_stmt_init($link);
     mysqli_stmt_prepare($insertQuestion, $insertQuestionQuery);
-    mysqli_stmt_bind_param($insertQuestion, 'iiisii',$labID, $type, $number, $question, $minValue, $maxValue);
+    mysqli_stmt_bind_param($insertQuestion, 'iiisiis',$labID, $type, $number, $question, $minValue, $maxValue, $visible);
 
 
     if (! mysqli_stmt_execute($insertQuestion) ){       //Runs the insertion and checks if it failed

@@ -12,6 +12,11 @@
     margin-top: 75%;
 }
 
+
+.input-error{
+    border-color: red;
+}
+
 /*Layout out for creating question tiles*/
 .tile
 {
@@ -239,12 +244,40 @@
 
 }
 
-.labs-list {
+.labs-list
+{
     list-style: none;
     padding: 0px;
 }
 
 .labs-list li:last-child{
+    margin-bottom: 15px;
+    border-bottom: solid darkgray;
+    border-radius: 0 0 25px 25px;
+}
+
+#answer-header{
+    background-color: deepskyblue;
+
+    border-color: black;
+    border-bottom: 2px solid black;
+
+    color: floralwhite;
+    font-size: 1.2em;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.answers-list {
+    list-style: none;
+    padding: 0px;
+}
+
+.answers-list li {
+
+}
+
+.answers-list li:last-child{
     margin-bottom: 15px;
     border-bottom: solid darkgray;
     border-radius: 0 0 25px 25px;

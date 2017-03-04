@@ -15,37 +15,11 @@ function update_numbers(number)
     }
 }
 
-
-
-
-function add_scale_question()
+function add_question(type)
 {
     $.ajax({
         type: 'POST',
-        url: "../../html/components/questions_create/scale_question.php",
-        dataType: 'json',
-        data: {count: qCount, qnum: maxQ},
-        cache: false,
-        success: function(result){
-
-        $.when($("#form-area").append(result.data)).then(scroll_bottom());
-        qCount++;
-        maxQ ++;
-        },
-        error: function(xhr, status, error) {
-            alert(xhr);
-        }
-    });
-
-}
-
-
-
-function add_boolean_question()
-{
-    $.ajax({
-        type: 'POST',
-        url: "../../html/components/questions_create/boolean_question.php",
+        url: "../../html/components/questions_create/"+type+"_question.php",
         dataType: 'json',
         data: {count: qCount, qnum: maxQ},
         cache: false,
@@ -58,7 +32,25 @@ function add_boolean_question()
             alert(xhr);
         }
     });
+}
 
+function change_visibility(id)
+{
+    var btn = $("#visibility-btn-"+id);
+    var input = $("#hidden-visibility-"+id);
+
+    btn.toggleClass("btn-success btn-danger");
+
+    if (input.val() == "false")
+    {
+        btn.text("Private");
+        input.val("true");
+    }
+    else
+    {
+        btn.text("Public");
+        input.val("false");
+    }
 }
 
 
