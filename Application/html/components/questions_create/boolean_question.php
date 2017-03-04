@@ -37,7 +37,7 @@ $question = "  <div class='form-group row'>
             </div>";
 
  $boolean = "<div class='form-group col-md-6 col-md-offset-3'>
-            <label for='sel1'>Select Question Value (select one):</label>
+            <label>Select Question Value (select one):</label>
             <select class='form-control dropdown-input' name='max-value[]' >
                 $values
             </select>

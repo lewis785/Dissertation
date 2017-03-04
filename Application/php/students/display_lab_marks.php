@@ -38,7 +38,7 @@ foreach($courses as $course)
 
         $answersTable = "<li class='col-md-12 answer-row' id='answer-header'>
                             <div class='col-md-4'>Question</div>
-                            <div class='col-md-4'>Submitted Answer</div>
+                            <div class='col-md-4'>Answer Submitted</div>
                             <div class='col-md-4'>Mark</div>
                         </li>";
         foreach ($labAnswers as $answer)

@@ -158,10 +158,10 @@ function back_to_students()
 /*--------------------------------------------*/
 
 function submit_mark(){
-    // $.post("../../php/marking/submit_mark.php", $("#form-area").serialize(), function (data) {
-    //     back_to_students();
-    // });
-    $("#form-area").submit();
+    $.post("../../php/marking/submit_mark.php", $("#form-area").serialize(), function (data) {
+        back_to_students();
+    });
+    // $("#form-area").submit();
 
 }
 
