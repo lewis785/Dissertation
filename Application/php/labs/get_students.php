@@ -66,7 +66,7 @@ function get_students($course)
 {
     include(dirname(__FILE__)."/../core/connection.php");
 
-    if (can_mark_course($link,$_SESSION["MARKING_COURSE"]))
+    if (can_mark_course($link,$course))
     {
         $get_students = mysqli_stmt_init($link);
         mysqli_stmt_prepare($get_students, "SELECT d.firstname, d.surname, d.studentID from students_on_courses as soc 

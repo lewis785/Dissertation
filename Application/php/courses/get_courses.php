@@ -20,7 +20,7 @@ function get_courses()
                                               WHERE l.username = ?");
         mysqli_stmt_bind_param($get_courses, 's', $_SESSION["username"]);
         mysqli_stmt_execute($get_courses);
-        return mysqli_stmt_get_result($get_courses);
+        $result = mysqli_stmt_get_result($get_courses);
 
     } elseif (has_access_level($link, "lab helper")) {
         $get_courses = mysqli_stmt_init($link);
@@ -30,7 +30,14 @@ function get_courses()
                                         WHERE username = ?");
         mysqli_stmt_bind_param($get_courses, 's', $_SESSION["username"]);
         mysqli_stmt_execute($get_courses);
-        return mysqli_stmt_get_result($get_courses);
+        $result = mysqli_stmt_get_result($get_courses);
     }
+
+
+    $outputArray = [];
+    while($course = $result->fetch_row())
+        array_push($outputArray, $course[0]);
+
     mysqli_close($link);
+    return $outputArray;
 }

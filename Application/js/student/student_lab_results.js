@@ -3,11 +3,20 @@
  */
 
 
+$(document).ready(function () {
+
+    $(".results-lab-row").click(function (e) {
+        change_div_size(this);
+    });
+
+});
+
+
+
 function change_div_size(divID)
 {
-    var selected = $("#result-row-"+divID);
-    var count = 0
-
+    var selected = $(divID);
+    var count = 0;
 
     $(".results-lab-row").each(function () {
         if($(this).css("height") != "80px") {
@@ -24,7 +33,6 @@ function change_div_size(divID)
         selected.css("height", "auto");
         var newHeight = selected.height();
         selected.height(curHeight).animate({height: newHeight}, 500);
-        $("#result-row-arrow-"+divID).toggleClass("glyphicon-triangle-right glyphicon-triangle-bottom");
+        selected.find("div[id^='result-row-arrow-']").toggleClass("glyphicon-triangle-right glyphicon-triangle-bottom");
     }
-
 }

@@ -15,6 +15,8 @@
 
 .input-error{
     border-color: red;
+    border-width: 2px;
+
 }
 
 /*Layout out for creating question tiles*/
@@ -283,8 +285,40 @@
     border-radius: 0 0 25px 25px;
 }
 
-
-
-
 /*End of CSS for results page*/
 
+/*Start of CSS for Lecturer Results Page */
+
+.student-selector{
+    margin-bottom: 20px;
+    height: 1000px;
+}
+
+#student-info{
+    min-height: 150px;
+    margin-top: 25px;
+    margin-bottom: 20px;
+
+    border: solid black 2px;
+    background-color: #e0e0e0;
+    border-radius: 10px;
+}
+
+#student-name{
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.2em;
+    line-height: 2.5em;
+
+    background-color: #d5d5d5;
+
+    border-bottom: solid deepskyblue 1px;
+}
+
+#student-stats{
+    background-color: #d5d5d5;
+    border-bottom: solid red 1px;
+}
+
+
+/*End of CSS for Lecturer Results Page */

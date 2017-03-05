@@ -28,7 +28,6 @@ function display_courses()
 
 
 
-
 //Function displays all the labs for a given course
 function display_labs_for(course)
 {

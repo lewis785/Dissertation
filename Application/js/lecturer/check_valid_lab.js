@@ -3,27 +3,6 @@
  */
 
 
-function check_lab_name(course,lab)
-{
-    $.ajax({
-        type: 'POST',
-        url: "../../php/lecturer/lab/check_lab_name.php",
-        dataType: 'json',
-        data: {course:course, lab:lab},
-        cache: false,
-        success: function (result) {
-            alert(result.exists);
-            return result.exists;
-        },
-        error: function (xhr, status, error) {
-            alert("Error Occurred Try To Check Lab Name: " + xhr + status + error);    //Displays an alert if error occurred
-            return false;
-        }
-    });
-}
-
-
-
 function valid_lab() {
     var valid = true;
     var errorMessage = "";
@@ -50,34 +29,59 @@ function valid_lab() {
         errorMessage+="\u2022 No Lab Name Given \n";
     }
 
+    //Checks if form is currently valid
     if(valid)
     {
-        if(check_lab_name(courseVal, labVal)) {
-            valid = false;
-            $("#labname-input").addClass("input-error");
-            errorMessage+="\u2022 Lab Name Already Exists";
-        }
+        //Checks if lab name already exists
+        $.ajax({
+            type: 'POST',
+            url: "../../php/lecturer/lab/check_lab_name.php",
+            dataType: 'json',
+            data: {course:courseVal, lab:labVal},
+            async: false,
+            cache: false,
+            success: function (result) {
+                if(result.exists === true){
+                    valid = false;
+                    $("#labname-input").addClass("input-error");
+                    errorMessage+="\u2022 Lab Name Already Exists \n";
+                }
+            },
+            error: function (xhr, status, error) {
+                alert("Error Occurred Try To Check Lab Name: " + xhr + status + error);    //Displays an alert if error occurred
+                valid = false;
+            }
+        });
+
     }
 
-
-
+    //Check questions have been added to the lab
     if($(".question-input").length > 0) {
+        var error = "";
 
         //Check all question inputs have text
         $(".question-input").each(function () {
             if ($(this).val() == "") {
                 $(this).addClass("input-error");
                 valid = false;
+                if (error === "")
+                    error = "\u2022 No Question Text Given \n";
             }
         });
+
+        errorMessage+=error;
+        error = "";
 
         //Check all input drop menus have been set
         $(".dropdown-input").each(function () {
             if ($(this).val() == "no-selection") {
                 $(this).addClass("input-error");
                 valid = false;
+                if (error === "")
+                    error = "\u2022 No Value For Question Set \n";
             }
         });
+        errorMessage+=error;
     }
     else
     {
@@ -86,11 +90,12 @@ function valid_lab() {
     }
 
 
-
     if(!valid)
         alert(errorMessage);
 
+
     return valid;
+
 }
 
 

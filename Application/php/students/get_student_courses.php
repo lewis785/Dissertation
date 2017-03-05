@@ -7,26 +7,26 @@
  */
 
 
-function get_student_courses($filter = null)
+function get_student_courses($student, $filter = null)
 {
     include (dirname(__FILE__)."/../core/connection.php");
-    $student = $_SESSION["username"];
+
 
     $courses = mysqli_stmt_init($link);
 
     if ($filter == null)
     {
-    mysqli_stmt_prepare($courses,"SELECT c.courseName FROM students_on_courses as soc
-                                  JOIN user_login AS ul ON soc.student = ul.userID
+        mysqli_stmt_prepare($courses,"SELECT c.courseName FROM students_on_courses as soc
+                                  JOIN user_details AS ud ON soc.student = ud.detailsId
                                   JOIN courses AS c ON soc.course = c.courseID
-                                  WHERE ul.username = ?" );
+                                  WHERE ud.studentId = ?" );
         mysqli_stmt_bind_param($courses,"s", $student);
     }
     else{
         mysqli_stmt_prepare($courses,"SELECT c.courseName FROM students_on_courses as soc
-                                  JOIN user_login AS ul ON soc.student = ul.userID
+                                  JOIN user_details AS ud ON soc.student = ud.detailsId
                                   JOIN courses AS c ON soc.course = c.courseID
-                                  WHERE ul.username = ? AND c.courseName = ?" );
+                                  WHERE ud.studentId = ? AND c.courseName = ?" );
         mysqli_stmt_bind_param($courses,"ss", $student, $filter);
     }
 
