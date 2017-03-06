@@ -297,7 +297,7 @@
 .not-marked{
     text-align: center;
     font-weight: bolder;
-    font-size: 2em;
+    font-size: 1.9em;
     line-height: 3.5em;
 }
 
@@ -314,17 +314,20 @@
 #student-name{
     text-align: center;
     font-weight: bold;
-    font-size: 1.2em;
+    font-size: 1.3em;
     line-height: 2.5em;
 
-    background-color: #d5d5d5;
-
-    border-bottom: solid deepskyblue 1px;
+    /*background-color: #d5d5d5;*/
+    border-bottom: solid darkblue 2px;
 }
 
 #student-stats{
-    background-color: #d5d5d5;
-    border-bottom: solid red 1px;
+    /*background-color: #d5d5d5;*/
+    border-bottom: solid darkred 2px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1em;
+    line-height: 2em;
 }
 
 

@@ -78,6 +78,7 @@ function display_student_result(input, course, student)
             data: {course:course, lab:lab, username:student, visible:"true"},
             cache: false,
             success: function(result){
+                statsText.html(result.stats);
                 answersText.html(result.answers);
                 change_div_size(row);
             },
