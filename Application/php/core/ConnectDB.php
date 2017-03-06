@@ -22,8 +22,8 @@ class ConnectDB
 
         mysqli_select_db($this->link,"lab-marker"); //Selects the Database
 
-        if (session_status() == PHP_SESSION_NONE) {
-            session_start();
-        }
+//        if (session_status() == PHP_SESSION_NONE)
+//            session_start();
+
     }
 }

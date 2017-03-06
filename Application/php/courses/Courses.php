@@ -34,6 +34,7 @@ class Courses extends Security
 
         if ($this->has_access_level( "lecturer")) {
             $get_courses = mysqli_stmt_init($con->link);
+            echo ($_SESSION["username"]);
             mysqli_stmt_prepare($get_courses, "SELECT c.courseName FROM user_login as l
                                               JOIN course_lecturer AS cl ON l.userID = cl.lecturer 
                                               JOIN courses AS c ON cl.course = c.courseID 
@@ -81,7 +82,7 @@ class Courses extends Security
 }
 
 
-//$course = new Courses();
-//echo($course->get_course_id("Software Development 1"));
-//print_r($course->course_from_lab_id("13"));
-//print_r($course->get_courses());
+$course = new Courses();
+echo($course->get_course_id("Software Development 1"));
+print_r($course->course_from_lab_id("13"));
+print_r($course->get_courses());

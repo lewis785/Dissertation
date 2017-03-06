@@ -30,6 +30,9 @@ class Security
     //Returns true if user has at least the required access level
     public function has_access_level($access_name)
     {
+        if (session_status() == PHP_SESSION_NONE)
+            session_start();
+            
         $required_access = $this->get_access_value($access_name);           //Gets access value for required accessname
         return ($_SESSION["accesslevel"] >= $required_access);              //Returns True if useraccess is greater or equal to required accesslevel
     }

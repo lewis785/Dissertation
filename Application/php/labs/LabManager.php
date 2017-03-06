@@ -21,20 +21,27 @@ class LabManager extends CourseChecks
     {
         $this->labID = isset($_POST["labID"]) ? $_POST["labID"] : null;
         $this->state = isset($_POST["newState"]) ? $_POST["newState"] : null;
+
+
     }
 
 
-    public function changeMarkable()
+    public function changeMarkable($labID, $state)
     {
-        $course = $this->course_from_lab_id($this->labID);
+        $course = $this->course_from_lab_id($labID);
         $successful = false;
-
+        $con = new ConnectDB();
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+            echo "session started";
+        }
+        echo $_SESSION["username"];
         if ($this->is_lecturer_of_course($course)) {
-            $con = new ConnectDB();
+
 
             $changeMarkState = mysqli_stmt_init($con->link);
             mysqli_stmt_prepare($changeMarkState, "UPDATE labs SET canMark = ? WHERE labID = ?");
-            mysqli_stmt_bind_param($changeMarkState, "si", $this->state, $this->labID);
+            mysqli_stmt_bind_param($changeMarkState, "si", $state, $labID);
             $successful = mysqli_stmt_execute($changeMarkState);
             mysqli_close($con->link);
         }
@@ -77,5 +84,7 @@ class LabManager extends CourseChecks
     }
 }
 
+$manage =  new LabManager();
+echo($manage->changeMarkable(14, "false"));
 
 //if(isset($_POST["labID"]) && isset($_POST["newState"]))
