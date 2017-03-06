@@ -10,7 +10,7 @@
 require_once (dirname(__FILE__)."/../core/Security.php");
 require_once (dirname(__FILE__)."/../core/ConnectDB.php");
 
-class CourseChecks extends Security
+class CourseChecks extends Courses
 {
 
     //Returns true if user is a lecturer of the course

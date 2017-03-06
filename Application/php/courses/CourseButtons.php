@@ -16,9 +16,11 @@ class CourseButtons extends Courses
     public function courses_dropdown()
     {
         $result = $this->get_courses();
+        $dropList = "";
         foreach ($result as $course) {
-            echo "<option value='" . $course . "'>" . $course . "</option>";
+            $dropList .= "<option value='" . $course . "'>" . $course . "</option>";
         }
+        return $dropList;
     }
 
     public function courses_marking_button()
@@ -37,7 +39,7 @@ class CourseButtons extends Courses
 
     function courses_managing_button()
     {
-        $result = get_courses();
+        $result = $this->get_courses();
         $output = "";
         foreach ($result as $course) {
             $output .= "<div class='col-md-6 col-md-offset-3'>
@@ -49,6 +51,7 @@ class CourseButtons extends Courses
 
 
 }
+
 
 //if(isset($_POST["type"])) {
 //    $type = $_POST["type"];

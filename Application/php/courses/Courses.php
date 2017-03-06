@@ -27,7 +27,7 @@ class Courses extends Security
         mysqli_close($con->link);
         return $result[0];
     }
-    
+
     public function get_courses()
     {
         $con = new ConnectDB();
@@ -81,6 +81,7 @@ class Courses extends Security
 }
 
 
-$course = new Courses();
-echo($course->get_course_id("Software Development 1"));
-print_r($course->get_courses());
+//$course = new Courses();
+//echo($course->get_course_id("Software Development 1"));
+//print_r($course->course_from_lab_id("13"));
+//print_r($course->get_courses());

@@ -8,7 +8,7 @@ function display_table()
         type: 'POST',
         url: "../../php/labs/display_lab_table.php",
         dataType: 'json',
-        data: {display_table: "manage-table"},
+        data: {displayTable: "manage-table"},
         cache: false,
         success: function (result) {
             if (result.success)
