@@ -1,0 +1,458 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="lab-marker@localhost">
+  <database-model serializer="dbm" rdbms="MYSQL" format-version="4.0">
+    <root id="1"/>
+    <schema id="2" parent="1" name="lab-marker">
+      <Current>1</Current>
+      <Visible>1</Visible>
+    </schema>
+    <schema id="3" parent="1" name="badapple"/>
+    <schema id="4" parent="1" name="information_schema"/>
+    <schema id="5" parent="1" name="karate"/>
+    <schema id="6" parent="1" name="media"/>
+    <schema id="7" parent="1" name="mysql"/>
+    <schema id="8" parent="1" name="path"/>
+    <schema id="9" parent="1" name="pathmaker"/>
+    <schema id="10" parent="1" name="performance_schema"/>
+    <schema id="11" parent="1" name="personal"/>
+    <schema id="12" parent="1" name="test"/>
+    <table id="13" parent="2" name="course_lecturer"/>
+    <table id="14" parent="2" name="courses"/>
+    <table id="15" parent="2" name="lab_answers"/>
+    <table id="16" parent="2" name="lab_helpers"/>
+    <table id="17" parent="2" name="lab_questions"/>
+    <table id="18" parent="2" name="labs"/>
+    <table id="19" parent="2" name="question_types"/>
+    <table id="20" parent="2" name="students_on_courses"/>
+    <table id="21" parent="2" name="user_access"/>
+    <table id="22" parent="2" name="user_details"/>
+    <table id="23" parent="2" name="user_login"/>
+    <column id="24" parent="13" name="lecturerID">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="25" parent="13" name="course">
+      <Position>2</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="26" parent="13" name="lecturer">
+      <Position>3</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="27" parent="13" name="courseRef">
+      <ColNames>course
+lecturer</ColNames>
+    </index>
+    <index id="28" parent="13" name="Lecturer Exists">
+      <ColNames>lecturer</ColNames>
+    </index>
+    <key id="29" parent="13" name="PRIMARY">
+      <ColNames>lecturerID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="30" parent="13" name="Course Exists">
+      <ColNames>course</ColNames>
+      <RefSchemaName>lab-marker</RefSchemaName>
+      <RefTableName>courses</RefTableName>
+      <RefColNames>courseID</RefColNames>
+      <OnUpdate>update</OnUpdate>
+      <OnDelete>delete</OnDelete>
+    </foreign-key>
+    <foreign-key id="31" parent="13" name="Lecturer Exists">
+      <ColNames>lecturer</ColNames>
+      <RefSchemaName>lab-marker</RefSchemaName>
+      <RefTableName>user_login</RefTableName>
+      <RefColNames>userID</RefColNames>
+      <OnUpdate>update</OnUpdate>
+      <OnDelete>delete</OnDelete>
+    </foreign-key>
+    <column id="32" parent="14" name="courseID">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="33" parent="14" name="courseName">
+      <Position>2</Position>
+      <DataType>text|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="34" parent="14" name="courseCode">
+      <Position>3</Position>
+      <DataType>varchar(10)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="35" parent="14" name="courseCode">
+      <ColNames>courseCode</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="36" parent="14" name="PRIMARY">
+      <ColNames>courseID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <key id="37" parent="14" name="courseCode">
+      <ColNames>courseCode</ColNames>
+      <UnderlyingIndexName>courseCode</UnderlyingIndexName>
+    </key>
+    <column id="38" parent="15" name="answerID">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="39" parent="15" name="labQuestionRef">
+      <Position>2</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="40" parent="15" name="socRef">
+      <Position>3</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="41" parent="15" name="answerNumber">
+      <Position>4</Position>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <column id="42" parent="15" name="answerBoolean">
+      <Position>5</Position>
+      <DataType>text|0</DataType>
+    </column>
+    <column id="43" parent="15" name="answerText">
+      <Position>6</Position>
+      <DataType>text|0</DataType>
+    </column>
+    <column id="44" parent="15" name="mark">
+      <Position>7</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="45" parent="15" name="markingSheetID">
+      <ColNames>labQuestionRef</ColNames>
+    </index>
+    <index id="46" parent="15" name="socID">
+      <ColNames>socRef</ColNames>
+    </index>
+    <key id="47" parent="15" name="PRIMARY">
+      <ColNames>answerID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="48" parent="15" name="Question Sheet">
+      <ColNames>labQuestionRef</ColNames>
+      <RefSchemaName>lab-marker</RefSchemaName>
+      <RefTableName>lab_questions</RefTableName>
+      <RefColNames>questionID</RefColNames>
+      <OnUpdate>update</OnUpdate>
+      <OnDelete>delete</OnDelete>
+    </foreign-key>
+    <foreign-key id="49" parent="15" name="Who answer belongs too">
+      <ColNames>socRef</ColNames>
+      <RefSchemaName>lab-marker</RefSchemaName>
+      <RefTableName>students_on_courses</RefTableName>
+      <RefColNames>socID</RefColNames>
+      <OnUpdate>update</OnUpdate>
+      <OnDelete>delete</OnDelete>
+    </foreign-key>
+    <column id="50" parent="16" name="labHelperID">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="51" parent="16" name="userRef">
+      <Position>2</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="52" parent="16" name="course">
+      <Position>3</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="53" parent="16" name="course">
+      <ColNames>course</ColNames>
+    </index>
+    <index id="54" parent="16" name="userRef">
+      <ColNames>userRef</ColNames>
+    </index>
+    <key id="55" parent="16" name="PRIMARY">
+      <ColNames>labHelperID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="56" parent="16" name="User Exists">
+      <ColNames>userRef</ColNames>
+      <RefSchemaName>lab-marker</RefSchemaName>
+      <RefTableName>user_login</RefTableName>
+      <RefColNames>userID</RefColNames>
+      <OnUpdate>update</OnUpdate>
+      <OnDelete>delete</OnDelete>
+    </foreign-key>
+    <foreign-key id="57" parent="16" name="Valid Course">
+      <ColNames>course</ColNames>
+      <RefSchemaName>lab-marker</RefSchemaName>
+      <RefTableName>courses</RefTableName>
+      <RefColNames>courseID</RefColNames>
+      <OnUpdate>update</OnUpdate>
+      <OnDelete>delete</OnDelete>
+    </foreign-key>
+    <column id="58" parent="17" name="questionID">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="59" parent="17" name="labRef">
+      <Position>2</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="60" parent="17" name="questionType">
+      <Position>3</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="61" parent="17" name="questionNumber">
+      <Position>4</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="62" parent="17" name="question">
+      <Position>5</Position>
+      <DataType>text|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="63" parent="17" name="minMark">
+      <Position>6</Position>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <column id="64" parent="17" name="maxMark">
+      <Position>7</Position>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <column id="65" parent="17" name="private">
+      <Position>8</Position>
+      <DataType>text|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="66" parent="17" name="labSheetID">
+      <ColNames>labRef</ColNames>
+    </index>
+    <index id="67" parent="17" name="questionType">
+      <ColNames>questionType</ColNames>
+    </index>
+    <key id="68" parent="17" name="PRIMARY">
+      <ColNames>questionID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="69" parent="17" name="labExists">
+      <ColNames>labRef</ColNames>
+      <RefSchemaName>lab-marker</RefSchemaName>
+      <RefTableName>labs</RefTableName>
+      <RefColNames>labID</RefColNames>
+      <OnUpdate>update</OnUpdate>
+      <OnDelete>delete</OnDelete>
+    </foreign-key>
+    <foreign-key id="70" parent="17" name="Valid Question Types">
+      <ColNames>questionType</ColNames>
+      <RefSchemaName>lab-marker</RefSchemaName>
+      <RefTableName>question_types</RefTableName>
+      <RefColNames>questionTypeID</RefColNames>
+      <OnUpdate>update</OnUpdate>
+      <OnDelete>delete</OnDelete>
+    </foreign-key>
+    <column id="71" parent="18" name="labID">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="72" parent="18" name="courseRef">
+      <Position>2</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="73" parent="18" name="labName">
+      <Position>3</Position>
+      <DataType>text|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="74" parent="18" name="canMark">
+      <Position>4</Position>
+      <DataType>text|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="75" parent="18" name="courseCodeRef">
+      <ColNames>courseRef</ColNames>
+    </index>
+    <key id="76" parent="18" name="PRIMARY">
+      <ColNames>labID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="77" parent="18" name="Existing Course">
+      <ColNames>courseRef</ColNames>
+      <RefSchemaName>lab-marker</RefSchemaName>
+      <RefTableName>courses</RefTableName>
+      <RefColNames>courseID</RefColNames>
+      <OnUpdate>update</OnUpdate>
+      <OnDelete>delete</OnDelete>
+    </foreign-key>
+    <column id="78" parent="19" name="questionTypeID">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="79" parent="19" name="typeName">
+      <Position>2</Position>
+      <DataType>text|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="80" parent="19" name="PRIMARY">
+      <ColNames>questionTypeID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="81" parent="20" name="socID">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="82" parent="20" name="student">
+      <Position>2</Position>
+      <DataType>int(9)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="83" parent="20" name="course">
+      <Position>3</Position>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="84" parent="20" name="courseID">
+      <ColNames>course</ColNames>
+    </index>
+    <index id="85" parent="20" name="studentID">
+      <ColNames>student</ColNames>
+    </index>
+    <key id="86" parent="20" name="PRIMARY">
+      <ColNames>socID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="87" parent="20" name="studentExists">
+      <ColNames>student</ColNames>
+      <RefSchemaName>lab-marker</RefSchemaName>
+      <RefTableName>user_login</RefTableName>
+      <RefColNames>userID</RefColNames>
+      <OnUpdate>update</OnUpdate>
+      <OnDelete>delete</OnDelete>
+    </foreign-key>
+    <foreign-key id="88" parent="20" name="courseExists">
+      <ColNames>course</ColNames>
+      <RefSchemaName>lab-marker</RefSchemaName>
+      <RefTableName>courses</RefTableName>
+      <RefColNames>courseID</RefColNames>
+      <OnUpdate>update</OnUpdate>
+      <OnDelete>delete</OnDelete>
+    </foreign-key>
+    <column id="89" parent="21" name="access_id">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="90" parent="21" name="access_name">
+      <Position>2</Position>
+      <DataType>text|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="91" parent="21" name="access_level">
+      <Position>3</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="92" parent="21" name="access_id">
+      <ColNames>access_id</ColNames>
+    </index>
+    <key id="93" parent="21" name="PRIMARY">
+      <ColNames>access_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="94" parent="22" name="detailsId">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="95" parent="22" name="studentID">
+      <Position>2</Position>
+      <DataType>varchar(10)|0</DataType>
+    </column>
+    <column id="96" parent="22" name="firstname">
+      <Position>3</Position>
+      <DataType>text|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="97" parent="22" name="surname">
+      <Position>4</Position>
+      <DataType>text|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="98" parent="22" name="studentID">
+      <ColNames>studentID</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="99" parent="22" name="PRIMARY">
+      <ColNames>detailsId</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <key id="100" parent="22" name="studentID">
+      <ColNames>studentID</ColNames>
+      <UnderlyingIndexName>studentID</UnderlyingIndexName>
+    </key>
+    <foreign-key id="101" parent="22" name="user_details_ibfk_1">
+      <ColNames>detailsId</ColNames>
+      <RefSchemaName>lab-marker</RefSchemaName>
+      <RefTableName>user_login</RefTableName>
+      <RefColNames>userID</RefColNames>
+      <OnUpdate>update</OnUpdate>
+      <OnDelete>delete</OnDelete>
+    </foreign-key>
+    <column id="102" parent="23" name="userID">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="103" parent="23" name="username">
+      <Position>2</Position>
+      <DataType>text|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="104" parent="23" name="password">
+      <Position>3</Position>
+      <DataType>text|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="105" parent="23" name="accessLevel">
+      <Position>4</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="106" parent="23" name="accessLevel">
+      <ColNames>accessLevel</ColNames>
+    </index>
+    <key id="107" parent="23" name="PRIMARY">
+      <ColNames>userID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="108" parent="23" name="Valid Access IDs">
+      <ColNames>accessLevel</ColNames>
+      <RefSchemaName>lab-marker</RefSchemaName>
+      <RefTableName>user_access</RefTableName>
+      <RefColNames>access_id</RefColNames>
+      <OnUpdate>update</OnUpdate>
+    </foreign-key>
+  </database-model>
+</dataSource>
