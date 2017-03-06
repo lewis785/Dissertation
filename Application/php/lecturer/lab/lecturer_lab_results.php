@@ -15,6 +15,7 @@ if(has_access_level($link,"lecturer")) {
     require_once(dirname(__FILE__) . "/../../labs/get_students.php");
     require_once(dirname(__FILE__) . "/../../labs/lab_total_mark.php");
     require_once(dirname(__FILE__) . "/../../courses/get_courses.php");
+    require_once "lab_stats.php";
 
 
     $courses = get_courses();
@@ -76,12 +77,16 @@ function create_student_selector($studentArray, $course){
 
 function get_lab_summary($link, $course, $lab, $id)
 {
+    $stats = get_lab_stat($course, $lab);
 
-//    onclick='change_div_size($id)
+//    onclick='open_close_div($id)
     $output ="<li class='col-md-12 results-lab-row' id='result-row-$id' '>
                             <div class='result-align-center result-summary col-md-12'>
                                 <div id='result-row-arrow-$id' class='result-align-center col-md-1  glyphicon glyphicon-triangle-right'></div>
-                                <div class='col-md-3 col-md-offset-1'>Lab Name: <span id='lab-name'>$lab</span></div>
+                                <div class='col-md-3 '>Lab Name: <span id='lab-name'>$lab</span></div>
+                                <div class='col-md-3 '>Currently Marked Average: $stats[0]</div>
+                                <div class='col-md-3 '>Overall Average: $stats[1]</div>
+                                <div class='col-md-2 '>Currently Marked: $stats[2] / $stats[3]</div>
                             </div>";
 
     return $output;

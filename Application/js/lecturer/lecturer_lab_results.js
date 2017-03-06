@@ -10,14 +10,14 @@ $(document).ready(function () {
         if(clicked === "OPTION" || clicked === "SELECT")
             return;
         else
-            change_div_size(this);
+            open_close_div(this);
     });
 
 });
 
 
 
-function change_div_size(divID)
+function open_close_div(divID)
 {
     var selected = $(divID);
     var count = 0;
@@ -41,12 +41,60 @@ function change_div_size(divID)
     }
 }
 
+
+function change_div_size(row)
+{
+        var curHeight = row.height();
+        row.css("height", "auto");
+        var newHeight = row.height();
+        row.height(curHeight).animate({height: newHeight}, 500);
+}
+
 function display_student_result(input, course, student)
 {
     var id = "#" + $(input).parent().parent().attr("id");
     var row = $(id);
     var lab = row.find("#lab-name").text();
 
-    alert(course + lab + student);
+    var nameText =  row.find("#student-name");
+    var statsText = row.find("#student-stats");
+    var answersText = row.find("#student-answers");
+
+    if(student === "no-selection")
+    {
+        nameText.html("No Student Selected")
+        statsText.html("");
+        answersText.html("");
+        change_div_size(row);
+    }
+    else
+    {
+        nameText.html(row.find("select :selected").text());
+
+        $.ajax({
+            type: 'POST',
+            url: "../../php/lecturer/lab/get_student_result.php",
+            dataType: 'json',
+            data: {course:course, lab:lab, username:student, visible:"true"},
+            cache: false,
+            success: function(result){
+                answersText.html(result.answers);
+                change_div_size(row);
+            },
+            error: function(xhr, status, error) {
+                alert(xhr);
+            }
+        });
+
+    }
+}
+
+function convert_answers_array(answers)
+{
+    for(var i = 0, len = answers.length; i < len; i++){
+
+
+
+    }
 
 }

@@ -98,7 +98,7 @@ function get_lab_summary($link,$matricNum, $course, $lab, $id)
     $maxMark = lab_total_mark($link, $course, $lab);
 
     if ($labMark != "") {
-        $onclick = "onclick='change_div_size($id)'" ;
+        $onclick = "onclick='open_close_div($id)'" ;
         $arrow = "glyphicon glyphicon-triangle-right";
         $mark = $labMark ." / ". $maxMark;
         if($maxMark != 0)
