@@ -8,9 +8,9 @@
  */
 
 require_once (dirname(__FILE__)."/../core/ConnectDB.php");
-require_once (dirname(__FILE__)."/../courses/CourseChecks.php");
+require_once "Lab.php";
 
-class LabMarking extends CourseChecks
+class LabMarking extends Lab
 {
 
     private $course;
@@ -22,28 +22,6 @@ class LabMarking extends CourseChecks
         $this->type = isset($_POST["type"]) ? $_POST["type"] : null;
     }
 
-
-
-    public function getLabs($course)
-    {
-        $con = new ConnectDB();
-        $labsArray = [];
-
-        $get_labs = mysqli_stmt_init($con->link);
-        mysqli_stmt_prepare($get_labs, "SELECT l.labName, l.canMark FROM labs AS l 
-                                        JOIN courses AS c ON l.courseRef = c.courseID 
-                                        WHERE c.courseName = ? ORDER BY l.labID");
-        mysqli_stmt_bind_param($get_labs, 's', $course);
-        mysqli_stmt_execute($get_labs);
-        $result = mysqli_stmt_get_result($get_labs);
-
-        while($lab = $result->fetch_row()) {
-            array_push($labsArray, $lab);
-        }
-
-        mysqli_close($con->link);
-        return $labsArray;
-    }
 
 
     public function getMarkableLabs($course)

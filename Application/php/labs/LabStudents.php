@@ -67,8 +67,6 @@ class LabStudents extends Lab
         if ($this->marking->already_marked($this->student->get_studentID($matric), $qID)) {
             if ($this->student->has_full_marks($link, $matric, $courseName, $labName))
                 $style = "btn btn-success";
-            elseif ($this->student->has_no_marks($link, $matric, $courseName, $labName))
-                $style = "btn btn-danger";
             else
                 $style = "btn btn-warning";
 
@@ -76,29 +74,6 @@ class LabStudents extends Lab
             $style = "btn btn-info";
 
         return $style;
-    }
-
-
-    public function get_students($course)
-    {
-        $output = [];
-        if ($this->can_mark_course($course)) {
-            $con = new ConnectDB();
-
-            $get_students = mysqli_stmt_init($con->link);
-            mysqli_stmt_prepare($get_students, "SELECT d.firstname, d.surname, d.studentID FROM students_on_courses AS soc 
-                                        JOIN user_details AS d ON soc.student = d.detailsId 
-                                        JOIN courses AS c ON soc.course = c.courseID 
-                                        WHERE c.courseName = ? 
-                                        ORDER BY d.surname, d.firstname");
-            mysqli_stmt_bind_param($get_students, 's', $course);
-            mysqli_stmt_execute($get_students);
-
-
-            $output = mysqli_stmt_get_result($get_students);
-            mysqli_close($con->link);
-        }
-        return $output;
     }
 
 }

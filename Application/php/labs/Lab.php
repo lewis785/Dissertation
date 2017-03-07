@@ -14,6 +14,55 @@ require_once (dirname(__FILE__)."/../courses/CourseChecks.php");
 
 class Lab extends CourseChecks
 {
+
+    public function get_students($course)
+    {
+        $output = [];
+        if ($this->can_mark_course($course)) {
+            $con = new ConnectDB();
+
+            $get_students = mysqli_stmt_init($con->link);
+            mysqli_stmt_prepare($get_students, "SELECT d.firstname, d.surname, d.studentID FROM students_on_courses AS soc 
+                                        JOIN user_details AS d ON soc.student = d.detailsId 
+                                        JOIN courses AS c ON soc.course = c.courseID 
+                                        WHERE c.courseName = ? 
+                                        ORDER BY d.surname, d.firstname");
+            mysqli_stmt_bind_param($get_students, 's', $course);
+            mysqli_stmt_execute($get_students);
+
+
+            $output = mysqli_stmt_get_result($get_students);
+            mysqli_close($con->link);
+        }
+        return $output;
+    }
+
+
+
+    public function getLabs($course)
+    {
+        $con = new ConnectDB();
+        $labsArray = [];
+
+        $get_labs = mysqli_stmt_init($con->link);
+        mysqli_stmt_prepare($get_labs, "SELECT l.labName, l.canMark FROM labs AS l 
+                                        JOIN courses AS c ON l.courseRef = c.courseID 
+                                        WHERE c.courseName = ? ORDER BY l.labID");
+        mysqli_stmt_bind_param($get_labs, 's', $course);
+        mysqli_stmt_execute($get_labs);
+        $result = mysqli_stmt_get_result($get_labs);
+
+        while($lab = $result->fetch_row()) {
+            array_push($labsArray, $lab);
+        }
+
+        mysqli_close($con->link);
+        return $labsArray;
+    }
+
+
+
+
     public function lab_total_mark($courseName, $labName)
     {
         $con = new ConnectDB();
