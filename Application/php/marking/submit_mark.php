@@ -7,96 +7,15 @@
  */
 
 
-include(dirname(__FILE__)."/../core/connection.php");
-include(dirname(__FILE__)."/../courses/get_course_id.php");
-include(dirname(__FILE__)."/../labs/get_lab_id.php");
-
-require "check_if_marked.php";                              //Includes the already_marked() function to check if student has already been marked
-
-require (dirname(__FILE__)."/../students/get_student_id.php");
-require_once (dirname(__FILE__)."/../labs/get_question_id.php");
-
+require_once "Marking.php";
 
 if(isset($_POST["mark"]))
 {
-    $qNum = 1;
-    $answers = ($_POST["mark"]);
-    $labID =    get_lab_id($link,$_SESSION["MARKING_COURSE"], $_SESSION["MARKING_LAB"]);
-    $studentID = get_studentID($link, $_SESSION["MARKING_STUDENT"]);
-    $questionID = get_questionID($link, $labID, $qNum);
-
-    $already_present = false;
-    if(already_marked($link, $studentID, $questionID))
-        $already_present = true;
-
-    mysqli_autocommit($link, FALSE);                    //Sets up transaction for database insertion
-    foreach($_POST["type"] as $type) {
-        switch ($type) {                                       //Case statement checking what type each question is
-            case "boolean":                                 //Inserts boolean type questions
-                if($answers[$qNum - 1] === "true")
-                    $mark = get_avalible_marks($questionID);
-                else
-                    $mark = 0;
-
-                $successful = insert_answer($already_present, $questionID, $studentID, NULL, $answers[$qNum - 1], NULL, $mark);
-                break;
-            case "scale":                                   //Inserts scale type questions
-                $successful = insert_answer($already_present, $questionID, $studentID, $answers[$qNum - 1],NULL, NULL, $answers[$qNum - 1]);
-                break;
-            case "value":                                   //Inserts value type questions
-//                $successful = insert_answer($labID, $valueTypeID, $qNum, $questionText[$qNum - 1], NULL, $maxMarks[$minPos]);
-                break;
-            default:
-                mysqli_rollback($link);                     //Undoes all inserts into the database during the transaction
-                $successful = false;                        //Sets successful to false
-        }
-
-        if (!$successful)                                   //Checks if insertion was successful
-            break;                                          //If not ends the loop
-        $qNum++;                                            //Increments the question number
-        $questionID = get_questionID($link, $labID, $qNum);
-    }
-    mysqli_commit($link);
+    echo"hell";
+    print_r($_POST["mark"]);
+    $mark = new Marking();
+    $mark->submitMark();
 }
 else{
     echo json_encode("ERROR");
-}
-mysqli_close($link);
-
-
-
-
-
-
-function get_avalible_marks($questionID)
-{
-    $link= $GLOBALS["link"];
-
-    $get_max_mark = mysqli_stmt_init($link);
-    mysqli_stmt_prepare($get_max_mark, "SELECT maxMark FROM lab_questions WHERE questionID = ?");
-    mysqli_stmt_bind_param($get_max_mark, 'i', $questionID);
-    mysqli_stmt_execute($get_max_mark);
-    $result = mysqli_stmt_get_result($get_max_mark)->fetch_row();
-    return $result[0];
-}
-
-
-
-function insert_answer($already_present, $questionID, $studentID, $ansNum, $ansBool, $ansText, $mark)
-{
-    $link = $GLOBALS["link"];
-    $successful = false;
-//    echo "present: ".$already_present."qid: ".$questionID ." sid: " .$studentID ." qnum: ". $ansNum ." ansB: ". $ansBool . "ansT: ".$ansText ." mark: ". $mark;
-    if (!$already_present) {
-        require"insert_answer.php";
-    }
-    else
-    {
-        require"update_answer.php";
-    }
-    if (!$successful) {                                 //checks if insert or update failed
-        mysqli_rollback($link);                         //Undoes all the inserts all ready done to the database
-        return false;                                   //Returns false to show insert failed
-    }
-    return true;                                        //Returns true to show insert was successful
 }

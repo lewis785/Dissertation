@@ -11,6 +11,7 @@ require_once (dirname(__FILE__)."/../core/ConnectDB.php");
 require_once (dirname(__FILE__)."/../courses/CourseChecks.php");
 
 
+
 class Lab extends CourseChecks
 {
     public function lab_total_mark($courseName, $labName)

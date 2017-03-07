@@ -6,54 +6,13 @@
  * Time: 19:12
  */
 
-include(dirname(__FILE__)."/../core/connection.php");
-
-
+require_once  "Marking.php";
+if (session_status() == PHP_SESSION_NONE)
+    session_start();
 
 if($_SESSION["MARKING_COURSE"] && $_SESSION["MARKING_LAB"] && $_SESSION["MARKING_STUDENT"]) {
-    require (dirname(__FILE__)."/../labs/get_lab_id.php");
-
-
     if ($_SESSION["MARKING_COURSE"] !== "" && $_SESSION["MARKING_LAB"] !== "" && $_SESSION["MARKING_STUDENT"] !== "") {
-        $student = $_SESSION["MARKING_STUDENT"];
-
-        $get_lab_question_ids = mysqli_stmt_init($link);
-        mysqli_stmt_prepare($get_lab_question_ids, "SELECT questionID FROM lab_questions AS lq 
-                                                    JOIN labs AS l ON lq.labRef = l.labID
-                                                    JOIN courses AS c ON l.courseRef = c.courseID
-                                                    WHERE c.courseName = ? AND l.labName = ?");
-        mysqli_stmt_bind_param($get_lab_question_ids, 'ss', $_SESSION["MARKING_COURSE"], $_SESSION["MARKING_LAB"]);
-        mysqli_stmt_execute($get_lab_question_ids);
-        $result= mysqli_stmt_get_result($get_lab_question_ids);
-
-
-        $get_answers = mysqli_stmt_init($link);
-        mysqli_stmt_prepare($get_answers, "SELECT la.answerNumber, la.answerBoolean, la.answerText FROM lab_answers AS la 
-                                            JOIN students_on_courses AS soc ON la.socRef = soc.socID 
-                                            JOIN user_details AS ud ON soc.student = ud.detailsId 
-                                            WHERE labQuestionRef = ? AND ud.studentID = ? ");
-
-        $answers = [];
-        if(sizeof($result) > 0) {
-            while ($question = $result->fetch_row()) {
-
-                mysqli_stmt_bind_param($get_answers, 'is', $question[0], $student);
-                mysqli_stmt_execute($get_answers);
-                $answer = mysqli_stmt_get_result($get_answers);
-                $rows = mysqli_num_rows($answer);
-                $hasMark = ($rows === 1);
-                if ($rows === 1) {
-                    array_push($answers, $answer->fetch_row());
-                } else {
-                    break;
-                }
-            }
-        }
-        else
-            $hasMark = false;
-
-        echo json_encode(array("marked"=>$hasMark, "answers"=>$answers));
+        $marking = new Marking();
+        echo($marking->getStudentAnswers($_SESSION["MARKING_COURSE"], $_SESSION["MARKING_LAB"], $_SESSION["MARKING_STUDENT"]));
     }
 }
-
-mysqli_close($link);
