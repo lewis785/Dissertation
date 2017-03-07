@@ -6,47 +6,14 @@
  * Time: 01:32
  */
 
-require_once "get_courses.php";
+require_once "CourseButtons.php";
 
 if(isset($_POST["type"])) {
+    $courses = new CourseButtons();
+
     $type = $_POST["type"];
     if( $type === "marking")
-        courses_marking_button();
+        echo($courses->courses_marking_button());
     elseif ($type === "manage")
-        courses_managing_button();
-}
-
-
-function courses_dropdown()
-{
-    $result = get_courses();
-    foreach ($result as $course) {
-        echo "<option value='" . $course . "'>" . $course . "</option>";
-    }
-}
-
-function courses_marking_button()
-{
-    $result = get_courses();
-    $output = "";
-    if(sizeof($result) > 0) {
-        foreach ($result as $course) {
-            $output .= "<div class='col-md-6 col-md-offset-3'>
-                <button class='btn btn-success' id='btn-marking' onclick='display_labs_for(\"" . $course . "\")'>" . $course . "</button>
-                </div>";
-        }
-    }
-    echo json_encode(array("buttons"=>$output));
-}
-
-function courses_managing_button()
-{
-    $result = get_courses();
-    $output = "";
-    foreach ($result as $course) {
-        $output .= "<div class='col-md-6 col-md-offset-3'>
-        <button class='btn btn-success' id='btn-marking' onclick='management_options(\"" . $course . "\")'>" . $course . "</button>
-        </div>";
-    }
-    echo json_encode(array("buttons"=>$output));
+        echo($courses->courses_managing_button());
 }

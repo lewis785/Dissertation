@@ -13,7 +13,6 @@ if (isset($_SESSION['username']) && isset($_SESSION['password'])) {
     $result = mysqli_stmt_get_result($verify);
     $user = $result -> fetch_row();
     $verified =  ($user[0] == 1);
-    echo $_SESSION["username"]. $_SESSION["password"];
 }
 
 //verify is called from form and the user name and pass are set run code

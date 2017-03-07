@@ -13,6 +13,17 @@ require_once (dirname(__FILE__)."/../courses/CourseChecks.php");
 class LabMarking extends CourseChecks
 {
 
+    private $course;
+    private $type;
+
+    function __construct()
+    {
+        $this->course = isset($_POST["course"]) ? $_POST["course"] : null;
+        $this->type = isset($_POST["type"]) ? $_POST["type"] : null;
+    }
+
+
+
     public function getLabs($course)
     {
         $con = new ConnectDB();
@@ -48,12 +59,16 @@ class LabMarking extends CourseChecks
     }
 
 
-    public function markingLabsButtons($course)
+    public function markingLabsButtons()
     {
         $con = new ConnectDB();
 
-        $_SESSION["MARKING_COURSE"] = $course;
-        $result = $this->getLabs($course);
+        if($this->type === "next")
+            $_SESSION["MARKING_COURSE"] = $this->course;
+        else
+            $_SESSION["MARKING_LAB"] = "";
+
+        $result = $this->getLabs($_SESSION["MARKING_COURSE"]);
         $isLecturer = $this->has_access_level("lecturer");
 
         $buttons = "";

@@ -13,7 +13,6 @@ require_once(dirname(__FILE__) . "/../courses/CourseChecks.php");
 
 class LabManager extends CourseChecks
 {
-
     private $labID;
     private $state;
 
@@ -21,27 +20,26 @@ class LabManager extends CourseChecks
     {
         $this->labID = isset($_POST["labID"]) ? $_POST["labID"] : null;
         $this->state = isset($_POST["newState"]) ? $_POST["newState"] : null;
-
-
     }
 
-
-    public function changeMarkable($labID, $state)
+    public function printPost()
     {
-        $course = $this->course_from_lab_id($labID);
+        echo $this->labID;
+        echo $this->state;
+    }
+
+    public function changeMarkable()
+    {
+        $course = $this->course_from_lab_id($this->labID);
         $successful = false;
         $con = new ConnectDB();
-        if (session_status() == PHP_SESSION_NONE) {
-            session_start();
-            echo "session started";
-        }
-        echo $_SESSION["username"];
-        if ($this->is_lecturer_of_course($course)) {
 
+
+        if ($this->is_lecturer_of_course($course)) {
 
             $changeMarkState = mysqli_stmt_init($con->link);
             mysqli_stmt_prepare($changeMarkState, "UPDATE labs SET canMark = ? WHERE labID = ?");
-            mysqli_stmt_bind_param($changeMarkState, "si", $state, $labID);
+            mysqli_stmt_bind_param($changeMarkState, "si", $this->state, $this->labID);
             $successful = mysqli_stmt_execute($changeMarkState);
             mysqli_close($con->link);
         }
@@ -52,19 +50,15 @@ class LabManager extends CourseChecks
 
     public function deleteLab()
     {
+//        echo "hello: ".$this->labID;
         if($this->labID !== null)
         {
+
             $con = new ConnectDB();
 
-            $labID_to_course_name = mysqli_stmt_init($con->link);                                        //Init Prepared Statement
-            mysqli_stmt_prepare($labID_to_course_name, "SELECT c.courseName FROM courses AS c
-                                                JOIN labs AS l ON c.courseID = l.courseRef
-                                                WHERE l.labID = ?");                        //Query retrieves name of the course the lab belongs too
-            mysqli_stmt_bind_param($labID_to_course_name, "i", $labID );                            //Binds labID to query
-            mysqli_stmt_execute($labID_to_course_name);                                             //Executes Prepared Statement
-            $course = mysqli_stmt_get_result($labID_to_course_name)->fetch_row();                   //Retrieves result of query
+            $course = $this->course_from_lab_id($this->labID);
 
-            if($this->is_lecturer_of_course($course[0]))                                            //Checks if user has access to edit the course
+            if($this->is_lecturer_of_course($course))                                            //Checks if user has access to edit the course
             {
                 $delete_lab = mysqli_stmt_init($con->link);                                              //Init Prepared Statment
                 mysqli_stmt_prepare($delete_lab, "DELETE FROM labs WHERE labID = ?");               //Query deletes labs that match the labID
@@ -81,10 +75,14 @@ class LabManager extends CourseChecks
             mysqli_close($con->link);                                                                    //Closes DB connection
             return json_encode(array("success"=>$deletion));
         }
+        else
+            return json_encode(array("success"=>false));
     }
+
 }
 
-$manage =  new LabManager();
-echo($manage->changeMarkable(14, "false"));
+//$manage = new LabManager();
+//echo ($manage->deleteLab());
+
 
 //if(isset($_POST["labID"]) && isset($_POST["newState"]))

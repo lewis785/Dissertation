@@ -26,6 +26,7 @@ function display_table()
 
 function lab_markable(id,state)
 {
+
     $.ajax({
         type: 'POST',
         url: "../../php/labs/change_lab_markable.php",
@@ -85,11 +86,12 @@ $(document).mouseup(function (e)
 //Deletes the lab with the provided ID number
 function delete_lab(labID)
 {
+    alert(labID)
     $.ajax({
         type: 'POST',
         url: "../../php/labs/delete_lab.php",
         dataType: 'json',
-        data: {lab_id: labID},
+        data: {labID: labID},
         cache: false,
         success: function(result) {
             $("#delete-lab-popup").remove();                    //Removes the delete popup window

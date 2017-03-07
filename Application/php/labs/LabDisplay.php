@@ -74,7 +74,7 @@ class LabDisplay extends LabChecks
 
             foreach($courses as $course) {                                           //For loop through each course
                 $labs = $labList->getMarkableLabs($course);                                                   //Stores all the labs relating to the course
-                $output.= "<tr><td class='btn-info course-row'\" colspan=3>".$course[0]."</td></tr>";   //Insert Row to filling it with the course title
+                $output.= "<tr><td class='btn-info course-row'\" colspan=3>".$course."</td></tr>";   //Insert Row to filling it with the course title
                 if(sizeof($labs) > 0) {                                                         //Checks that there is at least one lab
                     foreach ($labs as $lab) {                                                   //For loop through each lab the course has
                         $id = $this->get_lab_id($course[0], $lab[0]);                              //Gets the labID for the lab
@@ -165,6 +165,9 @@ class LabDisplay extends LabChecks
     }
 }
 
+
+//$display = new LabDisplay();
+//echo $display->displayLab("Software Development 1", "df");
 
 //if(isset($_POST['lab']) && isset($_POST['course']))
 //{
