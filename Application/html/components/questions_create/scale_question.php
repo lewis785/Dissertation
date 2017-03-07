@@ -47,7 +47,7 @@ $data = '<div class="col-sm-6 col-sm-offset-3 col-mid-8 col-md-offset-2 tile"  i
         </div>';
 
 $title = "<div class='col-sm-6 col-sm-offset-3 col-mid-8 col-md-offset-2 tile'  id='question-$id'>
-        <div class='col-md-5 col-md-offset-1'><label>Question Number: <div id='question-number'>$qNum</div></label></div>
+        <span class='col-md-5 col-md-offset-1'><label>Question Number: <span id='question-number'>$qNum</span></label></span>
         <div class='col-md-5 col-md-offset-1'>Type: Scale</div>
         <span class='glyphicon glyphicon-remove close-btn' aria-hidden='true' onclick='update_numbers(".$id.")'></span>";
 
@@ -76,7 +76,7 @@ $selector2 = "<div class='form-group col-md-4 col-md-offset-2'>
 
 $visibility = "<div class='form-group col-md-4 col-md-offset-4'>
                  <input id='hidden-visibility-$id' type='hidden' name='visibility[]' value='false'>
-                  <button type='button' id='visibility-btn-$id' class='btn btn-success  col-md-6 col-md-offset-3' onclick='change_visibility(".$id.")' >Public</button>
+                  <button type='button' id='visibility-btn-$id' class='btn btn-success  col-md-6 col-md-offset-3' onclick='change_visibility(".$id.")' >Is Public</button>
                 </div>";
 
 $end = "</div>";

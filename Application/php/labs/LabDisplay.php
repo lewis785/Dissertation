@@ -145,7 +145,7 @@ class LabDisplay extends LabChecks
                 <label for="sel1">Select Mark (select one):</label>
                 <select class="form-control mark-input lab-input" name="mark[]" id="scale-input">
                 <option selected value="no-selection">Select Value</option>';
-        for($i = $start-1; $i<=$end; $i++)
+        for($i = $start; $i<=$end; $i++)
         {
             $scale .= '<option value="'.$i.'">'.$i.'</option>';
         }

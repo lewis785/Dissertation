@@ -43,12 +43,12 @@ function change_visibility(id)
 
     if (input.val() == "false")
     {
-        btn.text("Private");
+        btn.text("Is Private");
         input.val("true");
     }
     else
     {
-        btn.text("Public");
+        btn.text("Is Public");
         input.val("false");
     }
 }
