@@ -35,7 +35,7 @@ function display_labs_for(course)
         type: 'POST',
         url: "../../php/labs/get_labs.php",
         dataType: 'json',
-        data: {course: course, type:"marking"},
+        data: {course: course, type:"next"},
         cache: false,
         success: function(result){
             $("#question-area").html(result.buttons);
@@ -56,7 +56,7 @@ function display_students_for(lab)
         type: 'POST',
         url: "../../php/labs/get_students.php",
         dataType: 'json',
-        data: {lab:lab},
+        data: {lab:lab, type:"next"},
         cache: false,
         success: function(result){
             $("#question-area").html(result.buttons);
@@ -110,9 +110,9 @@ function back_to_labs()
 {
     $.ajax({
         type: 'POST',
-        url: "../../php/marking/goback_labs.php",
+        url: "../../php/labs/get_labs.php",
         dataType: 'json',
-        data: {type: "labs"},
+        data: {type: "back"},
         cache: false,
         success: function(result){
             $("#question-area").html(result.buttons);
@@ -129,9 +129,9 @@ function back_to_students()
 {
     $.ajax({
         type: 'POST',
-        url: "../../php/marking/goback_students.php",
+        url: "../../php/labs/get_students.php",
         dataType: 'json',
-        data: {type: "students"},
+        data: {type: "back"},
         cache: false,
         success: function(result){
             $("#question-area").html(result.buttons);

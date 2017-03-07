@@ -73,7 +73,7 @@ function display_student_result(input, course, student)
 
         $.ajax({
             type: 'POST',
-            url: "../../php/lecturer/lab/get_student_result.php",
+            url: "../../php/lecturer/get_student_result.php",
             dataType: 'json',
             data: {course:course, lab:lab, username:student, visible:"true"},
             cache: false,

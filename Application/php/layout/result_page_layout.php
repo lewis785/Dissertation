@@ -12,7 +12,7 @@ include (dirname(__FILE__)."/../core/check_access_level.php");
 if(has_access_level($link,"lecturer"))
 {
     echo "<script type='text/javascript' src='../../js/lecturer/lecturer_lab_results.js'></script>";
-    include (dirname(__FILE__)."/../lecturer/lab/lecturer_lab_results.php");
+    include(dirname(__FILE__) . "/../lecturer/lecturer_lab_results.php");
 }
 else {
     echo "<script type='text/javascript' src='../../js/student/student_lab_results.js'></script>";

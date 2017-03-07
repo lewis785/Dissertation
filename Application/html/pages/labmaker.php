@@ -46,14 +46,14 @@
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 
 <!--            Main area top-->
-            <form class="col-lg-12" id="form-area" accept-charset="UTF-8" role="form"  name="create-lab-form" method="post" action="../../php/labs/create_lab.php">
+            <form class="col-lg-12" id="form-area" accept-charset="UTF-8" role="form"  name="create-lab-form" method="post" action="../../php/labs/LabCreator.php">
                 <div class="page-header col-md-12">
                     <div class="form-group col-md-4 col-md-offset-1">
                         <label for="course-input" class="col-md-4 col-form-label">Course:</label>
                         <div class="col-md-8">
                             <select class="form-control " name="course-name" id="course-selector">
                                 <option selected value="no-selection">Select Course</option>
-                                <?php include "../../php/courses/course_buttons.php"; courses_dropdown();?>
+                                <?php include "../../php/courses/courses_dropdown.php";?>
                             </select>
                         </div>
                     </div>
