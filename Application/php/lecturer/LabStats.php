@@ -13,7 +13,7 @@ class LabStats
     public function get_lab_stat($link, $course, $lab)
     {
         $stats = [];
-    echo $course.$lab;
+
         array_push($stats, $this->currently_marked_average($link, $course, $lab));
         array_push($stats, $this->lab_average_mark($link, $course, $lab));
         array_push($stats, $this->currently_marked_students_count($link, $lab, $course));

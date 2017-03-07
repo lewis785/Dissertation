@@ -32,7 +32,7 @@ function management_options(course)
 
     $.ajax({
         type: 'POST',
-        url: "../../php/lecturer/course/manage_buttons.php",
+        url: "../../php/lecturer/manage_buttons.php",
         dataType: 'json',
         data: {},
         cache: false,

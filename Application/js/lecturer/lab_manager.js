@@ -86,7 +86,6 @@ $(document).mouseup(function (e)
 //Deletes the lab with the provided ID number
 function delete_lab(labID)
 {
-    alert(labID)
     $.ajax({
         type: 'POST',
         url: "../../php/labs/delete_lab.php",

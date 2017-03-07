@@ -5,8 +5,6 @@
  * Date: 20/02/2017
  * Time: 17:32
  */
-include(dirname(__FILE__)."/../courses/course_checks.php");
-
 require_once "LabStudents.php";
 
 if(isset($_POST["type"])) {

@@ -35,7 +35,7 @@ function valid_lab() {
         //Checks if lab name already exists
         $.ajax({
             type: 'POST',
-            url: "../../php/lecturer/lab/check_lab_name.php",
+            url: "../../php/lecturer/check_lab_name.php",
             dataType: 'json',
             data: {course:courseVal, lab:labVal},
             async: false,

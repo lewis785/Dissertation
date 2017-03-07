@@ -90,9 +90,9 @@ class LecturerResults extends LabStats
                             <div class='result-align-center result-summary col-md-12'>
                                 <div id='result-row-arrow-$id' class='result-align-center col-md-1  glyphicon glyphicon-triangle-right'></div>
                                 <div class='col-md-3 '>Lab Name: <span id='lab-name'>$lab</span></div>
-                                <div class='col-md-3 '>Currently Marked Average: $stats[0]</div>
+                                <div class='col-md-3 '>Marked Average: $stats[0]</div>
                                 <div class='col-md-3 '>Overall Average: $stats[1]</div>
-                                <div class='col-md-2 '>Currently Marked: $stats[2] / $stats[3]</div>
+                                <div class='col-md-2 '>Students Marked: $stats[2] / $stats[3]</div>
                             </div>";
 
         return $output;

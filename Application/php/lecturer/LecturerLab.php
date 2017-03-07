@@ -9,6 +9,7 @@
 
 require_once (dirname(__FILE__)."/../core/ConnectDB.php");
 require_once (dirname(__FILE__)."/../students/Student.php");
+require_once (dirname(__FILE__)."/../marking/Marking.php");
 
 class LecturerLab extends Lab
 {
@@ -38,7 +39,7 @@ class LecturerLab extends Lab
         $result = mysqli_stmt_get_result($checkIfNameExists)->fetch_row();
 
         mysqli_close($con->link);
-        echo json_encode(array("exists" => ($result[0] === 1)));
+        return json_encode(array("exists" => ($result[0] === 1)));
     }
 
 
