@@ -49,7 +49,7 @@ class LabStudents extends Lab
 
                 $buttonType = $this->button_style($con->link, $student[2], $labID, $this->lab, $courseName);
                 $buttons .= "<div class='col-md-6 col-md-offset-3 col-sm-12'>
-                      <button class='" . $buttonType . "' id='btn-student' onclick='display_schema_for(\"" . $student[2] . "\")'>" . $student[0] . " " . $student[1] . "</button>
+                      <button class='" . $buttonType . " btn-text-wrap' id='btn-student' onclick='display_schema_for(\"" . $student[2] . "\")'>" . $student[0] . " " . $student[1] . "</button>
                      </div>";
             }
             $output = json_encode(array('successful' => true, 'buttons' => $buttons));

@@ -62,7 +62,10 @@ if(isset($_POST["Export"])){
     header('Content-Disposition: attachment; filename=data.csv');
     $output = fopen("php://output", "w");
     fputcsv($output, array('username', 'password','accessLevel', 'firstname', 'surname', 'matric_number'));
-    $query = "SELECT l.username, l.password, l.accessLevel, d.firstname, d.surname, d.studentID FROM user_login as l  JOIN user_details AS d on l.userId = d.detailsId ORDER BY userId";
+    $query = "SELECT l.username, l.password, ua.access_name, d.firstname, d.surname, d.studentID FROM user_login as l  
+              JOIN user_details AS d on l.userId = d.detailsId 
+              JOIN user_access AS ua on l.accessLevel = ua.access_id 
+              ORDER BY userId";
     $result = mysqli_query($link, $query);
     while($row = mysqli_fetch_assoc($result))
     {

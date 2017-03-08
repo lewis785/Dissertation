@@ -30,7 +30,7 @@ class CourseButtons extends Courses
         if(sizeof($result) > 0) {
             foreach ($result as $course) {
                 $output .= "<div class='col-md-6 col-md-offset-3'>
-                    <button class='btn btn-success' id='btn-marking' onclick='display_labs_for(\"" . $course . "\")'>" . $course . "</button>
+                    <button class='btn btn-success btn-text-wrap' id='btn-marking' onclick='display_labs_for(\"" . $course . "\")'>" . $course . "</button>
                     </div>";
             }
         }

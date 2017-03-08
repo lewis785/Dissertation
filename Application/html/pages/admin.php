@@ -12,6 +12,8 @@
     <link href="../../bootstrap/css/bootstrap.css" rel="stylesheet">
     <link href="../../admincss/ie10-viewport-bug-workaround.css" rel="stylesheet">
     <link href="../../css/sidebar.css" rel="stylesheet">
+    <link href="../../css/main.css" rel="stylesheet">
+
 
     <!--JS Links -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -19,11 +21,13 @@
     <script src="../../js/admins.js"></script>
     <script src="../../js/navbar.js"></script>
     <script src="../../js/sidebar.js"></script>
+    <script src="../../js/admin/admin_panel.js"></script>
 
 
     <!--JavaScripts -->
     <script type="text/javascript">include_navbar("admin");</script>
-    <script type="text/javascript">include_sidebar("sidebar_area");</script>
+    <script type="text/javascript">getAccessOptions();</script>
+<!--    <script type="text/javascript">include_sidebar("sidebar_area");</script>-->
 
 
     <title>Admin Page</title>
@@ -36,10 +40,19 @@
 <div class="container-fluid">
     <div class="row">
 
-        <div id="sidebar_area"></div>
+        <div class="col-sm-6 col-sm-offset-3 col-md-8 col-md-offset-2 main">
+            <h1 class="page-header">Lab Management Table</h1>
 
-        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-            <h1 class="page-header">Webpage Dashboard</h1>
+            <div class="col-md-12" id="admin-panel">
+
+                <button type="button" class="btn btn-default admin-panel-btn col-md-6 col-md-offset-3">Manage User</button>
+                <button type="button" class="btn btn-default admin-panel-btn col-md-6 col-md-offset-3">Manage Database</button>
+
+            </div>
+
+
+
+
 
             <form method="post" action="../../php/admin/adduser.php">
                 <div class="form-group row">
@@ -65,9 +78,9 @@
 
                 <div class="form-group">
                     <label for="sel1">Select list (select one):</label>
-                    <select class="form-control" name="access" id="sel1">
+                    <select class="form-control access-selector" name="access" id="">
                         <option selected value="no-selection">Select Access Level</option>
-                        <?php include "../../php/admin/accessoptions.php"; ?>
+
                     </select>
                 </div>
 

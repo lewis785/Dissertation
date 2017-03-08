@@ -43,7 +43,7 @@
 
         <div id="sidebar_area"></div>
 
-        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" id="main-area">
 
 <!--            Main area top-->
             <form class="col-lg-12" id="form-area" accept-charset="UTF-8" role="form"  name="create-lab-form" method="post" action="../../php/labs/LabCreator.php">

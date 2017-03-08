@@ -41,7 +41,7 @@ function display_labs_for(course)
             $("#question-area").html(result.buttons);
 
             $(document.body).append('<footer class="panel-footer fix-bottom" id="marking-submit-bar">'+
-                '<button class="btn btn-warning col-md-2 col-md-offset-2" id="back-btn" onclick="back_to_courses()">Back</button>');
+                '<button class="btn btn-warning col-md-2 col-md-offset-2 col-xs-5 col-xs-offset-1" id="back-btn" onclick="back_to_courses()">Back</button>');
         },
         error: function(xhr, status, error) {
             alert(xhr);
@@ -81,7 +81,7 @@ function display_schema_for(student)
             $("#question-area").html(result.html);
             $("#back-btn").attr("onclick","back_to_students()");
             $("#marking-submit-bar").append('<button onclick="submit_mark()"'+
-                'class="btn btn-success col-md-2 col-md-offset-1" id="lab-submit-btn">Submit</button></footer>');
+                'class="btn btn-success col-md-2 col-md-offset-1 col-xs-5" id="lab-submit-btn">Submit</button></footer>');
             get_student_marks();
         },
         error: function(xhr, status, error) {

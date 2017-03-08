@@ -1,6 +1,6 @@
 <?php
 
-session_start();
-session_unset();
+require_once "LoginManager.php";
 
-header("Location:../../html/pages/login.php"); //Send user to login screen
+$access = new LoginManager();
+$access->signOut();

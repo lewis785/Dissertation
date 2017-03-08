@@ -79,19 +79,19 @@ class LecturerLab extends Lab
         $answers = $this->student->student_lab_answers($course, $lab, $username, $visibility);
 
         if (sizeof($answers) > 0) {
-            $answersList = "<ul class='col-md-12' id='answers-list'>
+            $answersList = "<ul class='answers-list'>
                     <li class='col-md-12 answer-row' id='answer-header'>
-                        <div class='col-md-4'>Question</div>
-                        <div class='col-md-4'>Answer Submitted</div>
-                        <div class='col-md-4'>Mark</div>
+                        <div class='col-md-4 col-sm-4'>Question</div>
+                        <div class='col-md-4 col-sm-4 hidden-xs '>Answer Submitted</div>
+                        <div class='col-md-4 col-sm-4'>Mark</div>
                     </li>";
 
             foreach ($answers as $answer) {
                 $answerText = $this->get_answer($answer);
                 $answersList .= "<li class='col-md-12 answer-row'>
-                        <div class='col-md-4'>$answer[0]</div>
-                        <div class='col-md-4'>$answerText</div>
-                        <div class='col-md-4'>$answer[5] / $answer[6]</div>
+                        <div class='col-md-4 col-sm-4 col-xs-6'>$answer[0]</div>
+                        <div class='col-md-4 col-sm-4 hidden-xs'>$answerText</div>
+                        <div class='col-md-4 col-sm-4 col-xs-6'>$answer[5] / $answer[6]</div>
                        </li>";
             }
         } else {
