@@ -11,8 +11,6 @@ require_once "Marking.php";
 
 if(isset($_POST["mark"]))
 {
-    echo"hell";
-    print_r($_POST["mark"]);
     $mark = new Marking();
     $mark->submitMark();
 }

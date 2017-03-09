@@ -44,6 +44,30 @@ class Admin extends Security
     }
 
 
+    public function getAllUsers()
+    {
+        $con = new ConnectDB();
+
+        $getAllUsers = mysqli_stmt_init($con->link);
+        mysqli_stmt_prepare($getAllUsers, "SELECT ua.access_name, ud.firstname, ud.surname, ud.studentID FROM user_details AS  ud
+                                              JOIN user_login AS ul ON ud.detailsId = ul.userID
+                                              JOIN user_access AS ua ON ul.accessLevel = ua.access_id
+                                              WHERE ua.access_level < ? ORDER BY access_level DESC , surname, firstname");
+        mysqli_stmt_bind_param($getAllUsers, 'i', $_SESSION['accesslevel']);
+        mysqli_stmt_execute($getAllUsers);
+        $result = mysqli_stmt_get_result($getAllUsers);
+
+        $outputArray =[];
+        while($user = $result->fetch_row())
+        {
+            array_push($outputArray, $user);
+        }
+
+        mysqli_close($con->link);
+        return $outputArray;
+    }
+
+
     private function valid_access($link, $access)
     {
         echo "Checking Access...<br>";

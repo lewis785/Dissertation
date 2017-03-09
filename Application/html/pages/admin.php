@@ -13,6 +13,7 @@
     <link href="../../admincss/ie10-viewport-bug-workaround.css" rel="stylesheet">
     <link href="../../css/sidebar.css" rel="stylesheet">
     <link href="../../css/main.css" rel="stylesheet">
+    <link href="../../css/admin.css" rel="stylesheet">
 
 
     <!--JS Links -->
@@ -22,11 +23,12 @@
     <script src="../../js/navbar.js"></script>
     <script src="../../js/sidebar.js"></script>
     <script src="../../js/admin/admin_panel.js"></script>
+    <script src="../../js/admin/admin_functions.js"></script>
 
 
     <!--JavaScripts -->
     <script type="text/javascript">include_navbar("admin");</script>
-    <script type="text/javascript">getAccessOptions();</script>
+
 <!--    <script type="text/javascript">include_sidebar("sidebar_area");</script>-->
 
 
@@ -41,55 +43,17 @@
     <div class="row">
 
         <div class="col-sm-6 col-sm-offset-3 col-md-8 col-md-offset-2 main">
-            <h1 class="page-header">Lab Management Table</h1>
+            <h1 class="page-header">Admin Control Panel</h1>
 
             <div class="col-md-12" id="admin-panel">
 
-                <button type="button" class="btn btn-default admin-panel-btn col-md-6 col-md-offset-3">Manage User</button>
+                <button type="button" class="btn btn-default admin-panel-btn col-md-6 col-md-offset-3" onclick="manageUsersButton()">Manage User</button>
                 <button type="button" class="btn btn-default admin-panel-btn col-md-6 col-md-offset-3">Manage Database</button>
 
             </div>
 
 
 
-
-
-            <form method="post" action="../../php/admin/adduser.php">
-                <div class="form-group row">
-                    <label for="firstname-label-input" class="col-2 col-form-label">Firstname</label>
-                    <div class="col-10">
-                        <input class="form-control" type="text" value="" name="firstname" id="firstname-input">
-                    </div>
-                </div>
-
-                <div class="form-group row">
-                    <label for="surname-label-input" class="col-2 col-form-label">Surname</label>
-                    <div class="col-10">
-                        <input class="form-control" type="text" value="" name="surname" id="surname-input">
-                    </div>
-                </div>
-
-                <div class="form-group row">
-                    <label for="matric-label-input" class="col-2 col-form-label">Matriculation Number</label>
-                    <div class="col-10">
-                        <input class="form-control" type="text" value="" name="matric" id="matric-input">
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="sel1">Select list (select one):</label>
-                    <select class="form-control access-selector" name="access" id="">
-                        <option selected value="no-selection">Select Access Level</option>
-
-                    </select>
-                </div>
-
-                <div class="form-group row">
-                    <div class="col-10">
-                        <input class="form-control" type="submit" value="Submit">
-                    </div>
-                </div>
-            </form>
 
 
 

@@ -28,14 +28,35 @@ class AdminButtons extends Admin
         }
 
         mysqli_close($con->link);
-        return json_encode(array("buttons"=>$output));
+        return $output;
+    }
+
+    
+    public function panelButtons()
+    {
+        $buttons = $this->buttonLayout( "Manage User", "manageUsersButton()");
+        $buttons .= $this->buttonLayout( "Manage Database", "manageUsersButton()");
+
+        return json_encode(array("buttons"=>$buttons));
     }
 
     public function manageUsersButtons()
     {
 
+        $buttons = $this->buttonLayout("Back", "mainPanel()", "warning");
+        $buttons.= $this->buttonLayout("Add Users", "addUserForm()");
+        $buttons.= $this->buttonLayout("Remove Users", "removeUserForm()");
+        $buttons.= $this->buttonLayout("Manage Lab Helpers", "mainPanel()");
+        $buttons.= $this->buttonLayout("Manage Lectuerers", "mainPanel()");
+
+        return json_encode(array("buttons"=>$buttons));
     }
 
+
+    public function buttonLayout($text, $action, $type="default")
+    {
+        return "<button type='button' class='btn btn-$type admin-panel-btn col-md-6 col-md-offset-3' onclick='$action'>$text</button>";
+    }
 
 }
 //
