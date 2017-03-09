@@ -43,7 +43,7 @@
     <div class="row">
 
         <div class="col-sm-6 col-sm-offset-3 col-md-8 col-md-offset-2 main">
-            <h1 class="page-header">Admin Control Panel</h1>
+            <h1 class="col-md-12 page-header"><div class="col-md-4">Admin Control Panel</div></h1>
 
             <div class="col-md-12" id="admin-panel">
 

@@ -6,16 +6,21 @@
  * Date: 07/03/2017
  * Time: 13:16
  */
-class LabStats
+
+require_once (dirname(__FILE__)."/../labs/Lab.php");
+
+class LabStats extends Lab
 {
 
 
     public function get_lab_stat($link, $course, $lab)
     {
+        $lab_max = $this->lab_total_mark($course, $lab);
+
         $stats = [];
 
-        array_push($stats, $this->currently_marked_average($link, $course, $lab));
-        array_push($stats, $this->lab_average_mark($link, $course, $lab));
+        array_push($stats, $this->currently_marked_average($link, $course, $lab, $lab_max));
+        array_push($stats, $this->lab_average_mark($link, $course, $lab, $lab_max));
         array_push($stats, $this->currently_marked_students_count($link, $lab, $course));
         array_push($stats, $this->students_on_course_count($link, $course));
 
@@ -23,7 +28,7 @@ class LabStats
     }
 
 
-    private function lab_average_mark($link, $course, $lab)
+    private function lab_average_mark($link, $course, $lab, $max_mark)
     {
         $studentCount = $this->students_on_course_count($link, $course);
 
@@ -37,11 +42,14 @@ class LabStats
         mysqli_stmt_execute($totalMark);
         $classMark = mysqli_stmt_get_result($totalMark)->fetch_row()[0];
 
-        return number_format(($classMark / $studentCount), 2, ".", "");
+        $avg = $classMark / $studentCount;
+        $percentage = ($avg / $max_mark) * 100;
+
+        return number_format(($percentage), 2, ".", "")."%";
     }
 
 
-    private function currently_marked_average($link, $course, $lab)
+    private function currently_marked_average($link, $course, $lab, $max_mark)
     {
 
         $currentlyMarkedMark = mysqli_stmt_init($link);
@@ -55,8 +63,13 @@ class LabStats
         mysqli_stmt_execute($currentlyMarkedMark);
         $markedMark = mysqli_stmt_get_result($currentlyMarkedMark)->fetch_row()[0];
 
-        return number_format(($markedMark), 2, ".", "");
+        $percentage = ($markedMark / $max_mark) * 100;
+
+
+        return number_format(($percentage), 2, ".", "")."%";
     }
+
+
 
     private function students_on_course_count($link,$course)
     {

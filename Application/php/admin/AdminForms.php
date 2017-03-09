@@ -46,13 +46,7 @@ class AdminForms extends AdminButtons
                         </div>
 
             </form></div>";
-
-
-
-
-
         return json_encode(array("form"=>$output));
-
     }
 
 

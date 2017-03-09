@@ -46,8 +46,9 @@ class AdminButtons extends Admin
         $buttons = $this->buttonLayout("Back", "mainPanel()", "warning");
         $buttons.= $this->buttonLayout("Add Users", "addUserForm()");
         $buttons.= $this->buttonLayout("Remove Users", "removeUserForm()");
-        $buttons.= $this->buttonLayout("Manage Lab Helpers", "mainPanel()");
-        $buttons.= $this->buttonLayout("Manage Lectuerers", "mainPanel()");
+        $buttons.= $this->buttonLayout("Manage Students", "manageStudentsForm()");
+        $buttons.= $this->buttonLayout("Manage Lab Helpers", "manageHelpsForm()");
+        $buttons.= $this->buttonLayout("Manage Lecturers", "manageLecturersForm()");
 
         return json_encode(array("buttons"=>$buttons));
     }

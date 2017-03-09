@@ -14,7 +14,8 @@ function mainPanel()
         cache: false,
         success: function(result){
             $("#admin-panel").html(result.buttons);
-            $(".page-header").html("Admin Control Panel");
+            $("#sub-menu").remove();
+            // $(".page-header").html("Admin Control Panel");
         },
         error: function(xhr, status, error) {
             alert(xhr);
@@ -34,7 +35,9 @@ function manageUsersButton()
         cache: false,
         success: function(result){
             $("#admin-panel").html(result.buttons);
-            $(".page-header").html("Admin Control Panel > User Manager");
+            $("#sub-menu").remove();
+            $("#sub-sub-menu").remove();
+            $(".page-header").append("<div class='col-md-3' id='sub-menu'>> User Manager");
         },
         error: function(xhr, status, error) {
             alert(xhr);
@@ -57,7 +60,7 @@ function addUserForm()
         cache: false,
         success: function(result){
             $("#admin-panel").html(result.form);
-            $(".page-header").html("Admin Control Panel > User Manager > Add Users");
+            $(".page-header").append("<div class='col-md-3' id='sub-sub-menu'>> Add Users");
         },
         error: function(xhr, status, error) {
             alert(xhr);
@@ -76,7 +79,7 @@ function removeUserForm()
         cache: false,
         success: function(result){
             $("#admin-panel").html(result.form);
-            $(".page-header").html("Admin Control Panel > User Manager > Remove Users");
+            $(".page-header").append("<div class='col-md-3' id='sub-sub-menu'>> Remove Users");
         },
         error: function(xhr, status, error) {
             alert(xhr);
