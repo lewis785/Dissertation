@@ -8,9 +8,19 @@
  */
 require_once "AdminButtons.php";
 require_once (dirname(__FILE__)."/../students/Student.php");
+require_once (dirname(__FILE__)."/../lab_helper/LabHelper.php");
+require_once (dirname(__FILE__)."/../courses/Courses.php");
 
 class AdminForms extends AdminButtons
 {
+
+    private $Courses;
+
+    function __construct()
+    {
+        $this->Courses = new Courses();
+        parent::__construct();
+    }
 
     //Creates layout for add users admin panel
     public function createUserForm()
@@ -111,14 +121,43 @@ class AdminForms extends AdminButtons
         return json_encode(array("layout"=>$output));
     }
 
+
+
+
+
     //Creates layout for managing lab helpers
     public function manageLabHelpers()
     {
-        $output = $this->buttonLayout("Back","manageUsersButton()", "warning");
+        $helper_functions = new LabHelper();
+        $lab_helpers = $helper_functions->getAllLabHelpers();
+        $courses = $this->Courses->get_courses();
 
+        $options = [];
+
+        foreach($courses as $course)
+            array_push($options,[$course,$course]);
+
+        $output = $this->buttonLayout("Back","manageUsersButton()", "warning");
+        $output .= "<div class='col-md-8 col-md-offset-2' id='update-users-div'> <legend>Add Lab Helpers To Course</legend>";
+
+        $output .=  "<div class='table-div'><table class='col-md-12 table table-striped table-bordered' id='students-table'>
+                    <thead>
+                        <tr><td>Name</td><td>Matric Num</td></tr>
+                     </thead>";
+
+        foreach($lab_helpers as $helper)
+            $output.= $this->addTableRow($helper);
+
+        $output.= "</table></div>";
+        $output.= $this->selectInput("Select Course:", "course", $options);
+        $output.= "</div>";
 
         return json_encode(array("layout"=>$output));
     }
+
+
+
+
 
     //Creates layout for managing lecturers
     public function manageLecturers()
@@ -128,6 +167,9 @@ class AdminForms extends AdminButtons
 
         return json_encode(array("layout"=>$output));
     }
+
+
+
 
 
     private function addTableRow($user)
@@ -147,7 +189,8 @@ class AdminForms extends AdminButtons
                   </div>";
         return $input;
     }
-    
+
+
     private function selectInput($label, $name, $options = [])
     {
         $input = "<div class='form-group col-md-6 col-md-offset-3'>
@@ -164,7 +207,8 @@ class AdminForms extends AdminButtons
 
         return $input;
     }
-    
+
+
     private function submitButton($run)
     {
         $input = "<buttton onclick='$run' class='col-md-8 col-md-offset-2 btn btn-success'>Submit</buttton>";
@@ -174,4 +218,4 @@ class AdminForms extends AdminButtons
 }
 //
 //$form = new AdminForms();
-//echo $form->createUserForm();
+//echo $form->manageLabHelpers();

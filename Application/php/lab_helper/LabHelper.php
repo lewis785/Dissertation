@@ -35,12 +35,23 @@ class LabHelper
     
     public function getCourseLabHelpers($course)
     {
-        
+        $con = new ConnectDB();
+
+        $courseHelpers = mysqli_stmt_init($con->link);
+        mysqli_stmt_prepare($courseHelpers, "Select ud.firstname, ud.surname, ud.studentID FROM user_details AS  ud
+                                              JOIN lab_helpers AS lh ON ud.detailsId = lh.userRef
+                                              JOIN courses as c ON lh.course = c.courseID
+                                              WHERE c.courseName = ?");
+        mysqli_stmt_bind_param($courseHelpers, "s", $course);
+        mysqli_stmt_execute($courseHelpers);
+        $result = mysqli_stmt_get_result($courseHelpers);
+
+        $output_array = [];
+
+        while($helper = $result->fetch_row())
+            array_push($output_array, $helper);
+
+        return $output_array;
+
     }
-    
-    
-
 }
-
-$helper = new LabHelper();
-print_r($helper->getAllLabHelpers());
