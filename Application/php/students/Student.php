@@ -21,6 +21,28 @@ class Student
 
     }
 
+
+    public function getAllStudents()
+    {
+        $con = new ConnectDB();
+
+        $get_studentsID = mysqli_stmt_init($con->link);
+        mysqli_stmt_prepare($get_studentsID,    "SELECT ud.firstname, ud.surname, ud.studentID FROM user_details AS ud 
+                                                JOIN user_login as ul ON ud.detailsId = ul.userID 
+                                                JOIN user_access AS ua ON ul.accessLevel = ua.access_id 
+                                                WHERE ua.access_name = 'student' OR ua.access_name='lab helper' 
+                                                ORDER BY surname, firstname");
+        mysqli_stmt_execute($get_studentsID);
+        $result = mysqli_stmt_get_result($get_studentsID);
+
+        $output_array = [];
+        while($student = $result->fetch_row())
+            array_push($output_array, $student);
+
+        mysqli_close($con->link);
+        return $output_array;
+    }
+
     public function get_studentID($student)
     {
         $con = new ConnectDB();

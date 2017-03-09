@@ -37,8 +37,18 @@ class AdminButtons extends Admin
         $buttons = $this->buttonLayout( "Manage User", "manageUsersButton()");
         $buttons .= $this->buttonLayout( "Manage Database", "manageUsersButton()");
 
-        return json_encode(array("buttons"=>$buttons));
+        return json_encode(array("layout"=>$buttons));
     }
+
+    public function manageStudentButtons()
+    {
+        $buttons = $this->buttonLayout("Back", "manageUsersButton()", "warning");
+        $buttons.= $this->buttonLayout("Add To Courses", "addStudentCourses()");
+        $buttons.= $this->buttonLayout("Remove From Courses", "removeStudentCourses()");
+
+        return json_encode(array("layout"=>$buttons));
+    }
+
 
     public function manageUsersButtons()
     {
@@ -46,11 +56,12 @@ class AdminButtons extends Admin
         $buttons = $this->buttonLayout("Back", "mainPanel()", "warning");
         $buttons.= $this->buttonLayout("Add Users", "addUserForm()");
         $buttons.= $this->buttonLayout("Remove Users", "removeUserForm()");
-        $buttons.= $this->buttonLayout("Manage Students", "manageStudentsForm()");
-        $buttons.= $this->buttonLayout("Manage Lab Helpers", "manageHelpsForm()");
-        $buttons.= $this->buttonLayout("Manage Lecturers", "manageLecturersForm()");
+        $buttons.= $this->buttonLayout("Update User Access", "updateUserForm()");
+        $buttons.= $this->buttonLayout("Manage Students", "manageStudentButtons()");
+        $buttons.= $this->buttonLayout("Manage Lab Helpers", "manageLabHelpers()");
+        $buttons.= $this->buttonLayout("Manage Lecturers", "manageLecturers()");
 
-        return json_encode(array("buttons"=>$buttons));
+        return json_encode(array("layout"=>$buttons));
     }
 
 

@@ -7,15 +7,14 @@
  * Time: 23:47
  */
 require_once "AdminButtons.php";
+require_once (dirname(__FILE__)."/../students/Student.php");
 
 class AdminForms extends AdminButtons
 {
 
-
+    //Creates layout for add users admin panel
     public function createUserForm()
     {
-
-
         $output = $this->buttonLayout("Back","manageUsersButton()", "warning");
         $output .= "<div class='col-md-8 col-md-offset-2' id='insert-users-div'>
                     <form id='add-user-form' method='post' action='../../php/admin/adduser.php'>
@@ -46,10 +45,12 @@ class AdminForms extends AdminButtons
                         </div>
 
             </form></div>";
-        return json_encode(array("form"=>$output));
+        return json_encode(array("layout"=>$output));
     }
 
 
+
+    //Creates layout for the remove users admin panel
     public function removeUserForm()
     {
 
@@ -73,14 +74,68 @@ class AdminForms extends AdminButtons
 
         $output.= "</form></div>";
 
-        return json_encode(array("form"=>$output));
+        return json_encode(array("layout"=>$output));
+    }
+
+
+    //Creates layout for update user access
+    public function updateUserForm()
+    {
+        $output = $this->buttonLayout("Back","manageUsersButton()", "warning");
+
+
+        return json_encode(array("layout"=>$output));
     }
 
 
 
+    //Creates layout for managing students
+    public function manageStudents()
+    {
+        $student_functions = new Student();
+        $students = $student_functions->getAllStudents();
+
+        $output = $this->buttonLayout("Back","manageUsersButton()", "warning");
+        $output .= "<div class='col-md-8 col-md-offset-2' id='update-users-div'> <legend>Update User(s) Access</legend>";
+
+        $output .=  "<div class='table-div'><table class='col-md-12 table table-striped table-bordered' id='students-table'>
+                    <thead>
+                        <tr><td>Name</td><td>Matric Num</td></tr>
+                     </thead>";
+
+        foreach($students as $student)
+            $output.= $this->addTableRow($student);
+
+        $output.= "</table></div></div>";
+
+        return json_encode(array("layout"=>$output));
+    }
+
+    //Creates layout for managing lab helpers
+    public function manageLabHelpers()
+    {
+        $output = $this->buttonLayout("Back","manageUsersButton()", "warning");
+
+
+        return json_encode(array("layout"=>$output));
+    }
+
+    //Creates layout for managing lecturers
+    public function manageLecturers()
+    {
+        $output = $this->buttonLayout("Back","manageUsersButton()", "warning");
+
+
+        return json_encode(array("layout"=>$output));
+    }
+
+
     private function addTableRow($user)
     {
-        return "<tr> <td>$user[0]</td> <td>$user[1] $user[2]</td> <td>$user[3]</td> </tr>";
+        if(sizeof($user) === 4)
+            return "<tr> <td>$user[0]</td> <td>$user[1] $user[2]</td> <td>$user[3]</td> </tr>";
+        else
+            return "<tr> <td>$user[0] $user[1]</td> <td>$user[2]</td> </tr>";
     }
 
 

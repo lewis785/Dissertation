@@ -25,12 +25,35 @@ if(isset($_POST["buttonType"]))
             echo($layout->manageUsersButtons());
             break;
 
+        case "manage-students":
+            echo($layout->manageStudentButtons());
+            break;
+
+        case "manage-lab-helper":
+            echo($layout->manageLabHelpers());
+            break;
+
+        case "manage-lecturer":
+            echo($layout->manageLecturers());
+            break;
+
+
+
         case "create-user":
             echo($layout->createUserForm());
             break;
 
         case "remove-user":
             echo($layout->removeUserForm());
+            break;
+
+        case "update-user":
+            echo($layout->updateUserForm());
+            break;
+
+
+        case "add-to-course":
+            echo($layout->manageStudents());
             break;
 
     }

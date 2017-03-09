@@ -47,6 +47,20 @@ class Security
         return ($_SESSION["accesslevel"] > $required_access);              //Returns True if useraccess is greater than required accesslevel
     }
 
+    public function getAccessID($accessName)
+    {
+        $con = new ConnectDB();
+
+        $get_access_level = mysqli_stmt_init($con->link);
+        mysqli_stmt_prepare($get_access_level, "SELECT access_id FROM user_access WHERE access_name= ?");
+        mysqli_stmt_bind_param($get_access_level, 's', $accessName);
+        mysqli_stmt_execute($get_access_level);
+        $result = mysqli_stmt_get_result($get_access_level)->fetch_row();
+
+        mysqli_close($con->link);
+        return $result[0];
+
+    }
 
     public function accessNameFromID($accessID)
     {
