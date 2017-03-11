@@ -32,27 +32,34 @@ class Courses extends Security
     {
         $con = new ConnectDB();
 
-        if ($this->has_access_level( "lecturer")) {
-            $get_courses = mysqli_stmt_init($con->link);
+        $get_courses = mysqli_stmt_init($con->link);
+
+
+        if ($this->hasGreaterAccessThan("lecturer"))
+        {
+            mysqli_stmt_prepare($get_courses, "SELECT courseName FROM courses");
+        }
+        elseif ($this->has_access_level( "lecturer")) {
 
             mysqli_stmt_prepare($get_courses, "SELECT c.courseName FROM user_login as l
                                               JOIN course_lecturer AS cl ON l.userID = cl.lecturer 
                                               JOIN courses AS c ON cl.course = c.courseID 
                                               WHERE l.username = ?  ORDER BY courseName");
             mysqli_stmt_bind_param($get_courses, 's', $_SESSION["username"]);
-            mysqli_stmt_execute($get_courses);
-            $result = mysqli_stmt_get_result($get_courses);
+
 
         } elseif ($this->has_access_level("lab helper")) {
-            $get_courses = mysqli_stmt_init($con->link);
+
             mysqli_stmt_prepare($get_courses, "SELECT c.courseName FROM lab_helpers AS lh 
                                         JOIN user_login AS ul ON lh.userRef = ul.userID 
                                         JOIN courses AS c ON lh.course = c.courseID 
                                         WHERE username = ?  ORDER BY courseName");
             mysqli_stmt_bind_param($get_courses, 's', $_SESSION["username"]);
-            mysqli_stmt_execute($get_courses);
-            $result = mysqli_stmt_get_result($get_courses);
+
         }
+
+        mysqli_stmt_execute($get_courses);
+        $result = mysqli_stmt_get_result($get_courses);
 
         $outputArray = [];
         while($course = $result->fetch_row())

@@ -15,6 +15,9 @@ class CourseChecks extends Courses
     //Returns true if user is a lecturer of the course
     public function is_lecturer_of_course($course)
     {
+        if ($this->hasGreaterAccessThan("lecturer"))
+            return true;
+
         $con = new ConnectDB();
 
         $check_if_course_lecturer = mysqli_stmt_init($con->link);
@@ -27,8 +30,8 @@ class CourseChecks extends Courses
         $result = mysqli_stmt_get_result($check_if_course_lecturer);
         $lecturerCount = $result->fetch_row();
 
-
         mysqli_close($con->link);
+
         return $lecturerCount[0] === 1;
     }
 

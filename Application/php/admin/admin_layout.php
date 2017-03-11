@@ -26,15 +26,27 @@ if(isset($_POST["buttonType"]))
             break;
 
         case "manage-students":
-            echo($layout->manageStudentButtons());
+            echo($layout->manageStudents());
+            break;
+
+        case "student-courses-table":
+            echo($layout->studentCoursesTable($_POST["course"]));
             break;
 
         case "manage-lab-helper":
             echo($layout->manageLabHelpers());
             break;
 
+        case "lab-helper-tables":
+            echo($layout->labHelpersTables($_POST["course"]));
+            break;
+
         case "manage-lecturer":
             echo($layout->manageLecturers());
+            break;
+
+        case "lecturer-tables":
+            echo($layout->lecturerTable($_POST["course"]));
             break;
 
 

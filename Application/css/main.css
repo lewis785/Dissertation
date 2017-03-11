@@ -30,6 +30,11 @@
 
 }
 
+.center{
+    text-align: center;
+}
+
+
 /*Layout out for creating question tiles*/
 .tile
 {
@@ -53,6 +58,8 @@
     bottom: 0;
     width: 100%;
 }
+
+
 
 /*Side bar set to in front of other divs*/
 #sidebar_code *{

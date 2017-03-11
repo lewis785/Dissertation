@@ -1,30 +1,46 @@
 
 .admin-panel-btn{
-	min-height: 50px;
+	min-height: 75px;
 	margin-bottom: 10px;
+	border: 2px solid black;
+
+	font-weight: bolder;
+	font-size: 1.5em;
+	color: #b92c28;
 }
 
 .table-div{
-	max-height: 400px;
+	/*min-height: 240px;*/
+	max-height: 350px;
 	overflow: auto;
 	width:100%;
 	margin-bottom: 20px;
+	border: solid 1px skyblue;
+	border-width: 2px 0 2px 0;
+
 }
 
-.table-div ::-webkit-scrollbar {
-	width: 12px;
+.table-div tr{
+	text-align: center;
 }
 
-.table-div ::-webkit-scrollbar-track {
-	-webkit-box-shadow: inset 0 0 6px     rgba(0,0,0,0.3);
-	border-radius: 10px;
+.table-div table tr:hover
+{
+	background-color: #5bc0de;
 }
 
-.table-div ::-webkit-scrollbar-thumb {
-	border-radius: 10px;
-	-webkit-box-shadow: inset 0 0 6px     rgba(0,0,0,0.5);
+.selected-row
+{
+	background-color: steelblue !important;
 }
 
+.admin-function{
+	border: solid black 2px;
+	border-radius: 15px;
+
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
 
 #user-uploader{
 	background-color: #269abc;
@@ -43,24 +59,14 @@
 	background-color: #d5d5d5;
 	font-weight: bold;
 
-	border: solid black 2px;
-	border-radius: 15px;
-
-	padding-top: 10px;
-	padding-bottom: 10px;
-
-
 }
 
 #remove-users-div{
 	background-color: #d5d5d5;
 	font-weight: bold;
+}
 
-	border: solid black 2px;
-	border-radius: 15px;
-
-	padding-top: 10px;
-	padding-bottom: 10px;
-
-
+#lab-helpers-div {
+	background-color: #d5d5d5;
+	font-weight: bold;
 }

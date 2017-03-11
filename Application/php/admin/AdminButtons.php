@@ -40,14 +40,6 @@ class AdminButtons extends Admin
         return json_encode(array("layout"=>$buttons));
     }
 
-    public function manageStudentButtons()
-    {
-        $buttons = $this->buttonLayout("Back", "manageUsersButton()", "warning");
-        $buttons.= $this->buttonLayout("Add To Courses", "addStudentCourses()");
-        $buttons.= $this->buttonLayout("Remove From Courses", "removeStudentCourses()");
-
-        return json_encode(array("layout"=>$buttons));
-    }
 
 
     public function manageUsersButtons()
@@ -65,7 +57,7 @@ class AdminButtons extends Admin
     }
 
 
-    public function buttonLayout($text, $action, $type="default")
+    public function buttonLayout($text, $action, $type="info")
     {
         return "<button type='button' class='btn btn-$type admin-panel-btn col-md-6 col-md-offset-3' onclick='$action'>$text</button>";
     }

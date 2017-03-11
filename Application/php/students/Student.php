@@ -27,8 +27,8 @@ class Student
         $con = new ConnectDB();
 
         $get_studentsID = mysqli_stmt_init($con->link);
-        mysqli_stmt_prepare($get_studentsID,    "SELECT ud.firstname, ud.surname, ud.studentID FROM user_details AS ud 
-                                                JOIN user_login as ul ON ud.detailsId = ul.userID 
+            mysqli_stmt_prepare($get_studentsID, "SELECT ud.firstname, ud.surname, ud.studentID FROM user_details AS ud 
+                                                JOIN user_login AS ul ON ud.detailsId = ul.userID 
                                                 JOIN user_access AS ua ON ul.accessLevel = ua.access_id 
                                                 WHERE ua.access_name = 'student' OR ua.access_name='lab helper' 
                                                 ORDER BY surname, firstname");
@@ -43,7 +43,68 @@ class Student
         return $output_array;
     }
 
-    public function get_studentID($student)
+    public function studentsOnCourse($course)
+    {
+        $con = new ConnectDB();
+
+        $studentOnCourse = mysqli_stmt_init($con->link);
+        mysqli_stmt_prepare($studentOnCourse,"SELECT ud.firstname, ud.surname, ud.studentID FROM user_details AS ud
+                                              JOIN students_on_courses AS soc ON ud.detailsId = soc.student
+                                              JOIN courses AS c ON soc.course = c.courseID
+                                              WHERE c.courseName = ?");
+        mysqli_stmt_bind_param($studentOnCourse, "s", $course);
+        mysqli_stmt_execute($studentOnCourse);
+        $results = mysqli_stmt_get_result($studentOnCourse);
+
+        $output_array = [];
+        while($student = $results->fetch_row())
+            array_push($output_array, $student);
+
+        mysqli_close($con->link);
+        return $output_array;
+    }
+
+    public function studentNotOnCourse($course, $filter = "")
+    {
+        $con = new ConnectDB();
+
+        $notOnCourse = mysqli_stmt_init($con->link);
+        if($filter === "") {
+            mysqli_stmt_prepare($notOnCourse, "SELECT ud.firstname, ud.surname, ud.studentID FROM user_details AS ud 
+                                            JOIN user_login AS ul ON ud.detailsId = ul.userID 
+                                            JOIN user_access AS ua ON ul.accessLevel = ua.access_id 
+                                            WHERE (ua.access_name = 'student' OR ua.access_name = 'lab helper') 
+                                            AND ud.detailsId NOT IN (SELECT soc.student FROM students_on_courses AS soc
+                                            JOIN courses AS c ON soc.course = c.courseID 
+                                            WHERE c.courseName = ?)");
+            mysqli_stmt_bind_param($notOnCourse, "s", $course);
+        }
+        else{
+            $filter = "%".$filter."%";
+            mysqli_stmt_prepare($notOnCourse, "SELECT ud.firstname, ud.surname, ud.studentID FROM user_details AS ud 
+                                            JOIN user_login AS ul ON ud.detailsId = ul.userID 
+                                            JOIN user_access AS ua ON ul.accessLevel = ua.access_id 
+                                            WHERE (ua.access_name = 'student' OR ua.access_name = 'lab helper')
+                                            AND (CONCAT(ud.firstname, ' ', ud.surname) LIKE  ? OR ud.studentID LIKE ?)
+                                            AND ud.detailsId NOT IN (SELECT soc.student FROM students_on_courses AS soc
+                                            JOIN courses AS c ON soc.course = c.courseID 
+                                            JOIN user_details AS ud ON soc.student = ud.detailsId
+                                            WHERE c.courseName = ?)");
+            mysqli_stmt_bind_param($notOnCourse, "sss", $filter, $filter, $course);
+        }
+        mysqli_stmt_execute($notOnCourse);
+        $results = mysqli_stmt_get_result($notOnCourse);
+
+        $output_array = [];
+        while($student = $results->fetch_row())
+            array_push($output_array, $student);
+
+        mysqli_close($con->link);
+        return $output_array;
+    }
+
+
+    public function studentIDFromMatric($student)
     {
         $con = new ConnectDB();
 
@@ -193,3 +254,5 @@ class Student
 
 
 }
+//$student = new Student();
+//print_r($student->studentNotOnCourse("Software Development 1", "M"));

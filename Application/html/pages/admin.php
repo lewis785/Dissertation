@@ -47,8 +47,8 @@
 
             <div class="col-md-12" id="admin-panel">
 
-                <button type="button" class="btn btn-default admin-panel-btn col-md-6 col-md-offset-3" onclick="manageUsersButton()">Manage User</button>
-                <button type="button" class="btn btn-default admin-panel-btn col-md-6 col-md-offset-3">Manage Database</button>
+                <button type="button" class="btn btn-info admin-panel-btn col-md-6 col-md-offset-3" onclick="manageUsersButton()">Manage User</button>
+                <button type="button" class="btn btn-info admin-panel-btn col-md-6 col-md-offset-3">Manage Database</button>
 
             </div>
 

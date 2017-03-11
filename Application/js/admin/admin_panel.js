@@ -3,20 +3,20 @@
  */
 
 
-function getLayout(layout)
-{
+function getLayout(layout) {
     $.ajax({
         type: 'POST',
         url: "../../php/admin/admin_layout.php",
         dataType: 'json',
         data: {buttonType: layout},
+        async: false,
         cache: false,
-        success: function(result){
+        success: function (result) {
             $("#admin-panel").html(result.layout);
             // $("#sub-menu").remove();
             // // $(".page-header").html("Admin Control Panel");
         },
-        error: function(xhr, status, error) {
+        error: function (xhr, status, error) {
             alert(xhr);
         }
     });
@@ -24,17 +24,13 @@ function getLayout(layout)
 }
 
 
-
-
-function mainPanel()
-{
+function mainPanel() {
     getLayout("main-panel");
 
     $("#sub-menu").remove();
 }
 
-function manageUsersButton()
-{
+function manageUsersButton() {
     getLayout("user-manager");
 
     $("#sub-menu").remove();
@@ -42,55 +38,56 @@ function manageUsersButton()
     $(".page-header").append("<div class='col-md-3' id='sub-menu'>> User Manager");
 }
 
-function manageStudentButtons()
-{
+function manageStudentButtons() {
     getLayout("manage-students");
     $(".page-header").append("<div class='col-md-4' id='sub-sub-menu'>> Student's");
 }
 
 
-
-
-
 /*Start of functions for loading forms*/
 
-function addUserForm()
-{
+function addUserForm() {
     getLayout("create-user");
 
     $(".page-header").append("<div class='col-md-3' id='sub-sub-menu'>> Add Users");
 }
 
 
-function removeUserForm()
-{
+function removeUserForm() {
     getLayout("remove-user");
 
     $(".page-header").append("<div class='col-md-3' id='sub-sub-menu'>> Remove Users");
 }
 
-function updateUserForm()
-{
+function updateUserForm() {
     getLayout("update-user");
     $(".page-header").append("<div class='col-md-3' id='sub-sub-menu'>> Update Users");
 }
 
 
-function manageLabHelpers()
-{
+function manageLabHelpers() {
     getLayout("manage-lab-helper")
     $(".page-header").append("<div class='col-md-4' id='sub-sub-menu'>> Lab Helper's");
+
+    var table = $("#lab-helper-table").find("tr");
+
+    table.bind('click', function () {
+        var matric = $(this).find("div#matric-num").text();
+
+        if(!$("#selected-table #"+matric).length)
+            $("#selected-table tr:last").after('<tr id="'+ matric +'">'+$(this).html()+'</tr>');
+    });
+
+
 }
 
-function manageLecturers()
-{
+function manageLecturers() {
     getLayout("manage-lecturer")
     $(".page-header").append("<div class='col-md-4' id='sub-sub-menu'>> Lecturer's ");
 }
 
 
-function manageStudentsForm()
-{
+function manageStudentsForm() {
     getLayout("manage-students");
 
     // $(".page-header").append("<div class='col-md-3' id='sub-sub-menu'>> Manage Students");

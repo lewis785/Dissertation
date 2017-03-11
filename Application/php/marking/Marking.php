@@ -78,7 +78,7 @@ class Marking extends Lab
         $qNum = 1;
         $answers = ($_POST["mark"]);
         $labID =    $this->get_lab_id($_SESSION["MARKING_COURSE"], $_SESSION["MARKING_LAB"]);
-        $studentID = $student->get_studentID($_SESSION["MARKING_STUDENT"]);
+        $studentID = $student->studentIDFromMatric($_SESSION["MARKING_STUDENT"]);
         $questionID = $this->get_questionID($labID, $qNum);
 
         $already_present = false;
