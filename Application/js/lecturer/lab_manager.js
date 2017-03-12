@@ -20,13 +20,10 @@ function display_table()
             alert("Error Occurred Try To Load Lab Table: " + xhr + status + error);    //Displays an alert if error occurred
         }
     });
-
-
 }
 
 function lab_markable(id,state)
 {
-
     $.ajax({
         type: 'POST',
         url: "../../php/labs/change_lab_markable.php",
@@ -40,7 +37,7 @@ function lab_markable(id,state)
                     state = "false";
                 else
                     state = "true";
-                $("#check-"+id).attr("onclick",'lab_markable('+id+',"'+state+'")')
+                $("#check-"+id).attr("onclick",'lab_markable('+id+',"'+state+'")');
             }
             else
             {
@@ -50,7 +47,6 @@ function lab_markable(id,state)
                     $('#myCheckbox').attr('checked', true);
                 alert("Failed to update please refresh and try again");
             }
-
         },
         error: function(xhr, status, error) {
             alert("Error Occurred Trying To Update If Lab Can Be Marked" + xhr);    //Displays an alert if error occurred

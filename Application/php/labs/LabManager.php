@@ -41,16 +41,16 @@ class LabManager extends CourseChecks
 
             foreach ($courses as $course) {                                           //For loop through each course
                 $labs = $labList->getMarkableLabs($course);                                                   //Stores all the labs relating to the course
-                $output .= "<tr><td class='btn-info course-row'' colspan=3>" . $course . "</td></tr>";   //Insert Row to filling it with the course title
+                $output .= "<tr><td class='btn-info course-row'' colspan=6>" . $course . "</td></tr>";   //Insert Row to filling it with the course title
                 if (sizeof($labs) > 0) {                                                         //Checks that there is at least one lab
                     foreach ($labs as $lab) {                                                   //For loop through each lab the course has
                         $id = $this->LabDisplay->get_lab_id($course[0], $lab[0]);                              //Gets the labID for the lab
                         $totalMark = $stats->lab_total_mark($course, $lab[0]);
 
                         if ($this->LabDisplay->is_lab_markable($course, $lab[0]))
-                            $buttonChecked = "checked='checked' onclick='lab_markable(" . $id . ",'false')'";
+                            $buttonChecked = "checked='checked' onclick='lab_markable(" . $id . ",\"false\")'";
                         else
-                            $buttonChecked = "onclick='lab_markable(" . $id . ",'true')'";
+                            $buttonChecked = "onclick='lab_markable(" . $id . ",\"true\")'";
 
 
                         $output .= "<tr id='lab-" . $id . "'><td class='lab-row col-md-2'>" . $lab[0] . "</td>";
@@ -80,16 +80,14 @@ class LabManager extends CourseChecks
         $successful = false;
         $con = new ConnectDB();
 
-
         if ($this->is_lecturer_of_course($course)) {
 
             $changeMarkState = mysqli_stmt_init($con->link);
             mysqli_stmt_prepare($changeMarkState, "UPDATE labs SET canMark = ? WHERE labID = ?");
             mysqli_stmt_bind_param($changeMarkState, "si", $this->state, $this->labID);
             $successful = mysqli_stmt_execute($changeMarkState);
-            mysqli_close($con->link);
         }
-
+        mysqli_close($con->link);
         return json_encode(array("success"=>$successful));
     }
 
@@ -180,7 +178,7 @@ class LabManager extends CourseChecks
 }
 
 //$manage = new LabManager();
-//print_r($manage->exportLabResults("14"));
+//print_r($manage->changeMarkable(14,"false"));
 
 
 //if(isset($_POST["labID"]) && isset($_POST["newState"]))

@@ -49,6 +49,11 @@
     border-radius: 25px;
 }
 
+.tile-title{
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
 /*Places close button in top right corner of parent div*/
 .close-btn
 {
@@ -112,15 +117,15 @@
     line-height: 50px;
 }
 
-.not-marked{
+.not-marked-colour{
     background: #5BC0DE;
 }
 
-.marked{
+.marked-colour{
     background: #F0AD4E;
 }
 
-.full-marks{
+.full-marks-colour{
     background: #449D44;
 }
 
@@ -185,7 +190,7 @@
     text-decoration: underline;
 }
 
-.labs-table .lab-row:hover {
+.labs-table tr:hover {
     background-color: lightblue;
 }
 

@@ -13,7 +13,14 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
+                <button type="button" data-toggle="#sidebar" id="sidebar-toggle" class="navbar-left navbar-toggle pull-left">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
                 <a class="navbar-brand" href="#">Lab Marking System</a>
+
+
             </div>
 
 

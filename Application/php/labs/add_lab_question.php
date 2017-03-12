@@ -9,23 +9,11 @@ require_once "LabMaker.php";
 if(isset($_POST["type"]) && isset($_POST["id"]) && isset($_POST["qnum"]))
 {
     $maker = new LabMaker();
+    $type = $_POST["type"];
     $id = $_POST["id"];
     $qnum = $_POST["qnum"];
 
-    switch ($_POST["type"])
-    {
-        case "boolean":
-            echo $maker->booleanQuestion($id, $qnum);
-            break;
-        case "scale":
-            echo $maker->scaleQuestion($id, $qnum);
-            break;
-        case "text":
-            echo $maker->textQuestion($id, $qnum);
-            break;
-        default:
-            echo json_encode(array("question"=>"<div>Question Type does not exists</div>"));
-
-    }
+    if(is_numeric($id) && is_numeric($qnum))
+        echo($maker->createQuestion($type,$id,$qnum));
 
 }

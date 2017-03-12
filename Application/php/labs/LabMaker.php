@@ -9,11 +9,40 @@
 class LabMaker
 {
 
-    public function scaleQuestion($id, $question_num)
+    public function createQuestion($type,$id,$question_num)
+    {
+        switch ($type)
+        {
+            case "boolean":
+                return $this->booleanQuestion($id, $question_num);
+                break;
+            case "scale":
+                return $this->scaleQuestion($id, $question_num);
+                break;
+            case "text":
+                return $this->textQuestion($id, $question_num);
+                break;
+            default:
+                return $this->unknownQuestion($id,$question_num);
+        }
+    }
+
+
+    private function unknownQuestion($id,$question_num)
+    {
+        $unknown = "<div id='type-error'>";
+        $unknown.= $this->startQuestion($id);
+        $unknown.= $this->title("Unknown",$question_num);
+        $unknown.= "<div class='unknown-question col-md-6 col-md-offset-3'>Question type does not exist</div></div></div>";
+
+        return json_encode(array('question'=>$unknown));
+    }
+
+    private function scaleQuestion($id, $question_num)
     {
         $scale = $this->startQuestion($id);
         $scale.= $this->title("Scale", $question_num);
-        $scale.= $this->typeInput("scale");
+        $scale.= $this->questionType("scale");
         $scale.= $this->textInput("question[]");
         $scale.= $this->scaleInput("Select Questions Minimum Mark","min-value[]");
         $scale.= $this->scaleInput("Select Questions Maximum Mark","max-value[]");
@@ -23,13 +52,11 @@ class LabMaker
         return json_encode(array('question'=>$scale));
     }
 
-
-
-    public function booleanQuestion($id, $question_num)
+    private function booleanQuestion($id, $question_num)
     {
         $boolean = $this->startQuestion($id);
         $boolean.= $this->title("Boolean", $question_num);
-        $boolean.= $this->typeInput("boolean");
+        $boolean.= $this->questionType("boolean");
         $boolean.= $this->textInput("question[]");
         $boolean.= $this->scaleInput("Select Question Value", "max-value[]");
         $boolean.= $this->visablityButton($id);
@@ -38,13 +65,12 @@ class LabMaker
         return json_encode(array('question'=>$boolean));
     }
 
-
-    public function textQuestion($id, $question_num)
+    private function textQuestion($id, $question_num)
     {
 
         $text = $this->startQuestion($id);
         $text.= $this->title("Text", $question_num);
-        $text.= $this->typeInput("text");
+        $text.= $this->questionType("text");
         $text.= $this->textInput("question[]");
         $text.= $this->scaleInput("Selectable Mark Value For Question Can Be Zero For No Marked Question", "max-value[]");
         $text.= $this->visablityButton($id);
@@ -69,7 +95,7 @@ class LabMaker
                 </div>";
     }
 
-    private function typeInput($type)
+    private function questionType($type)
     {
         return "<input type='hidden' name='type[]' value='$type'>";
     }

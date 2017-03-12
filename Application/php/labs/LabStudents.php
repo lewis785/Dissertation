@@ -45,9 +45,9 @@ class LabStudents extends Lab
             $result = $this->get_students($courseName);
 
             $colour_key = "<div class='col-md-12 colour-keys'>
-                           <div class='col-md-2 col-md-offset-3 colour-key'><div class='colour-box not-marked'/> <span>Not Marked</span></div>
-                           <div class='col-md-2 colour-key'><div class='colour-box marked'/> <span>Already Marked</span></div>
-                           <div class='col-md-2 colour-key'><div class='colour-box full-marks'/> <span>Full Marks</span></div></div>";
+                           <div class='col-md-2 col-md-offset-3 colour-key'><div class='colour-box not-marked-colour'/> <span>Not Marked</span></div>
+                           <div class='col-md-2 colour-key'><div class='colour-box marked-colour'/> <span>Already Marked</span></div>
+                           <div class='col-md-2 colour-key'><div class='colour-box full-marks-colour'/> <span>Full Marks</span></div></div>";
 
             $buttons = "";
             while ($student = $result->fetch_row()) {
