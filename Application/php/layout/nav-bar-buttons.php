@@ -4,7 +4,6 @@ include(dirname(__FILE__)."/../core/connection.php");
 include(dirname(__FILE__)."/../core/check_access_level.php");
 
 $nav_bar_content = '<li id="results-nav"><a href="labresults.php">Lab Results</a></li>
-                    <li id="home-nav"><a href="home.php" >Home</a></li>
                     <li id="signoutbtn"><a href="../../php/core/signout.php">Signout</a></li>';
 
 if(get_access_value($link, "lab helper") <= $_SESSION["accesslevel"]) {

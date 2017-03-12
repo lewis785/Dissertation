@@ -25,7 +25,7 @@
 
 
     <!--JavaScripts -->
-    <script type="text/javascript">include_navbar("course");</script>
+    <script type="text/javascript">include_navbar("labs");</script>
     <script type="text/javascript">display_manageable_courses();</script>
 
     <title>Course Manage Page</title>

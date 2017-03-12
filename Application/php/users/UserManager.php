@@ -34,8 +34,6 @@ class UserManager extends Security
 
         }
 
-        echo $username . " " . $password . " " . $access . "<br>";
-
         mysqli_autocommit($link, FALSE);
 
         $insertLogin = mysqli_stmt_init($link);
@@ -88,6 +86,16 @@ class UserManager extends Security
         $martic_count = $result->fetch_row();
 
         return $martic_count[0] === 1;
+    }
+
+    public function getIdFromUsername($username)
+    {
+        $con = new ConnectDB();
+        $userID = mysqli_stmt_init($con->link);
+        mysqli_stmt_prepare($userID, "SELECT userID from user_login WHERE username = ?");
+        mysqli_stmt_bind_param($userID, "s", $username);
+        mysqli_stmt_execute($userID);
+        return mysqli_stmt_get_result($userID)->fetch_row()[0];
     }
 
 

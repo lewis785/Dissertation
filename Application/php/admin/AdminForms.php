@@ -84,12 +84,13 @@ class AdminForms extends AdminButtons
         $output .= "<div class='col-md-8 col-md-offset-2 admin-function' id='remove-users-div'> <legend>Remove User(s)</legend>";
         $output.= $this->textInput("User Search:","user-search");
         $output.= "<form id='remove-user-form' method='post' >";
-        $output .=  $this->addTableStart("users", 3);
+        $output.= $this->addTable("users",$users,3);
+//        $output .=  $this->addTableStart("users", 3);
+//
+//        foreach($users as $user)
+//            $output.= $this->addTableRow($user,3);
 
-        foreach($users as $user)
-            $output.= $this->addTableRow($user);
-
-        $output.= "</table></div>";
+//        $output.= "</table></div>";
         $output.= $this->submitButton("removeUser()");
 
 
@@ -288,6 +289,19 @@ class AdminForms extends AdminButtons
         return json_encode(array("layout"=>$output));
     }
 
+    public function filterLecturerTable($course, $filter)
+    {
+        $lecturer_functions = new Lecturer();
+        $lecturers = $lecturer_functions->getLecturersNotOfCourse($course, $filter);
+
+        return json_encode(array("layout"=>$this->addTable("lecturer", $lecturers, 1)));
+    }
+
+
+
+
+
+
 
     /********************************************************
      *                                                      *
@@ -300,7 +314,7 @@ class AdminForms extends AdminButtons
         $table = $this->addTableStart($id, $column_num);
 
         foreach($data as $row)
-            $table.= $this->addTableRow($row);
+            $table.= $this->addTableRow($row, $column_num);
 
         $table.= "</table></div>";
 
@@ -308,30 +322,30 @@ class AdminForms extends AdminButtons
     }
 
 
-    private function addTableStart($id, $rowNum)
+    private function addTableStart($id, $column_num)
     {
         $table =  "<div class='table-div' id='$id-table-div'><table class='col-md-12 table table-striped table-bordered' id='$id-table'>";
 
-        if($rowNum === 1)
-            $table.= "<thead> <tr><td>Name</td></tr> </thead>";
-        elseif($rowNum === 2)
+        if($column_num === 1)
+            $table.= "<thead> <tr><td>Name</td><td>Username</td></tr> </thead>";
+        elseif($column_num === 2)
             $table.= "<thead> <tr><td>Name</td><td>Matric Num</td></tr> </thead>";
-        elseif ($rowNum === 3)
+        elseif ($column_num === 3)
             $table.= "<thead> <tr><td>Access</td><td>Name</td><td>Matric Num</td></tr> </thead>";
 
         return $table;
     }
 
 
-    private function addTableRow($user)
+    private function addTableRow($user, $type)
     {
         $length = sizeof($user);
-        if($length === 4)
+        if($type === 3)
             return "<tr> <td><div id='access'>$user[0]</div></td> <td>$user[1] $user[2]</td> <td><div id='matric-num'>$user[3]</div></td> </tr>";
-        elseif($length === 3)
+        elseif($type === 2)
             return "<tr> <td>$user[0] $user[1]</td> <td><div id='matric-num'>$user[2]</div></td> </tr>";
-        elseif($length === 2)
-            return "<tr> <td>$user[0] $user[1]</td> </tr>";
+        elseif($type === 1)
+            return "<tr> <td>$user[0] $user[1]</td><td><div id='username'>$user[2]</div></td> </tr>";
     }
 
 
@@ -378,4 +392,4 @@ class AdminForms extends AdminButtons
 }
 //
 //$form = new AdminForms();
-//echo $form->lecturerTable("Software Development 1");
+//echo $form->filterLecturerTable("Software Development 1","gray");

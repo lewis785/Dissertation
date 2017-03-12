@@ -151,6 +151,7 @@ function filterStudents(filter)
         success: function (result) {
             $("#students-table-div").remove();
             $("#student-search-input").after(result.layout);
+            tableClickable("students-table", "add-student-btn");
         },
         error: function (xhr, status, error) {
             alert(xhr);
@@ -269,6 +270,7 @@ function filterHelpers(filter)
         success: function (result) {
             $("#lab-helper-table-div").remove();
             $("#helper-search-input").after(result.layout);
+            tableClickable("lab-helper-table", "add-helper-btn");
         },
         error: function (xhr, status, error) {
             alert(xhr);
@@ -312,6 +314,91 @@ function courseLecturers(choice)
     else
         $("#tables-area").empty();
 }
+
+function removeLecturer()
+{
+    var lecturer = $("#selected-table .selected-row div#username").text();
+    var course = $("select").val();
+
+    $.ajax({
+        type: 'POST',
+        url: "../../php/lecturer/lecturer_manager.php",
+        dataType: 'json',
+        data: {action:"remove",course: course, lecturer: lecturer},
+        cache: false,
+        success: function (result) {
+            if(result.success)
+            {
+                var button  = $("#remove-lecturer-btn");
+                $("#lecturer-table tr:last").after("<tr>"+ $("#selected-table .selected-row").html() + "</tr>");
+                $("#selected-table .selected-row").remove();
+                button.addClass("disabled");
+                button.prop("disabled", true);
+                tableClickable("lab-helper-table", "add-helper-btn");
+            }
+            else
+                alert("Failed to remove");
+        },
+        error: function (xhr, status, error) {
+            alert(xhr);
+        }
+    });
+}
+
+function addLecturer(){
+    var lecturer = $("#lecturer-table .selected-row div#username").text();
+    var course = $("select").val();
+
+    alert(lecturer + course);
+
+    $.ajax({
+        type: 'POST',
+        url: "../../php/lecturer/lecturer_manager.php",
+        dataType: 'json',
+        data: {action:"add",course: course, lecturer: lecturer},
+        cache: false,
+        success: function (result) {
+            if(result.success) {
+                var button  = $("#add-lecturer-btn");
+                $("#selected-table tr:last").after("<tr>"+ $("#lecturer-table .selected-row").html() + "</tr>");
+                $("#lecturer-table .selected-row").remove();
+                button.addClass("disabled");
+                button.prop("disabled", true);
+                tableClickable("selected-table", "remove-helper-btn");
+            }
+            else
+                alert("Failed to add lecturer");
+        },
+        error: function (xhr, status, error) {
+            alert(xhr);
+        }
+    });
+}
+
+function filterLecturers(filter)
+{
+    var course = $("select").val();
+
+    $.ajax({
+        type: 'POST',
+        url: "../../php/lecturer/lecturer_manager.php",
+        dataType: 'json',
+        data: {action:"filter", course: course, filter: filter},
+        cache: false,
+        success: function (result) {
+            $("#lecturer-table-div").remove();
+            $("#lecturer-search-input").after(result.layout);
+            tableClickable("lecturer-table", "add-lecturer-btn");
+        },
+        error: function (xhr, status, error) {
+            alert(xhr);
+        }
+    });
+}
+
+
+
+
 
 
 

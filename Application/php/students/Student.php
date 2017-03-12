@@ -51,7 +51,8 @@ class Student
         mysqli_stmt_prepare($studentOnCourse,"SELECT ud.firstname, ud.surname, ud.studentID FROM user_details AS ud
                                               JOIN students_on_courses AS soc ON ud.detailsId = soc.student
                                               JOIN courses AS c ON soc.course = c.courseID
-                                              WHERE c.courseName = ?");
+                                              WHERE c.courseName = ?
+                                              ORDER BY ud.surname, ud.firstname");
         mysqli_stmt_bind_param($studentOnCourse, "s", $course);
         mysqli_stmt_execute($studentOnCourse);
         $results = mysqli_stmt_get_result($studentOnCourse);
@@ -76,7 +77,8 @@ class Student
                                             WHERE (ua.access_name = 'student' OR ua.access_name = 'lab helper') 
                                             AND ud.detailsId NOT IN (SELECT soc.student FROM students_on_courses AS soc
                                             JOIN courses AS c ON soc.course = c.courseID 
-                                            WHERE c.courseName = ?)");
+                                            WHERE c.courseName = ?)
+                                            ORDER BY ud.surname, ud.firstname");
             mysqli_stmt_bind_param($notOnCourse, "s", $course);
         }
         else{
@@ -89,7 +91,8 @@ class Student
                                             AND ud.detailsId NOT IN (SELECT soc.student FROM students_on_courses AS soc
                                             JOIN courses AS c ON soc.course = c.courseID 
                                             JOIN user_details AS ud ON soc.student = ud.detailsId
-                                            WHERE c.courseName = ?)");
+                                            WHERE c.courseName = ?)
+                                            ORDER BY ud.surname, ud.firstname");
             mysqli_stmt_bind_param($notOnCourse, "sss", $filter, $filter, $course);
         }
         mysqli_stmt_execute($notOnCourse);

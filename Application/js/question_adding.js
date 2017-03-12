@@ -15,24 +15,45 @@ function update_numbers(number)
     }
 }
 
+// function add_question(type)
+// {
+//     $.ajax({
+//         type: 'POST',
+//         url: "../../html/components/questions_create/"+type+"_question.php",
+//         dataType: 'json',
+//         data: {count: qCount, qnum: maxQ},
+//         cache: false,
+//         success: function(result){
+//             qCount++;
+//             maxQ ++;
+//             $.when($("#form-area").append(result.data)).then(scroll_bottom());
+//         },
+//         error: function(xhr, status, error) {
+//             alert(xhr);
+//         }
+//     });
+// }
+
 function add_question(type)
 {
+    // alert(type)
     $.ajax({
         type: 'POST',
-        url: "../../html/components/questions_create/"+type+"_question.php",
+        url: "../../php/labs/add_lab_question.php",
         dataType: 'json',
-        data: {count: qCount, qnum: maxQ},
+        data: {type:type, id: qCount, qnum: maxQ},
         cache: false,
         success: function(result){
             qCount++;
             maxQ ++;
-            $.when($("#form-area").append(result.data)).then(scroll_bottom());
+            $.when($("#form-area").append(result.question)).then(scroll_bottom());
         },
         error: function(xhr, status, error) {
             alert(xhr);
         }
     });
 }
+
 
 function change_visibility(id)
 {

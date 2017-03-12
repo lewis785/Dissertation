@@ -23,7 +23,7 @@ if(isset($_POST["Import"])){
             if(!$first_row) {
                 mysqli_autocommit($link, FALSE);
 
-                echo $getData[0] . $getData[1] . $getData[2] . $getData[3] . $getData[4] . $getData[5];
+//                echo $getData[0] . $getData[1] . $getData[2] . $getData[3] . $getData[4] . $getData[5];
                 $insertLogin = mysqli_stmt_init($link);
                 mysqli_stmt_prepare($insertLogin, "INSERT INTO user_login (username, password, accessLevel) VALUES (?, ?, ?)");
                 mysqli_stmt_bind_param($insertLogin, 'ssi', $getData[0], $getData[1], $getData[2]);

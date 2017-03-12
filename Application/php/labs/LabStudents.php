@@ -44,6 +44,11 @@ class LabStudents extends Lab
 
             $result = $this->get_students($courseName);
 
+            $colour_key = "<div class='col-md-12 colour-keys'>
+                           <div class='col-md-2 col-md-offset-3 colour-key'><div class='colour-box not-marked'/> <span>Not Marked</span></div>
+                           <div class='col-md-2 colour-key'><div class='colour-box marked'/> <span>Already Marked</span></div>
+                           <div class='col-md-2 colour-key'><div class='colour-box full-marks'/> <span>Full Marks</span></div></div>";
+
             $buttons = "";
             while ($student = $result->fetch_row()) {
 
@@ -52,7 +57,7 @@ class LabStudents extends Lab
                       <button class='" . $buttonType . " btn-text-wrap' id='btn-student' onclick='display_schema_for(\"" . $student[2] . "\")'>" . $student[0] . " " . $student[1] . "</button>
                      </div>";
             }
-            $output = json_encode(array('successful' => true, 'buttons' => $buttons));
+            $output = json_encode(array('successful' => true, 'buttons' => $colour_key.$buttons));
         } else
             $output = json_encode(array('successful' => false));
 

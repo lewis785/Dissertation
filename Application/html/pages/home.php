@@ -26,7 +26,7 @@
 
     <!--JavaScripts Functions -->
     <script type="text/javascript">include_navbar("home");</script>
-    <script type="text/javascript">include_sidebar("sidebar_area");</script>
+
 
 
     <title>Home Page</title>
@@ -41,8 +41,8 @@
 
         <div id="sidebar_area"></div>
 
-        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-            <h1 class="page-header">Webpage Dashboard</h1>
+        <div class="col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2 main">
+            <h1 class="page-header">Home Page</h1>
 
 
 

@@ -39,9 +39,14 @@
 .tile
 {
     position: relative;
-    border: solid darkred 1px;
-    background-color: darkgray;
-    margin-bottom: 10px;
+    border: solid black 2px;
+    background-color: lightgray;
+    margin-bottom: 20px;
+    padding-top: 15px ;
+
+    box-shadow: 0 0 30px 1px #000;
+
+    border-radius: 25px;
 }
 
 /*Places close button in top right corner of parent div*/
@@ -84,6 +89,40 @@
 
 
 /*CSS for marking page*/
+
+.colour-box{
+    float: left;
+    width: 20px;
+    height: 20px;
+    margin: 15px 10px 5px 5px;
+    border: 1px solid black;
+
+}
+.colour-key{
+    display:inline-block;
+    height: 50px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.colour-key span{
+    display: inline-block;
+    vertical-align: middle;
+    font-weight: bold;
+    line-height: 50px;
+}
+
+.not-marked{
+    background: #5BC0DE;
+}
+
+.marked{
+    background: #F0AD4E;
+}
+
+.full-marks{
+    background: #449D44;
+}
 
 .btn-text
 {

@@ -52,7 +52,7 @@ class LoginManager
             session_start();
 
         if (isset($_SESSION['username'])){
-            $redirect = "../../html/pages/home.php";
+            $redirect = "../../html/pages/labresults.php";
             header("Location:".$redirect);
         }
     }
