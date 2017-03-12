@@ -37,6 +37,28 @@ class Lab extends CourseChecks
         return $output;
     }
 
+    public function studentsFromLabID($labID)
+    {
+        $con = new ConnectDB();
+
+        $students  = mysqli_stmt_init($con->link);
+        mysqli_stmt_prepare($students, "SELECT ud.studentID  FROM user_details AS ud
+                                          JOIN students_on_courses AS soc ON ud.detailsId = soc.student
+                                          JOIN courses AS c ON soc.course = c.courseID
+                                          JOIN labs AS l ON c.courseID = l.courseRef
+                                          WHERE l.labID = ?");
+        mysqli_stmt_bind_param($students, "s", $labID);
+        mysqli_stmt_execute($students);
+        $results = mysqli_stmt_get_result($students);
+
+        $students_array = [];
+        while($student = $results->fetch_row())
+            array_push($students_array, $student[0]);
+
+        mysqli_close($con->link);
+        return $students_array;
+    }
+
 
 
     public function getLabs($course)
@@ -99,6 +121,21 @@ class Lab extends CourseChecks
 
         mysqli_close($con->link);
         return $result[0];                                                      //Return first item in result array
+    }
+
+    public function getLabName($labID)
+    {
+        $con = new ConnectDB();
+
+        $getLabIDQuery = 'SELECT l.labName FROM labs AS l WHERE l.labID = ?';                //Query gets lab name from Id
+        $getLabID = mysqli_stmt_init($con->link);                                    //Init Prepared Statement
+        mysqli_stmt_prepare($getLabID, $getLabIDQuery);
+        mysqli_stmt_bind_param($getLabID, 'i',$labID);                  //Bind course and lab variables
+        mysqli_stmt_execute($getLabID);                                         //Execute Prepared Statement
+        $result = mysqli_stmt_get_result($getLabID)->fetch_row();               //Get Result
+
+        mysqli_close($con->link);
+        return $result[0];
     }
 
 

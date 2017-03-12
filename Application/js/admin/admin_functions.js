@@ -329,7 +329,5 @@ function tableClickable(table_name, button_name)
         button.prop("disabled", false);
 
         $(this).addClass("selected-row");
-
     });
-
 }

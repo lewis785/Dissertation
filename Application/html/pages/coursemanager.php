@@ -14,6 +14,7 @@
     <link href="../../admincss/ie10-viewport-bug-workaround.css" rel="stylesheet">
     <link href="../../css/sidebar.css" rel="stylesheet">
     <link href="../../css/main.css" rel="stylesheet">
+    <link href="../../css/admin.css" rel="stylesheet">
 
     <!--JS Links -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -40,7 +41,7 @@
         <div id="sidebar_area"></div>
 
         <div class="col-sm-6 col-sm-offset-3 col-md-8 col-md-offset-2 main">
-            <h1 class="page-header">Course Manager</h1>
+            <h1 class="page-header col-md-12"><div class="col-md-3">Course Manager</div></h1>
             <div class="col-lg-12" id="main-text-area">
 
 

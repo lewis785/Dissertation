@@ -30,6 +30,8 @@
 
 <body>
 
+<form method="post" action="../../php/labs/lab_manager.php" id="hidden-form"><input type="hidden" name="action" value="export"> <input id="hidden-lab-id" type="hidden" name="labID"> </form>
+
 <div id="navbar_area"></div>
 
 <div class="container-fluid">

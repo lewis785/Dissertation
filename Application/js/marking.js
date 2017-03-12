@@ -208,6 +208,14 @@ function get_student_marks(){
                             if (value === "true")
                                 swap_value("boolean-button-" + (count + 1));
                             break;
+                        case "text":
+                            var text= result.answers[count][2];
+                            var value = result.answers[count][0];
+                            $(this).val(text);
+                            if(value !== "")
+                                $(this).parent().find(".text-value-selector").val(value);
+                            break;
+
                         default:
                             break;
                     }

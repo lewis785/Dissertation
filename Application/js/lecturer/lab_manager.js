@@ -59,6 +59,13 @@ function lab_markable(id,state)
 }
 
 
+function exportResults(labID)
+{
+    $("#hidden-lab-id").val(labID);
+    $("#hidden-form").submit();
+}
+
+
 
 
 //Creates a popup to confirm the deletion of a lab
@@ -88,9 +95,9 @@ function delete_lab(labID)
 {
     $.ajax({
         type: 'POST',
-        url: "../../php/labs/delete_lab.php",
+        url: "../../php/labs/lab_manager.php",
         dataType: 'json',
-        data: {labID: labID},
+        data: {labID: labID, action:"delete"},
         cache: false,
         success: function(result) {
             $("#delete-lab-popup").remove();                    //Removes the delete popup window

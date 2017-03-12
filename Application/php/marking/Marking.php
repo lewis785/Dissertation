@@ -17,8 +17,11 @@ class Marking extends Lab
         $con = new ConnectDB();
 
         $check_already_marked = mysqli_stmt_init($con->link);
-        mysqli_stmt_prepare($check_already_marked, "SELECT count(*) FROM lab_answers WHERE socRef = ? AND labQuestionRef = ?");
-        mysqli_stmt_bind_param($check_already_marked, 'ii', $studentID, $labQID);
+        mysqli_stmt_prepare($check_already_marked, "SELECT count(*) FROM lab_answers AS la
+                                                    JOIN students_on_courses AS soc ON la.socRef = soc.socID
+                                                    JOIN user_details AS ud ON soc.student = ud.detailsId
+                                                    WHERE ud.studentID = ? AND labQuestionRef = ?");
+        mysqli_stmt_bind_param($check_already_marked, 'si', $studentID, $labQID);
         mysqli_stmt_execute($check_already_marked);
         $result = mysqli_stmt_get_result($check_already_marked)->fetch_row();
         return $result[0] === 1;
@@ -73,16 +76,25 @@ class Marking extends Lab
     public function submitMark()
     {
         $con = new ConnectDB();
-        $student = new Student();
+
 
         $qNum = 1;
-        $answers = ($_POST["mark"]);
-        $labID =    $this->get_lab_id($_SESSION["MARKING_COURSE"], $_SESSION["MARKING_LAB"]);
-        $studentID = $student->studentIDFromMatric($_SESSION["MARKING_STUDENT"]);
+        $value_answers = ($_POST["mark"]);
+        $text_answers = (isset($_POST["text"])) ? $_POST["text"] : null;
+        $text_num = 0;
+
+        $student = $_SESSION["MARKING_STUDENT"];
+        $lab = $_SESSION["MARKING_LAB"];
+        $course = $_SESSION["MARKING_COURSE"];
+
+
+        $labID =    $this->get_lab_id($course, $lab );
+        $studentID = $this->getSocID($con->link, $course, $student);
         $questionID = $this->get_questionID($labID, $qNum);
 
+
         $already_present = false;
-        if($this->already_marked($studentID, $questionID))
+        if($this->already_marked($student, $questionID))
             $already_present = true;
 
         mysqli_autocommit($con->link, FALSE);                    //Sets up transaction for database insertion
@@ -90,22 +102,30 @@ class Marking extends Lab
             $successful = false;
             switch ($type) {                                       //Case statement checking what type each question is
                 case "boolean":                                 //Inserts boolean type questions
-                    if($answers[$qNum - 1] === "true")
+                    if($value_answers[$qNum - 1] === "true")
                         $mark = $this->get_avalible_marks($con->link,$questionID);
                     else
                         $mark = 0;
 
-                    $successful = $this->processAnswer($con->link, $already_present, $questionID, $studentID, NULL, $answers[$qNum - 1], NULL, $mark);
+                    $successful = $this->processAnswer($con->link, $already_present, $questionID, $studentID, NULL, $value_answers[$qNum - 1], NULL, $mark);
                     break;
                 case "scale":                                   //Inserts scale type questions
-                    $successful = $this->processAnswer($con->link, $already_present, $questionID, $studentID, $answers[$qNum - 1],NULL, NULL, $answers[$qNum - 1]);
+                    $successful = $this->processAnswer($con->link, $already_present, $questionID, $studentID, $value_answers[$qNum - 1], NULL, NULL, $value_answers[$qNum - 1]);
                     break;
-                case "value":                                   //Inserts value type questions
+                case "text":
+                    $successful = $this->processAnswer($con->link, $already_present, $questionID, $studentID, $value_answers[$qNum - 1], NULL, $text_answers[$text_num], $value_answers[$qNum - 1]);
+                    $text_num++;
+                    echo("insert text: ". (($successful) ? "Success" : "Failed"));
+                    break;
+
+                /*To Be Implemented Later*/
+//                case "value":                                   //Inserts value type questions
 //                $successful = $this->processAnswer($con->link, $labID, $valueTypeID, $qNum, $questionText[$qNum - 1], NULL, $maxMarks[$minPos]);
-                    break;
+//                    break;
                 default:
                     mysqli_rollback($con->link);                     //Undoes all inserts into the database during the transaction
                     $successful = false;                        //Sets successful to false
+                    break;
             }
 
             if (!$successful)                                   //Checks if insertion was successful
@@ -121,15 +141,20 @@ class Marking extends Lab
 
     private function processAnswer($link, $already_present, $questionID, $studentID, $ansNum, $ansBool, $ansText, $mark)
     {
-
+//        echo("q: ".$questionID." s: ". $studentID." a: ". $ansNum." b: ". $ansBool." t: ". $ansText." m: ". $mark);
         $successful = false;
-        if (!$already_present) {
-            $successful = $this->insertAnswer($link, $questionID, $studentID, $ansNum, $ansBool, $ansText, $mark);
+        if($mark <= $this->get_avalible_marks($link, $questionID)) {
+            if (!$already_present) {
+                echo "inserting";
+                $successful = $this->insertAnswer($link, $questionID, $studentID, $ansNum, $ansBool, $ansText, $mark);
+                echo ($successful) ? "true" : "false";
+            } else {
+                $successful = $this->updateAnswer($link, $questionID, $studentID, $ansNum, $ansBool, $ansText, $mark);
+            }
         }
         else
-        {
-            $successful = $this->updateAnswer($link, $questionID, $studentID, $ansNum, $ansBool, $ansText, $mark);
-        }
+            $successful = false;
+
         if (!$successful) {                                 //checks if insert or update failed
             mysqli_rollback($link);                         //Undoes all the inserts all ready done to the database
             return false;                                   //Returns false to show insert failed
@@ -140,12 +165,27 @@ class Marking extends Lab
 
     private function insertAnswer($link, $questionID, $studentID, $ansNum, $ansBool, $ansText, $mark)
     {
+        echo($questionID." ". $studentID." ". $ansNum." ". $ansBool." ". $ansText." ". $mark);
         $insertAnswerQuery = 'INSERT INTO lab_answers (labQuestionRef, socRef, answerNumber, answerBoolean, answerText, mark) VALUES (?, ?, ?, ?, ?, ?)';
         $insertAnswer = mysqli_stmt_init($link);
         mysqli_stmt_prepare($insertAnswer, $insertAnswerQuery);
         mysqli_stmt_bind_param($insertAnswer, 'iiissi', $questionID, $studentID, $ansNum, $ansBool, $ansText, $mark);
 
         return mysqli_stmt_execute($insertAnswer);
+    }
+
+
+    private function getSocID($link, $course, $matric)
+    {
+        echo($matric);
+        $socID = mysqli_stmt_init($link);
+        mysqli_stmt_prepare($socID, "SELECT soc.socID FROM students_on_courses AS soc
+                                      JOIN courses AS c ON soc.course = c.courseID
+                                      JOIN user_details AS ud ON soc.student = ud.detailsId
+                                      WHERE c.courseName = ? AND ud.studentID =?");
+        mysqli_stmt_bind_param($socID, "ss", $course, $matric);
+        mysqli_stmt_execute($socID);
+        return mysqli_stmt_get_result($socID)->fetch_row()[0];
     }
 
 
@@ -186,4 +226,4 @@ class Marking extends Lab
 }
 
 //$marking = new Marking();
-//echo ($marking->getStudentAnswers("Software Development 1", "df", "H00100234"));
+//echo ($marking->already_marked("H00152595",27));

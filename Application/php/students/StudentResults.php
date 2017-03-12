@@ -56,6 +56,9 @@ class StudentResults extends Student
                         case "scale":                                   //
                             $answerText = $answer[2];
                             break;
+                        case "text":
+                            $answerText = $answer[4];
+                            break;
                         case "value":                                   //
                             $answerText = $answer[2];
                             break;

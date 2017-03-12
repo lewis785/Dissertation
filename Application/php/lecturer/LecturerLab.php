@@ -113,6 +113,9 @@ class LecturerLab extends Lab
             case "scale":                                   //
                 return $answerArray[2];
                 break;
+            case "text":
+                return $answerArray[4];
+                break;
             case "value":                                   //
                 return $answerArray[2];
 

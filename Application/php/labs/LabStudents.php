@@ -63,8 +63,7 @@ class LabStudents extends Lab
 
     private function button_style($link,$matric, $qID, $labName, $courseName)
     {
-
-        if ($this->marking->already_marked($this->student->studentIDFromMatric($matric), $qID)) {
+        if ($this->marking->already_marked($matric, $qID)) {
             if ($this->student->has_full_marks($link, $matric, $courseName, $labName))
                 $style = "btn btn-success";
             else

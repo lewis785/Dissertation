@@ -34,13 +34,13 @@ $type = "<input type='hidden' name='type[]' value='text'>";
 $question = "  <div class='form-group row'>
                     <label for='question-label-input' class='col-md-12 col-md-offset-1 col-form-label'>Question</label>
                     <div class='col-md-10 col-md-offset-1'>
-                        <input class='form-control' type='text' value='' name='question[]' id='bolean-input'>
+                        <input class='form-control question-input' type='text' value='' name='question[]' id='text-input'>
                     </div>
                 </div>";
 
 $value = "<div class='form-group col-md-6 col-md-offset-3'>
                 <label for='sel1'>Select Question Value (select one):</label>
-                <select class='form-control' name='max-value[]' id='sel1'>
+                <select class='form-control' name='max-value[]'>
                     $values
                 </select>
                 </div>";

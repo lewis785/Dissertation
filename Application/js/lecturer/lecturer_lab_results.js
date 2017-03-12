@@ -90,12 +90,3 @@ function display_student_result(input, course, student)
     }
 }
 
-function convert_answers_array(answers)
-{
-    for(var i = 0, len = answers.length; i < len; i++){
-
-
-
-    }
-
-}

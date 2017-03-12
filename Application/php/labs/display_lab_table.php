@@ -6,14 +6,14 @@
  * Time: 22:29
  */
 
-require_once "LabDisplay.php";
+require_once "LabManager.php";
 
 
 if( isset($_POST["displayTable"]) )
 {
     if ($_POST["displayTable"] === "manage-table")
     {
-        $display = new LabDisplay();
+        $display = new LabManager();
         echo ($display->labManagementTable());
     }
 }
