@@ -59,7 +59,7 @@ class AdminButtons extends Admin
 
     public function buttonLayout($text, $action, $type="info")
     {
-        return "<button type='button' class='btn btn-$type admin-panel-btn col-md-6 col-md-offset-3' onclick='$action'>$text</button>";
+        return "<button type='button' class='btn btn-$type admin-panel-btn col-md-6 col-sm-6 col-xs-12 col-md-offset-3 col-md-offset-3' onclick='$action'>$text</button>";
     }
 
 }

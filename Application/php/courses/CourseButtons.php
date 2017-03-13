@@ -42,8 +42,8 @@ class CourseButtons extends Courses
         $result = $this->get_courses();
         $output = "";
         foreach ($result as $course) {
-            $output .= "<div class='col-md-6 col-md-offset-3'>
-            <button class='btn btn-success' id='btn-marking' onclick='management_options(\"" . $course . "\")'>" . $course . "</button>
+            $output .= "<div class='col-md-6 col-sm-8 col-xs-12 col-md-offset-3 col-sm-offset-2 '>
+            <button class='btn btn-success btn-text-wrap' id='btn-marking' onclick='management_options(\"" . $course . "\")'>" . $course . "</button>
             </div>";
         }
         return json_encode(array("buttons"=>$output));

@@ -42,20 +42,15 @@
 <div class="container-fluid">
     <div class="row">
 
-        <div class="col-sm-6 col-sm-offset-3 col-md-8 col-md-offset-2 main">
+        <div class="col-sm-10 col-xs-12 col-sm-offset-1 col-md-8 col-md-offset-2 main">
             <h1 class="col-md-12 page-header"><div class="col-md-4">Admin Control Panel</div></h1>
 
             <div class="col-md-12" id="admin-panel">
 
-                <button type="button" class="btn btn-info admin-panel-btn col-md-6 col-md-offset-3" onclick="manageUsersButton()">Manage User</button>
-                <button type="button" class="btn btn-info admin-panel-btn col-md-6 col-md-offset-3">Manage Database</button>
+                <button type="button" class="btn btn-info admin-panel-btn col-md-6 col-sm-6 col-xs-12 col-sm-offset-3 col-md-offset-3" onclick="manageUsersButton()">Manage User</button>
+                <button type="button" class="btn btn-info admin-panel-btn col-md-6 col-sm-6 col-xs-12 col-sm-offset-3 col-md-offset-3">Manage Database</button>
 
             </div>
-
-
-
-
-
 
 
 
@@ -64,43 +59,6 @@
 
             </div>
 
-
-            <form class="form-horizontal" action="../../php/core/cvs_handling.php" method="post" name="upload_excel" enctype="multipart/form-data">
-                <fieldset>
-
-                    <!-- Form Name -->
-                    <legend>Form Name</legend>
-
-                    <!-- File Button -->
-                    <div class="form-group">
-                        <label class="col-md-4 control-label" for="filebutton">Select File</label>
-                        <div class="col-md-4">
-                            <input type="file" name="file" id="file" class="input-large">
-                        </div>
-                    </div>
-
-                    <!-- Button -->
-                    <div class="form-group">
-                        <label class="col-md-4 control-label" for="singlebutton">Import data</label>
-                        <div class="col-md-4">
-                            <button type="submit" id="submit" name="Import" class="btn btn-primary button-loading" data-loading-text="Loading...">Import</button>
-                        </div>
-                    </div>
-
-                </fieldset>
-            </form>
-
-
-
-
-            <form class="form-horizontal" action="../../php/core/cvs_handling.php" method="post" name="upload_excel"
-                  enctype="multipart/form-data">
-                <div class="form-group">
-                    <div class="col-md-4 col-md-offset-4">
-                        <input type="submit" name="Export" class="btn btn-success" value="export to excel"/>
-                    </div>
-                </div>
-            </form>
         </div>
 
     </div>

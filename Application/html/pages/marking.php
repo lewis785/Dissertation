@@ -43,12 +43,12 @@
 
         <div id="sidebar_area"></div>
 
-        <div class="col-sm-8 col-md-8 col-md-offset-2 col-sm-offset-2 main">
+        <div class="col-sm-10 col-xs-12 col-sm-offset-1 col-md-8 col-md-offset-2 main">
             <h1 class="page-header">Webpage Dashboard</h1>
             <div class="col-lg-12" id="main-text-area">
             </div>
 
-            <div class="col-md-12" id="question-area">
+            <div class="col-md-12 col-sm-12 col-xs-12" id="question-area">
 
 
             </div>

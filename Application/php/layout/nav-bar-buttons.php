@@ -1,16 +1,19 @@
 
 <?php
-include(dirname(__FILE__)."/../core/connection.php");
-include(dirname(__FILE__)."/../core/check_access_level.php");
+require_once (dirname(__FILE__)."/../core/Security.php");
+
+$secure = new Security();
+
+
 
 $nav_bar_content = '<li id="results-nav"><a href="labresults.php">Lab Results</a></li>
                     <li id="signoutbtn"><a href="../../php/core/signout.php">Signout</a></li>';
 
-if(get_access_value($link, "lab helper") <= $_SESSION["accesslevel"]) {
+if($secure->has_access_level("lab helper")) {
     $nav_bar_content = '<li id="marking-nav"><a href="marking.php"> Mark Lab </a></li>' . $nav_bar_content;
 
-    if (get_access_value($link, "lecturer") <= $_SESSION["accesslevel"]) {
 
+    if ($secure->has_access_level("lecturer")) {
 
         $nav_bar_content = '<li id="labs-nav" class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Lecturer<span class="caret"></span></a>
@@ -25,11 +28,10 @@ if(get_access_value($link, "lab helper") <= $_SESSION["accesslevel"]) {
                         </li>' . $nav_bar_content;
 
 
-        if (get_access_value($link, "admin") <= $_SESSION["accesslevel"]) {
+        if ($secure->has_access_level("admin")) {
             $nav_bar_content = '<li id="admin-nav"><a href="admin.php"> Admin Section </a></li>' . $nav_bar_content;
         }
 
     }
 }
 echo $nav_bar_content;
-mysqli_close($link);

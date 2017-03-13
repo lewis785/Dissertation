@@ -39,7 +39,7 @@
 
         <div id="sidebar_area"></div>
 
-        <div class="col-sm-6 col-sm-offset-3 col-md-8 col-md-offset-2 main">
+        <div class="col-sm-10 col-xs-12 col-sm-offset-1 col-md-8 col-md-offset-2 main">
             <h1 class="page-header">Lab Management Table</h1>
 
             <div class="col-lg-12" id="main-text-area">

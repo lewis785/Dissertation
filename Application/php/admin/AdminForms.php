@@ -34,7 +34,7 @@ class AdminForms extends AdminButtons
     public function createUserForm()
     {
         $output = $this->buttonLayout("Back","manageUsersButton()", "warning");
-        $output .= "<div class='col-md-8 col-md-offset-2 admin-function' id='insert-users-div'>
+        $output .= "<div class='col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 admin-function' id='insert-users-div'>
                     <form id='add-user-form' method='post' action='../../php/admin/adduser.php'>
                     <legend>Insert User</legend>";
         $output.= $this->textInput("First name", "firstname");
@@ -44,7 +44,7 @@ class AdminForms extends AdminButtons
         $output.= $this->submitButton("addUser()");
         $output.="</form></div>";
 
-        $output.="<div class='col-md-8 col-md-offset-2 admin-function' id='user-uploader'>
+        $output.="<div class='col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 admin-function' id='user-uploader'>
                     <form class='form-horizontal' action='../../php/core/cvs_handling.php' method='post' name='upload_excel' enctype='multipart/form-data'>
 
                     <!-- Form Name -->
@@ -81,7 +81,7 @@ class AdminForms extends AdminButtons
         $users = $this->getAllUsers();
 
         $output = $this->buttonLayout("Back","manageUsersButton()", "warning");
-        $output .= "<div class='col-md-8 col-md-offset-2 admin-function' id='remove-users-div'> <legend>Remove User(s)</legend>";
+        $output .= "<div class='col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 admin-function' id='remove-users-div'> <legend>Remove User(s)</legend>";
         $output.= $this->textInput("User Search:","user-search");
         $output.= "<form id='remove-user-form' method='post' >";
         $output.= $this->addTable("users",$users,3);
@@ -113,7 +113,7 @@ class AdminForms extends AdminButtons
         $access_levels = $this->accessDropDown();
 
         $output = $this->buttonLayout("Back","manageUsersButton()", "warning");
-        $output .= "<div class='col-md-8 col-md-offset-2 admin-function' id='lab-helpers-div'> <legend>Update User Access</legend>";
+        $output .= "<div class='col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 admin-function' id='lab-helpers-div'> <legend>Update User Access</legend>";
         $output .= $this->addTable("update",$all_users, 3);
         $output .= $this->selectInput("Access Level: ", "access-level",$access_levels );
         $output.="<button type='button' class='btn btn-info disabled col-md-4 col-md-offset-4' disabled='disabled' id='update-user-btn' onclick='updateUser()''>Update Access</button>";
@@ -142,7 +142,7 @@ class AdminForms extends AdminButtons
             array_push($options,[$course,$course]);
 
         $output = $this->buttonLayout("Back","manageUsersButton()", "warning");
-        $output .= "<div class='col-md-8 col-md-offset-2 admin-function' id='lab-helpers-div'> <legend>Manage Student On Courses</legend>";
+        $output .= "<div class='col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 admin-function' id='lab-helpers-div'> <legend>Manage Student On Courses</legend>";
 
         $output.= $this->selectInput("Select Course:", "course", $options, "courseStudents(this)");
 
@@ -157,14 +157,14 @@ class AdminForms extends AdminButtons
         $course_students = $student_functions->studentsOnCourse($course);
         $non_course_students = $student_functions->studentNotOnCourse($course);
 
-        $output = "<h2 class='col-md-8 col-md-offset-2 center'>Students Of The Course</h2>";
+        $output = "<h2 class='col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 center'>Students Of The Course</h2>";
         if(sizeof($course_students) > 0)
             $output .= $this->addTable("selected",$course_students, 2);
         else
             $output .= $this->addTableStart("selected",2)."<tr><td colspan=2>No Students</td></table></div>";
         $output.="<button type='button' class='btn btn-info disabled col-md-4 col-md-offset-4' disabled='disabled' id='remove-student-btn' onclick='removeStudent()'>Remove Student From Course</button>";
 
-        $output .= "<h2 class='col-md-8 col-md-offset-2 center'>Students Not Of The Course</h2>";
+        $output .= "<h2 class='col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 center'>Students Not Of The Course</h2>";
         $output .= $this->textInput("Student Search: ","student-search","filterStudents(this.value)");
         $output .=  $this->addTable("students",$non_course_students, 2);
         $output.="<button type='button' class='btn btn-info disabled col-md-4 col-md-offset-4' disabled='disabled' id='add-student-btn' onclick='addStudent()''>Add Student To Course</button>";
@@ -200,7 +200,7 @@ class AdminForms extends AdminButtons
             array_push($options,[$course,$course]);
 
         $output = $this->buttonLayout("Back","manageUsersButton()", "warning");
-        $output .= "<div class='col-md-8 col-md-offset-2 admin-function' id='lab-helpers-div'> <legend>Manage Lab Helpers</legend>";
+        $output .= "<div class='col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 admin-function' id='lab-helpers-div'> <legend>Manage Lab Helpers</legend>";
 
         $output.= $this->selectInput("Select Course:", "course", $options, "courseLabHelpers(this)");
 
@@ -215,14 +215,14 @@ class AdminForms extends AdminButtons
         $course_helpers = $helper_functions->getCourseLabHelpers($course);
         $non_course_helpers = $helper_functions->getNonCourseLabHelpers($course);
 
-        $output = "<h2 class='col-md-8 col-md-offset-2 center'>Lab Helpers Of The Course</h2>";
+        $output = "<h2 class='col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 center'>Lab Helpers Of The Course</h2>";
         if(sizeof($course_helpers) > 0)
             $output .= $this->addTable("selected",$course_helpers, 2);
         else
             $output .= $this->addTableStart("selected",2)."<tr><td colspan=2>No Lab Helpers</td></table></div>";
         $output.="<button type='button' class='btn btn-info disabled col-md-4 col-md-offset-4' disabled='disabled' id='remove-helper-btn' onclick='removeLabHelper()'>Remove Lab Helper</button>";
 
-        $output .= "<h2 class='col-md-8 col-md-offset-2 center'>Lab Helpers Not Of The Course</h2>";
+        $output .= "<h2 class='col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 center'>Lab Helpers Not Of The Course</h2>";
         $output .= $this->textInput("Helper Search: ","helper-search","filterHelpers(this.value)");
         $output .=  $this->addTable("lab-helper",$non_course_helpers, 2);
         $output.="<button type='button' class='btn btn-info disabled col-md-4 col-md-offset-4' disabled='disabled' id='add-helper-btn' onclick='addLabHelper()''>Add Lab Helper</button>";
@@ -257,7 +257,7 @@ class AdminForms extends AdminButtons
             array_push($options,[$course,$course]);
 
         $output = $this->buttonLayout("Back","manageUsersButton()", "warning");
-        $output .= "<div class='col-md-8 col-md-offset-2 admin-function' id='lab-helpers-div'> <legend>Manage Lecturer(s)</legend>";
+        $output .= "<div class='col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 admin-function' id='lab-helpers-div'> <legend>Manage Lecturer(s)</legend>";
 
         $output.= $this->selectInput("Select Course:", "course", $options, "courseLecturers(this)");
 
@@ -273,14 +273,14 @@ class AdminForms extends AdminButtons
         $course_lecturers = $lecturer_functions->getLecturersOfCourse($course);
         $non_course_lecturers = $lecturer_functions->getLecturersNotOfCourse($course);
 
-        $output = "<h2 class='col-md-8 col-md-offset-2 center'>Lecturers Of The Course</h2>";
+        $output = "<h2 class='col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 center'>Lecturers Of The Course</h2>";
         if(sizeof($course_lecturers) > 0)
             $output .= $this->addTable("selected",$course_lecturers, 1);
         else
             $output .= $this->addTableStart("selected",1)."<tr><td colspan=2>No Lecturers</td></table></div>";
         $output.="<button type='button' class='btn btn-info disabled col-md-4 col-md-offset-4' disabled='disabled' id='remove-lecturer-btn' onclick='removeLecturer()'>Remove Lecturer</button>";
 
-        $output .= "<h2 class='col-md-8 col-md-offset-2 center'>Lecturers Not Of The Course</h2>";
+        $output .= "<h2 class='col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 center'>Lecturers Not Of The Course</h2>";
         $output .= $this->textInput("Lecturer Search: ","lecturer-search","filterLecturers(this.value)");
         $output .=  $this->addTable("lecturer",$non_course_lecturers, 1);
         $output.="<button type='button' class='btn btn-info disabled col-md-4 col-md-offset-4' disabled='disabled' id='add-lecturer-btn' onclick='addLecturer()''>Add Lecturer</button>";
@@ -385,7 +385,7 @@ class AdminForms extends AdminButtons
 
     private function submitButton($run)
     {
-        $input = "<buttton onclick='$run' class='col-md-8 col-md-offset-2 btn btn-success'>Submit</buttton>";
+        $input = "<buttton onclick='$run' class='col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 btn btn-success'>Submit</buttton>";
         return $input;
     }
     
