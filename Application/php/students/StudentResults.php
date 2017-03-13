@@ -30,7 +30,7 @@ class StudentResults extends Student
         $id = 0;
         foreach ($courses as $course) {
             $labs = $this->lab->getLabs($course);
-            $resultsTable .= "<div class='col-md-12 results-course-row'><div class='col-md-6 col-md-offset-3'>$course</div></div><ul class='labs-list'>";
+            $resultsTable .= "<div class='col-md-12 col-sm-12 col-xs-12 results-course-row'><div class='col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3'>$course</div></div><ul class='labs-list'>";
 
 
 
@@ -43,10 +43,10 @@ class StudentResults extends Student
                 $rowNumOdd = true;
 
                 $answersTable = "<ul class='answers-list'> 
-                        <li class='col-md-12 answer-row' id='answer-header'>
-                            <div class='col-md-4'>Question</div>
-                            <div class='col-md-4'>Answer Submitted</div>
-                            <div class='col-md-4'>Mark</div>
+                        <li class='col-md-12 col-sm-12 col-xs-12  answer-row' id='answer-header'>
+                            <div class='col-md-4 col-sm-4 col-xs-6'>Question</div>
+                            <div class='col-md-4 col-sm-4 hidden-xs'>Answer Submitted</div>
+                            <div class='col-md-4 col-sm-4 col-xs-6'>Mark</div>
                         </li> ";
                 foreach ($labAnswers as $answer) {
                     switch ($answer[1]) {                               //Case statement checking what type each question is
@@ -75,10 +75,10 @@ class StudentResults extends Student
                         $rowColor = "answer-color-even";
                     }
 
-                    $answersTable .= "<li class='col-md-12 answer-row $rowColor'>
-                            <div id='question' class='col-md-4'> $answer[0]</div>
-                            <div id='answer' class='col-md-4'>$answerText</div>
-                            <div id='answer-mark' class='col-md-4'>$answer[5] / $answer[6]</div>
+                    $answersTable .= "<li class='col-md-12 col-sm-12 col-xs-12 answer-row $rowColor'>
+                            <div id='question' class='col-md-4 col-sm-4 col-xs-6'> $answer[0]</div>
+                            <div id='answer' class='col-md-4 col-sm-4 hidden-xs'>$answerText</div>
+                            <div id='answer-mark' class='col-md-4 col-sm-4 col-xs-6'>$answer[5] / $answer[6]</div>
                             </li>";
                 }
                 $id++;
@@ -107,12 +107,12 @@ class StudentResults extends Student
             $mark = $markPercentage = "Lab Not Marked Yet";
         }
 
-        $output = "<li class='col-md-12 results-lab-row' id='result-row-$id' $onclick>
-                            <div class='result-align-center result-summary col-md-12'>
-                                <div id='result-row-arrow-$id' class='result-align-center col-md-1  glyphicon $arrow'></div>
-                                <div class='col-md-3 col-md-offset-1'>Lab Name: $lab  </div>
-                                <div class='col-md-3'>Mark: $mark</div>
-                                <div class='col-md-3'>Percentage: $markPercentage</div>
+        $output = "<li class='col-md-12 col-sm-12 col-xs-12 results-lab-row' id='result-row-$id' $onclick>
+                            <div class='result-align-center result-summary col-md-12 col-sm-12 col-xs-12'>
+                                <div id='result-row-arrow-$id' class='result-align-center col-md-1 col-sm-1 col-xs-1  glyphicon $arrow'></div>
+                                <div class='col-md-4 col-sm-4 col-xs-10'>Lab Name: $lab  </div>
+                                <div class='col-md-3 col-sm-3 col-xs-12'>Mark: $mark</div>
+                                <div class='col-md-4 col-sm-4 col-xs-12'>Percentage: $markPercentage</div>
                             </div>";
         return $output;
     }

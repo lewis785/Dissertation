@@ -44,13 +44,13 @@ class LecturerResults extends LabStats
                 $resultsTable.= $this->get_lab_summary($con->link, $course, $lab[0], $id);
 
                 $statsArea = "<div id='stats-area' class='col-md-12'></div>";
-                $studentArea = "<div class='col-md-8' id='student-info'>
+                $studentArea = "<div class='col-md-8 col-sm-12 col-xs-12' id='student-info'>
                                 <div class='col-md-12' id='student-name'>No Student Selected</div>
                                 <div class='col-md-12' id='student-stats'>
                                     <div class='col-md-6' id='stats-mark'></div>
                                     <div class='col-md-6' id='stats-percentage'></div>
                                 </div>
-                                <div class='col-md-12' id='student-answers'></div>
+                                <div class='col-md-12 col-sm-12 col-xs-12' id='student-answers'></div>
                              </div>";
 
                 $id++;

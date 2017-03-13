@@ -80,7 +80,7 @@ class LecturerLab extends Lab
 
         if (sizeof($answers) > 0) {
             $answersList = "<ul class='answers-list'>
-                    <li class='col-md-12 answer-row' id='answer-header'>
+                    <li class='col-md-12 col-sm-12 col-xs-12 answer-row' id='answer-header'>
                         <div class='col-md-4 col-sm-4'>Question</div>
                         <div class='col-md-4 col-sm-4 hidden-xs '>Answer Submitted</div>
                         <div class='col-md-4 col-sm-4'>Mark</div>
@@ -88,7 +88,7 @@ class LecturerLab extends Lab
 
             foreach ($answers as $answer) {
                 $answerText = $this->get_answer($answer);
-                $answersList .= "<li class='col-md-12 answer-row'>
+                $answersList .= "<li class='col-md-12 col-sm-12 col-xs-12 answer-row'>
                         <div class='col-md-4 col-sm-4 col-xs-6'>$answer[0]</div>
                         <div class='col-md-4 col-sm-4 hidden-xs'>$answerText</div>
                         <div class='col-md-4 col-sm-4 col-xs-6'>$answer[5] / $answer[6]</div>

@@ -20,16 +20,22 @@ $(document).ready(function () {
 function open_close_div(divID)
 {
     var selected = $(divID);
-    var count = 0;
+    // var count = 0;
+    var open = $(".open-result");
 
-    $(".results-lab-row").each(function () {
-        if($(this).css("height") != "80px") {
-            $(this).animate({height: '80px'}, 500);
-                // .replace("glyphicon-triangle-bottom", "glyphicon-triangle-right");
-            $("#result-row-arrow-"+count).toggleClass("glyphicon-triangle-right glyphicon-triangle-bottom");
-        }
-        count ++;
-    });
+    open.animate({height: '80px'}, 500);
+    $(".open-result div.glyphicon-triangle-bottom").removeClass("glyphicon-triangle-bottom").addClass("glyphicon-triangle-right");
+    open.removeClass("open-result");
+
+
+    // $(".results-lab-row").each(function () {
+    //     if($(this).css("height") != "80px") {
+    //         $(this).animate({height: '80px'}, 500);
+    //             // .replace("glyphicon-triangle-bottom", "glyphicon-triangle-right");
+    //         $("#result-row-arrow-"+count).toggleClass("glyphicon-triangle-right glyphicon-triangle-bottom");
+    //     }
+    //     count ++;
+    // });
 
 
     if(selected.css("height") == "80px") {
@@ -37,6 +43,7 @@ function open_close_div(divID)
         selected.css("height", "auto");
         var newHeight = selected.height();
         selected.height(curHeight).animate({height: newHeight}, 500);
+        selected.addClass("open-result");
         selected.find("div[id^='result-row-arrow-']").toggleClass("glyphicon-triangle-right glyphicon-triangle-bottom");
     }
 }
@@ -90,3 +97,15 @@ function display_student_result(input, course, student)
     }
 }
 
+
+$(window).resize(function(){
+    var open = $(".open-result");
+
+    var curHeight = open.height();
+    open.css("height", "auto");
+    var newHeight = open.height();
+    if(curHeight != newHeight)
+        open.height(newHeight);
+
+
+});
