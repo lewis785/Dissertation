@@ -59,6 +59,8 @@ function display_students_for(lab)
         data: {lab:lab, type:"next"},
         cache: false,
         success: function(result){
+
+
             $("#question-area").html(result.buttons);
             $("#back-btn").attr("onclick","back_to_labs()");
         },
@@ -67,6 +69,26 @@ function display_students_for(lab)
         }
     });
 }
+
+function filterDisplayedStudents(lab, filter)
+{
+    $.ajax({
+        type: 'POST',
+        url: "../../php/labs/get_students.php",
+        dataType: 'json',
+        data: {lab:lab, type:"next", filter: filter},
+        cache: false,
+        success: function(result){
+            $(".clickable-btn").remove();
+            $("#question-area").append(result.buttons);
+            $("#back-btn").attr("onclick","back_to_labs()");
+        },
+        error: function(xhr, status, error) {
+            alert(xhr);
+        }
+    });
+}
+
 
 //Displays the labs schema for a lab
 function display_schema_for(student)

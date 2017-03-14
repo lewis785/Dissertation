@@ -45,19 +45,24 @@ class LabStudents extends Lab
             $result = $this->get_students($courseName);
 
             $colour_key = "<div class='col-md-12 colour-keys'>
-                           <div class='col-md-2 col-md-offset-3 colour-key'><div class='colour-box not-marked-colour'/> <span>Not Marked</span></div>
-                           <div class='col-md-2 colour-key'><div class='colour-box marked-colour'/> <span>Already Marked</span></div>
-                           <div class='col-md-2 colour-key'><div class='colour-box full-marks-colour'/> <span>Full Marks</span></div></div>";
+                           <div class='col-md-2 col-md-offset-3 col-sm-2 col-sm-offset-2 colour-key'><div class='colour-box not-marked-colour'/> <span>Not Marked</span></div>
+                           <div class='col-md-2 col-sm-2 colour-key'><div class='colour-box marked-colour'/> <span>Already Marked</span></div>
+                           <div class='col-md-2 col-sm-2 colour-key'><div class='colour-box full-marks-colour'/> <span>Full Marks</span></div></div>";
+
+            $search_bar = "<div class='col-md-6 col-md-offset-3'>
+                            <input type='text' id='student-search' class='col-md-12 form-control' placeholder='Student Search' onchange='filterDisplayedStudents(\"$this->lab\",this.value)'/>
+                           </div>";
 
             $buttons = "";
             while ($student = $result->fetch_row()) {
 
                 $buttonType = $this->button_style($con->link, $student[2], $labID, $this->lab, $courseName);
-                $buttons .= "<div class='col-md-6 col-md-offset-3 col-sm-12'>
-                      <button class='" . $buttonType . " btn-text-wrap' id='btn-student' onclick='display_schema_for(\"" . $student[2] . "\")'>" . $student[0] . " " . $student[1] . "</button>
+                $buttons .= "<div class='col-md-6 col-md-offset-3 col-sm-12 clickable-btn'>
+                      <button class='" . $buttonType . " btn-text-wrap btn-student' onclick='display_schema_for(\"" . $student[2] . "\")'>" . $student[0] . " " . $student[1] . "</button>
                      </div>";
             }
-            $output = json_encode(array('successful' => true, 'buttons' => $colour_key.$buttons));
+                $output = json_encode(array('successful' => true, 'buttons' => $colour_key.$search_bar.$buttons));
+
         } else
             $output = json_encode(array('successful' => false));
 
@@ -65,6 +70,23 @@ class LabStudents extends Lab
         return $output;
     }
 
+    public function studentButtonsFilter($filter)
+    {
+        $con = new ConnectDB();
+        $courseName = $_SESSION["MARKING_COURSE"];
+        $labID =$this->get_questionID($this->get_lab_id($courseName, $this->lab), 1);
+        $result = $this->get_students($courseName, $filter);
+        $buttons = "";
+        while ($student = $result->fetch_row()) {
+
+            $buttonType = $this->button_style($con->link, $student[2], $labID, $this->lab, $courseName);
+            $buttons .= "<div class='col-md-6 col-md-offset-3 col-sm-12 clickable-btn'>
+                      <button class='" . $buttonType . " btn-text-wrap btn-student' onclick='display_schema_for(\"" . $student[2] . "\")'>" . $student[0] . " " . $student[1] . "</button>
+                     </div>";
+        }
+        return json_encode(array('successful' => true, 'buttons' => $buttons));
+
+    }
 
     private function button_style($link,$matric, $qID, $labName, $courseName)
     {

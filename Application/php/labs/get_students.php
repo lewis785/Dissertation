@@ -10,6 +10,9 @@ require_once "LabStudents.php";
 if(isset($_POST["type"])) {
 
     $student = new LabStudents();
-    echo($student->get_students_buttons());
+    if(isset($_POST["filter"]))
+        echo($student->studentButtonsFilter($_POST["filter"]));
+    else
+        echo($student->get_students_buttons());
 
 }

@@ -15,19 +15,30 @@ require_once (dirname(__FILE__)."/../courses/CourseChecks.php");
 class Lab extends CourseChecks
 {
 
-    public function get_students($course)
+    public function get_students($course, $filter="")
     {
         $output = [];
         if ($this->can_mark_course($course)) {
             $con = new ConnectDB();
 
             $get_students = mysqli_stmt_init($con->link);
-            mysqli_stmt_prepare($get_students, "SELECT d.firstname, d.surname, d.studentID FROM students_on_courses AS soc 
+            if($filter == "") {
+                mysqli_stmt_prepare($get_students, "SELECT d.firstname, d.surname, d.studentID FROM students_on_courses AS soc 
                                         JOIN user_details AS d ON soc.student = d.detailsId 
                                         JOIN courses AS c ON soc.course = c.courseID 
                                         WHERE c.courseName = ? 
                                         ORDER BY d.surname, d.firstname");
-            mysqli_stmt_bind_param($get_students, 's', $course);
+                mysqli_stmt_bind_param($get_students, 's', $course);
+            }
+            else{
+                $filter = "%$filter%";
+                mysqli_stmt_prepare($get_students, "SELECT d.firstname, d.surname, d.studentID FROM students_on_courses AS soc 
+                                        JOIN user_details AS d ON soc.student = d.detailsId 
+                                        JOIN courses AS c ON soc.course = c.courseID 
+                                        WHERE c.courseName = ? AND (CONCAT(d.firstname,' ',d.surname) LIKE ?)
+                                        ORDER BY d.surname, d.firstname");
+                mysqli_stmt_bind_param($get_students, 'ss', $course, $filter);
+            }
             mysqli_stmt_execute($get_students);
 
 
@@ -154,3 +165,6 @@ class Lab extends CourseChecks
     }
 
 }
+
+//$lab = new Lab();
+//print_r($lab->get_students("Software Development 1", "ciaran")->fetch_row());

@@ -349,8 +349,6 @@ function addLecturer(){
     var lecturer = $("#lecturer-table .selected-row div#username").text();
     var course = $("select").val();
 
-    alert(lecturer + course);
-
     $.ajax({
         type: 'POST',
         url: "../../php/lecturer/lecturer_manager.php",
