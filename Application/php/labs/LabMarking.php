@@ -51,18 +51,22 @@ class LabMarking extends Lab
 
         $buttons = "";
 
-        if(sizeof($result)>0) {
-            foreach ($result as $lab) {
-                if ($isLecturer || $lab[1] === "true")
-                    $buttons .= "<div class='col-md-6 col-md-offset-3 col-xs-offset-0'>
-                          <button class='btn btn-success btn-text-wrap' id='btn-marking' onclick='display_students_for(\"" . $lab[0] . "\")'>" . $lab[0] . "</button>
-                         </div>";
+        $lab_exists = false;
+        foreach ($result as $lab) {
+            if ($isLecturer || $lab[1] === "true") {
+                $buttons .= "<div class='col-md-6 col-md-offset-3 col-xs-offset-0'>
+                      <button class='btn btn-success btn-text-wrap' id='btn-marking' onclick='display_students_for(\"" . $lab[0] . "\")'>" . $lab[0] . "</button>
+                     </div>";
+            $lab_exists = true;
             }
         }
-        else
+
+        if(!$lab_exists)
             $buttons = "<div class='col-md-6 col-md-offset-3'>
-                        No Labs Currently exist to be marked
-                    </div>";
+
+                            <button class='btn btn-warning btn-text-wrap' id='btn-marking'>No labs currently exist to be marked</button>
+                        </div>";
+
 
         mysqli_close($con->link);
         return  json_encode(array('successful'=>true, 'buttons'=>$buttons));

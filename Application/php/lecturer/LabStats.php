@@ -42,8 +42,12 @@ class LabStats extends Lab
         mysqli_stmt_execute($totalMark);
         $classMark = mysqli_stmt_get_result($totalMark)->fetch_row()[0];
 
-        $avg = $classMark / $studentCount;
-        $percentage = ($avg / $max_mark) * 100;
+        if($studentCount === 0)
+            $studentCount =1;
+
+            $avg = $classMark / $studentCount;
+            $percentage = ($avg / $max_mark) * 100;
+
 
         return number_format(($percentage), 2, ".", "")."%";
     }
@@ -62,6 +66,7 @@ class LabStats extends Lab
         mysqli_stmt_bind_param($currentlyMarkedMark, "ss", $course, $lab);
         mysqli_stmt_execute($currentlyMarkedMark);
         $markedMark = mysqli_stmt_get_result($currentlyMarkedMark)->fetch_row()[0];
+        
 
         $percentage = ($markedMark / $max_mark) * 100;
 

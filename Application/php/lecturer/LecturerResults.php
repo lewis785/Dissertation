@@ -39,12 +39,12 @@ class LecturerResults extends LabStats
             $resultsTable .= "<div class='col-md-12 results-course-row'><div class='col-md-6 col-md-offset-3'>$course</div></div><ul class='labs-list'>";
 
 
+            if(sizeof($labs)>0) {
+                foreach ($labs as $lab) {
+                    $resultsTable .= $this->get_lab_summary($con->link, $course, $lab[0], $id);
 
-            foreach ($labs as $lab) {
-                $resultsTable.= $this->get_lab_summary($con->link, $course, $lab[0], $id);
-
-                $statsArea = "<div id='stats-area' class='col-md-12'></div>";
-                $studentArea = "<div class='col-md-8 col-sm-12 col-xs-12' id='student-info'>
+                    $statsArea = "<div id='stats-area' class='col-md-12'></div>";
+                    $studentArea = "<div class='col-md-8 col-sm-12 col-xs-12' id='student-info'>
                                 <div class='col-md-12' id='student-name'>No Student Selected</div>
                                 <div class='col-md-12' id='student-stats'>
                                     <div class='col-md-6' id='stats-mark'></div>
@@ -53,10 +53,19 @@ class LecturerResults extends LabStats
                                 <div class='col-md-12 col-sm-12 col-xs-12' id='student-answers'></div>
                              </div>";
 
-                $id++;
-                $resultsTable .= $statsArea . $studentSelector . $studentArea . "</li>";
+                    $id++;
+                    $resultsTable .= $statsArea . $studentSelector . $studentArea . "</li>";
+                }
             }
-            $resultsTable .= "</ul>";
+            else{
+                $resultsTable .= "<li class='col-md-12 results-lab-row' id='result-row-$id' '>
+                                    <div class='result-align-center result-summary col-md-12 col-sm-12 col-xs-12'>
+                                        No Lab Exists For Course
+                                    </div>
+                                   </li>";
+            }
+                $resultsTable .= "</ul>";
+
 
 
         }
