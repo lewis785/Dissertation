@@ -77,6 +77,7 @@ class LabDisplay extends LabChecks
                 break;
             case "text":
                 $html = $html . $this->textQuestion($question[4]);
+                break;
             case "value":                                   //Inserts value type questions
                 break;
             default:

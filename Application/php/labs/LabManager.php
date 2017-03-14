@@ -57,7 +57,7 @@ class LabManager extends CourseChecks
                         $output .= "<td class='col-md-2'>Max Mark: " . $totalMark . "</td>";
                         $output .= "<td class='col-md-2'><input id='check-" . $id . "' type='checkbox'" . $buttonChecked . " value=''> Markable</td>";
                         $output .= "<td class='col-md-2'><button class='btn btn-success col-md-8 col-md-offset-2'onclick='exportResults($id)'>Export Results</button></td>";
-                        $output .= "<td class='col-md-2'><button class='btn btn-warning col-md-8 col-md-offset-2'onclick='*'>Edit</button></td>";
+                        $output .= "<td class='col-md-2'><button class='btn btn-warning col-md-8 col-md-offset-2'onclick='editLab(\"$course: $lab[0]\",$id)'>Edit</button></td>";
                         $output .= "<td class='col-md-2'><button class='btn btn-danger col-md-8 col-md-offset-2' onclick='delete_popup($id )'>Delete</button>";
                         $output .= "</td></tr>";
                     }

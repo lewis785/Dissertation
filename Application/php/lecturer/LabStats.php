@@ -66,7 +66,7 @@ class LabStats extends Lab
         mysqli_stmt_bind_param($currentlyMarkedMark, "ss", $course, $lab);
         mysqli_stmt_execute($currentlyMarkedMark);
         $markedMark = mysqli_stmt_get_result($currentlyMarkedMark)->fetch_row()[0];
-        
+
 
         $percentage = ($markedMark / $max_mark) * 100;
 

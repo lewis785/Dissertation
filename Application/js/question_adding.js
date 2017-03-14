@@ -15,25 +15,6 @@ function update_numbers(number)
     }
 }
 
-// function add_question(type)
-// {
-//     $.ajax({
-//         type: 'POST',
-//         url: "../../html/components/questions_create/"+type+"_question.php",
-//         dataType: 'json',
-//         data: {count: qCount, qnum: maxQ},
-//         cache: false,
-//         success: function(result){
-//             qCount++;
-//             maxQ ++;
-//             $.when($("#form-area").append(result.data)).then(scroll_bottom());
-//         },
-//         error: function(xhr, status, error) {
-//             alert(xhr);
-//         }
-//     });
-// }
-
 function add_question(type)
 {
     // alert(type)
@@ -64,12 +45,12 @@ function change_visibility(id)
 
     if (input.val() == "false")
     {
-        btn.text("Is Private");
+        btn.text("Not Visible");
         input.val("true");
     }
     else
     {
-        btn.text("Is Public");
+        btn.text("Visible");
         input.val("false");
     }
 }

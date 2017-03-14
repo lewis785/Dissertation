@@ -149,6 +149,24 @@ class Lab extends CourseChecks
         return $result[0];
     }
 
+    public function courseFromLabID($labID)
+    {
+        $con = new ConnectDB();
+
+        $getLabIDQuery = 'SELECT c.courseName FROM labs AS l 
+                          JOIN courses AS c ON l.courseRef = c.courseID
+                          WHERE l.labID = ?';                                   //Query gets course name from Id
+        $getLabID = mysqli_stmt_init($con->link);                               //Init Prepared Statement
+        mysqli_stmt_prepare($getLabID, $getLabIDQuery);
+        mysqli_stmt_bind_param($getLabID, 'i',$labID);                           //Bind course and lab variables
+        mysqli_stmt_execute($getLabID);                                         //Execute Prepared Statement
+        $result = mysqli_stmt_get_result($getLabID)->fetch_row();               //Get Result
+
+        mysqli_close($con->link);
+        return $result[0];
+
+    }
+
 
     public function get_questionID($labID, $questionNum)
     {

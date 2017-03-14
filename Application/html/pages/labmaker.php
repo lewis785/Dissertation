@@ -23,7 +23,7 @@
     <script src="../../js/sidebar.js"></script>
     <script src="../../js/question_adding.js"></script>
     <script src="../../js/labs/lab_sidebar.js"></script>
-    <script src="../../js/lecturer/check_valid_lab.js"></script>
+    <script src="../../js/labs/check_valid_lab.js"></script>
 
     <!--JavaScripts Functions -->
     <script type="text/javascript">include_navbar("labs");</script>
@@ -46,7 +46,7 @@
         <div class="col-sm-10 col-xs-12 col-sm-offset-1 col-md-8 col-md-offset-2 main" id="main-area">
 
 <!--            Main area top-->
-            <form class="col-lg-12" id="form-area" accept-charset="UTF-8" role="form"  name="create-lab-form" method="post" action="../../php/labs/LabCreator.php">
+            <form class="col-lg-12" id="form-area" accept-charset="UTF-8" role="form"  name="create-lab-form" method="post" action="../../php/labs/lab_creator.php">
                 <div class="page-header col-md-12">
                     <div class="form-group col-md-4 col-md-offset-1">
                         <label for="course-input" class="col-md-4 col-form-label">Course:</label>

@@ -6,6 +6,9 @@
  * Date: 12/03/2017
  * Time: 19:33
  */
+
+require_once (dirname(__FILE__))."/../core/ConnectDB.php";
+
 class LabMaker
 {
 
@@ -25,6 +28,35 @@ class LabMaker
             default:
                 return $this->unknownQuestion($id,$question_num);
         }
+    }
+
+
+    public function displayEditableLab($labID)
+    {
+        $con = new ConnectDB();
+        $retrieveLabQuestions = mysqli_stmt_init($con->link);
+        mysqli_stmt_prepare($retrieveLabQuestions, "SELECT qt.typeName FROM lab_questions AS lq 
+                                                    JOIN question_types AS qt ON lq.questionType = qt.questionTypeID
+                                                    WHERE lq.labRef = ?");
+        mysqli_stmt_bind_param($retrieveLabQuestions, "s", $labID);
+        mysqli_stmt_execute($retrieveLabQuestions);
+        $result = mysqli_stmt_get_result($retrieveLabQuestions);
+
+        $output = "<form class='col-lg-12' id='form-area' accept-charset='UTF-8' role='form'  name='create-lab-form' method='post' action='../../php/labs/lab_creator.php'>
+                    <input type='hidden' value='update'>";
+        $id = 0;
+        $qNum =  1;
+
+        while($question = $result->fetch_row()) {
+            $output .= json_decode($this->createQuestion($question[0], $id, $qNum))->question;
+            $id ++; $qNum++;
+        }
+
+        $output .= "</form>";
+
+        return json_encode(array("questions"=>$output));
+
+
     }
 
 
@@ -82,8 +114,8 @@ class LabMaker
 
     private function startQuestion($id)
     {
-        $start_div = "<div class='col-sm-6 col-sm-offset-3 col-mid-8 col-md-offset-2 tile'  id='question-$id'>";
-        $close_btn = "<span class='glyphicon glyphicon-remove close-btn' aria-hidden='true' onclick='update_numbers(".$id.")'/>";
+        $start_div = "<div class='col-sm-6 col-sm-offset-3 col-md-8 col-md-offset-2 tile'  id='question-$id'>";
+        $close_btn = "<span class='remove-btn glyphicon glyphicon-remove close-btn' aria-hidden='true' onclick='update_numbers(".$id.")'/>";
         return $start_div . $close_btn;
     }
 
@@ -130,16 +162,18 @@ class LabMaker
 
     private function visablityButton($id)
     {
-        return "<div class='form-group col-md-4 col-md-offset-4'>
+        return "<div style='display: table;' class='form-group col-md-12 '>
                  <input id='hidden-visibility-$id' type='hidden' name='visibility[]' value='false'>
-                  <button type='button' id='visibility-btn-$id' class='btn btn-success  col-md-6 col-md-offset-3' onclick='change_visibility(" . $id . ")' >Is Public</button>
+                  <span style='display: table-cell; vertical-align: middle; text-align: right;' class='col-md-4 col-xs-12'>Result is </span> 
+                  <button type='button' id='visibility-btn-$id' class='btn btn-success col-md-4 col-xs-12' onclick='change_visibility(" . $id . ")' >Visible</button> 
+                  <span class='col-md-4'> to students</span>
                 </div>";
     }
 
 }
 //
 //$maker = new LabMaker();
-//print_r($maker->booleanQuestion(0,1));
+//print_r($maker->displayEditableLab(4));
 //print_r($maker->startQuestion(1));
 //print_r($maker->typeInput("boolean"));
 //print_r($maker->textInput("questions[]"));

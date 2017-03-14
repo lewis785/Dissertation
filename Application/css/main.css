@@ -179,7 +179,7 @@
 
 
 
-/*Start of CSS for Labs Table*/
+/*Start of CSS for Lab Management Table*/
 
 .labs-table td {
 
@@ -196,6 +196,12 @@
 
 .labs-table tr:hover {
     background-color: lightblue;
+}
+
+#lab-maker-button{
+    font-weight: bolder;
+    height: 50px;
+    margin-bottom: 20px;
 }
 
 /*End of CSS for Labs Table*/
@@ -303,6 +309,8 @@
 {
     line-height: 80px;
     text-align: center;
+    font-weight: bolder;
+    font-size: 1.2em;
 }
 
 .last-lab-row{
@@ -326,15 +334,16 @@
 
 }
 
-.answer-color-odd{
-    background-color: white;
-
-}
-
-.answer-color-even{
+.answers-list li:nth-child(even)
+{
     background-color: seashell;
-
 }
+
+.answers-list li:nth-child(odd)
+{
+    background-color: white;
+}
+
 
 .labs-list
 {

@@ -63,6 +63,56 @@ function exportResults(labID)
 
 
 
+function editLab(lab_name, labID)
+{
+    $.ajax({
+        type: 'POST',
+        url: "../../php/labs/editable_lab.php",
+        dataType: 'json',
+        data: {labID: labID},
+        cache: false,
+        success: function(result) {
+            $("#main-text-area").html("<legend>"+lab_name+"</legend>");
+            $("#main-text-area").append("<button class='col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-12 btn btn-warning' onclick='display_table()'>Back</button>");
+            $("#main-text-area").append(result.questions);
+            $("#main-text-area").append("<button class='col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-12 btn btn-success' onclick='submitEdit()'>Submit</button>");
+            $(".remove-btn").remove();
+            fillLab(labID);
+        },
+        error: function(xhr, status, error) {
+            alert("Error Occurred Trying To Retrieve Lab" + xhr);    //Displays an alert if error occurred
+        }
+    });
+
+}
+
+
+function fillLab(labID)
+{
+    $(".tile").each(function () {
+        alert($(this).find("input[name='type[]']").val());
+
+    })
+}
+
+function submitEdit()
+{
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 //Creates a popup to confirm the deletion of a lab
 function delete_popup(labID)

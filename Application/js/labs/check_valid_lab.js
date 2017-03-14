@@ -89,13 +89,10 @@ function valid_lab() {
         errorMessage+="\u2022 No Questions Added";
     }
 
-
     if(!valid)
         alert(errorMessage);
 
-
     return valid;
-
 }
 
 

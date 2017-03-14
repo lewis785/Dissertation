@@ -20,6 +20,8 @@
     <script type="text/javascript" src="../../bootstrap/js/bootstrap.js"></script>
     <script type="text/javascript" src="../../js/navbar.js"></script>
     <script type="text/javascript" src="../../js/lecturer/lab_manager.js"></script>
+    <script type="text/javascript" src="../../js/question_adding.js"></script>
+    <script type="text/javascript" src="../../js/labs/check_valid_lab.js"></script>
 
 
     <!--JavaScripts Functions -->
@@ -41,6 +43,8 @@
 
         <div class="col-sm-10 col-xs-12 col-sm-offset-1 col-md-8 col-md-offset-2 main">
             <h1 class="page-header">Lab Management Table</h1>
+
+            <a href="labmaker.php"><button id="lab-maker-button" type="button" class="btn btn-primary btn col-md-offset-4 col-md-4" >Create New Lab</button></a>
 
             <div class="col-lg-12" id="main-text-area">
 

@@ -10,6 +10,7 @@
 require_once(dirname(__FILE__) . "/../core/ConnectDB.php");
 require_once(dirname(__FILE__) . "/../courses/Courses.php");
 require_once "LabChecks.php";
+require_once "Lab.php";
 
 class LabCreator extends LabChecks
 {
@@ -122,6 +123,59 @@ class LabCreator extends LabChecks
     }
 
 
+    public function updateLab($labID)
+    {
+        $Lab = new Lab();
+        $Course  = new CourseChecks();
+        $con = new ConnectDB();
+        $this->link = $con->link;
+
+        $coursename = $Lab->courseFromLabID($labID);
+        $maxPos = 0;
+        $minPos = 0;
+
+        if($Course->is_lecturer_of_course($coursename)) {
+            mysqli_autocommit($con->link, FALSE);                    //Sets up transaction for database insertion
+            $successful = false;
+            foreach ($this->types as $index => $t) {                                //Loops through each question by its type
+                $qID = $Lab->get_questionID($labID,$index+1);
+                switch ($t) {                                       //Case statement checking what type each question is
+                    case "boolean":                                 //Inserts boolean type questions
+                        $successful = $this->updateQuestion($qID, $this->get_type_ID("boolean"), $this->questions[$index], NULL, $this->max_marks[$maxPos], $this->visibility[$index]);
+                        $maxPos++;
+                        break;
+                    case "scale":                                   //Inserts scale type questions
+                        $successful = $this->updateQuestion($qID, $this->get_type_ID("boolean"), $this->questions[$index], $this->min_marks[$minPos], $this->max_marks[$maxPos], $this->visibility[$index]);
+                        $maxPos++;
+                        $minPos++;
+                        break;
+                    case "value":                                   //Inserts value type questions
+                        $successful = $this->updateQuestion($qID, $this->get_type_ID("boolean"), $this->questions[$index], NULL, $this->max_marks[$minPos], $this->visibility[$index]);
+                        $maxPos++;
+                        $minPos++;
+                        break;
+                    case "text":                                   //Inserts value type questions
+                        $successful = $this->updateQuestion($qID, $this->get_type_ID("boolean"), $this->questions[$index], 0, $this->max_marks[$maxPos], $this->visibility[$index]);
+                        $maxPos++;
+                        $minPos++;
+                        break;
+                    default:
+                        echo "default";                             //Default if type doesn't exist
+                        mysqli_rollback($con->link);                     //Undoes all inserts into the database during the transaction
+                        $successful = false;                        //Sets successful to false
+                }
+                if(!$successful)
+                    break;
+
+            }
+
+            mysqli_commit($con->link);
+            mysqli_close($con->link);
+            $redirect = "../../html/pages/labmanager.php";
+            header("Location: " . $redirect);                                 //Redirects to webpage
+        }
+    }
+
 //Function checks that all inputs are valid and returns true / false accordingly
     private function valid_input()
     {
@@ -198,15 +252,23 @@ class LabCreator extends LabChecks
             echo "Error Inserting";
             return false;                                   //Returns false to show insert failed
         }
-        return true;                                        //Returns true to show insert was successful
+        return true;
     }
 
 
-}
+    private function updateQuestion($question_id, $type, $question, $minValue, $maxValue, $visible)
+    {
+        $insertQuestionQuery = 'UPDATE lab_questions SET questionType = ?, question = ?, minMark = ?, maxMark = ?, private =? WHERE questionID = ?';
+        $insertQuestion = mysqli_stmt_init($this->link);
+        mysqli_stmt_prepare($insertQuestion, $insertQuestionQuery);
+        mysqli_stmt_bind_param($insertQuestion, 'isiisi',  $type, $question, $minValue, $maxValue, $visible, $question_id);
 
-if (isset($_POST["type"]) && isset($_POST['lab-name']) && isset($_POST['course-name']))
-{
-    $create = new LabCreator();
-    $create->displayInputs();
-    $create->createLab();
+        if (!mysqli_stmt_execute($insertQuestion)) {       //Runs the insertion and checks if it failed
+            mysqli_rollback($this->link);                         //Undoes all the inserts all ready done to the database
+            echo "Error Inserting";
+            return false;                                   //Returns false to show insert failed
+        }
+        return true;
+    }
+
 }
