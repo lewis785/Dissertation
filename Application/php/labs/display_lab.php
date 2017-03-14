@@ -6,7 +6,7 @@
  * Time: 00:33
  */
 
-require_once "LabDisplay.php";
+require_once "classes/LabDisplay.php";
 
 if (session_status() == PHP_SESSION_NONE)
     session_start();

@@ -6,8 +6,8 @@
  * Time: 18:11
  */
 
-require_once "Lecturer.php";
-require_once (dirname(__FILE__)."/../admin/AdminForms.php");
+require_once "classes/Lecturer.php";
+require_once(dirname(__FILE__) . "/../admin/classes/AdminForms.php");
 
 if(isset($_POST["action"]) && isset($_POST["course"]) && isset($_POST["lecturer"]))
 {

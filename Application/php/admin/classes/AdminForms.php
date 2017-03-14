@@ -7,10 +7,10 @@
  * Time: 23:47
  */
 require_once "AdminButtons.php";
-require_once (dirname(__FILE__)."/../students/Student.php");
-require_once (dirname(__FILE__)."/../lab_helper/LabHelper.php");
-require_once (dirname(__FILE__)."/../courses/Courses.php");
-require_once (dirname(__FILE__)."/../lecturer/Lecturer.php");
+require_once(dirname(__FILE__) . "/../../students/classes/Student.php");
+require_once(dirname(__FILE__) . "/../../lab_helper/classes/LabHelper.php");
+require_once(dirname(__FILE__) . "/../../courses/classes/Courses.php");
+require_once(dirname(__FILE__) . "/../../lecturer/classes/Lecturer.php");
 
 class AdminForms extends AdminButtons
 {
@@ -35,7 +35,7 @@ class AdminForms extends AdminButtons
     {
         $output = $this->buttonLayout("Back","manageUsersButton()", "warning");
         $output .= "<div class='col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 admin-function' id='insert-users-div'>
-                    <form id='add-user-form' method='post' action='../../php/admin/adduser.php'>
+                    <form id='add-user-form' method='post' action='../adduser.php'>
                     <legend>Insert User</legend>";
         $output.= $this->textInput("First name", "firstname");
         $output.= $this->textInput("Surname", "surname");
@@ -44,8 +44,8 @@ class AdminForms extends AdminButtons
         $output.= $this->submitButton("addUser()");
         $output.="</form></div>";
 
-        $output.="<div class='col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 admin-function' id='user-uploader'>
-                    <form class='form-horizontal' action='../../php/core/cvs_handling.php' method='post' name='upload_excel' enctype='multipart/form-data'>
+        $output.= "<div class='col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 admin-function' id='user-uploader'>
+                    <form class='form-horizontal' action='../../core/cvs_handling.php' method='post' name='upload_excel' enctype='multipart/form-data'>
 
                     <!-- Form Name -->
                     <legend>Upload Users File</legend>

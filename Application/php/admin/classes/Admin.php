@@ -7,9 +7,9 @@
  * Time: 20:04
  */
 
-require_once(dirname(__FILE__) . "/../core/ConnectDB.php");
-require_once(dirname(__FILE__) . "/../core/Security.php");
-require_once(dirname(__FILE__) . "/../users/UserManager.php");
+require_once(dirname(__FILE__) . "/../../core/classes/ConnectDB.php");
+require_once(dirname(__FILE__) . "/../../core/classes/Security.php");
+require_once(dirname(__FILE__) . "/../../users/classes/UserManager.php");
 
 class Admin extends Security
 {

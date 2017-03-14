@@ -7,7 +7,7 @@
  * Time: 13:50
  */
 
-require_once (dirname(__FILE__)."/../core/ConnectDB.php");
+require_once(dirname(__FILE__) . "/../../core/classes/ConnectDB.php");
 require_once "Student.php";
 
 class StudentResults extends Student

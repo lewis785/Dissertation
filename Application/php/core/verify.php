@@ -1,6 +1,6 @@
 <?php
 
-require_once "LoginManager.php";
+require_once "classes/LoginManager.php";
 
 $access = new LoginManager();
 $access->verify();

@@ -6,7 +6,7 @@
  * Date: 06/03/2017
  * Time: 14:12
  */
-require_once (dirname(__FILE__)."/../core/ConnectDB.php");
+require_once(dirname(__FILE__) . "/../../core/classes/ConnectDB.php");
 require_once "Courses.php";
 
 class CourseChecks extends Courses

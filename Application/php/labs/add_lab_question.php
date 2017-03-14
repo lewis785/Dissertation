@@ -5,7 +5,7 @@
  * Date: 12/03/2017
  * Time: 20:05
  */
-require_once "LabMaker.php";
+require_once "classes/LabMaker.php";
 if(isset($_POST["type"]) && isset($_POST["id"]) && isset($_POST["qnum"]))
 {
     $maker = new LabMaker();

@@ -8,8 +8,8 @@
  */
 
 require_once "Lab.php";
-require_once(dirname(__FILE__) . "/../students/Student.php");
-require_once(dirname(__FILE__) . "/../marking/Marking.php");
+require_once(dirname(__FILE__) . "/../../students/classes/Student.php");
+require_once(dirname(__FILE__) . "/../../marking/classes/Marking.php");
 
 class LabStudents extends Lab
 {

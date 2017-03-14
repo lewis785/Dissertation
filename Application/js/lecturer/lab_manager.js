@@ -89,7 +89,10 @@ function editLab(lab_name, labID)
 
 function fillLab(labID)
 {
+    var question_number = 1;
     $(".tile").each(function () {
+        var input_type = $(this).find("input[name='type[]']").val()
+
         alert($(this).find("input[name='type[]']").val());
 
     })

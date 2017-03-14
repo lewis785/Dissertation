@@ -7,10 +7,9 @@
  * Time: 13:57
  */
 
-require_once (dirname(__FILE__)."/../core/ConnectDB.php");
-
-require_once (dirname(__FILE__)."/../courses/Courses.php");
-require_once (dirname(__FILE__)."/../students/Student.php");
+require_once(dirname(__FILE__) . "/../../core/classes/ConnectDB.php");
+require_once(dirname(__FILE__) . "/../../courses/classes/Courses.php");
+require_once(dirname(__FILE__) . "/../../students/classes/Student.php");
 
 class LabHelper extends Security
 {

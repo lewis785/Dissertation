@@ -6,7 +6,7 @@
  * Time: 18:23
  */
 
-require_once "LabManager.php";
+require_once "classes/LabManager.php";
 
 if(isset($_POST["labID"]) && isset($_POST["newState"]))
 {

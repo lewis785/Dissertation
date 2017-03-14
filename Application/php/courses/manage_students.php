@@ -6,7 +6,7 @@
  * Time: 23:55
  */
 
-require_once "CourseManager.php";
+require_once "classes/CourseManager.php";
 
 if(isset($_POST["type"]) && isset($_POST["course"]) && isset($_POST["student"]))
 {

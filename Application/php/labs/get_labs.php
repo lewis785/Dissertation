@@ -6,7 +6,7 @@
  * Time: 16:02
  */
 
-require_once "LabMarking.php";
+require_once "classes/LabMarking.php";
 
 if(isset($_POST["type"])) {
 

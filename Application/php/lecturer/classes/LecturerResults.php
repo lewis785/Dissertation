@@ -7,8 +7,8 @@
  * Time: 13:22
  */
 
-require_once (dirname(__FILE__)."/../core/ConnectDB.php");
-require_once (dirname(__FILE__)."/../labs/Lab.php");
+require_once(dirname(__FILE__) . "/../../core/classes/ConnectDB.php");
+require_once(dirname(__FILE__) . "/../../labs/classes/Lab.php");
 require_once "LabStats.php";
 
 

@@ -7,8 +7,8 @@
  * Time: 16:20
  */
 
-require_once(dirname(__FILE__) . "/../courses/Courses.php");
-require_once(dirname(__FILE__) . "/../students/Student.php");
+require_once(dirname(__FILE__) . "/../../courses/classes/Courses.php");
+require_once(dirname(__FILE__) . "/../../students/classes/Student.php");
 
 
 class CourseManager extends Courses

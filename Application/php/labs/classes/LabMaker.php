@@ -7,7 +7,7 @@
  * Time: 19:33
  */
 
-require_once (dirname(__FILE__))."/../core/ConnectDB.php";
+require_once (dirname(__FILE__)) . "/../../core/classes/ConnectDB.php";
 
 class LabMaker
 {
@@ -42,7 +42,7 @@ class LabMaker
         mysqli_stmt_execute($retrieveLabQuestions);
         $result = mysqli_stmt_get_result($retrieveLabQuestions);
 
-        $output = "<form class='col-lg-12' id='form-area' accept-charset='UTF-8' role='form'  name='create-lab-form' method='post' action='../../php/labs/lab_creator.php'>
+        $output = "<form class='col-lg-12' id='form-area' accept-charset='UTF-8' role='form'  name='create-lab-form' method='post' action='../lab_creator.php'>
                     <input type='hidden' value='update'>";
         $id = 0;
         $qNum =  1;

@@ -5,7 +5,7 @@
  * Date: 20/02/2017
  * Time: 17:32
  */
-require_once "LabStudents.php";
+require_once "classes/LabStudents.php";
 
 if(isset($_POST["type"])) {
 

@@ -6,7 +6,7 @@
  * Time: 01:32
  */
 
-require_once "CourseButtons.php";
+require_once "classes/CourseButtons.php";
 
 if(isset($_POST["type"])) {
     $courses = new CourseButtons();

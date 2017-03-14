@@ -6,6 +6,6 @@
  * Time: 16:46
  */
 
-require_once "CourseButtons.php";
+require_once "classes/CourseButtons.php";
 $courses = new CourseButtons();
 echo $courses->courses_dropdown();

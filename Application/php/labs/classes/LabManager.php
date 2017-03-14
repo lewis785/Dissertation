@@ -7,9 +7,9 @@
  * Time: 18:23
  */
 
-require_once(dirname(__FILE__) . "/../core/ConnectDB.php");
-require_once(dirname(__FILE__) . "/../courses/CourseChecks.php");
-require_once(dirname(__FILE__) . "/../core/IO.php");
+require_once(dirname(__FILE__) . "/../../core/classes/ConnectDB.php");
+require_once(dirname(__FILE__) . "/../../courses/classes/CourseChecks.php");
+require_once(dirname(__FILE__) . "/../../core/classes/IO.php");
 require_once "LabDisplay.php";
 require_once "Lab.php";
 
@@ -76,7 +76,7 @@ class LabManager extends CourseChecks
 
     public function changeMarkable()
     {
-        $course = $this->course_from_lab_id($this->labID);
+        $course = $this->courseFromLabID($this->labID);
         $successful = false;
         $con = new ConnectDB();
 
@@ -154,7 +154,7 @@ class LabManager extends CourseChecks
         if ($this->has_access_level("lecturer")) {
             if ($this->labID !== null) {
                 $con = new ConnectDB();
-                $course = $this->course_from_lab_id($this->labID);
+                $course = $this->courseFromLabID($this->labID);
 
                 if ($this->is_lecturer_of_course($course))                                            //Checks if user has access to edit the course
                 {

@@ -7,7 +7,7 @@
  * Time: 14:00
  */
 
-require_once (dirname(__FILE__)."/../core/ConnectDB.php");
+require_once"ConnectDB.php";
 
 class Security
 {

@@ -7,7 +7,7 @@
  */
 
 
-require_once "LecturerLab.php";
+require_once "classes/LecturerLab.php";
 
 if(isset($_POST["course"]) && isset($_POST["lab"]) && isset($_POST["username"]) && isset($_POST["visible"])) {
     $student = new LecturerLab();

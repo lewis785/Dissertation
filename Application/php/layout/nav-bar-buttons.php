@@ -1,6 +1,6 @@
 
 <?php
-require_once (dirname(__FILE__)."/../core/Security.php");
+require_once(dirname(__FILE__) . "/../core/classes/Security.php");
 
 $secure = new Security();
 

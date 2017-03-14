@@ -6,7 +6,7 @@
  * Time: 23:08
  */
 
-require_once "AdminForms.php";
+require_once "classes/AdminForms.php";
 
 if(isset($_POST["buttonType"]))
 {

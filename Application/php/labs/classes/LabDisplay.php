@@ -7,9 +7,9 @@
  * Time: 17:17
  */
 
-require_once(dirname(__FILE__) . "/../core/ConnectDB.php");
-require_once(dirname(__FILE__) . "/../courses/Courses.php");
-require_once(dirname(__FILE__) . "/../courses/CourseChecks.php");
+require_once(dirname(__FILE__) . "/../../core/classes/ConnectDB.php");
+require_once(dirname(__FILE__) . "/../../courses/classes/Courses.php");
+require_once(dirname(__FILE__) . "/../../courses/classes/CourseChecks.php");
 require_once "LabChecks.php";
 require_once "Lab.php";
 require_once "LabMarking.php";
@@ -36,19 +36,11 @@ class LabDisplay extends LabChecks
             $labName = $lab;
 
             if ($this->lab_already_exists($courseID, $labName)) {
-                $retrieveQuestionsQuery = 'SELECT lq.questionNumber, qt.typeName, lq.question, lq.minMark, lq.maxMark FROM lab_questions AS lq
-                              JOIN question_types AS qt ON lq.questionType = qt.questionTypeID
-                              JOIN labs ON lq.labRef = labs.labID
-                              WHERE labs.labName = ? AND courseRef = ? 
-                              ORDER BY lq.questionNumber';
-                $retrieveQuestions = mysqli_stmt_init($con->link);
-                mysqli_stmt_prepare($retrieveQuestions, $retrieveQuestionsQuery);
-                mysqli_stmt_bind_param($retrieveQuestions, 'si', $labName, $courseID);
-                mysqli_stmt_execute($retrieveQuestions);
-                $result = mysqli_stmt_get_result($retrieveQuestions);
 
-                $outputHtml = "<form class='col-lg-12' id='form-area' accept-charset='UTF-8' role='form'  name='marking-form' method='post' action='../../php/marking/submit_mark.php'>";
-                while ($question = $result->fetch_row()) {
+                $questions =  $this->getLabQuestions($con->link, $labName, $course);
+
+                $outputHtml = "<form class='col-lg-12' id='form-area' accept-charset='UTF-8' role='form'  name='marking-form' method='post' action='../../marking/submit_mark.php'>";
+                foreach($questions as $question) {
                     $outputHtml = $outputHtml . $this->display_question($question);
                 }
                 mysqli_close($con->link);
@@ -57,6 +49,39 @@ class LabDisplay extends LabChecks
         }
         mysqli_close($con->link);
         return json_encode(array('html' => "Failed to display lab" . "</form>"));
+    }
+
+    public function labQuestions($lab_id)
+    {
+
+        $con = new ConnectDB();
+        $Lab = new Lab();
+        $questions = $this->getLabQuestions($con->link, $Lab->labFromID($lab_id), $this->courses->courseFromLabID($lab_id));
+        mysqli_close($con->link);
+
+        return json_encode(array("questions"=>$questions));
+    }
+
+    private function getLabQuestions($link, $lab_name, $course_name)
+    {
+
+        $retrieveQuestionsQuery = 'SELECT lq.questionNumber, qt.typeName, lq.question, lq.minMark, lq.maxMark FROM lab_questions AS lq
+                              JOIN question_types AS qt ON lq.questionType = qt.questionTypeID
+                              JOIN labs ON lq.labRef = labs.labID
+                              JOIN courses AS c ON labs.courseRef = c.courseID
+                              WHERE labs.labName = ? AND c.courseName = ? 
+                              ORDER BY lq.questionNumber';
+        $retrieveQuestions = mysqli_stmt_init($link);
+        mysqli_stmt_prepare($retrieveQuestions, $retrieveQuestionsQuery);
+        mysqli_stmt_bind_param($retrieveQuestions, 'si', $lab_name, $course_name);
+        mysqli_stmt_execute($retrieveQuestions);
+        $result = mysqli_stmt_get_result($retrieveQuestions);
+        $output_array = [];
+
+        while($question = $result->fetch_row())
+            array_push($output_array,$question);
+
+        return $output_array;
     }
 
 

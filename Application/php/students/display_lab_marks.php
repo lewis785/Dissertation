@@ -6,7 +6,7 @@
  * Time: 00:54
  */
 
-require_once "StudentResults.php";
+require_once "classes/StudentResults.php";
 
 $result = new StudentResults();
 echo $result->getStudentResults();

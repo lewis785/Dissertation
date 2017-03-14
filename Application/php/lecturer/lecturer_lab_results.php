@@ -7,8 +7,8 @@
  */
 
 
-require_once (dirname(__FILE__) . "/../core/Security.php");
-require_once "LecturerResults.php";
+require_once(dirname(__FILE__) . "/../core/classes/Security.php");
+require_once "classes/LecturerResults.php";
 
 $security = new Security();
 if($security->has_access_level("lecturer")) {

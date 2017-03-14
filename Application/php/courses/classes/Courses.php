@@ -7,8 +7,8 @@
  * Time: 13:50
  */
 
-require_once (dirname(__FILE__)."/../core/ConnectDB.php");
-require_once (dirname(__FILE__)."/../core/Security.php");
+require_once(dirname(__FILE__) . "/../../core/classes/ConnectDB.php");
+require_once(dirname(__FILE__) . "/../../core/classes/Security.php");
 
 class Courses extends Security
 {
@@ -69,7 +69,7 @@ class Courses extends Security
         return $outputArray;
     }
 
-    function course_from_lab_id($labID)
+    function courseFromLabID($labID)
     {
         $con = new ConnectDB();
 

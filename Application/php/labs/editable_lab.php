@@ -6,7 +6,7 @@
  * Time: 20:05
  */
 
-require_once "LabMaker.php";
+require_once "classes/LabMaker.php";
 
 if(isset($_POST["labID"]))
 {

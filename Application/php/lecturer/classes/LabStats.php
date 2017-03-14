@@ -7,7 +7,7 @@
  * Time: 13:16
  */
 
-require_once (dirname(__FILE__)."/../labs/Lab.php");
+require_once(dirname(__FILE__) . "/../../labs/classes/Lab.php");
 
 class LabStats extends Lab
 {

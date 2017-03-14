@@ -7,9 +7,9 @@
  * Time: 12:48
  */
 
-require_once (dirname(__FILE__)."/../core/ConnectDB.php");
-require_once (dirname(__FILE__)."/../students/Student.php");
-require_once (dirname(__FILE__)."/../marking/Marking.php");
+require_once(dirname(__FILE__) . "/../../core/classes/ConnectDB.php");
+require_once(dirname(__FILE__) . "/../../students/classes/Student.php");
+require_once(dirname(__FILE__) . "/../../marking/classes/Marking.php");
 
 class LecturerLab extends Lab
 {

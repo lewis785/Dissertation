@@ -6,9 +6,9 @@
  * Date: 07/03/2017
  * Time: 00:43
  */
-require_once (dirname(__FILE__)."/../core/ConnectDB.php");
-require_once (dirname(__FILE__)."/../labs/Lab.php");
-require_once (dirname(__FILE__)."/../students/Student.php");
+require_once(dirname(__FILE__) . "/../../core/classes/ConnectDB.php");
+require_once(dirname(__FILE__) . "/../../labs/classes/Lab.php");
+require_once(dirname(__FILE__) . "/../../students/classes/Student.php");
 
 class Marking extends Lab
 {

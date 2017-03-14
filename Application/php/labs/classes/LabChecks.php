@@ -7,7 +7,7 @@
  * Time: 17:21
  */
 
-require_once (dirname(__FILE__)."/../core/ConnectDB.php");
+require_once(dirname(__FILE__) . "/../../core/classes/ConnectDB.php");
 class LabChecks
 {
 

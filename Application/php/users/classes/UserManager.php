@@ -7,8 +7,8 @@
  * Time: 18:14
  */
 
-require_once (dirname(__FILE__)."/../core/ConnectDB.php");
-require_once (dirname(__FILE__)."/../core/Security.php");
+require_once(dirname(__FILE__) . "/../../core/classes/ConnectDB.php");
+require_once(dirname(__FILE__) . "/../../core/classes/Security.php");
 
 class UserManager extends Security
 {

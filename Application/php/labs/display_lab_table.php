@@ -6,7 +6,7 @@
  * Time: 22:29
  */
 
-require_once "LabManager.php";
+require_once "classes/LabManager.php";
 
 
 if( isset($_POST["displayTable"]) )

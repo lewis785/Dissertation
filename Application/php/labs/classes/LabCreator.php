@@ -7,8 +7,8 @@
  * Time: 14:42
  */
 
-require_once(dirname(__FILE__) . "/../core/ConnectDB.php");
-require_once(dirname(__FILE__) . "/../courses/Courses.php");
+require_once(dirname(__FILE__) . "/../../core/classes/ConnectDB.php");
+require_once(dirname(__FILE__) . "/../../courses/classes/Courses.php");
 require_once "LabChecks.php";
 require_once "Lab.php";
 
@@ -130,7 +130,7 @@ class LabCreator extends LabChecks
         $con = new ConnectDB();
         $this->link = $con->link;
 
-        $coursename = $Lab->courseFromLabID($labID);
+        $coursename = $this->courses->courseFromLabID($labID);
         $maxPos = 0;
         $minPos = 0;
 
