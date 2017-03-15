@@ -135,7 +135,7 @@ class LabManager extends CourseChecks
             array_push($output_array, array_merge([$student], $marks));
         }
 
-        $io->export($Lab->getLabName($this->labID) . " Results", $titles_array, $output_array);
+        $io->export($Lab->labFromID($this->labID) . " Results", $titles_array, $output_array);
 
         return json_encode(array("success" => true));
     }
