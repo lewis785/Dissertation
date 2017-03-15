@@ -38,6 +38,14 @@ function manageUsersButton() {
     $(".page-header").append("<div class='col-md-3' id='sub-menu'>> User Manager");
 }
 
+function manageDatabaseButton(){
+    getLayout("db-manager");
+
+    $("#sub-menu").remove();
+    $("#sub-sub-menu").remove();
+    $(".page-header").append("<div class='col-md-3' id='sub-menu'>> DB Manager");
+}
+
 function manageStudentButtons() {
     getLayout("manage-students");
     $(".page-header").append("<div class='col-md-4' id='sub-sub-menu'>> Student's");

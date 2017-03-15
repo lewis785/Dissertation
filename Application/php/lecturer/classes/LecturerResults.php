@@ -98,10 +98,10 @@ class LecturerResults extends LabStats
         $output ="<li class='col-md-12 results-lab-row' id='result-row-$id' '>
                             <div class='result-align-center result-summary col-md-12'>
                                 <div id='result-row-arrow-$id' class='result-align-center col-md-1 col-sm-1 col-xs-1  glyphicon glyphicon-triangle-right'></div>
-                                <div class='col-md-3 col-sm-6 col-xs-10 '>Lab Name: <span id='lab-name'>$lab</span></div>
-                                <div class='col-md-3 col-sm-5'>Students Marked: $stats[2] / $stats[3]</div>
-                                <div class='col-md-3 '>Marked Average: $stats[0]</div>
-                                <div class='col-md-2 '>Overall Average: $stats[1]</div>
+                                <span class='col-md-2 col-sm-6 col-xs-10 '>Lab Name: <span id='lab-name'>$lab</span></span>
+                                <span class='col-md-3 col-sm-5'>Students Marked: $stats[2] / $stats[3]</span>
+                                <span class='col-md-3 '>Marked Average: $stats[0]</span>
+                                <span class='col-md-3 '>Overall Average: $stats[1]</span>
 
                             </div>";
 

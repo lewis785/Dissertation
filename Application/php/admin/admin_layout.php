@@ -25,6 +25,10 @@ if(isset($_POST["buttonType"]))
             echo($layout->manageUsersButtons());
             break;
 
+        case "db-manager":
+            echo($layout->manageDatabaseButton());
+            break;
+
         case "manage-students":
             echo($layout->manageStudents());
             break;

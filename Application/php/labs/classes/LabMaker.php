@@ -37,13 +37,13 @@ class LabMaker
         $retrieveLabQuestions = mysqli_stmt_init($con->link);
         mysqli_stmt_prepare($retrieveLabQuestions, "SELECT qt.typeName FROM lab_questions AS lq 
                                                     JOIN question_types AS qt ON lq.questionType = qt.questionTypeID
-                                                    WHERE lq.labRef = ?");
+                                                    WHERE lq.labRef = ? ORDER BY  lq.questionID");
         mysqli_stmt_bind_param($retrieveLabQuestions, "s", $labID);
         mysqli_stmt_execute($retrieveLabQuestions);
         $result = mysqli_stmt_get_result($retrieveLabQuestions);
 
-        $output = "<form class='col-lg-12' id='form-area' accept-charset='UTF-8' role='form'  name='create-lab-form' method='post' action='../lab_creator.php'>
-                    <input type='hidden' value='update'>";
+        $output = "<form class='col-lg-12' id='form-area' accept-charset='UTF-8' role='form'  name='create-lab-form' method='post' action='../../php/labs/lab_creator.php'>
+                    <input type='hidden' name='update' value='$labID'>";
         $id = 0;
         $qNum =  1;
 

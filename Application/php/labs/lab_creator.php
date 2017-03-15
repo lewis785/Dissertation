@@ -6,12 +6,13 @@
  * Time: 17:29
  */
 require_once "classes/LabCreator.php";
+$create = new LabCreator();
+
 if (isset($_POST["type"]) && isset($_POST['lab-name']) && isset($_POST['course-name']))
 {
-    $create = new LabCreator();
-
-    if(isset($_POST["update"]))
-        $create->updateLab($_POST["update"]);
-    else
-        $create->createLab();
+    $create->createLab();
+}
+elseif(isset($_POST["update"]))
+{
+    $create->updateLab($_POST["update"]);
 }

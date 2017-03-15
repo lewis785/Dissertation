@@ -65,7 +65,7 @@ class LabDisplay extends LabChecks
     private function getLabQuestions($link, $lab_name, $course_name)
     {
 
-        $retrieveQuestionsQuery = 'SELECT lq.questionNumber, qt.typeName, lq.question, lq.minMark, lq.maxMark FROM lab_questions AS lq
+        $retrieveQuestionsQuery = 'SELECT lq.questionNumber, qt.typeName, lq.question, lq.minMark, lq.maxMark, lq.private FROM lab_questions AS lq
                               JOIN question_types AS qt ON lq.questionType = qt.questionTypeID
                               JOIN labs ON lq.labRef = labs.labID
                               JOIN courses AS c ON labs.courseRef = c.courseID

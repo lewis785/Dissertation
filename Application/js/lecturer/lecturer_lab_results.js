@@ -27,17 +27,6 @@ function open_close_div(divID)
     $(".open-result div.glyphicon-triangle-bottom").removeClass("glyphicon-triangle-bottom").addClass("glyphicon-triangle-right");
     open.removeClass("open-result");
 
-
-    // $(".results-lab-row").each(function () {
-    //     if($(this).css("height") != "80px") {
-    //         $(this).animate({height: '80px'}, 500);
-    //             // .replace("glyphicon-triangle-bottom", "glyphicon-triangle-right");
-    //         $("#result-row-arrow-"+count).toggleClass("glyphicon-triangle-right glyphicon-triangle-bottom");
-    //     }
-    //     count ++;
-    // });
-
-
     if(selected.css("height") == "80px") {
         var curHeight = selected.height();
         selected.css("height", "auto");
@@ -56,6 +45,7 @@ function change_div_size(row)
         var newHeight = row.height();
         row.height(curHeight).animate({height: newHeight}, 500);
 }
+
 
 function display_student_result(input, course, student)
 {

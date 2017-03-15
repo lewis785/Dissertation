@@ -114,6 +114,7 @@ function removeStudent()
     var student = $("#selected-table .selected-row div#matric-num").text();
     var course = $("select").val();
 
+    alert(student + course);
     $.ajax({
         type: 'POST',
         url: "../../php/courses/manage_students.php",

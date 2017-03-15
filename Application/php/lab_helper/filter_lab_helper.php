@@ -7,7 +7,7 @@
  */
 
 if (isset($_POST["course"]) && isset($_POST["filter"])) {
-    require_once(dirname(__FILE__) . "/../admin/AdminForms.php");
+    require_once(dirname(__FILE__) . "/../admin/classes/AdminForms.php");
 
     $admin = new AdminForms();
     echo($admin->filterHelpersTable($_POST["course"], $_POST["filter"]));

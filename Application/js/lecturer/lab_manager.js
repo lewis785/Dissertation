@@ -89,17 +89,59 @@ function editLab(lab_name, labID)
 
 function fillLab(labID)
 {
-    var question_number = 1;
-    $(".tile").each(function () {
-        var input_type = $(this).find("input[name='type[]']").val()
 
-        alert($(this).find("input[name='type[]']").val());
+    $.ajax({
+        type: 'POST',
+        url: "../../php/labs/get_lab_questions.php",
+        dataType: 'json',
+        data: {lab_id: labID},
+        cache: false,
+        success: function(result) {
+            var question_number = 0;
 
-    })
+            $(".tile").each(function () {
+                var input_type = $(this).find("input[name='type[]']").val();
+
+                $(this).find("input[name='question[]']").val(result.questions[question_number][2]);
+
+                // if(result.questions[question_number][5])
+                    // swap_value(question_number);
+                // if(result.questions[question_number][5])
+                if(result.questions[question_number][5] === "true")
+                    change_visibility(question_number);
+                switch (input_type)
+                {
+                    case("boolean"):
+                        $(this).find("select[name='max-value[]']").val(result.questions[question_number][4]);
+                        break;
+                    case("text"):
+                        $(this).find("select[name='max-value[]']").val(result.questions[question_number][4]);
+                        break;
+                    case("scale"):
+                        $(this).find("select[name='min-value[]']").val(result.questions[question_number][3]);
+                        $(this).find("select[name='max-value[]']").val(result.questions[question_number][4]);
+                        break;
+                }
+
+                // alert($(this).find("input[name='type[]']").val());
+
+                question_number++;
+            })
+
+        },
+        error: function(xhr, status, error) {
+            alert("Error Occurred Trying To Retrieve Lab" + xhr);    //Displays an alert if error occurred
+        }
+    });
+
+
+
 }
 
 function submitEdit()
 {
+    if(valid_lab())
+        $("#form-area").submit();
 
 }
 

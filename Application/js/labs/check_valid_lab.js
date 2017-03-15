@@ -9,50 +9,48 @@ function valid_lab() {
 
     $(".input-error").removeClass("input-error"); //Removes all errors from inputs
 
-    var courseVal = $("#course-selector").val();
+    if($("#course-selector").length > 0) {
+        var courseVal = $("#course-selector").val();
         var labVal = $("#labname-input").val();
 
+        //Check course has been selected
+        if (courseVal == "no-selection") {
+            $("#course-selector").addClass("input-error");
+            valid = false;
+            errorMessage += "\u2022 No Course Selected \n";
+        }
 
-    //Check course has been selected
-    if(courseVal == "no-selection")
-    {
-        $("#course-selector").addClass("input-error");
-        valid = false;
-        errorMessage+="\u2022 No Course Selected \n";
-    }
+        //Check lab name has been entered
+        if (labVal == "") {
+            $("#labname-input").addClass("input-error");
+            valid = false;
+            errorMessage += "\u2022 No Lab Name Given \n";
+        }
 
-    //Check lab name has been entered
-    if(labVal == "")
-    {
-        $("#labname-input").addClass("input-error");
-        valid = false;
-        errorMessage+="\u2022 No Lab Name Given \n";
-    }
-
-    //Checks if form is currently valid
-    if(valid)
-    {
-        //Checks if lab name already exists
-        $.ajax({
-            type: 'POST',
-            url: "../../php/lecturer/check_lab_name.php",
-            dataType: 'json',
-            data: {course:courseVal, lab:labVal},
-            async: false,
-            cache: false,
-            success: function (result) {
-                if(result.exists === true){
+        //Checks if form is currently valid
+        if (valid) {
+            //Checks if lab name already exists
+            $.ajax({
+                type: 'POST',
+                url: "../../php/lecturer/check_lab_name.php",
+                dataType: 'json',
+                data: {course: courseVal, lab: labVal},
+                async: false,
+                cache: false,
+                success: function (result) {
+                    if (result.exists === true) {
+                        valid = false;
+                        $("#labname-input").addClass("input-error");
+                        errorMessage += "\u2022 Lab Name Already Exists \n";
+                    }
+                },
+                error: function (xhr, status, error) {
+                    alert("Error Occurred Try To Check Lab Name: " + xhr + status + error);    //Displays an alert if error occurred
                     valid = false;
-                    $("#labname-input").addClass("input-error");
-                    errorMessage+="\u2022 Lab Name Already Exists \n";
                 }
-            },
-            error: function (xhr, status, error) {
-                alert("Error Occurred Try To Check Lab Name: " + xhr + status + error);    //Displays an alert if error occurred
-                valid = false;
-            }
-        });
+            });
 
+        }
     }
 
     //Check questions have been added to the lab

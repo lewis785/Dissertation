@@ -7,7 +7,7 @@
  */
 
 if (isset($_POST["course"]) && isset($_POST["student"])) {
-    require_once "LabHelper.php";
+    require_once "classes/LabHelper.php";
 
     $labHelper = new LabHelper();
     echo($labHelper->addLabHelper($_POST["course"], $_POST["student"]));

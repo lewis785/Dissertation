@@ -22,6 +22,7 @@
     <script type="text/javascript" src="../../js/lecturer/lab_manager.js"></script>
     <script type="text/javascript" src="../../js/question_adding.js"></script>
     <script type="text/javascript" src="../../js/labs/check_valid_lab.js"></script>
+    <script type="text/javascript" src="../../js/labs/check_valid_lab.js"></script>
 
 
     <!--JavaScripts Functions -->

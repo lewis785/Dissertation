@@ -61,7 +61,7 @@ class LecturerLab extends Lab
     private function get_student_stats($link, $course, $lab, $username)
     {
         $statsDiv = "";
-        include(dirname(__FILE__) . "/../core/connection.php");
+        include(dirname(__FILE__) . "/../../core/connection.php");
         $maxMark = $this->lab_total_mark($course, $lab);
         $studentMark = $this->student->lab_mark_for_student($link, $username, $course, $lab);
         $percentage = number_format((($studentMark / $maxMark) * 100), 2, ".", "") . "%";
