@@ -78,8 +78,9 @@ class LabDisplay extends LabChecks
         $result = mysqli_stmt_get_result($retrieveQuestions);
         $output_array = [];
 
-        while($question = $result->fetch_row())
-            array_push($output_array,$question);
+        while($question = $result->fetch_row()) {
+            array_push($output_array, $question);
+        }
 
         return $output_array;
     }
@@ -159,4 +160,3 @@ class LabDisplay extends LabChecks
         return $output."</div>";
     }
 }
-

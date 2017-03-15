@@ -145,17 +145,17 @@ class LabCreator extends LabChecks
                         $maxPos++;
                         break;
                     case "scale":                                   //Inserts scale type questions
-                        $successful = $this->updateQuestion($qID, $this->get_type_ID("boolean"), $this->questions[$index], $this->min_marks[$minPos], $this->max_marks[$maxPos], $this->visibility[$index]);
+                        $successful = $this->updateQuestion($qID, $this->get_type_ID("scale"), $this->questions[$index], $this->min_marks[$minPos], $this->max_marks[$maxPos], $this->visibility[$index]);
                         $maxPos++;
                         $minPos++;
                         break;
                     case "value":                                   //Inserts value type questions
-                        $successful = $this->updateQuestion($qID, $this->get_type_ID("boolean"), $this->questions[$index], NULL, $this->max_marks[$minPos], $this->visibility[$index]);
+                        $successful = $this->updateQuestion($qID, $this->get_type_ID("value"), $this->questions[$index], NULL, $this->max_marks[$minPos], $this->visibility[$index]);
                         $maxPos++;
                         $minPos++;
                         break;
                     case "text":                                   //Inserts value type questions
-                        $successful = $this->updateQuestion($qID, $this->get_type_ID("boolean"), $this->questions[$index], 0, $this->max_marks[$maxPos], $this->visibility[$index]);
+                        $successful = $this->updateQuestion($qID, $this->get_type_ID("text"), $this->questions[$index], 0, $this->max_marks[$maxPos], $this->visibility[$index]);
                         $maxPos++;
                         $minPos++;
                         break;
