@@ -44,8 +44,9 @@ class LabManager extends CourseChecks
                 $output .= "<tr><td class='btn-info course-row'' colspan=6>" . $course . "</td></tr>";   //Insert Row to filling it with the course title
                 if (sizeof($labs) > 0) {                                                         //Checks that there is at least one lab
                     foreach ($labs as $lab) {                                                   //For loop through each lab the course has
-                        $id = $this->LabDisplay->get_lab_id($course[0], $lab[0]);                              //Gets the labID for the lab
+                        $id = $this->LabDisplay->get_lab_id($course, $lab[0]);                              //Gets the labID for the lab
                         $totalMark = $stats->lab_total_mark($course, $lab[0]);
+
 
                         if ($this->LabDisplay->is_lab_markable($course, $lab[0]))
                             $buttonChecked = "checked='checked' onclick='lab_markable(" . $id . ",\"false\")'";
@@ -176,9 +177,3 @@ class LabManager extends CourseChecks
     }
 
 }
-
-//$manage = new LabManager();
-//print_r($manage->changeMarkable(14,"false"));
-
-
-//if(isset($_POST["labID"]) && isset($_POST["newState"]))

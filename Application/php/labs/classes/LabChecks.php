@@ -54,7 +54,7 @@ class LabChecks
                       WHERE c.courseName = ? AND l.labName = ?';                //Query gets lab ID for course name and lab name
         $getLabID = mysqli_stmt_init($con->link);                                    //Init Prepared Statement
         mysqli_stmt_prepare($getLabID, $getLabIDQuery);
-        mysqli_stmt_bind_param($getLabID, 'is',$course, $lab);                  //Bind course and lab variables
+        mysqli_stmt_bind_param($getLabID, 'ss',$course, $lab);                  //Bind course and lab variables
         mysqli_stmt_execute($getLabID);                                         //Execute Prepared Statement
         $result = mysqli_stmt_get_result($getLabID)->fetch_row();               //Get Result
 
