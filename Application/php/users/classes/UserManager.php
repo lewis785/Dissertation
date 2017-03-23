@@ -47,7 +47,6 @@ class UserManager extends Security
         }
 
         $new_id = mysqli_insert_id($link);
-        echo $new_id;
 
         $insertDetailsQuery = 'INSERT INTO user_details (detailsID, firstname, surname, studentID) VALUES (?, ?, ?, ?)';
         $insertDetails = mysqli_stmt_init($link);

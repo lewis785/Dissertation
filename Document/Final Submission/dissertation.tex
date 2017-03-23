@@ -10,9 +10,12 @@
 \usepackage{wrapfig}
 \usepackage[titletoc,title]{appendix}
 \usepackage{pdfpages}
+\usepackage{color, colortbl}
 
 \usepackage{lipsum}
 \usepackage[margin=2cm]{geometry}
+
+\definecolor{Gray}{gray}{0.9}
 
 
 \addbibresource{references.bib}
@@ -33,10 +36,17 @@ Peter J King}
 \begin{document}
 \maketitle
 \pagenumbering{gobble}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%										%
+%     		    Declaration				%
+%										%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
 \setcounter{page}{1}
 \pagenumbering{roman}
-
 \doublespacing
 \textbf{\Large{Declaration}} \\[2em]
 I, Lewis Francis McNeill, confirm that this work submitted for assessment is my own and is expressed in my own words. Any references, made within it, of the works of other authors in any way (e.g., ideas, equations, figures, text, tables, programs) are properly acknowledged at any point of their use. A list of the references employed is included.
@@ -47,6 +57,11 @@ Signed: Lewis McNeill
 Date: \today
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%										%
+%     		    Abstract				%
+%										%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage               
 \begin{abstract}
 \noindent
@@ -54,6 +69,8 @@ The aim of this dissertation project is to replace the current system for the ma
 \end{abstract}
 \newpage                
 \tableofcontents
+
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -66,11 +83,11 @@ The aim of this dissertation project is to replace the current system for the ma
 \pagenumbering{arabic}
 \section{Introduction}
 
-The current system for marking of computing science lab is to use multiple lab helpers, each given a list of students and the marking scheme for them. Generally marking schemes are a selection of tasks students must have completed and lab helpers tick them off when they have completed them.. The biggest problem with this part of the marking is the time it takes lab helpers to locate the students on the list. This causes frustration with increased wait times for students.  Multiple other issues  can also  arise from this: students can be marked by two helpers and obtain different grade from both; the lab helper omits to  tick off a completed task; they assign  marks for the wrong student on the sheet or simply they misplace the actual marking sheet.
+The current system for marking of computing science labs is to use multiple lab helpers, each given a list of students and the marking scheme for them. Generally marking schemes are a selection of tasks students must have completed and lab helpers tick them off when this has been achieved. The biggest problem with this part of the marking is the length of time it takes lab helpers to locate the students on the list. This causes frustration with increased waiting times for students.  Multiple other issues  can also  arise from this: students can be marked by two helpers and obtain different grades from both; the lab helper omits to  tick off a completed task; they assign  marks for the wrong student on the sheet or simply they misplace the actual marking sheet.
 
-After the lab helpers have completed their marking, the sheets are provided to the lecturer who collates them all together into one spreadsheet to calculate marks. After that it is entered it into vision. This too can cause its own set of problems- it increases the chances of transcription errors as the lecturer may misread marks when they are transferring them across. The lecturer may not enter the marks immediately into the spreadsheet increasing the chance that a marking sheet goes missing, and finally this system means that students are having to wait even longer to receive their results.
+After the lab helpers have completed their marking, the sheets are provided to the lecturer who collates them together into one spreadsheet to calculate marks. After that it is entered it into vision. This too can cause its own set of problems-the chances of transcription errors are increased as it is possible for the lecturer to misread marks when they are transferring them across. The lecturer may not enter the marks immediately into the spreadsheet increasing the chance that a marking sheet goes missing, and finally this system means that students are having to wait even longer to receive their results.
 
-The objective is to develop a system that will reduce and hopefully eliminate the problems of the current system. Along with this, it should attempt to reduce the amount of time taken to mark students’ work and therefore speed up labs in general. It should also enable students to see their grades immediately, allow lecturer to see the result of the assignments as they are being marked and make marking quicker for lab helpers.
+The objective is to develop a system that will reduce and hopefully eliminate the problems of the current system. Along with this, it should hopefully reduce the amount of time taken to mark students’ work and therefore speed up labs in general. It should also enable students to see their grades immediately, allow lecturer to see the result of the assignments as they are being marked and make marking quicker for lab helpers.
 
 
 
@@ -84,9 +101,9 @@ The aim of this dissertation is to design and implement a system for the digital
 \label{section:object}
 \begin{itemize}
 \item Simplify the way that labs marks are currently processed.
-\item Allow lecturers to create marking schemes online that lab helpers can access. 
+\item Allow lecturers to create marking schemes on-line that lab helpers can access. 
 \item Lab helpers can mark students in labs using marking schemes.
-\item Lab helpers able  to mark labs using an online application.
+\item Lab helpers able  to mark labs using an on-line application.
 \item Allow students to see the mark they achieved from the lab instantly.
 \item Provide useful statistics and graphs for lecturers and students.
 \item Provide different views for student, lab helpers and lecturer.
@@ -101,24 +118,28 @@ The aim of this dissertation is to design and implement a system for the digital
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
 \section{Literature Review}
-This section contains the summaries of literature relating to the topic and should help to create a context for the development of a digital marking system . It will cover what marking systems are currently being used, what current digital marking systems  actually exist and why they are an improvement. Along with this it will also cover how to control what users are allowed to see, as well as explaining systems for creation of custom website forms, and finally it will cover the graphical displaying of statistics. 
+This section contains the summaries of literature relating to the topic and should help to create a context for the development of a digital marking system. It will cover what marking systems that are currently being used, what current digital marking systems actually exist and why they are an improvement. Along with this it will also cover how to control what users are allowed to see, as well as explaining systems for creation of custom website forms, and finally it will cover the graphical displaying of statistics. 
 
+
+\subsection{Web Applications}
+
+%TODO%
 
 
 \subsection{Marking Systems}
 
 \subsubsection{Lecturer Based}
-The way lecturer based marking works is that students complete their assignment, the lecturer or tutor marks it and provides result in a timely manner with useful feedback which can be majorly important in helping students improve there skills  \cite{tang_investigating_2011}.
+The way lecturer based marking works is that students complete their assignment, the lecturer or tutor marks it and provides result in a timely manner with useful feedback which can be majorly important in helping students improve their skills  \cite{tang_investigating_2011}.
 
-The advantage of this style of marking is that students can get useful feedback from their lecturer that can help improve their learning.  An article study \cite{higgins_conscientious_2002} found that of the students, when surveyed 82\% agreed to the question "I pay close attention to the comments I get" in response to assignment feedback.
+The advantage of this style of marking is that students can obtain useful feedback from their lecturer that can help improve their learning.  An article study \cite{higgins_conscientious_2002} found that of the students, when surveyed 82\% agreed to the question "I pay close attention to the comments I get" in response to assignment feedback.
 
-A downside to this style of marking is that as the number of students increases on courses the amount of time required to mark assignments consequently takes longer and in some cases this can actually cause marked assessments to be scrapped completely as they take too long to get feedback to students \cite{brown_assessment_1999}.
+A downside to this style of marking is that as the number of students increases on courses the amount of time required to mark assignments consequently takes longer and in some cases this can actually cause marked assessments to be scrapped completely due tomthemamount of time taken to give feedback to students \cite{brown_assessment_1999}.
 
 
 \subsubsection{Peer Based}
 To cope with increasing class sizes some courses are beginning to move towards peer marking. Peer marking system works by having students assess each other and in some cases  the students produced their own marking criteria \cite{orsmond_use_2000}.
 
-This style allows  students to gain experience in evaluating other people's work, which some graduates feel is a necessary skill to possess. \cite{langan_insights_????}. Peer marking also deals with increasing amounts of students very well- this is because as the number students increase the number of markers also increases!
+This style allows  students to gain experience in evaluating other people's work, which some graduates feel is a necessary skill to possess. \cite{langan_insights_????}. Peer marking also deals with increasing amounts of students very well- this is because as the number of students increases the number of markers also increases!
 
 Peer marking however has its own set of problems - for example, "Students may have a less well developed sense of the criteria compared to the lecturer which could lead to a lack of reliability of student marking." \cite{orsmond_use_2000}.
 
@@ -184,17 +205,13 @@ This increased flexibility in email forms would allow for easier  interpretation
 
 
 \subsection{Development Tools}
-\subsubsection{D3}
-D3 \cite{bostock_d3.js_????} is a javascript library, which was designed for the creation of interactive visualisations of data and was first developed in 2011. D3 uses precreated Javascript functions to create scalable vector graphics (SVG's) which are embedded into the html of websites."SVG is a language for describing two-dimensional graphics in XML"\cite{ferraiolo_scalable_2000} and can have displays changed  using Cascading Style Sheet (CSS).  \\
-Datasets can also be bound to an SVG allowing for a visual way to interpret the dataset, and as the dataset changes the SVG will be changed allowing for a dynamic display.
+%TODO%
 
-\subsubsection{CakePHP}
-CakePHP is an open source framework for php, it is developed to help with rapid development of web application and make them simpler,fast and less complex to build \cite{_cakephp_????}. It allows the development of well structured and robust web applications \cite{plekhanova_evaluating_2009}, and its latest version is version 3.3 called "Red Velvet" it can be downloaded from (https://cakephp.org/).
+\subsubsection{Jquery}
+%TODO%
 
-The usefulness of the framework come in the form of its predefined functions, it allows for more secure code, since you cannot accidently forget to escape character from input as the functions do this anyway. Cakephp helps to improve the maintainability of systems as it is easy to understand with plenty of comments.
-
-A downside to cakephp is its testability, compared to other web frameworks it lacks in testing tools and does not contain a testing environment \cite{plekhanova_evaluating_2009}.
-
+\subsubsection{Bootstrap}
+%TODO%
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -228,7 +245,7 @@ p{0.1\linewidth}|}
 \textbf{ID} & \textbf{Requirement} & \textbf{Access} & \textbf{Priority}\\
 \hline \hline
 
-\rid{FR} & Should have to login to view system & 1,2,3,4 & High\\ \hline
+\rowcolor{Gray} \rid{FR} & Should have to login to view system & 1,2,3,4 & High\\ \hline
 \rid{FR} & Should have accounts created for them & 1,2,3,4 & High\\ \hline
 \rid{FR} & Should be able to change password & 1,2,3,4 & High\\ \hline
 \rid{FR} & Should be able to login using university ID & 1,2,3,4 & Low\\ \hline
@@ -251,7 +268,7 @@ p{0.1\linewidth}|}
 
 \rid{FR} & Should be able to create marking schemes & 2 & High\\ \hline
 \rid{FR} & Should display generated stats & 2 & High\\ \hline
-\rid{FR} & Should be able to see submited marks & 2 & High\\ \hline
+\rid{FR} & Should be able to see submitted marks & 2 & High\\ \hline
 \rid{FR} & Should be able to generate end of year spread sheets & 2 & Medium\\ \hline
 \rid{FR} & Should allow editing of students in class & 2 & Medium\\ \hline
 \rid{FR} & Should be able to create peer marking scheme & 2 & Medium\\ \hline
@@ -305,10 +322,10 @@ Table \ref{table:non-func} lists all the non-functional requirements for the dev
 \rid{NFR} & Should prevent SQL Injection & High\\ \hline
 
 
-\rid{NFR} & Should function on a wide variety of smartphones and tablets & Medium\\ \hline
+\rid{NFR} & Should function on a wide variety of smart phones and tablets & Medium\\ \hline
 \rid{NFR} & Should be able to handle a large number of users without any faults & Medium\\ \hline
 \rid{NFR} & Should make sure passwords contain alphanumerics and have a minimum and maximum length  & Medium\\ \hline
-\rid{NFR} & Should autosave marks as they are entered & Medium\\ \hline
+\rid{NFR} & Should auto save marks as they are entered & Medium\\ \hline
 \rid{NFR} & Should record what lab help marked what student & Medium\\ \hline
 \rid{NFR} & Should list all students that did not attend the lab & Medium\\ \hline
 \rid{NFR} & Should track how long it takes to mark a student & Medium \\ \hline
@@ -327,6 +344,68 @@ Table \ref{table:non-func} lists all the non-functional requirements for the dev
 \setcounter{requirement}{1}
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%										%
+%     		     Design 				%
+%										%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\section{Design}
+This sections is to explain all the design decision take in developing the marking system using sketches, models and diagrams and thus assist in the understanding of how the system works as a whole. The design aspect that are cover are: the user interface, database design and the main functionality required to make the system work. 
+
+\subsection{User Interface Design}
+For the system to be useful the user interface must be easy to use and understand, along with this it will have to be functional on mobile devices as well. To achieve this I have developed mock-ups for main web pages required to make the system work, including a design for desktop and mobile. 
+
+\subsubsection{Lab Results}
+%TODO%
+\subsubsection{Lab Maker}
+%TODO%
+\subsubsection{Marking}
+%TODO%
+\subsubsection{Lab Creation}
+%TODO%
+
+\subsection{Database Design}
+%TODO%
+
+\subsection{Functionality Design}
+%TODO%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%										%
+%     		 Implementation				%
+%										%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\section{Implementation}
+%TODO%
+
+\subsection{Database}
+
+\subsection{Lab Creator}
+%TODO%
+
+\subsection{Marking Labs}
+%TODO%
+
+\subsection{Results Display}
+%TODO%
+\subsubsection{Students}
+%TODO%
+\subsubsection{Lecturers}
+%TODO%
+
+\subsection{Lab Management}
+%TODO%
+
+\subsection{Admin Panel}
+%TODO%
+
+
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %										%
@@ -337,172 +416,42 @@ Table \ref{table:non-func} lists all the non-functional requirements for the dev
 \section{Strategy for testing and evaluation}
 
 \subsection{Testing}
-During each sprint unit tests will be created and run on modules of code to make sure that they function correctly, and can deal with a wide variety of unexpected or extreme cases. It will help test if the function is robust enough  and the system is ready for the next module to be developed.
-
-Each of the requirements defined in section \ref{section:require} can be tested, to set for a requirement being successfully implemented into the system they should be full testable without any errors occurring.
-
-\subsection{Evaluating}
-To evaluate properly how successful I have been at developing a new Lab Marking System I will conduct a usability case study. Lecturers, lab helpers and students will be asked to use the systems and provide feedback, to help evaluate the system and discover what improvements can be made.
-
-To evaluate how effective the code is I will create test cases. These will test how efficient the code is at running functions and help find areas for future improvement in the system.
-
-To evaluate the whole system I will use the objectives I defines in section \ref{section:object}, each of the objectives is testable and testing them will help evaluate successful I was at implementing the completed system and what will need future improvement.
+%TODO%
+\subsubsection{Development Testing}
+%TODO
+\subsubsection{Final Testing}
+%TODO
 
 
+\subsection{Evaluation}
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%										%
-%     		Project Plan				%
-%										%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\newpage
-\section{Project Plan and Risk Analysis}
-
-\subsection{Project Plan}
-
-
-The Gantt chart and its accompanied task table for this dissertation can be seen in appendix (\ref{appendix:gantt}), I used gantt project to create it unfortunately it does not allow tasks to stop at weekends leaving gaps between tasks which should not be there. It is broken down into 5 stages: Design, Development, Evaluation, Dissertation and Poster. Each of these stages has multiple tasks that are expected to be completed during the course of the stage. A summary of each stage and their key tasks are stated below.\bigskip
-
-\noindent
-\textbf{Design Stage} Starts at the end of semester 1 to allow myself time to complete other course work. In this stage I will create mock-ups for the user interface, a database schema and Unified Modeling Language (UML) diagram, to help improve the development time of the system and create an idea of what the system will look like. Also along with this I will also be deciding requirements will be added in each of my sprints in the next stage.\bigskip
-
-\noindent
-\textbf{Development Stage:} Starts once the holidays are over. It is consists of five sprints, four of which are one week long and one that is two weeks long, each sprint has its own aim.
-
-\noindent Sprint 1 - will be aimed toward developing the basic user interface that will be used for the other sprints.\\
-Sprint 2 - Is for develop the back-end of the system, developing the database login system and any other functionality that will be needed for the next sprint.\\
-Sprint 3 - This is the two week sprint this is because the aim is to enable the creation of custom marking schemes and I do not know what exact functionality will be required to make it work so I gave myself more time to develop it.\\
-Sprint 4 - Aims to build on the previous sprint by developing lab helpers functionality.\\
-Sprint 5 - Is for general improvements of the system mostly to focus on the user interface.
-
-After sprints 2 and 5 there is a planned week for evaluation and documentation for the functionality implemented in the sprints that have occurred.\bigskip
-
-\newpage
-\noindent
-\textbf{Evaluation Stage: } This stage occurs at the final two weeks before the draft handin, I will consist of the creation of a usability case study (UCS) using the final result of the development stage, The UCS will be run and using the evaluated results to develop improvements for the system in the future. During the course of this stage I will also be completing the draft of my dissertation ready for the handin at the start of the next stage\bigskip
-
-\noindent
-\textbf{Final Deliverable Stage:} This stage start with the handin of my draft dissertation, it is followed by a week's break to allow for my supervisor to assess my draft. After that using the feedback I receive from both my supervisor and my second reader I will go about improving my dissertation so that it is of a high enough standard for the final handin.\bigskip
-
-\noindent
-\textbf{Poster Stage:} This stage will be entirely dedicated to the design and creation of my dissertation poster.
-
-
+\subsubsection{Usability Case Study}
+%TODO
+\subsubsection{Feedback}
+%TODO%
+\subsubsection{Implementation Of Feedback}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %										%
-%     		Risk Analysis				%
+%     	       Discussion				%
 %										%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
-\subsection{Risk Analysis}
+\section{Discussion}
+%TODO%
 
-The risks relating to this dissertation are shown in table(\ref{table:risks}), each risk has an associated Likelihood, Impact and a Mitigation Strategy. Likelihood values are low, moderate and high, Impact values can be low, moderate or severe. The table is sorted by likelihood and then by the impact.
+\subsection{Development}
+%TODO%
 
-\begin{spacing}{1.5}
-\begin{longtable}{|p{0.05\textwidth}|p{0.25\textwidth}|p{0.15\textwidth}|p{0.1\textwidth}|p{0.33\textwidth}|}
-\caption{Risk Analysis} \label{table:risks} \\ \hline
-\textbf{ID} & \textbf{Risk} & \textbf{Likelihood} & \textbf{Impact } & \textbf{Mitigation Strategy}\\
-\hline
+\subsection{Limitations}
+%TODO%
 
-\rid{R} & Browsers compatibility & High & Server & Constantly test browser compatibility after each sprint\\ \hline
+\subsection{Future Improvements}
+The electronic marking system has many improvements that can be implemented some are requirements that I was not able to implement 
 
-\rid{R} & Other university coursework deadlines & High & Moderate & Make sure to allocate adequate amount of time to other courses.\\ \hline
-
-
-\rid{R} & Lecturers can’t create custom marking schemes & Moderate & Severe & Create selectable forms that lecturers can edit.\\ \hline
-
-\rid{R} & Requirements changed & Moderate & Moderate & Evaluate requirements before starting development phase and evaluate requirements regularly during project to notice any required changes before it causes a major issue \\ \hline
-
-\rid{R} & System speed is slow & Moderate & Moderate & Make sure system is well factored and follow coding standards \\ \hline
-
-\rid{R} & Users cannot understand the system & Moderate & Moderate & Usability Study is being run at the end of the project to evaluation future improvements\\ \hline
-
-\rid{R} & Used libary get updated and causes error & Moderate & Moderate & Read update information before upgrading to understand where errors might occur\\ \hline
-
-\rid{R} & Admins can’t assign courses & Moderate & Moderate & Assign courses as part of test data and make note as a future improvement to the system  \\ \hline
-
-\rid{R} & Superviser unable to make meeting & Moderate & Low & Contact supervisor and arrange another meeting time \\ \hline
-
-\rid{R} & Cannot get D3 to work & Moderate & Low & Just display stats as plain text\\ \hline
-
-
-\rid{R} & Personal Injury & Low & severe & Development would have to be delayed and discussions made with supervisor about how to continue\\ \hline
-
-\rid{R} & Loss of data & Low & severe & Back-ups will be stored throughout the project\\
-\hline
-
-\rid{R} & Family Issue & Low & severe  & Inform MACS and discuss what options are available depending on the situation \\ \hline
-
-\rid{R} & Users can't login & Low & severe & Major testing will be done of the login functionality including multiple unit tests\\ \hline
-
-\rid{R} & Users can't log out & Low & Moderate & Login will be using sessions which will timeout after a set time so if the user cannot log out then the system do it for them\\ \hline
-
-\rid{R} & Server hosting the project crashes & Low & Moderate & Contact the host and enquire about what has happened\\ \hline
-
-\rid{R} & Superviser Leaves & Low & Moderate & Inform alisdair and request a new supervisor\\ \hline
-
-\rid{R} & Software Licences Expire & Low & Low & Check licences for all software i will be using during the project to make sure they are valid for length of project\\ \hline
-
-\rid{R} & Issues with transport to university  & Low & Low & Use SSH to access any required information at the university  \\ \hline
-
-
-\end{longtable}
-\end{spacing}
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%										%
-%     			 P.L.E.S				%
-%										%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\newpage
-\section{P.L.E.S Issues}
-
-
-\subsection{Professional Issues}
-The professional part of this project will be done by following coding standards for the languages that I decide to use.
-
-As this project will be a web application I will use external website to make sure that both the html and css in the system are both fully validated.
-
-I will do my best to make sure that any personal information stored about people in the system will secure and encrypted, to make sure users feel safe in using the system.
-
-Another issue I will have to deal with is to the readability of my code. To do this I will have ot make sure that my code is well commented and has a well defined structure to allow for easy understanding. 
-
-The project will be provided with a  user guide for the system so that people unfamiliar with it will be able to pick it up and use it quickly. I will also create  a developer guide, that will detail how the system is designed, what structures are used and describe what method is the system do. This is to help future development of the system by other people, as it gives them an
-
-
-\subsection{Legal Issues}
-There are multiple legal issues relating to this project. The most important one is the Data Protection Act. Since the systems will be designed to store data about students I will have to make sure that all data is encrypted and securely stored.
-
-I will make sure that I follow the terms and services for any software or libraries I used as part of the project, to ensure I am using it in a legal fashion.
-
-The system will be made open source, this is to allow other people to look at and improve the system once I have completed it.
-
-
-\subsection{Ethical Issues}
-An ethical requirement of this project is to do with the storage of students personal information on a digital system; to deal with this issue I should consult the data protection act.
-
-The largest ethical issue I will have to deal with is my usability case study, which will be after the development stage. All participants will be required to fill out a consent form before they take part, to make sure they know what they are taking part in. I will also have to make sure that I am impartial and that none of the questions in the case study are leading, so that useful data can be received from the study to help future development.
-
-Another issue that is raised by this project is making sure that students are not deceived and that the marks they see are actually the ones they have received.
-
-I will also have to deal with the ethics of having bugs in my system, at the end of development as part of the developer guild I will write up about know bugs so that people attempting to use the system know about any issues in it.
-
-The last ethical issue relating to this project is privacy. I have to  ensure that students, when they are online, are able to see only their own mark and cannot see another student's mark. It should also be made such that final grades are only visible to the lecture and student keeping it confidential from lab helpers.
-
-
-%Security breaches & data contained
-%secure data
-%bugs and other parts
-
-
-\subsection{Social Issues}
-A few social issues are raised by this project. Such as if students can see the mark they have received straight away, will lab helpers feel pressurised into giving higher grades.\\
-Will this system result in a reduction of lab helpers being required to mark labs? If the system speeds up the time to mark students work, less lab helpers may be required to run labs, resulting in people looking for work.
-
+\subsection{Conclusion}
+%TODO%
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -519,23 +468,14 @@ Will this system result in a reduction of lab helpers being required to mark lab
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %										%
-%     		Appendice					%
+%     		Appendices					%
 %										%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 \begin{appendices}
 
-
 \let\cleardoublepage\clearpage
-\section{Project Plan}
-\label{appendix:gantt}
-\subsection{Gantt Chart}
-\centering {\includegraphics[height=0.9\textheight]{images/projectplan.jpg}}
-
-
-\includepdf[scale=0.85, pages={2}, pagecommand=\subsection{Task List}]{pdf/projectplan.pdf}
-
 
 \end{appendices}
 
