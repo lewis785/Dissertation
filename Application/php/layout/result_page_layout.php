@@ -6,10 +6,13 @@
  * Time: 18:18
  */
 
-include (dirname(__FILE__)."/../core/connection.php");
-include (dirname(__FILE__)."/../core/check_access_level.php");
+require_once(dirname(__FILE__)."/../core/classes/ConnectDB.php");
+require_once(dirname(__FILE__)."/../core/classes/Security.php");
 
-if(has_access_level($link,"lecturer"))
+
+$sec = new Security();
+
+if($sec->has_access_level("lecturer"))
 {
     echo "<script type='text/javascript' src='../../js/lecturer/lecturer_lab_results.js'></script>";
     include(dirname(__FILE__) . "/../lecturer/lecturer_lab_results.php");
