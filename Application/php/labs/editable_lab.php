@@ -13,5 +13,3 @@ if(isset($_POST["labID"]))
     $maker = new LabMaker();
     echo($maker->displayEditableLab($_POST["labID"]));
 }
-//$maker = new LabMaker();
-//$maker->displayEditableLab(4);

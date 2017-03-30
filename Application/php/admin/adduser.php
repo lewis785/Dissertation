@@ -1,5 +1,4 @@
 <?php
-//include(dirname(__FILE__)."/../core/connection.php");
 
 if (!empty($_POST['firstname']) && !empty($_POST['surname']) && !empty($_POST['access'])) {
 

@@ -25,6 +25,3 @@ elseif ($_POST["action"] === "filter" && isset($_POST["filter"]))
     $admin = new AdminForms();
     echo($admin->filterLecturerTable($_POST["course"], $_POST["filter"]));
 }
-
-//$admin = new AdminForms();
-//echo($admin->filterLecturerTable("Software Development 1", "s"));

@@ -1,0 +1,853 @@
+<rdf:RDF
+ xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+ xmlns:z="http://www.zotero.org/namespaces/export#"
+ xmlns:dcterms="http://purl.org/dc/terms/"
+ xmlns:dc="http://purl.org/dc/elements/1.1/"
+ xmlns:bib="http://purl.org/net/biblio#"
+ xmlns:foaf="http://xmlns.com/foaf/0.1/"
+ xmlns:prism="http://prismstandard.org/namespaces/1.2/basic/"
+ xmlns:vcard="http://nwalsh.com/rdf/vCard#"
+ xmlns:link="http://purl.org/rss/1.0/modules/link/">
+    <rdf:Description rdf:about="http://www-ist.massey.ac.nz/MarkTool/Publications/EdMedia2003Onscreen.pdf">
+        <z:itemType>conferencePaper</z:itemType>
+        <dcterms:isPartOf>
+           <bib:Journal><dc:title>In</dc:title></bib:Journal>
+        </dcterms:isPartOf>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Heinrich</foaf:surname>
+                        <foaf:givenname>Eva</foaf:givenname>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Wang</foaf:surname>
+                        <foaf:givenname>Yuanzhi</foaf:givenname>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>http://www-ist.massey.ac.nz/MarkTool/Publications/EdMedia2003Onscreen.pdf</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <bib:pages>768772</bib:pages>
+        <dc:date>2003</dc:date>
+        <dc:title>Online marking of essay-type assignments</dc:title>
+    </rdf:Description>
+    <bib:Patent rdf:about="http://www.google.com/patents/US20090226872">
+        <z:itemType>patent</z:itemType>
+        <z:inventors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Gunther</foaf:surname>
+                        <foaf:givenname>Nicholas Langdon</foaf:givenname>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </z:inventors>
+        <dcterms:isReferencedBy rdf:resource="#item_6"/>
+        <dc:identifier>
+            <dcterms:URI>
+               <rdf:value>http://www.google.com/patents/US20090226872</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2016-11-15</dcterms:dateSubmitted>
+        <z:assignee>Nicholas Langdon Gunther</z:assignee>
+        <prism:number>US20090226872 A1</prism:number>
+        <dc:date>September 2009</dc:date>
+        <dcterms:abstract>The present invention relates generally to computer programs and other systems and methods that provide methods for some or all of the following: developing, administering and grading tests, assignments and other evaluations, and analyzing, compiling and reporting the results. One simple embodiment of the present invention provides methods for educational instructors to develop tests for their students, to grade those tests, to analyze those grades and to produce reports of those grades and that analysis.</dcterms:abstract>
+        <z:country>United States</z:country>
+        <dc:title>Electronic grading system</dc:title>
+    </bib:Patent>
+    <bib:Memo rdf:about="#item_6">
+        <rdf:value>&lt;p&gt;U.S. Classification 434/350; International Classification G09B5/00; Cooperative Classification G09B7/00; European Classification G09B7/00&lt;/p&gt;</rdf:value>
+    </bib:Memo>
+    <rdf:Description rdf:about="urn:isbn:978-1-58113-085-0">
+        <z:itemType>conferencePaper</z:itemType>
+        <dcterms:isPartOf>
+            <bib:Journal>
+                <dc:identifier>ISBN 978-1-58113-085-0</dc:identifier>
+                <dc:identifier>DOI 10.1145/299649.299662</dc:identifier>
+            </bib:Journal>
+        </dcterms:isPartOf>
+        <dc:publisher>
+           <foaf:Organization><foaf:name>ACM Press</foaf:name></foaf:Organization>
+        </dc:publisher>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Mason</foaf:surname>
+                        <foaf:givenname>David V.</foaf:givenname>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Woit</foaf:surname>
+                        <foaf:givenname>Denise M.</foaf:givenname>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>http://portal.acm.org/citation.cfm?doid=299649.299662</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <bib:pages>3–6</bib:pages>
+        <dc:date>1999</dc:date>
+        <dcterms:dateSubmitted>2016-11-15</dcterms:dateSubmitted>
+        <z:language>en</z:language>
+        <dc:title>Providing mark-up and feedback to students with online marking</dc:title>
+    </rdf:Description>
+    <bib:Article rdf:about="http://portal.acm.org/citation.cfm?doid=290320.283096">
+        <z:itemType>journalArticle</z:itemType>
+        <dcterms:isPartOf rdf:resource="urn:issn:00978418"/>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Joy</foaf:surname>
+                        <foaf:givenname>Mike</foaf:givenname>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Luck</foaf:surname>
+                        <foaf:givenname>Michael</foaf:givenname>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>http://portal.acm.org/citation.cfm?doid=290320.283096</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <bib:pages>134–138</bib:pages>
+        <dc:date>September 1998</dc:date>
+        <dcterms:dateSubmitted>2016-11-15</dcterms:dateSubmitted>
+        <z:language>en</z:language>
+        <dc:title>Effective electronic marking for on-line assessment</dc:title>
+    </bib:Article>
+    <bib:Journal rdf:about="urn:issn:00978418">
+        <prism:volume>30</prism:volume>
+        <prism:number>3</prism:number>
+        <dc:title>ACM SIGCSE Bulletin</dc:title>
+        <dc:identifier>ISSN 00978418</dc:identifier>
+        <dc:identifier>DOI 10.1145/290320.283096</dc:identifier>
+    </bib:Journal>
+    <bib:Book rdf:about="urn:isbn:978-0-335-20243-0%20978-0-335-20242-3">
+        <z:itemType>book</z:itemType>
+        <dc:publisher>
+            <foaf:Organization>
+                <vcard:adr>
+                    <vcard:Address>
+                        <vcard:locality>Buckingham [England] ; Philadelphia, PA</vcard:locality>
+                    </vcard:Address>
+                </vcard:adr>
+                <foaf:name>Society for Research into Higher Education &amp; Open University Press</foaf:name>
+            </foaf:Organization>
+        </dc:publisher>
+        <bib:editors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Brown</foaf:surname>
+                        <foaf:givenname>Sally A.</foaf:givenname>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Glasner</foaf:surname>
+                        <foaf:givenname>Angela</foaf:givenname>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:editors>
+        <dcterms:isReferencedBy rdf:resource="#item_10"/>
+        <dc:subject>College students</dc:subject>
+        <dc:subject>College teaching</dc:subject>
+        <dc:subject>Education</dc:subject>
+        <dc:subject>Educational tests and measurements</dc:subject>
+        <dc:subject>Evaluation</dc:subject>
+        <dc:subject>Examinations</dc:subject>
+        <dc:subject>Higher</dc:subject>
+        <dc:subject>Rating of</dc:subject>
+        <dc:subject>Universities and colleges</dc:subject>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://books.google.co.uk/books?id=KVblAAAAQBAJ&amp;pg=PA1&amp;lr=&amp;source=gbs_toc_r&amp;cad=4#v=onepage&amp;q&amp;f=false</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dc:identifier>ISBN 978-0-335-20243-0 978-0-335-20242-3</dc:identifier>
+        <dc:date>1999</dc:date>
+        <dc:title>Assessment matters in higher education: choosing and using diverse approaches</dc:title>
+        <z:shortTitle>Assessment matters in higher education</z:shortTitle>
+    </bib:Book>
+    <bib:Memo rdf:about="#item_10">
+       <rdf:value>&lt;p&gt;Chapter 4&lt;/p&gt;</rdf:value>
+    </bib:Memo>
+    <bib:Patent rdf:about="http://www.google.com/patents/US7051273">
+        <z:itemType>patent</z:itemType>
+        <z:inventors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Holt</foaf:surname>
+                        <foaf:givenname>Nick</foaf:givenname>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Thomas</foaf:surname>
+                        <foaf:givenname>Steve</foaf:givenname>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </z:inventors>
+        <dcterms:isReferencedBy rdf:resource="#item_12"/>
+        <dc:identifier>
+            <dcterms:URI>
+               <rdf:value>http://www.google.com/patents/US7051273</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2016-11-19</dcterms:dateSubmitted>
+        <z:assignee>Microsoft Corporation</z:assignee>
+        <prism:number>US7051273 B1</prism:number>
+        <dc:date>May 2006</dc:date>
+        <dcterms:abstract>User-customizable forms in an electronic mail system enable an administrator to select customized field types and customized behaviors. The electronic mail system provides for the receiving and displaying of mail information in conjunction with the use of a user-customizable form. An administrator creates a customized field of a customized form by selecting a field type from a among multiple defined field types and a behavior from among multiple behaviors. When data is entered by a user to the customized field having the selected field type, the selected behavior is applied to the data. In this manner, the administrator has the flexibility of creating a variety of customized forms in the electronic mail system, and is not limited to a relatively small number of predefined forms.</dcterms:abstract>
+        <z:country>United States</z:country>
+        <dc:title>Customizing forms in an electronic mail system utilizing custom field behaviors and user defined operations</dc:title>
+    </bib:Patent>
+    <bib:Memo rdf:about="#item_12">
+        <rdf:value>&lt;p&gt;U.S. Classification 715/226; International Classification G06F17/00, G06F15/00; Cooperative Classification G06Q10/107; European Classification G06Q10/107&lt;/p&gt;</rdf:value>
+    </bib:Memo>
+    <bib:Article rdf:about="http://ieeexplore.ieee.org/document/4321508/">
+        <z:itemType>journalArticle</z:itemType>
+        <dcterms:isPartOf rdf:resource="urn:issn:0018-9359"/>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Boud</foaf:surname>
+                        <foaf:givenname>David J.</foaf:givenname>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Holmes</foaf:surname>
+                        <foaf:givenname>W. Harvey</foaf:givenname>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <dc:identifier>
+            <dcterms:URI>
+               <rdf:value>http://ieeexplore.ieee.org/document/4321508/</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <bib:pages>267–274</bib:pages>
+        <dc:date>1981</dc:date>
+        <dcterms:dateSubmitted>2016-11-20</dcterms:dateSubmitted>
+        <dc:title>Self and Peer Marking in an Undergraduate Engineering Course</dc:title>
+    </bib:Article>
+    <bib:Journal rdf:about="urn:issn:0018-9359">
+        <prism:volume>24</prism:volume>
+        <prism:number>4</prism:number>
+        <dc:title>IEEE Transactions on Education</dc:title>
+        <dc:identifier>ISSN 0018-9359</dc:identifier>
+        <dc:identifier>DOI 10.1109/TE.1981.4321508</dc:identifier>
+    </bib:Journal>
+    <bib:Book rdf:about="https://www.surveymonkey.com/home/">
+        <z:itemType>book</z:itemType>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Finley</foaf:surname>
+                        <foaf:givenname>Ryan</foaf:givenname>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <dc:identifier>
+            <dcterms:URI>
+               <rdf:value>https://www.surveymonkey.com/home/</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dc:date>1999</dc:date>
+        <dcterms:dateSubmitted>2016-11-04</dcterms:dateSubmitted>
+        <dc:title>SurveyMonkey</dc:title>
+    </bib:Book>
+    <bib:Book rdf:about="https://d3js.org/">
+        <z:itemType>book</z:itemType>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Bostock</foaf:surname>
+                        <foaf:givenname>Mike</foaf:givenname>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <dc:identifier>
+           <dcterms:URI><rdf:value>https://d3js.org/</rdf:value></dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2016-11-20</dcterms:dateSubmitted>
+        <dcterms:abstract>D3 is a JavaScript library for visualizing data with HTML, SVG, and CSS.</dcterms:abstract>
+        <dc:title>D3.js - Data-Driven Documents</dc:title>
+    </bib:Book>
+    <bib:Article rdf:about="http://dx.doi.org/10.1080/02602930050025006">
+        <z:itemType>journalArticle</z:itemType>
+        <dcterms:isPartOf rdf:resource="urn:issn:0260-2938"/>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Orsmond</foaf:surname>
+                        <foaf:givenname>Paul</foaf:givenname>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Merry</foaf:surname>
+                        <foaf:givenname>Stephen</foaf:givenname>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Reiling</foaf:surname>
+                        <foaf:givenname>Kevin</foaf:givenname>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <dc:identifier>
+            <dcterms:URI>
+               <rdf:value>http://dx.doi.org/10.1080/02602930050025006</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <bib:pages>23–38</bib:pages>
+        <dc:date>March 2000</dc:date>
+        <dcterms:dateSubmitted>2016-11-16</dcterms:dateSubmitted>
+        <dcterms:abstract>This paper reports a study which implemented and evaluated a method of student self and peer assessment involving student constructed marking criteria. The theme of the importance of marking criteria (Orsmond et al ., 1996, 1997) is developed. Pairs of first-year undergraduate biology students were asked to complete a poster assignment. The study was designed to allow the comparison and evaluation of (1) student self and tutor marking for individual marking criteria; (2) student self and peer marking for individual marking criteria; and (3) student and tutor marking for student constructed and tutor provided individual marking criteria. The present study shows that: (a) students may be less able to discriminate between individual marking criteria which they have constructed compared to marking criteria that have been provided; (b) asking students to construct their own marking criteria in discussion with tutors or fellow students does not enhance agreement between student/tutor or student/student marking; and (c) allowing students to construct their own marking criteria may lead to different learning outcomes compared to providing students with a marking criteria.</dcterms:abstract>
+        <dc:title>The Use of Student Derived Marking Criteria in Peer and Self-assessment</dc:title>
+    </bib:Article>
+    <bib:Journal rdf:about="urn:issn:0260-2938">
+        <prism:volume>25</prism:volume>
+        <prism:number>1</prism:number>
+        <dc:title>Assessment &amp; Evaluation in Higher Education</dc:title>
+        <dc:identifier>ISSN 0260-2938</dc:identifier>
+        <dc:identifier>DOI 10.1080/02602930050025006</dc:identifier>
+    </bib:Journal>
+    <bib:Book rdf:about="http://www.celt.mmu.ac.uk/ltia/issue4/langanwheater.shtml">
+        <z:itemType>book</z:itemType>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Langan</foaf:surname>
+                        <foaf:givenname>A</foaf:givenname>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Wheater</foaf:surname>
+                        <foaf:givenname>C</foaf:givenname>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>http://www.celt.mmu.ac.uk/ltia/issue4/langanwheater.shtml</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2016-11-21</dcterms:dateSubmitted>
+        <dc:title>Some Insights into Peer Assessment \textbackslashtextbackslash LTiA Issue 4 \textbackslashtextbackslash CeLT \textbackslashtextbackslash MMU</dc:title>
+    </bib:Book>
+    <bib:Book rdf:about="http://turnitin.com/en_us/home">
+        <z:itemType>book</z:itemType>
+        <dc:identifier>
+            <dcterms:URI>
+               <rdf:value>http://turnitin.com/en_us/home</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2016-11-21</dcterms:dateSubmitted>
+        <dcterms:abstract>Turnitin is revolutionizing the experience of writing to learn. Turnitin’s formative feedback and originality checking services promote critical thinking, ensure academic integrity and help students improve their writing. Turnitin provides instructors with the tools to engage students in the writing process, provide personalized feedback, and assess student progress over time. Turnitin applications are used by more than 30 million students at 15,000 institutions in 140 countries.</dcterms:abstract>
+        <dc:title>Turnitin - Home</dc:title>
+    </bib:Book>
+    <bib:Article rdf:about="http://alh.sagepub.com/content/8/2/173">
+        <z:itemType>journalArticle</z:itemType>
+        <dcterms:isPartOf rdf:resource="urn:issn:1469-7874,%201741-2625"/>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Dahl</foaf:surname>
+                        <foaf:givenname>Stephan</foaf:givenname>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <dc:identifier>
+            <dcterms:URI>
+               <rdf:value>http://alh.sagepub.com/content/8/2/173</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <bib:pages>173–191</bib:pages>
+        <dc:date>July 2007</dc:date>
+        <dcterms:dateSubmitted>2016-11-21</dcterms:dateSubmitted>
+        <z:language>en</z:language>
+        <dcterms:abstract>SAGE Publications</dcterms:abstract>
+        <dc:title>Turnitin® The student perspective on using plagiarism detection software</dc:title>
+    </bib:Article>
+    <bib:Journal rdf:about="urn:issn:1469-7874,%201741-2625">
+        <prism:volume>8</prism:volume>
+        <prism:number>2</prism:number>
+        <dc:title>Active Learning in Higher Education</dc:title>
+        <dc:identifier>ISSN 1469-7874, 1741-2625</dc:identifier>
+        <dc:identifier>DOI 10.1177/1469787407074110</dc:identifier>
+    </bib:Journal>
+    <bib:Patent rdf:about="http://www.google.com/patents/US5678041">
+        <z:itemType>patent</z:itemType>
+        <z:inventors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Baker</foaf:surname>
+                        <foaf:givenname>Brenda Sue</foaf:givenname>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Grosse</foaf:surname>
+                        <foaf:givenname>Eric</foaf:givenname>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </z:inventors>
+        <dcterms:isReferencedBy rdf:resource="#item_21"/>
+        <dc:identifier>
+            <dcterms:URI>
+               <rdf:value>http://www.google.com/patents/US5678041</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2016-11-22</dcterms:dateSubmitted>
+        <z:assignee>At&amp;T</z:assignee>
+        <prism:number>US5678041 A</prism:number>
+        <dc:date>October 1997</dc:date>
+        <dcterms:abstract>A system and method for selectively controlling database access by providing a system and method that allows a network administrator or manager to restrict specific system users from accessing information from certain public or otherwise uncontrolled databases (i.e., the WWW and the Internet). The invention employs a relational database to determine access rights, and this database may be readily updated and modified by an administrator. Within this relational database specific resource identifiers (i.e., URLs) are classified as being in a particular access group. The relational database is arranged so that for each user of the system a request for a particular resource will only be passed on from the local network to a server providing a link to the public/uncontrolled database if the resource identifier is in an access group for which the user has been assigned specific permissions by an administrator. In one preferred embodiment, the invention is implemented as part of a proxy server within the user's local network.</dcterms:abstract>
+        <z:country>United States</z:country>
+        <dc:title>System and method for restricting user access rights on the internet based on rating information stored in a relational database</dc:title>
+    </bib:Patent>
+    <bib:Memo rdf:about="#item_21">
+        <rdf:value>&lt;p&gt;U.S. Classification 1/1, 726/5, 709/229, 707/999.009, 707/999.001, 707/999.01; International Classification G06F1/00, G06F21/00, H04L29/06; Cooperative Classification G06F21/6218, Y10S707/99939, Y10S707/99931, H04L63/102, G06F2221/2141, H04L29/06, G06F21/604; European Classification G06F21/60B, H04L63/10B, H04L29/06&lt;/p&gt;</rdf:value>
+    </bib:Memo>
+    <bib:Book rdf:about="https://www.w3.org/TR/2001/REC-SVG-20010904/REC-SVG-20010904.pdf">
+        <z:itemType>book</z:itemType>
+        <dc:publisher>
+           <foaf:Organization><foaf:name>iuniverse</foaf:name></foaf:Organization>
+        </dc:publisher>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Ferraiolo</foaf:surname>
+                        <foaf:givenname>Jon</foaf:givenname>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Jun</foaf:surname>
+                        <foaf:givenname>Fujisawa</foaf:givenname>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Jackson</foaf:surname>
+                        <foaf:givenname>Dean</foaf:givenname>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://www.w3.org/TR/2001/REC-SVG-20010904/REC-SVG-20010904.pdf</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dc:date>2000</dc:date>
+        <dcterms:dateSubmitted>2016-11-21</dcterms:dateSubmitted>
+        <dc:title>Scalable vector graphics (SVG) 1.0 specification</dc:title>
+    </bib:Book>
+    <bib:Article rdf:about="http://occmed.oxfordjournals.org/content/62/6/477">
+        <z:itemType>journalArticle</z:itemType>
+        <dcterms:isPartOf rdf:resource="urn:issn:0962-7480,%201471-8405"/>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Waclawski</foaf:surname>
+                        <foaf:givenname>Eugene</foaf:givenname>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>http://occmed.oxfordjournals.org/content/62/6/477</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <bib:pages>477–477</bib:pages>
+        <dc:date>September 2012</dc:date>
+        <dc:description>PMID: 22915570</dc:description>
+        <dcterms:dateSubmitted>2016-11-22</dcterms:dateSubmitted>
+        <z:language>en</z:language>
+        <dc:title>How I Use It: Survey Monkey</dc:title>
+        <z:shortTitle>How I Use It</z:shortTitle>
+    </bib:Article>
+    <bib:Journal rdf:about="urn:issn:0962-7480,%201471-8405">
+        <prism:volume>62</prism:volume>
+        <prism:number>6</prism:number>
+        <dc:title>Occupational Medicine</dc:title>
+        <dc:identifier>ISSN 0962-7480, 1471-8405</dc:identifier>
+        <dc:identifier>DOI 10.1093/occmed/kqs075</dc:identifier>
+    </bib:Journal>
+    <bib:Article rdf:about="http://rer.sagepub.com/content/70/3/287">
+        <z:itemType>journalArticle</z:itemType>
+        <dcterms:isPartOf rdf:resource="urn:issn:0034-6543,%201935-1046"/>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Falchikov</foaf:surname>
+                        <foaf:givenname>Nancy</foaf:givenname>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Goldfinch</foaf:surname>
+                        <foaf:givenname>Judy</foaf:givenname>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <dc:identifier>
+            <dcterms:URI>
+               <rdf:value>http://rer.sagepub.com/content/70/3/287</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <bib:pages>287–322</bib:pages>
+        <dc:date>September 2000</dc:date>
+        <dcterms:dateSubmitted>2016-11-23</dcterms:dateSubmitted>
+        <z:language>en</z:language>
+        <dcterms:abstract>SAGE Publications</dcterms:abstract>
+        <dc:title>Student Peer Assessment in Higher Education: A Meta-Analysis Comparing Peer and Teacher Marks</dc:title>
+        <z:shortTitle>Student Peer Assessment in Higher Education</z:shortTitle>
+    </bib:Article>
+    <bib:Journal rdf:about="urn:issn:0034-6543,%201935-1046">
+        <prism:volume>70</prism:volume>
+        <prism:number>3</prism:number>
+        <dc:title>Review of Educational Research</dc:title>
+        <dc:identifier>ISSN 0034-6543, 1935-1046</dc:identifier>
+        <dc:identifier>DOI 10.3102/00346543070003287</dc:identifier>
+    </bib:Journal>
+    <bib:Article rdf:about="http://cn.cnstudiodev.com/uploads/document_attachment/attachment/157/pip_privacy_management_on_social_media_sites_022412.pdf">
+        <z:itemType>journalArticle</z:itemType>
+        <dcterms:isPartOf>
+           <bib:Journal></bib:Journal>
+        </dcterms:isPartOf>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Madden</foaf:surname>
+                        <foaf:givenname>Mary</foaf:givenname>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>http://cn.cnstudiodev.com/uploads/document_attachment/attachment/157/pip_privacy_management_on_social_media_sites_022412.pdf</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dc:date>2012</dc:date>
+        <dc:title>Privacy management on social media sites</dc:title>
+    </bib:Article>
+    <bib:Article rdf:about="http://doi.acm.org/10.1145/1163405.1163407">
+        <z:itemType>journalArticle</z:itemType>
+        <dcterms:isPartOf rdf:resource="urn:issn:1531-4278"/>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Joy</foaf:surname>
+                        <foaf:givenname>Mike</foaf:givenname>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Griffiths</foaf:surname>
+                        <foaf:givenname>Nathan</foaf:givenname>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Boyatt</foaf:surname>
+                        <foaf:givenname>Russell</foaf:givenname>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <dc:subject>automated assessment</dc:subject>
+        <dc:subject>Online submission</dc:subject>
+        <dc:subject>programming languages</dc:subject>
+        <dc:identifier>
+            <dcterms:URI>
+               <rdf:value>http://doi.acm.org/10.1145/1163405.1163407</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dc:date>September 2005</dc:date>
+        <dcterms:dateSubmitted>2016-11-23</dcterms:dateSubmitted>
+        <dcterms:abstract>Computer programming lends itself to automated assessment. With appropriate software tools, program correctness can be measured, along with an indication of quality according to a set of metrics. Furthermore, the regularity of program code allows plagiarism detection to be an integral part of the tools that support assessment. In this paper, we describe a submission and assessment system, called BOSS, that supports coursework assessment through collecting submissions, performing automatic tests for correctness and quality, checking for plagiarism, and providing an interface for marking and delivering feedback. We describe how automated assessment is incorporated into BOSS such that it supports, rather than constrains, assessment. The pedagogic and administrative issues that are affected by the assessment process are also discussed.</dcterms:abstract>
+        <dc:title>The Boss Online Submission and Assessment System</dc:title>
+    </bib:Article>
+    <bib:Journal rdf:about="urn:issn:1531-4278">
+        <prism:volume>5</prism:volume>
+        <prism:number>3</prism:number>
+        <dc:title>J. Educ. Resour. Comput.</dc:title>
+        <dc:identifier>ISSN 1531-4278</dc:identifier>
+        <dc:identifier>DOI 10.1145/1163405.1163407</dc:identifier>
+    </bib:Journal>
+    <bib:Article rdf:about="http://www.tandfonline.com/doi/abs/10.1080/03075070120099368">
+        <z:itemType>journalArticle</z:itemType>
+        <dcterms:isPartOf rdf:resource="urn:issn:0307-5079,%201470-174X"/>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Higgins</foaf:surname>
+                        <foaf:givenname>Richard</foaf:givenname>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Hartley</foaf:surname>
+                        <foaf:givenname>Peter</foaf:givenname>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Skelton</foaf:surname>
+                        <foaf:givenname>Alan</foaf:givenname>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>http://www.tandfonline.com/doi/abs/10.1080/03075070120099368</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <bib:pages>53–64</bib:pages>
+        <dc:date>February 2002</dc:date>
+        <dcterms:dateSubmitted>2016-11-23</dcterms:dateSubmitted>
+        <z:language>en</z:language>
+        <dc:title>The Conscientious Consumer: Reconsidering the role of assessment feedback in student learning</dc:title>
+        <z:shortTitle>The Conscientious Consumer</z:shortTitle>
+    </bib:Article>
+    <bib:Journal rdf:about="urn:issn:0307-5079,%201470-174X">
+        <prism:volume>27</prism:volume>
+        <prism:number>1</prism:number>
+        <dc:title>Studies in Higher Education</dc:title>
+        <dc:identifier>ISSN 0307-5079, 1470-174X</dc:identifier>
+        <dc:identifier>DOI 10.1080/03075070120099368</dc:identifier>
+    </bib:Journal>
+    <bib:Article rdf:about="http://dx.doi.org/10.1080/02602931003632340">
+        <z:itemType>journalArticle</z:itemType>
+        <dcterms:isPartOf>
+            <bib:Journal>
+                <prism:volume>36</prism:volume>
+                <prism:number>5</prism:number>
+                <dc:title>Assessment &amp; Evaluation in Higher Education</dc:title>
+                <dc:identifier>ISSN 0260-2938</dc:identifier>
+                <dc:identifier>DOI 10.1080/02602931003632340</dc:identifier>
+            </bib:Journal>
+        </dcterms:isPartOf>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Tang</foaf:surname>
+                        <foaf:givenname>Jinlan</foaf:givenname>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Harrison</foaf:surname>
+                        <foaf:givenname>Colin</foaf:givenname>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <dc:subject>EFL teaching</dc:subject>
+        <dc:subject>formative assessment</dc:subject>
+        <dc:subject>tutor feedback</dc:subject>
+        <dc:identifier>
+            <dcterms:URI>
+               <rdf:value>http://dx.doi.org/10.1080/02602931003632340</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <bib:pages>583–604</bib:pages>
+        <dc:date>August 2011</dc:date>
+        <dcterms:dateSubmitted>2016-11-23</dcterms:dateSubmitted>
+        <dcterms:abstract>Feedback is a key element in effective teaching and learning. The issue of how teachers perceive the role of feedback will impact significantly their feedback approaches, the amount of the detail of their feedback and the time and effort expended on the feedback provision. This research was designed with the purpose of exploring how a group of over 50 tutors who were supporting an online university English course perceived, understood and interpreted the processes of assignment feedback. A factor analysis study based on questionnaire data revealed three sets of tutor beliefs towards assessment and tutor feedback: traditional–autonomous–global (TAG), student‐centred (SC) and traditional‐local (TL). Follow‐up in‐depth interviews were conducted with tutors. The TAG tutors saw scores as the most important feedback to students, but doubted the value of detailed feedback. SC tutors maintained that good tutor feedback should offer more than mere scores, and that students needed feedback in order to improve. TL tutors tended to underline all the errors and provide detailed feedback. They were negative towards the idea of their feedback being monitored. The authors identified some differing and converging tutor perceptions on assessment feedback, the understanding of which could arguably play an important role in introducing changes in tutor feedback culture.</dcterms:abstract>
+        <dc:title>Investigating university tutor perceptions of assessment feedback: three types of tutor beliefs</dc:title>
+        <z:shortTitle>Investigating university tutor perceptions of assessment feedback</z:shortTitle>
+    </bib:Article>
+    <bib:Book rdf:about="http://book.cakephp.org/3.0/en/intro.html">
+        <z:itemType>book</z:itemType>
+        <dc:identifier>
+            <dcterms:URI>
+               <rdf:value>http://book.cakephp.org/3.0/en/intro.html</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2016-11-24</dcterms:dateSubmitted>
+        <dc:title>CakePHP at a Glance</dc:title>
+    </bib:Book>
+    <bib:Article rdf:about="http://www.nature.com/nature/journal/v452/n7183/full/452029c.html">
+        <z:itemType>journalArticle</z:itemType>
+        <dcterms:isPartOf rdf:resource="urn:issn:0028-0836"/>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Derby</foaf:surname>
+                        <foaf:givenname>Brian</foaf:givenname>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>http://www.nature.com/nature/journal/v452/n7183/full/452029c.html</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dc:rights>© 2008 Nature Publishing Group</dc:rights>
+        <bib:pages>29–29</bib:pages>
+        <dc:date>March 2008</dc:date>
+        <dcterms:dateSubmitted>2016-11-24</dcterms:dateSubmitted>
+        <z:language>en</z:language>
+        <dcterms:abstract>Nature is the international weekly journal of science: a magazine style journal that publishes full-length research papers in all disciplines of science, as well as News and Views, reviews, news, features, commentaries, web focuses and more, covering all branches of science and how science impacts upon all aspects of society and life.</dcterms:abstract>
+        <dc:title>Duplication and plagiarism increasing among students</dc:title>
+    </bib:Article>
+    <bib:Journal rdf:about="urn:issn:0028-0836">
+        <prism:volume>452</prism:volume>
+        <prism:number>7183</prism:number>
+        <dc:title>Nature</dc:title>
+        <dc:identifier>ISSN 0028-0836</dc:identifier>
+        <dc:identifier>DOI 10.1038/452029c</dc:identifier>
+    </bib:Journal>
+    <bib:Article rdf:about="https://ibit.temple.edu/wp-content/uploads/2011/03/IBITWebframeworks.pdf">
+        <z:itemType>journalArticle</z:itemType>
+        <dcterms:isPartOf>
+            <bib:Journal>
+                <dc:title>Institute for Business and Information Technology</dc:title>
+            </bib:Journal>
+        </dcterms:isPartOf>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Plekhanova</foaf:surname>
+                        <foaf:givenname>Julia</foaf:givenname>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://ibit.temple.edu/wp-content/uploads/2011/03/IBITWebframeworks.pdf</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dc:date>2009</dc:date>
+        <dcterms:dateSubmitted>2016-11-23</dcterms:dateSubmitted>
+        <dc:title>Evaluating web development frameworks: Django, Ruby on Rails and CakePHP</dc:title>
+    </bib:Article>
+    <bib:Article rdf:about="http://bst.sagepub.com/content/28/1/20">
+        <z:itemType>journalArticle</z:itemType>
+        <dcterms:isPartOf rdf:resource="urn:issn:0270-4676,%201552-4183"/>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Tufekci</foaf:surname>
+                        <foaf:givenname>Zeynep</foaf:givenname>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <dc:subject>Altman</dc:subject>
+        <dc:subject>disclosure</dc:subject>
+        <dc:subject>Facebook</dc:subject>
+        <dc:subject>Goffman</dc:subject>
+        <dc:subject>Myspace</dc:subject>
+        <dc:subject>presentation of the self</dc:subject>
+        <dc:subject>privacy</dc:subject>
+        <dc:subject>social network sites</dc:subject>
+        <dc:identifier>
+            <dcterms:URI>
+               <rdf:value>http://bst.sagepub.com/content/28/1/20</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <bib:pages>20–36</bib:pages>
+        <dc:date>February 2008</dc:date>
+        <dcterms:dateSubmitted>2016-11-24</dcterms:dateSubmitted>
+        <z:language>en</z:language>
+        <dcterms:abstract>The prevailing paradigm in Internet privacy literature, treating privacy within a context merely of rights and violations, is inadequate for studying the Internet as a social realm. Following Goffman on self-presentation and Altman's theorizing of privacy as an optimization between competing pressures for disclosure and withdrawal, the author investigates the mechanisms used by a sample (n = 704) of college students, the vast majority users of Facebook and Myspace, to negotiate boundaries between public and private. Findings show little to no relationship between online privacy concerns and information disclosure on online social network sites. Students manage unwanted audience concerns by adjusting profile visibility and using nicknames but not by restricting the information within the profile. Mechanisms analogous to boundary regulation in physical space, such as walls, locks, and doors, are favored; little adaptation is made to the Internet's key features of persistence, searchability, and cross-indexability. The author also finds significant racial and gender differences.</dcterms:abstract>
+        <dc:title>Can You See Me Now? Audience and Disclosure Regulation in Online Social Network Sites</dc:title>
+        <z:shortTitle>Can You See Me Now?</z:shortTitle>
+    </bib:Article>
+    <bib:Journal rdf:about="urn:issn:0270-4676,%201552-4183">
+        <prism:volume>28</prism:volume>
+        <prism:number>1</prism:number>
+        <dc:title>Bulletin of Science, Technology &amp; Society</dc:title>
+        <dc:identifier>ISSN 0270-4676, 1552-4183</dc:identifier>
+        <dc:identifier>DOI 10.1177/0270467607311484</dc:identifier>
+    </bib:Journal>
+    <bib:Document rdf:about="http://getbootstrap.com/">
+        <z:itemType>webpage</z:itemType>
+        <dcterms:isPartOf>
+           <z:Website></z:Website>
+        </dcterms:isPartOf>
+        <link:link rdf:resource="#item_34"/>
+        <dc:identifier>
+            <dcterms:URI>
+               <rdf:value>http://getbootstrap.com/</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2017-03-28 16:49:25</dcterms:dateSubmitted>
+        <dc:title>Bootstrap · The world's most popular mobile-first and responsive front-end framework.</dc:title>
+    </bib:Document>
+    <z:Attachment rdf:about="#item_34">
+        <z:itemType>attachment</z:itemType>
+        <rdf:resource rdf:resource="storage:getbootstrap.com.html"/>
+        <dc:identifier>
+            <dcterms:URI>
+               <rdf:value>http://getbootstrap.com/</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2017-03-28 16:49:27</dcterms:dateSubmitted>
+        <dc:title>Bootstrap · The world's most popular mobile-first and responsive front-end framework.</dc:title>
+        <z:linkMode>1</z:linkMode>
+        <link:type>text/html</link:type>
+    </z:Attachment>
+</rdf:RDF>

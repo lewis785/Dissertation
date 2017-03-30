@@ -1,10 +1,7 @@
 <?php
 
-
-
 require_once(dirname(__FILE__) . "/../core/classes/ConnectDB.php");
 require_once (dirname(__FILE__)."/../users/classes/UserManager.php");
-//$file = fopen("../Database/users.txt","w");
 
 
 class UserGenerator
@@ -51,6 +48,7 @@ class UserGenerator
         }
         return $array;
     }
+
 
     private function generateMatricNumber($link)
     {
