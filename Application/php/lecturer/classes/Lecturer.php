@@ -108,12 +108,12 @@ class Lecturer
     public function addLectureToCourse($course, $lecturer)
     {
         $success= false;
-        if($this->_Security->has_access_level("admin"))
+        if($this->_Security->hasAccessLevel("admin"))
         {
             $con = new ConnectDB();
             if(!$this->alreadyLecturer($con->link, $course, $lecturer))
             {
-                $courseID = $this->_Courses->get_course_id($course);
+                $courseID = $this->_Courses->getCourseId($course);
                 $userID = $this->_User->getIdFromUsername($lecturer);
 
                 $addLecturerToCourse = mysqli_stmt_init($con->link);
@@ -130,10 +130,10 @@ class Lecturer
     public function removeLectureFromCourse($course, $lecturer)
     {
         $success= false;
-        if($this->_Security->has_access_level("admin"))
+        if($this->_Security->hasAccessLevel("admin"))
         {
             $con = new ConnectDB();
-                $courseID = $this->_Courses->get_course_id($course);
+                $courseID = $this->_Courses->getCourseId($course);
                 $userID = $this->_User->getIdFromUsername($lecturer);
 
                 $addLecturerToCourse = mysqli_stmt_init($con->link);

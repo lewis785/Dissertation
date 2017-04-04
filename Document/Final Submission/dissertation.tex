@@ -11,6 +11,9 @@
 \usepackage[titletoc,title]{appendix}
 \usepackage{pdfpages}
 \usepackage{color, colortbl}
+\usepackage{tikz}
+\usepackage{pgf-pie}
+\usepackage{pgfplots}
 
 \usepackage{lipsum}
 \usepackage[margin=2cm]{geometry}
@@ -168,12 +171,12 @@ This section contains the summaries of literature relating to the topic and shou
 \subsection{Web Applications}
 
 \subsection{HTML}
-Hypertext Markup Language (HTML) is a markup lanaguage that is used to create the structurer of a website through the use of elements which are represents by tags (\textless html\textgreater, \textless href\textgreater, \textless a\textgreater). 
+Hypertext Markup Language (HTML) is a markup language that is used to create the structure of a website through the use of elements which are represents by tags (\textless html\textgreater, \textless href\textgreater, \textless a\textgreater). 
 
 \subsection{Cascading Style Sheets}
 Cascading Style sheets (CSS) is used to change the properties of elements created using HTML through the changing of these properties developers can change the look and response of a website. 
 
-The idea behind Cascading Style Sheets is that   
+ 
 
 Then it comes to websites there can be multiple different Cascading Style Sheets being used.  
 
@@ -183,8 +186,9 @@ As part of this project I will be using CSS 3 which at time of write (2017) is t
 \subsection{Java-script}
 
 \subsection{PHP}
+\label{sec:php}
 
-PHP stands for Hypertext Preprocessor and is an open source scripting language which can be embedded into HTML. Unlike HTML which is sent to the user and process by there computer, PHP scripts are processed by the server HTML is generated sent to the user. 
+PHP stands for Hypertext Preprocessor and is an open source scripting language first developed in 1994 \cite{noauthor_php:_nodate} which can be embedded into HTML. Unlike HTML which is sent to the user and process by their computer, PHP scripts are instead processed by the website server. Once it has been processed HTML is generated and sent to the user. 
 
 It currently has two major version which are version 5.x and 7.x
 
@@ -274,18 +278,29 @@ This increased flexibility in email forms would allow for easier  interpretation
 \subsection{Development Tools}
 %TODO%
 
+
+
 \subsubsection{jQuery}
 jQuery is a JavaScript library that is designed to improve and enrich the 
+
+
 
 \subsubsection{Twitter Bootstrap}
 Twitter bootstrap is a front-end framework \cite{noauthor_bootstrap_nodate} designed to help developers create dynamical responsive websites quickly and easily. It provides pre-created cascadding style sheets (CSS)
 
 \subsubsection{PHP Unit}
 
+PHP Unit is a testing framework for PHP. It is designed to allow the easy creation of automated tests in the form of unit tests \cite{bergmann2005phpunit}. 
+
+The most recent stable version is PHPUnit 6.0, this version is only compatible with PHP version 7 and was released on the 8th of Feburary 2017. Since I am using PHP 5.6.25 as stated earlier in Section \ref{sec:php} I can not use this most recent version and will instead be be using an older stable version 5.7 which supports PHP version 5.6, 7.0 and 7.1. That version was released on 2nd December 2016.
+
+
 
 \subsubsection{D3}
 D3 \cite{bostock_d3.js_nodate} is a javascript library, which was designed for the creation of interactive visualisations of data and was first developed in 2011. D3 uses precreated Javascript functions to create scalable vector graphics (SVG's) which are embedded into the HTML of websites."SVG is a language for describing two-dimensional graphics in XML"\cite{ferraiolo_scalable_2000} and can have displays changed  using Cascading Style Sheet (CSS).  \\
 Data-sets can also be bound to an SVG allowing for a visual way to interpret the data-set, and as the data-set changes the SVG will be changed allowing for a dynamic display.
+
+
 
 \subsubsection{CakePHP}
 CakePHP is an open source framework for php, it is developed to help with rapid development of web application and make them simpler,fast and less complex to build \cite{noauthor_cakephp_nodate}. It allows the development of well structured and robust web applications \cite{plekhanova_evaluating_2009}, and its latest version is version 3.3 called "Red Velvet" it can be downloaded from (https://cakephp.org/).
@@ -542,7 +557,7 @@ The database schema discuss in the design section (\ref{sec:design-db}) was conv
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{images/implementation/database.png}
+    \includegraphics[width=1\textwidth]{images/implementation/database.png}
     \caption{Implemented Database Schema}
     \label{fig:implement-db}
 \end{figure}
@@ -559,24 +574,7 @@ In my classes I do a combination of constructor declared instances, and instance
 
 
 
-\subsection{Lab Creator}
-%TODO%
 
-\subsection{Marking Labs}
-%TODO%
-
-\subsection{Results Display}
-%TODO%
-\subsubsection{Students}
-%TODO%
-\subsubsection{Lecturers}
-%TODO%
-
-\subsection{Lab Management}
-%TODO%
-
-\subsection{Admin Panel}
-%TODO%
 
 \subsection{Background Functionality}
 
@@ -611,6 +609,59 @@ class ConnectDB
 \noindent The way that the class works is, it contains one public variable called \$link; when the class is initilised the constructor function called. The constructor makes a mysqli connection using the provided host, username and password details, it then sets the \$link variable to the result of the connection. After this it check if the connection was successful, if it is not then a die command is thrown and an error message is shown. If it is a successful connect then is selects the "lab-maker" database. Checks if a session is already run, and starts one if it is not.
 
 \subsubsection{Security}
+\label{sec:security}
+
+
+
+
+
+\subsection{Lab Creator}
+The design of the lab creation page can be seen in figure(\ref{fig:lab-creator}) is almost identical to what its initial design showed. 
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/implementation/lab-creator-1-page.png}
+    \caption{Lab Creation Page}
+    \label{fig:lab-creator}
+\end{figure}
+
+\subsection{Marking Labs}
+%TODO%
+
+\subsection{Results Display}
+
+The implementation of the results page required that it only show students their own marks. While lecturers were able to select a student and see his mark for a lab. They way that I went about doing this was by designing two similar web pages one for students (section \ref{sec:results-student}) and one with more functionality (section \ref{sec:results-lecturer}). Through the use of the security class discussed earlier (section \ref{sec:security}) when the user access the results page, their access level is check and then using PHP the respective layout is shown to them. Details on the ways that the displays are different and how they both function are discussed in the next two sections.
+
+
+
+\subsubsection{Students View} \label{sec:results-student}
+
+The design of the students results page remained similar to the initial design, however there was one major design change. Which was that in the initial design the results for each lab was shown straight way in there own table. This was replaced with lab summary area that when clicked expand to show the individual marks for the questions. This was done to help make the area nicer and make it easier to distinguish when one lab ended another one began. The students view of the results page can be seen in figure(\ref{fig:results-student}).
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{images/implementation/student-results-page.png}
+    \caption{Students Results}
+    \label{fig:results-student}
+\end{figure}
+
+\subsubsection{Lecturers View} \label{sec:results-lecturer}
+%TODO%
+
+
+\subsubsection{Expanding Table}
+
+
+
+
+\subsection{Lab Management}
+%TODO%
+
+\subsection{Admin Panel}
+
+
+
 
 
 
@@ -628,10 +679,35 @@ Testing of the system comprised of two stages, the first was the continues testi
 
 
 \subsection{Development Testing}
-To help test functionality that I had developed I created Unit Tests usin
-%TODO
+To help test functionality unit tests were created using the PHPUnit testing framework. Unit tests were developed for classes that provide key functionality to the lab marking system. 
+
+\subsubsection{Security Class Tests}
+
+The security class does all the checks on whether a user has the required access being requested. 
+
+To test the security class but the hasAccessLevel and hasGreaterAccessThan functions were tested. Since the hasAccessLevel function checks if a users has equal to or greater access than that being requesting, all possible combinations of user access and requested access were tested and the expected outcomes compared to the actual result. The code for this can be seen in listing(\ref{lst:hasAccess-test})
+
+\singlespacing
+\begin{lstlisting}[basicstyle=\linespread{0.8}, caption= hasAccessLevel Test, label = lst:hasAccess-test]
+public function testHasAccessLevel($user_access, $required_acess, $expected)
+{
+    if(session_status() == PHP_SESSION_NONE)
+        session_start();
+    $_SESSION["accesslevel"] = $this->security->getAccessValue($user_access);
+
+    $result = $this->security->hasAccessLevel($required_acess);
+    $this->assertEquals($expected, $result, $user_access . " and " . $required_acess . ": Failed");
+}
+\end{lstlisting}
+\doublespacing
+
+
+
 \subsection{Final Testing}
-%TODO 
+
+The final testing of the system came in two parts. The first part was the running of all the unit tests that were created to make sure all the different parts of the marking systems worked correctly, and could interact without causing any issues.
+
+The second part of the final testing was to get users to test the system, and any bug found by users be recorded so that the source of the problem could be found. This testing was done as part of the usability case study 
 
 
 \newpage
@@ -640,20 +716,134 @@ To help test functionality that I had developed I created Unit Tests usin
 This section shows how I evaluated the lab marking system and help determine how successful I was at implementing the system, and what future improvements could be done to make the system more useful. 
 
 \subsection{Usability Case Study}
-The way the marking system was evaluated was through the use of a usability case study (UCS), participants for the study were students, lab helpers and lecturers.
+The way the marking system was evaluated was through the use of a usability case study (UCS), participants for the study were students, lab helpers and lecturers. The case study provided a range of quantities and qualitative questions to help get the maximum amount of feedback about the lab marking system as possible. 
 
 
 The usability case study consisted of four sections: student, lab helpers, lecturers and Mobile. Each section has specific tasks that participants were required to preform, they then evaluate how challenging the task was and provided comments about the design and any additional improvements that could be made. 
 
-In the first three sections the participant signed into the system as that particular type of user (student, lab helper and lectuer) 
+In the first three sections the participant signed into the system as that particular type of user (student, lab helper and lecture) 
 
 
 
 (Appendix \ref{app:ucs})
 
 \subsection{Feedback}
-%TODO%
+
+Due to the amount of time the case study required to be completed and the time at which I was trying to run it at, only twelve people took part in the in it. The breakdown of participants was: four lecturers, four lab-helpers and four students, thus providing an even sample for the types of users of the lab marking system.
+
+The feedback that was obtain from the case study will be very useful in showing how successful the project was at creating a digital lab marking system, the feedback is broken up into two sections. The first sections is for the quantitative questions and the results that can be obtained from them. While the second question section will deal with all the qualitative questions and what can be gleaned from them. 
+
+
+
+\subsubsection{Quantitative Questions}
+
+This section is dealing with all the question in the usability case study that quantitative. In the case study there were two types of quantitative questions: scale questions and the other being  yes and no questions.
+
+Scale questions were used to allow participants to evaluate how difficult a specific task was and ranged from one to five. One being very easy, three being challenging and five meaning the task was impossible to complete. 
+The table below (table \ref{table:usability}) contains the mean, median, mode and overall difficulty of the task for each of the scale question in the case study. The difficulty is decided by rounding the mean value up or down.
+
+\setlength\LTleft{0pt}
+\setlength\LTright{0pt}
+
+
+\begin{longtable}{@{\extracolsep{\fill}}|c|l|c|c|c|c|}
+\caption{Usability Case Study: Scale Question Results} \label{table:usability} \\ \hline
+
+\textbf{Question Number} & \textbf{Question} & \textbf{Mean} & \textbf{Median} & \textbf{Mode} & \textbf{Difficulty}\\ \hline
+
+Q1.1 & Difficulty to find the students mark & 1.08 & 1 & 1 & Easy\\ \hline
+Q1.3 & Difficulty to sign out & 1 & 1 & 1 & Easy \\ \hline
+
+Q2.1 & Difficulty to mark a student & 1.92 & 2 & 2 & Quite Easy \\ \hline
+Q2.2 & Difficulty to change student mark & 1.25 & 1 & 1 &  Easy \\ \hline
+
+Q3.1 & Difficulty to view student marks as lecturer & 1.42 & 1 & 1 &  Easy \\ \hline
+Q3.4 & Difficulty to make a new lab & 2.41 & 2.5 & 3 & Quite Easy \\ \hline
+Q3.10 & Difficulty to export lab & 1.33 & 1 & 1 &  Easy \\ \hline
+Q3.13 & Difficulty to delete lab & 1 & 1 & 1 &  Easy \\ \hline
+Q3.16 & Difficulty to remove and add students & 1.5 & 1 & 1 &  Easy \\ \hline
+Q3.18 & Difficulty to remove and add lab helpers & 1.08 & 1 & 1 & Easy \\ \hline
+
+\end{longtable}
+
+\noindent The graph below (figure \ref{graph:results}) displays how challenging all the participant found each of the questions, The y-axis represents the number of participants that thought at specific task was that difficulty. The x-axis represents each of the questions and are broken up into five bars each representing a difficulty. The left most bar represents easy and as the bars go to the right the difficulty increases until final one which represents impossible.  
+
+\begin{figure}[H]
+\caption{Bar Graph of Question Results}
+\label{graph:results}
+\begin{tikzpicture}[scale=0.8]
+\begin{axis}[ybar interval, ymax=12, minor y tick num = 1, legend style={at={(0.5,-0.2)}, anchor=north,legend columns=-1}, bar width= 0.1cm, x=2cm, 	enlargelimits=0.05, ybar interval=0.6, xlabel= Question Number, ylabel= Number of occurances,symbolic x coords={Q1.1, Q1.3, Q2.1, Q2.2, Q3.1, Q3.4, Q3.10, Q3.13, Q3.16, Q3.18, None},xtick=data]
+
+
+\addplot coordinates { (Q1.1, 11) (Q1.3,12) (Q2.1, 3) (Q2.2, 9) (Q3.1, 7) (Q3.4, 3) (Q3.10, 8) (Q3.13, 12) (Q3.16, 7) (Q3.18, 11) (None, 10)};
+
+\addplot coordinates { (Q1.1, 1) (Q1.3,0) (Q2.1, 7) (Q2.2, 3) (Q3.1, 5) (Q3.4, 3) (Q3.10, 4) (Q3.13, 0) (Q3.16, 4) (Q3.18, 1) (None, 10)};
+
+\addplot coordinates { (Q1.1, 0) (Q1.3,0) (Q2.1, 2) (Q2.2, 0) (Q3.1, 0) (Q3.4, 4) (Q3.10, 0) (Q3.13, 0) (Q3.16, 1) (Q3.18, 0) (None, 10)};
+
+\addplot coordinates { (Q1.1, 0) (Q1.3,0) (Q2.1, 0) (Q2.2, 0) (Q3.1, 0) (Q3.4, 2) (Q3.10, 0) (Q3.13, 0) (Q3.16, 0) (Q3.18, 0)  (None, 0)};
+
+\addplot coordinates { (Q1.1, 0) (Q1.3,0) (Q2.1, 0) (Q2.2, 0) (Q3.1, 0) (Q3.4, 0) (Q3.10, 0) (Q3.13, 0) (Q3.16, 0) (Q3.18, 0) (None, 0)};
+
+
+
+\legend{Easy, Quite Easy, Challenging, Very Challenging, Impossible}
+\end{axis}
+\end{tikzpicture}
+\end{figure}
+
+%Overall easiness% 
+The first thing that can be noticed is that overall the participants found the lab marking system to be fairly easy to use and understand. The two task that users found the hardest to do were mark students and create labs, which are the most complex part of the lab marking system . It would be expected that first time users of the system would find these are to understand at first. Tho it can be seen with the change student mark task that once the participant understood how to mark one student they could easy update their mark. 
+
+%Difficulty of creating labs%
+It can be seen thanks to graph shown in figure(\ref{graph:results} that many users found the creating of new labs to be a difficult task to complete. While watching participants  I noticed that many of them were confused on how questions were added to labs. 
+
+%Simplicity of student section%
+Question 1.1 tasked participants to sign in as a student and see what mark they were given. As the results of both the table(\ref{table:usability}) and the graph(\ref{graph:results}) all participants found this to be easy to do. This is great to see, as the lab marking system is meant to make it easier for students to find out their marks and this task has shown that process for a student finding there marks is very straight forward.
+
+
+\subsubsection*{Yes/No Question}
+Three of the questions in the usability study were yes and no questions. These questions were designed to see if users understood key parts of the lab marking system.
+
+The first question was to check if participants understood what the different coloured buttons for students represented and 75\% did understand what they represented. 
+
+\begin{figure}[H]
+\caption{Q2.3: Know what the different student colours mean?}
+
+\begin{tikzpicture} 
+    \pie[rotate=90,radius =2, color={red!60, blue!60}]{75/Yes, 25/No}
+\end{tikzpicture}
+
+\end{figure}
+
+
+
+\begin{figure}[H]
+\caption{Q3.6 Know what visible / not visible means?}
+
+\begin{tikzpicture} 
+    \pie[rotate=90,radius = 2, color={red!60, blue!60}]{58.3/Yes, 41.7/No}
+\end{tikzpicture}
+
+\end{figure}
+
+
+\begin{figure}[H]
+\caption{Q3.8: Did an alert appear}
+
+\begin{tikzpicture}
+    \pie[rotate=90,radius =2, color={red!60, blue!60}]{91.7/Yes, 8.3/No}
+\end{tikzpicture}
+
+\end{figure}
+
+
+\subsubsection{Qualitative Questions}
+
 \subsection{Implementation Of Feedback}
+
+Using the feedback obtained through the usability case study I have have implemented a few changes to the design of the lab marking system. This is to help improve the overall usefulness of the system and make certain parts of the system easier to understand and interact with. The improvements done to the system are listed below with description and comparison showing the lab marking system before and after the changes.   
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %										%
@@ -675,6 +865,10 @@ The electronic marking system has many improvements that can be implemented some
 
 \subsection{Conclusion}
 %TODO%
+
+
+
+
 
 
 

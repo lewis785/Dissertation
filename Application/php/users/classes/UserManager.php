@@ -13,7 +13,7 @@ require_once(dirname(__FILE__) . "/../../core/classes/Security.php");
 class UserManager extends Security
 {
 
-    public function add_user($link, $first, $surname, $matric, $access)
+    public function addUser($link, $first, $surname, $matric, $access)
     {
         echo "Adding user... <br>";
         $valid_username = false;

@@ -38,6 +38,7 @@ function display_labs_for(course)
         data: {course: course, type:"next"},
         cache: false,
         success: function(result){
+            $(".page-header").append("<div class='col-md-5' id='sub-course'>> "+ course +"</div>")
             $("#question-area").html(result.buttons);
 
             $(document.body).append('<footer class="panel-footer fix-bottom" id="marking-submit-bar">'+
@@ -60,7 +61,7 @@ function display_students_for(lab)
         cache: false,
         success: function(result){
 
-
+            $(".page-header").append("<div class='col-md-4' id='sub-lab'>> "+ lab +"</div>")
             $("#question-area").html(result.buttons);
             $("#back-btn").attr("onclick","back_to_labs()");
         },
@@ -126,6 +127,7 @@ function back_to_courses()
 {
     display_courses();
     $("#marking-submit-bar").remove();
+    $("#sub-course").remove();
 }
 
 function back_to_labs()
@@ -137,6 +139,7 @@ function back_to_labs()
         data: {type: "back"},
         cache: false,
         success: function(result){
+            $("#sub-lab").remove();
             $("#question-area").html(result.buttons);
             $("#back-btn").attr("onclick","back_to_courses()");
         },

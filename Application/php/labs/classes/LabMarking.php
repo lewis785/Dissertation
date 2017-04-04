@@ -47,7 +47,7 @@ class LabMarking extends Lab
             $_SESSION["MARKING_LAB"] = "";
 
         $result = $this->getLabs($_SESSION["MARKING_COURSE"]);
-        $isLecturer = $this->has_access_level("lecturer");
+        $isLecturer = $this->hasAccessLevel("lecturer");
 
         $buttons = "";
 

@@ -9,11 +9,11 @@ $secure = new Security();
 $nav_bar_content = '<li id="results-nav"><a href="labresults.php">Lab Results</a></li>
                     <li id="signoutbtn"><a href="../../php/core/signout.php">Signout</a></li>';
 
-if($secure->has_access_level("lab helper")) {
+if($secure->hasAccessLevel("lab helper")) {
     $nav_bar_content = '<li id="marking-nav"><a href="marking.php"> Mark Lab </a></li>' . $nav_bar_content;
 
 
-    if ($secure->has_access_level("lecturer")) {
+    if ($secure->hasAccessLevel("lecturer")) {
 
         $nav_bar_content = '<li id="labs-nav" class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Lecturer<span class="caret"></span></a>
@@ -28,7 +28,7 @@ if($secure->has_access_level("lab helper")) {
                         </li>' . $nav_bar_content;
 
 
-        if ($secure->has_access_level("admin")) {
+        if ($secure->hasAccessLevel("admin")) {
             $nav_bar_content = '<li id="admin-nav"><a href="admin.php"> Admin Section </a></li>' . $nav_bar_content;
         }
 

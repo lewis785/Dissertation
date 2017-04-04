@@ -32,7 +32,7 @@ class LabDisplay extends LabChecks
         $con = new ConnectDB();
 
         if ($this->course_checks->can_mark_course($course)) {
-            $courseID = $this->courses->get_course_id($course);
+            $courseID = $this->courses->getCourseId($course);
             $labName = $lab;
 
             if ($this->lab_already_exists($courseID, $labName)) {

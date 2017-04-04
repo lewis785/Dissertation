@@ -34,10 +34,10 @@ class LabManager extends CourseChecks
         $stats = new Lab();
         $labList = new LabMarking();
 
-        if ($this->has_access_level("lecturer")) {                                              //Checks user has access level of lecturer
+        if ($this->hasAccessLevel("lecturer")) {                                              //Checks user has access level of lecturer
 
             $output = "<table class='table table-responsive labs-table'><tbody>";                //Creates output variable containing start code for table
-            $courses = $this->get_courses();                                                           //Gets all the courses the lecturer has access to
+            $courses = $this->getCourses();                                                           //Gets all the courses the lecturer has access to
 
             foreach ($courses as $course) {                                           //For loop through each course
                 $labs = $labList->getMarkableLabs($course);                                                   //Stores all the labs relating to the course
@@ -94,7 +94,7 @@ class LabManager extends CourseChecks
 
     public function exportLabResults()
     {
-        if($this->has_access_level("lecturer")){
+        if($this->hasAccessLevel("lecturer")){
 
         $io = new IO();
         $Lab = new Lab();
@@ -152,7 +152,7 @@ class LabManager extends CourseChecks
 
     public function deleteLab()
     {
-        if ($this->has_access_level("lecturer")) {
+        if ($this->hasAccessLevel("lecturer")) {
             if ($this->labID !== null) {
                 $con = new ConnectDB();
                 $course = $this->courseFromLabID($this->labID);

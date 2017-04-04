@@ -29,7 +29,7 @@ class UserGenerator
             $matric = $this->generateMatricNumber($con->link);
 
             echo $firstname . $surname . $matric;
-            $this->users->add_user($con->link, $firstname, $surname, $matric, 1);
+            $this->users->addUser($con->link, $firstname, $surname, $matric, 1);
         }
 
         mysqli_close($con->link);

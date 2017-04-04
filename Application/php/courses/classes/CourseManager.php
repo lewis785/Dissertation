@@ -24,10 +24,10 @@ class CourseManager extends Courses
     public function addStudentToCourse($course, $student)
     {
         $success = false;
-        if($this->has_access_level("lecturer"))
+        if($this->hasAccessLevel("lecturer"))
         {
             $con = new ConnectDB();
-            $courseID = $this->get_course_id($course);
+            $courseID = $this->getCourseId($course);
             $studentID = $this->student_functions->studentIDFromMatric($student);
 
             $success = $this->insertStudentOnCourse($con->link, $courseID, $studentID);
@@ -40,9 +40,9 @@ class CourseManager extends Courses
     public function removeStudentFromCourse($course, $student)
     {
         $success = false;
-        if($this->has_access_level("lecturer")) {
+        if($this->hasAccessLevel("lecturer")) {
             $con = new ConnectDB();
-            $courseID = $this->get_course_id($course);
+            $courseID = $this->getCourseId($course);
             $studentID = $this->student_functions->studentIDFromMatric($student);
 
             $success = $this->removeStudentOnCourse($con->link, $courseID, $studentID);

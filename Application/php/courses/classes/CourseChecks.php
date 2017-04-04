@@ -15,7 +15,7 @@ class CourseChecks extends Courses
     //Returns true if user is a lecturer of the course
     public function is_lecturer_of_course($course)
     {
-        if ($this->has_access_level("admin"))
+        if ($this->hasAccessLevel("admin"))
             return true;
 
         $con = new ConnectDB();
@@ -59,12 +59,12 @@ class CourseChecks extends Courses
     //Checks if user is allowed to mark course returns true if they are
     public function can_mark_course($course)
     {
-        if($this->has_access_level("admin"))
+        if($this->hasAccessLevel("admin"))
             return true;
 
-        if ($this->has_access_level("lecturer")) {                                                  //Checks if user is a lecturer
+        if ($this->hasAccessLevel("lecturer")) {                                                  //Checks if user is a lecturer
             return $this->is_lecturer_of_course($course);                                           //Returns true if user is lecturer of specified course
-        } elseif ($this->has_access_level("lab helper")) {                                          //Checks if user is a lab helper
+        } elseif ($this->hasAccessLevel("lab helper")) {                                          //Checks if user is a lab helper
             return $this->is_lab_helper_of_course($course);                                          //Returns true if user is lab helper of specified course
         }
     }

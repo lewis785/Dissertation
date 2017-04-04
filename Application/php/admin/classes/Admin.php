@@ -33,10 +33,10 @@ class Admin extends Security
                 echo "Access is Valid...<br>";
                 if (preg_match("/[a-zA-Z][0-9]{8}/", $matric)) {
                     if (!$this->user_manager->matricExists($con->link, $matric))
-                        $this->user_manager->add_user($con->link, $firstname, $surname, $matric, $access);
+                        $this->user_manager->addUser($con->link, $firstname, $surname, $matric, $access);
                 } elseif ($matric == "") {
                     $matric = NULL;
-                    $this->user_manager->add_user($con->link, $firstname, $surname, $matric, $access);
+                    $this->user_manager->addUser($con->link, $firstname, $surname, $matric, $access);
                 }
             }
         }

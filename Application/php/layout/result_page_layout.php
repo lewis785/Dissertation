@@ -12,7 +12,7 @@ require_once(dirname(__FILE__)."/../core/classes/Security.php");
 
 $sec = new Security();
 
-if($sec->has_access_level("lecturer"))
+if($sec->hasAccessLevel("lecturer"))
 {
     echo "<script type='text/javascript' src='../../js/lecturer/lecturer_lab_results.js'></script>";
     include(dirname(__FILE__) . "/../lecturer/lecturer_lab_results.php");

@@ -15,7 +15,7 @@ class CourseButtons extends Courses
 
     public function courses_dropdown()
     {
-        $result = $this->get_courses();
+        $result = $this->getCourses();
         $dropList = "";
         foreach ($result as $course) {
             $dropList .= "<option value='" . $course . "'>" . $course . "</option>";
@@ -25,7 +25,7 @@ class CourseButtons extends Courses
 
     public function courses_marking_button()
     {
-        $result = $this->get_courses();
+        $result = $this->getCourses();
         $output = "";
         if(sizeof($result) > 0) {
             foreach ($result as $course) {
@@ -39,7 +39,7 @@ class CourseButtons extends Courses
 
     function courses_managing_button()
     {
-        $result = $this->get_courses();
+        $result = $this->getCourses();
         $output = "";
         foreach ($result as $course) {
             $output .= "<div class='col-md-6 col-sm-8 col-xs-12 col-md-offset-3 col-sm-offset-2 '>
@@ -48,15 +48,4 @@ class CourseButtons extends Courses
         }
         return json_encode(array("buttons"=>$output));
     }
-
-
 }
-
-
-//if(isset($_POST["type"])) {
-//    $type = $_POST["type"];
-//    if( $type === "marking")
-//        courses_marking_button();
-//    elseif ($type === "manage")
-//        courses_managing_button();
-//}

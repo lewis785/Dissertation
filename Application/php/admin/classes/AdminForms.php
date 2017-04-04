@@ -135,7 +135,7 @@ class AdminForms extends AdminButtons
     //Creates layout for managing students
     public function manageStudents()
     {
-        $courses = $this->Courses->get_courses();
+        $courses = $this->Courses->getCourses();
         $options = [];
 
         foreach($courses as $course)
@@ -192,7 +192,7 @@ class AdminForms extends AdminButtons
     public function manageLabHelpers()
     {
 
-        $courses = $this->Courses->get_courses();
+        $courses = $this->Courses->getCourses();
 
         $options = [];
 
@@ -250,7 +250,7 @@ class AdminForms extends AdminButtons
     //Creates layout for managing lecturers
     public function manageLecturers()
     {
-        $courses = $this->Courses->get_courses();
+        $courses = $this->Courses->getCourses();
         $options = [];
 
         foreach($courses as $course)

@@ -27,7 +27,7 @@ class LecturerResults extends LabStats
     {
         $con = new ConnectDB();
 
-        $courses = $this->lab->get_courses();
+        $courses = $this->lab->getCourses();
         $resultsTable = "";
 
         $id = 0;

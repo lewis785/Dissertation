@@ -104,7 +104,7 @@ class LabHelper extends Security
         $con = new ConnectDB();
         $success = false;
 
-        if($this->Courses->has_access_level("lecturer")) {
+        if($this->Courses->hasAccessLevel("lecturer")) {
             $removeLabHelper = mysqli_stmt_init($con->link);
             mysqli_stmt_prepare($removeLabHelper, "DELETE FROM lab_helpers WHERE labHelperID IN 
                                                   (SELECT lh.labHelperID FROM (SELECT * FROM lab_helpers) AS lh 
@@ -125,10 +125,10 @@ class LabHelper extends Security
         $con = new ConnectDB();
         $success = false;
 
-        if($this->Courses->has_access_level("lecturer"))
+        if($this->Courses->hasAccessLevel("lecturer"))
         {
             $studentID= $this->Students->studentIDFromMatric($student);
-            $courseID = $this->Courses->get_course_id($course);
+            $courseID = $this->Courses->getCourseId($course);
 
             if(is_int($studentID) && is_int($courseID) && $this->isLabHelper($con->link, $student) && !$this->alreadyLabHelperOf($con->link, $course, $student))
             {

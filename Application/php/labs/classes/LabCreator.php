@@ -36,7 +36,7 @@ class LabCreator extends LabChecks
         $this->types = isset($_POST["type"]) ? $_POST["type"] : null;
         $this->visibility = isset($_POST["visibility"]) ? $_POST["visibility"] : null;
 
-        $this->course = $this->courses->get_course_id($_POST['course-name']);         //ID value of course
+        $this->course = $this->courses->getCourseId($_POST['course-name']);         //ID value of course
         $this->lab_name = $_POST['lab-name'];                         //Variable containing lab title
     }
 

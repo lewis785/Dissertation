@@ -13,7 +13,7 @@ require_once(dirname(__FILE__) . "/../../core/classes/Security.php");
 class Courses extends Security
 {
 
-    public function get_course_id($course)
+    public function getCourseId($course)
     {
         $con = new ConnectDB();
 
@@ -28,7 +28,7 @@ class Courses extends Security
         return $result[0];
     }
 
-    public function get_courses()
+    public function getCourses()
     {
         $con = new ConnectDB();
 
@@ -39,7 +39,7 @@ class Courses extends Security
         {
             mysqli_stmt_prepare($get_courses, "SELECT courseName FROM courses");
         }
-        elseif ($this->has_access_level( "lecturer")) {
+        elseif ($this->hasAccessLevel( "lecturer")) {
 
             mysqli_stmt_prepare($get_courses, "SELECT c.courseName FROM user_login as l
                                               JOIN course_lecturer AS cl ON l.userID = cl.lecturer 
@@ -48,7 +48,7 @@ class Courses extends Security
             mysqli_stmt_bind_param($get_courses, 's', $_SESSION["username"]);
 
 
-        } elseif ($this->has_access_level("lab helper")) {
+        } elseif ($this->hasAccessLevel("lab helper")) {
 
             mysqli_stmt_prepare($get_courses, "SELECT c.courseName FROM lab_helpers AS lh 
                                         JOIN user_login AS ul ON lh.userRef = ul.userID 

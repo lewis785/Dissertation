@@ -10,7 +10,7 @@ class IO extends CourseChecks
 {
     public function exportLabResults($course, $lab)
     {
-        if ($this->has_access_level("lecturer")) {
+        if ($this->hasAccessLevel("lecturer")) {
             if ($this->is_lecturer_of_course($course)) {
                 header('Content-Type: application/excel; charset=utf-8');
                 header('Content-Disposition: attachment; filename=data.csv');
@@ -30,17 +30,6 @@ class IO extends CourseChecks
 
     public function export($file_name, $titles, $data)
     {
-//        header('Content-Type: application/excel; charset=utf-8');
-//        header('Content-Disposition: attachment; filename='.$file_name.'.csv');
-//        $output = fopen("php://output", "w");
-//        fputcsv($output, $titles);
-//        foreach($data as $row)
-//        {
-//            fputcsv($output, $row);
-//        }
-//        fclose($output);
-//        ob_flush();
-
         ob_clean();
         header('Pragma: public');
         header('Expires: 0');

@@ -73,7 +73,7 @@ function editLab(lab_name, labID)
         cache: false,
         success: function(result) {
             $("#main-text-area").html("<legend>"+lab_name+"</legend>");
-            $("#main-text-area").append("<button class='col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-12 btn btn-warning' onclick='display_table()'>Back</button>");
+            $("#main-text-area").append("<button class='col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-12 btn btn-warning' id='back' onclick='display_table()'>Back</button>");
             $("#main-text-area").append(result.questions);
             $("#main-text-area").append("<button class='col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-12 btn btn-success' onclick='submitEdit()'>Submit</button>");
             $(".remove-btn").remove();
