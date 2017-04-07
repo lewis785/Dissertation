@@ -77,7 +77,6 @@ class Marking extends Lab
     {
         $con = new ConnectDB();
 
-
         $qNum = 1;
         $value_answers = ($_POST["mark"]);
         $text_answers = (isset($_POST["text"])) ? $_POST["text"] : null;
@@ -86,7 +85,6 @@ class Marking extends Lab
         $student = $_SESSION["MARKING_STUDENT"];
         $lab = $_SESSION["MARKING_LAB"];
         $course = $_SESSION["MARKING_COURSE"];
-
 
         $labID =    $this->get_lab_id($course, $lab );
         $studentID = $this->getSocID($con->link, $course, $student);

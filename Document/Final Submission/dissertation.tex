@@ -14,6 +14,7 @@
 \usepackage{tikz}
 \usepackage{pgf-pie}
 \usepackage{pgfplots}
+\usepackage{subcaption}
 
 \usepackage{lipsum}
 \usepackage[margin=2cm]{geometry}
@@ -173,6 +174,10 @@ This section contains the summaries of literature relating to the topic and shou
 \subsection{HTML}
 Hypertext Markup Language (HTML) is a markup language that is used to create the structure of a website through the use of elements which are represents by tags (\textless html\textgreater, \textless href\textgreater, \textless a\textgreater). 
 
+\subsubsection{HTML Forms}
+
+
+
 \subsection{Cascading Style Sheets}
 Cascading Style sheets (CSS) is used to change the properties of elements created using HTML through the changing of these properties developers can change the look and response of a website. 
 
@@ -280,17 +285,30 @@ This increased flexibility in email forms would allow for easier  interpretation
 
 
 
-\subsubsection{jQuery}
-jQuery is a JavaScript library that is designed to improve and enrich the 
+\subsubsection{jQuery} \label{sec:jquery}
+jQuery is an open source JavaScript library, that is designed to improve the default Javascript used for web development \cite{jquery.org_jquery_nodate}. It makes it easier to preform many actions such as: event handling, Ajax and animation. jQuery also functions on mobile devices meaning that developers do not have to worry that scripts developed for desktop computer will not function correctly on mobile devices.  
 
+\subsubsection{Ajax}
+The way that normal websites function is that the user send a request to the server, the server then processes the the users requests and then creates and sends a response. Once the the user receives this response the web browser interprets it and displays the web page\cite{smith_simplifying_2006}. This process model causes long period of delay for users as they have to wait for the server to precess their request then wait for the browser to process the response. Meaning users have a very disjointed experiences as they have to wait for the whole page to reload every time they try to navigate through it, this is were Ajax comes in it provides a improved process model that improves users experience.  
 
+ Ajax stands for asynchronous JavaScript and XML \cite{jquery.org_ajax_nodate}. It uses XMLHttpRequest (XHR) object to enable browsers to communicate with servers without needing a web page to reload. Ajaxs requests are triggered using javascript though as stated in the previous section (\ref{sec:jquery}) jQuery made the process of triggering Ajaxs requests a lot easier.  
+ 
+ 
+ Ajax is not one technology but instead is a collection of different technology's, each individual technology can exist on their own \cite{garrett_ajax:_2005}. The technologies that make up Ajax are:
+ 
+ \begin{itemize}
+ \item HTML and CSS
+ \item Dynamic display and interaction
+ \item Asynchronous retrieval of data
+ \item Javascript
+ \end{itemize}
 
 \subsubsection{Twitter Bootstrap}
 Twitter bootstrap is a front-end framework \cite{noauthor_bootstrap_nodate} designed to help developers create dynamical responsive websites quickly and easily. It provides pre-created cascadding style sheets (CSS)
 
 \subsubsection{PHP Unit}
 
-PHP Unit is a testing framework for PHP. It is designed to allow the easy creation of automated tests in the form of unit tests \cite{bergmann2005phpunit}. 
+PHP Unit is a testing framework for PHP. It is designed to allow the easy creation of automated tests in the form of unit tests \cite{bergmann_phpunit_2005}. 
 
 The most recent stable version is PHPUnit 6.0, this version is only compatible with PHP version 7 and was released on the 8th of Feburary 2017. Since I am using PHP 5.6.25 as stated earlier in Section \ref{sec:php} I can not use this most recent version and will instead be be using an older stable version 5.7 which supports PHP version 5.6, 7.0 and 7.1. That version was released on 2nd December 2016.
 
@@ -308,6 +326,9 @@ CakePHP is an open source framework for php, it is developed to help with rapid 
 The usefulness of the framework come in the form of its predefined functions, it allows for more secure code, since you cannot accidental forget to escape character from input as the functions do this anyway. Cakephp helps to improve the maintainability of systems as it is easy to understand with plenty of comments.
 
 A downside to cakephp is its testability, compared to other web frameworks it lacks in testing tools and does not contain a testing environment \cite{plekhanova_evaluating_2009}.
+
+
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -606,7 +627,7 @@ class ConnectDB
 \end{lstlisting}
 \doublespacing
 
-\noindent The way that the class works is, it contains one public variable called \$link; when the class is initilised the constructor function called. The constructor makes a mysqli connection using the provided host, username and password details, it then sets the \$link variable to the result of the connection. After this it check if the connection was successful, if it is not then a die command is thrown and an error message is shown. If it is a successful connect then is selects the "lab-maker" database. Checks if a session is already run, and starts one if it is not.
+\noindent The way that the class works is, it contains one public variable called \$link; when the class is initialised the constructor function called. The constructor makes a mysqli connection using the provided host, username and password details, it then sets the \$link variable to the result of the connection. After this it check if the connection was successful, if it is not then a die command is thrown and an error message is shown. If it is a successful connect then is selects the "lab-maker" database. Checks if a session is already run, and starts one if it is not.
 
 \subsubsection{Security}
 \label{sec:security}
@@ -626,7 +647,125 @@ The design of the lab creation page can be seen in figure(\ref{fig:lab-creator})
 \end{figure}
 
 \subsection{Marking Labs}
-%TODO%
+
+
+\subsubsection{Design}
+The lab marking page changed majorly forms its initial designs. The drop-down boxes for selecting courses, labs and students have instead been replaced with buttons. When the marker first loads the marking page they are showing buttons for each of courses they can mark (\ref{fig:marking-course}), by clicking the button they select the course. The labs for the selected class are then loaded and displayed (figure \ref{fig:marking-lab}) dynamical using ajax so the users does not have to wait for the whole page to load. Additionally a back button is added to the screen to allow markers to easily change the course they are marking. Once the marker has selected the lab they wish to mark by clicking on it the student list for that lab is loaded and displayed again using ajax.
+
+\begin{figure}[H]
+\caption{Lab Marking Page}
+\centering
+\begin{subfigure}[c]{0.45\textwidth}
+    \includegraphics[width=1\textwidth]{images/implementation/marking-1-page.png}
+    \caption{Course Selector}
+    \label{fig:marking-course}
+\end{subfigure}
+\hfill
+\begin{subfigure}[c]{0.45\textwidth}
+    \includegraphics[width=1\textwidth]{images/implementation/marking-2-page.png}
+    \caption{Lab Selector}
+    \label{fig:marking-lab}
+\end{subfigure}
+
+\end{figure}
+
+\noindent The student selection screen is designed differently from the course and lab selection screens. The student buttons are colour coded: blue means they have not been marked, orange means the student has been marked and green means the student was marked and got obtained full marks. There is a legend at the top of the page to make it easy to find out what the different colours means. Also included on this page is a search bar(figure \ref{fig:marking-search}), this is to make it easier for markers to find students, especially in labs that have large numbers of students.
+
+
+\begin{figure}[H]
+\caption{Selecting Student Page}
+\centering
+\begin{subfigure}[c]{0.45\textwidth}
+    \includegraphics[width=1\textwidth]{images/implementation/marking-3-page.png}
+    \caption{Student Select}
+    \label{fig:marking-student}
+\end{subfigure}
+\hfill
+\begin{subfigure}[c]{0.45\textwidth}
+    \includegraphics[width=1\textwidth]{images/implementation/marking-4-page.png}
+    \caption{Student Search}
+    \label{fig:marking-search}
+\end{subfigure}
+
+\end{figure}
+
+\noindent Once the marker has selected a student they would like to mark the marking scheme for the lab is loaded (figure \ref{fig:marking-not}) and if the student has already been marked their current marks are loaded in using jQuery (figure \ref{fig:marking-already}). A submit button is also added to the page which when clicked with save the marks set and take the marker back to the student selection page to make it easy to select the next student to mark.
+
+Each of the different question types is displayed slightly differently. Question one in figure (\ref{fig:marking-not}) is a scale question and provides the marker with a drop-down menu to select the mark. Question two is a Boolean type question and is a simple button that can be clicked to switch between yes and no. Then question three is a text question which contains a text-box to allow markers to enter text which will be saved, additionally a drop-down menu can be included to allow for the selection of a mark for the question. 
+
+
+
+
+
+
+\subsubsection{Dynamic Loading}
+
+Dynamic loading of the different selection screens and the marking scheme are important. Firstly it means that every click does not require the complete loading of a new page and therefor slow down how fast users can mark students.
+
+
+
+
+\subsubsection{Searching Students}
+The searching of students functionality is also done using Ajax that calls a function in the [lfm] class. The Ajax request passes the course and the search requirement. 
+
+\begin{figure}[H]
+\caption{Marking Student Page}
+\centering
+\begin{subfigure}[c]{0.45\textwidth}
+    \includegraphics[width=1\textwidth]{images/implementation/marking-5-page.png}
+    \caption{Not Marked Yet}
+    \label{fig:marking-not}
+\end{subfigure}
+\hfill
+\begin{subfigure}[c]{0.45\textwidth}
+    \includegraphics[width=1\textwidth]{images/implementation/marking-6-page.png}
+    \caption{Already Marked}
+    \label{fig:marking-already}
+\end{subfigure}
+
+\end{figure}
+
+
+\subsubsection{Loading Student Marks}
+
+
+\subsubsection{Question Structure}
+
+A key part of how marks can be saved is down to how each of the question tiles are structured. This structure allows for multiple different question types to be processed in one form rather than requiring a separate form for each of them. The HTML structure for both a scale question and a Boolean question can be seen in figures \ref{fig:struct-scale} and \ref{fig:struct-bool} respectively.  
+
+\begin{figure}[H]
+\caption{HTML Structure Of Questions}
+\centering
+\begin{subfigure}[c]{0.45\textwidth}
+    \includegraphics[width=1\textwidth]{images/implementation/question-structure-scale.png}
+    \caption{Scale Question}
+    \label{fig:struct-scale}
+\end{subfigure}
+\hfill
+\begin{subfigure}[c]{0.45\textwidth}
+    \includegraphics[width=1\textwidth]{images/implementation/question-structure-boolean.png}
+    \caption{Boolean}
+    \label{fig:struct-bool}
+\end{subfigure}
+
+\end{figure}
+
+It can be seen that both types of questions share a similar structure. What allows saving of the different types is shown in the highlighted areas 2 \& 3 in both structures. Normally form information is passed to PHP scripts by naming the input for instance "\textless input name="title"/\textgreater, where the name of the input is title. If this 
+
+
+
+\subsubsection{Submitting Marks}
+
+The saving of marks is done through a form submission, the submission is done by the javascript in listing([lfm])
+
+
+%Add in javascript listing [lfm]
+
+
+The PHP script used to save marks is very large
+
+
+
 
 \subsection{Results Display}
 
@@ -645,6 +784,9 @@ The design of the students results page remained similar to the initial design, 
     \caption{Students Results}
     \label{fig:results-student}
 \end{figure}
+
+
+\
 
 \subsubsection{Lecturers View} \label{sec:results-lecturer}
 %TODO%
@@ -793,19 +935,21 @@ Q3.18 & Difficulty to remove and add lab helpers & 1.08 & 1 & 1 & Easy \\ \hline
 \end{figure}
 
 %Overall easiness% 
-The first thing that can be noticed is that overall the participants found the lab marking system to be fairly easy to use and understand. The two task that users found the hardest to do were mark students and create labs, which are the most complex part of the lab marking system . It would be expected that first time users of the system would find these are to understand at first. Tho it can be seen with the change student mark task that once the participant understood how to mark one student they could easy update their mark. 
+The first thing that can be noticed is that overall the participants found the lab marking system to be fairly easy to use and understand. The two task that users found the hardest to do were mark students and create labs, which are the most complex part of the lab marking system . It would be expected that first time users of the system would find these are to understand at first. Tho it can be seen with the change student mark task that once the participant understood how to mark one student they could easy update their mark.\\ 
 
 %Difficulty of creating labs%
-It can be seen thanks to graph shown in figure(\ref{graph:results} that many users found the creating of new labs to be a difficult task to complete. While watching participants  I noticed that many of them were confused on how questions were added to labs. 
+\noindent It can be seen thanks to graph shown in figure(\ref{graph:results} that many users found the creating of new labs to be a difficult task to complete. While watching participants  I noticed that many of them were confused on how questions were added to labs.\\ 
 
 %Simplicity of student section%
-Question 1.1 tasked participants to sign in as a student and see what mark they were given. As the results of both the table(\ref{table:usability}) and the graph(\ref{graph:results}) all participants found this to be easy to do. This is great to see, as the lab marking system is meant to make it easier for students to find out their marks and this task has shown that process for a student finding there marks is very straight forward.
+\noindent Question 1.1 tasked participants to sign in as a student and see what mark they were given. As the results of both the table(\ref{table:usability}) and the graph(\ref{graph:results}) all participants found this to be easy to do. This is great to see, as the lab marking system is meant to make it easier for students to find out their marks and this task has shown that process for a student finding there marks is very straight forward.
 
 
 \subsubsection*{Yes/No Question}
 Three of the questions in the usability study were yes and no questions. These questions were designed to see if users understood key parts of the lab marking system.
 
-The first question was to check if participants understood what the different coloured buttons for students represented and 75\% did understand what they represented. 
+\subsubsection*{Q2.3: Student Button Colours}
+
+The first question was to check if participants understood what the different coloured buttons for students represented and 75\% did understand what they represented. The fact that 25\% of the participants did not understand does that the legend that shows the what colours correlate too should be improved.
 
 \begin{figure}[H]
 \caption{Q2.3: Know what the different student colours mean?}
@@ -816,7 +960,9 @@ The first question was to check if participants understood what the different co
 
 \end{figure}
 
+\subsubsection*{Q3.6: Visibility Button}
 
+The second yes / no question was to do with the creation of new labs and the understand of what the visible / not visible button for individual questions. Only 58.3\% of participants understood what this button meant. Since this is a key piece of functionality and allows lecturers to control what questions students can see in their result, it must be improved. Many participants suggested the inclusion of tool tips to help understand what the button was meant to do. 
 
 \begin{figure}[H]
 \caption{Q3.6 Know what visible / not visible means?}
@@ -839,6 +985,14 @@ The first question was to check if participants understood what the different co
 
 
 \subsubsection{Qualitative Questions}
+
+As part of each of the task participants were asked to provide feedback about the task and any improvements that could be done to each of the different parts of the lab marking system. These qualitative questions allowed participants to provided useful feedback and improvements that could be done. The summarised feedback will be broken down into the three different sections: student, lab-helper and lecturer.
+
+\subsubsection*{Student}
+
+\subsubsection*{Lab-Helper}
+
+\subsubsection*{Lecturer}
 
 \subsection{Implementation Of Feedback}
 
