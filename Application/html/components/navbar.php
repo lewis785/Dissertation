@@ -14,31 +14,16 @@
                     <span class="icon-bar"></span>
                 </button>
 
-                <button type="button" data-toggle="#sidebar" id="sidebar-toggle" class="navbar-left navbar-toggle pull-left">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#">Lab Marking System</a>
-
-
+                <a class="navbar-brand" href="../pages/labresults.php">Lab Marking System</a>
             </div>
 
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="navbar-collapse-1">
-
-
-
                 <!--Right hand side of the navigation bar-->
                 <ul class="nav navbar-nav navbar-right">
-
                     <?php include "../../php/layout/nav-bar-buttons.php"; ?>
-
                 </ul>
-
-
-            </div><!-- /.navbar-collapse -->
-        </div><!-- /.container-fluid -->
-    </nav>
+            </div>
+        </div>
 </div>

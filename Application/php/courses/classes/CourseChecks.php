@@ -13,7 +13,7 @@ class CourseChecks extends Courses
 {
 
     //Returns true if user is a lecturer of the course
-    public function is_lecturer_of_course($course)
+    public function isLecturerOfCourse($course)
     {
         if ($this->hasAccessLevel("admin"))
             return true;
@@ -63,7 +63,7 @@ class CourseChecks extends Courses
             return true;
 
         if ($this->hasAccessLevel("lecturer")) {                                                  //Checks if user is a lecturer
-            return $this->is_lecturer_of_course($course);                                           //Returns true if user is lecturer of specified course
+            return $this->isLecturerOfCourse($course);                                           //Returns true if user is lecturer of specified course
         } elseif ($this->hasAccessLevel("lab helper")) {                                          //Checks if user is a lab helper
             return $this->is_lab_helper_of_course($course);                                          //Returns true if user is lab helper of specified course
         }

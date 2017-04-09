@@ -61,13 +61,10 @@ class LabCreator extends LabChecks
         $minPos = 0;                                            //Array position of minMarks
         $maxPos = 0;                                            //Array position of maxMarks
 
-
         $booleanTypeID = $this->get_type_ID("boolean");                //ID value of boolean type question
         $scaleTypeID = $this->get_type_ID("scale");                    //ID value of scale type questions
         $valueTypeID = $this->get_type_ID("value");                    //ID value of value type questions
         $textTypeID = $this->get_type_ID("text");                      //ID value of text type questions
-
-
 
         if ($this->valid_input()) {                                    //Checks that input is valid before attempting to insert
             mysqli_autocommit($con->link, FALSE);                    //Sets up transaction for database insertion
@@ -134,7 +131,7 @@ class LabCreator extends LabChecks
         $maxPos = 0;
         $minPos = 0;
 
-        if($Course->is_lecturer_of_course($coursename)) {
+        if($Course->isLecturerOfCourse($coursename)) {
             mysqli_autocommit($con->link, FALSE);                    //Sets up transaction for database insertion
             $successful = false;
             foreach ($this->types as $index => $t) {                                //Loops through each question by its type

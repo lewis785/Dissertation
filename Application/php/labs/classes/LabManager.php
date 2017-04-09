@@ -81,7 +81,7 @@ class LabManager extends CourseChecks
         $successful = false;
         $con = new ConnectDB();
 
-        if ($this->is_lecturer_of_course($course)) {
+        if ($this->isLecturerOfCourse($course)) {
 
             $changeMarkState = mysqli_stmt_init($con->link);
             mysqli_stmt_prepare($changeMarkState, "UPDATE labs SET canMark = ? WHERE labID = ?");
@@ -99,6 +99,7 @@ class LabManager extends CourseChecks
         $io = new IO();
         $Lab = new Lab();
         $con = new ConnectDB();
+        $students = $Lab->studentsFromLabID($this->labID);
 
         $questionText = mysqli_stmt_init($con->link);
         mysqli_stmt_prepare($questionText, "SELECT lq.question FROM labs AS l JOIN lab_questions AS lq ON l.labID = lq.labRef
@@ -114,7 +115,6 @@ class LabManager extends CourseChecks
         array_push($titles_array, "Total Mark");
 
 
-        $students = $Lab->studentsFromLabID($this->labID);
 
         $studentMarks = mysqli_stmt_init($con->link);
         mysqli_stmt_prepare($studentMarks, "SELECT group_concat(IFNULL( la.mark, 0 )) FROM lab_answers AS la 
@@ -140,24 +140,18 @@ class LabManager extends CourseChecks
 
         return json_encode(array("success" => true));
     }
-
-
-    }
-
-
-    public function editLab()
-    {
-
+        return json_encode(array("success" => false));
     }
 
     public function deleteLab()
     {
+        $deletion = false;
         if ($this->hasAccessLevel("lecturer")) {
             if ($this->labID !== null) {
                 $con = new ConnectDB();
                 $course = $this->courseFromLabID($this->labID);
 
-                if ($this->is_lecturer_of_course($course))                                            //Checks if user has access to edit the course
+                if ($this->isLecturerOfCourse($course))                                            //Checks if user has access to delete the course
                 {
                     $delete_lab = mysqli_stmt_init($con->link);                                              //Init Prepared Statment
                     mysqli_stmt_prepare($delete_lab, "DELETE FROM labs WHERE labID = ?");               //Query deletes labs that match the labID
@@ -165,15 +159,12 @@ class LabManager extends CourseChecks
                     mysqli_stmt_execute($delete_lab);                                                   //Execute prepared statement
 
                     $deletion = true;                                                                   //Return success as true
-                } else                                                                                    //If user does not
-                    $deletion = false;                                                                  //Return success as false
-
+                }
 
                 mysqli_close($con->link);                                                                    //Closes DB connection
-                return json_encode(array("success" => $deletion));
-            } else
-                return json_encode(array("success" => false));
+            }
         }
+        return json_encode(array("success" => $deletion));
     }
 
 }

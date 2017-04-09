@@ -33,10 +33,7 @@ function lab_markable(id,state)
         success: function(result) {
             if(result.success)
             {
-                if (state === "true")
-                    state = "false";
-                else
-                    state = "true";
+                (state === "true") ? state = "false" : state= "true";
                 $("#check-"+id).attr("onclick",'lab_markable('+id+',"'+state+'")');
             }
             else
@@ -83,7 +80,6 @@ function editLab(lab_name, labID)
             alert("Error Occurred Trying To Retrieve Lab" + xhr);    //Displays an alert if error occurred
         }
     });
-
 }
 
 

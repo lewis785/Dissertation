@@ -82,7 +82,7 @@ class LabMaker
         $scale.= "</div>";
 
         return json_encode(array('question'=>$scale));
-    }
+}
 
     private function booleanQuestion($id, $question_num)
     {
@@ -90,7 +90,7 @@ class LabMaker
         $boolean.= $this->title("Boolean", $question_num);
         $boolean.= $this->questionType("boolean");
         $boolean.= $this->textInput("question[]");
-        $boolean.= $this->scaleInput("Select Question Value", "max-value[]");
+        $boolean.= $this->scaleInput("Select Question Mark", "max-value[]");
         $boolean.= $this->visablityButton($id);
         $boolean.= "</div>";
 
@@ -169,13 +169,4 @@ class LabMaker
                   <span class='col-md-4'> to students</span>
                 </div>";
     }
-
 }
-//
-//$maker = new LabMaker();
-//print_r($maker->displayEditableLab(4));
-//print_r($maker->startQuestion(1));
-//print_r($maker->typeInput("boolean"));
-//print_r($maker->textInput("questions[]"));
-//print_r($maker->scaleInput("max-mark[]"));
-//print_r($maker->visablityButton(1));

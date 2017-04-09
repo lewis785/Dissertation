@@ -8,10 +8,10 @@
  */
 class IO extends CourseChecks
 {
-    public function exportLabResults($course, $lab)
+    public function exportUsers($course, $lab)
     {
         if ($this->hasAccessLevel("lecturer")) {
-            if ($this->is_lecturer_of_course($course)) {
+            if ($this->isLecturerOfCourse($course)) {
                 header('Content-Type: application/excel; charset=utf-8');
                 header('Content-Disposition: attachment; filename=data.csv');
                 $output = fopen("php://output", "w");
