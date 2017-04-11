@@ -12,7 +12,7 @@ require_once(dirname(__FILE__) . "/../../students/classes/Student.php");
 
 class Marking extends Lab
 {
-    public function already_marked($studentID, $labQID)
+    public function alreadyMarked($studentID, $labQID)
     {
         $con = new ConnectDB();
 
@@ -86,13 +86,13 @@ class Marking extends Lab
         $lab = $_SESSION["MARKING_LAB"];
         $course = $_SESSION["MARKING_COURSE"];
 
-        $labID =    $this->get_lab_id($course, $lab );
+        $labID =    $this->getLabId($course, $lab );
         $studentID = $this->getSocID($con->link, $course, $student);
-        $questionID = $this->get_questionID($labID, $qNum);
+        $questionID = $this->getQuestionID($labID, $qNum);
 
 
         $already_present = false;
-        if($this->already_marked($student, $questionID))
+        if($this->alreadyMarked($student, $questionID))
             $already_present = true;
 
         mysqli_autocommit($con->link, FALSE);                    //Sets up transaction for database insertion
@@ -129,7 +129,7 @@ class Marking extends Lab
             if (!$successful)                                   //Checks if insertion was successful
                 break;                                          //If not ends the loop
             $qNum++;                                            //Increments the question number
-            $questionID = $this->get_questionID($labID, $qNum);
+            $questionID = $this->getQuestionID($labID, $qNum);
         }
         mysqli_commit($con->link);
         mysqli_close($con->link);
@@ -139,20 +139,15 @@ class Marking extends Lab
 
     private function processAnswer($link, $already_present, $questionID, $studentID, $ansNum, $ansBool, $ansText, $mark)
     {
-//        echo("q: ".$questionID." s: ". $studentID." a: ". $ansNum." b: ". $ansBool." t: ". $ansText." m: ". $mark);
-        $successful = false;
         if($mark <= $this->get_avalible_marks($link, $questionID)) {
             if (!$already_present) {
-                echo "inserting";
                 $successful = $this->insertAnswer($link, $questionID, $studentID, $ansNum, $ansBool, $ansText, $mark);
-                echo ($successful) ? "true" : "false";
             } else {
                 $successful = $this->updateAnswer($link, $questionID, $studentID, $ansNum, $ansBool, $ansText, $mark);
             }
         }
         else
             $successful = false;
-
         if (!$successful) {                                 //checks if insert or update failed
             mysqli_rollback($link);                         //Undoes all the inserts all ready done to the database
             return false;                                   //Returns false to show insert failed
@@ -163,7 +158,6 @@ class Marking extends Lab
 
     private function insertAnswer($link, $questionID, $studentID, $ansNum, $ansBool, $ansText, $mark)
     {
-        echo($questionID." ". $studentID." ". $ansNum." ". $ansBool." ". $ansText." ". $mark);
         $insertAnswerQuery = 'INSERT INTO lab_answers (labQuestionRef, socRef, answerNumber, answerBoolean, answerText, mark) VALUES (?, ?, ?, ?, ?, ?)';
         $insertAnswer = mysqli_stmt_init($link);
         mysqli_stmt_prepare($insertAnswer, $insertAnswerQuery);
@@ -175,7 +169,6 @@ class Marking extends Lab
 
     private function getSocID($link, $course, $matric)
     {
-        echo($matric);
         $socID = mysqli_stmt_init($link);
         mysqli_stmt_prepare($socID, "SELECT soc.socID FROM students_on_courses AS soc
                                       JOIN courses AS c ON soc.course = c.courseID

@@ -35,13 +35,13 @@ class LabDisplay extends LabChecks
             $courseID = $this->courses->getCourseId($course);
             $labName = $lab;
 
-            if ($this->lab_already_exists($courseID, $labName)) {
+            if ($this->labAlreadyExists($courseID, $labName)) {
 
                 $questions =  $this->getLabQuestions($con->link, $labName, $course);
 
                 $outputHtml = "<form class='col-lg-12' id='form-area' accept-charset='UTF-8' role='form'  name='marking-form' method='post' action='../../marking/submit_mark.php'>";
                 foreach($questions as $question) {
-                    $outputHtml = $outputHtml . $this->display_question($question);
+                    $outputHtml = $outputHtml . $this->displayQuestion($question);
                 }
                 mysqli_close($con->link);
                 return json_encode(array('html' => $outputHtml . "</form>"));
@@ -86,7 +86,7 @@ class LabDisplay extends LabChecks
     }
 
 
-    private function display_question($question)
+    private function displayQuestion($question)
     {
         $html = '<div class="col-sm-6 col-sm-offset-3 col-md-8 col-md-offset-2 tile"  id="question-' . $question[0] . '">
                 <div class="col-md-5 col-md-offset-1"><label for="sel1">Question Number: <div id="question-number">' . $question[0] . '</div></label></div>

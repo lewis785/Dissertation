@@ -11,7 +11,7 @@ require_once(dirname(__FILE__) . "/../../core/classes/ConnectDB.php");
 class LabChecks
 {
 
-    public function lab_already_exists($course, $lab)
+    public function labAlreadyExists($course, $lab)
     {
         $con = new ConnectDB();
         $checkLabExistsQuery = 'SELECT COUNT(*) FROM labs WHERE courseRef = ? AND labName = ?';

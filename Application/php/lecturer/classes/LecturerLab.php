@@ -61,8 +61,8 @@ class LecturerLab extends Lab
     private function get_student_stats($link, $course, $lab, $username)
     {
         $statsDiv = "";
-        $maxMark = $this->lab_total_mark($course, $lab);
-        $studentMark = $this->student->lab_mark_for_student($link, $username, $course, $lab);
+        $maxMark = $this->labTotalMark($course, $lab);
+        $studentMark = $this->student->labMarkForStudent($link, $username, $course, $lab);
         $percentage = number_format((($studentMark / $maxMark) * 100), 2, ".", "") . "%";
 
         $statsDiv .= "<div class='col-md-4'></div>";
@@ -75,7 +75,7 @@ class LecturerLab extends Lab
     private function get_student_answers($course, $lab, $username, $visibility)
     {
         $hasMark = true;
-        $answers = $this->student->student_lab_answers($course, $lab, $username, $visibility);
+        $answers = $this->student->studentLabAnswers($course, $lab, $username, $visibility);
 
         if (sizeof($answers) > 0) {
             $answersList = "<ul class='answers-list'>

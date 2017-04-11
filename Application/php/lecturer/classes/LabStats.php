@@ -15,7 +15,7 @@ class LabStats extends Lab
 
     public function get_lab_stat($link, $course, $lab)
     {
-        $lab_max = $this->lab_total_mark($course, $lab);
+        $lab_max = $this->labTotalMark($course, $lab);
 
         $stats = [];
 

@@ -15,7 +15,7 @@ require_once(dirname(__FILE__) . "/../../courses/classes/CourseChecks.php");
 class Lab extends CourseChecks
 {
 
-    public function get_students($course, $filter="")
+    public function getStudents($course, $filter="")
     {
         $output = [];
         if ($this->can_mark_course($course)) {
@@ -40,7 +40,6 @@ class Lab extends CourseChecks
                 mysqli_stmt_bind_param($get_students, 'ss', $course, $filter);
             }
             mysqli_stmt_execute($get_students);
-
 
             $output = mysqli_stmt_get_result($get_students);
             mysqli_close($con->link);
@@ -96,7 +95,7 @@ class Lab extends CourseChecks
 
 
 
-    public function lab_total_mark($courseName, $labName)
+    public function labTotalMark($courseName, $labName)
     {
         $con = new ConnectDB();
 
@@ -117,7 +116,7 @@ class Lab extends CourseChecks
         return -1;
     }
 
-    public function get_lab_id($course, $lab)
+    public function getLabId($course, $lab)
     {
         $con = new ConnectDB();
 
@@ -150,7 +149,7 @@ class Lab extends CourseChecks
     }
 
 
-    public function get_questionID($labID, $questionNum)
+    public function getQuestionID($labID, $questionNum)
     {
         $con = new ConnectDB();
 

@@ -15,16 +15,27 @@
 \usepackage{pgf-pie}
 \usepackage{pgfplots}
 \usepackage{subcaption}
+\usepackage{mathdots}
+
 
 \usepackage{lipsum}
 \usepackage[margin=2cm]{geometry}
 
 \definecolor{Gray}{gray}{0.9}
 
+\definecolor{Green}{RGB}{0, 153, 0}
+\definecolor{Yellow}{RGB}{255, 255, 51}
+\definecolor{Red}{RGB}{203, 0, 0}
+
+\definecolor{lightgray}{rgb}{.9,.9,.9}
+\definecolor{darkgray}{rgb}{.4,.4,.4}
+\definecolor{purple}{rgb}{0.65, 0.12, 0.82}
+
 
 \addbibresource{references.bib}
-\newcommand{\rid}[1]{\centering #1-\ifnum\value{requirement}<10 0\fi\arabic{requirement} \stepcounter{requirement}}
-
+\newcommand{\rid}[1]{\centering #1-\ifnum\value{requirement}<10 0\fi\arabic{requirement}
+\stepcounter{requirement}}
+\newcommand{\tag}[1]{\textless {#1}\textgreater}
 
 
 
@@ -40,27 +51,61 @@
 \definecolor{dkyellow}{cmyk}{0,0,.8,.3}
 \definecolor{backcolour}{rgb}{0.95,0.95,0.92}
 
-\lstset{
+\newcommand{\phplisting}{\lstset{
   language        = php,
-  basicstyle      = \small\ttfamily,
-  keywordstyle    = \color{dkblue},
+  basicstyle      = \footnotesize\ttfamily,
+  keywordstyle    = \color{blue},
   stringstyle     = \color{red},
-  identifierstyle = \color{dkgreen},
+  identifierstyle = \color{black},
   commentstyle    = \color{gray},
   emph            =[1]{php},
   emphstyle       =[1]\color{black},
   emph            =[2]{if,and,or,else},
   emphstyle       =[2]\color{dkyellow},
   numbers = left,
-  backgroundcolor=\color{backcolour},
+  backgroundcolor=\color{lightgray},
   frame = single, 
   framexleftmargin=1.5em,
-  xleftmargin=2em,
-  breaklines= true
-  }
+  xleftmargin=2.5em,
+  breaklines= true,
+  showstringspaces=false,
+  escapeinside={(*@}{@*)}
+  }}
   
 %End of PHP Code Listings Code %
 
+
+\lstdefinelanguage{JavaScript}{
+  keywords={typeof, new, true, false, catch, function, return, null, catch, switch, var, if, in, while, do, else, case, break},
+  keywordstyle=\color{blue}\bfseries,
+  ndkeywords={class, export, boolean, throw, implements, import, this},
+  ndkeywordstyle=\color{darkgray}\bfseries,
+  identifierstyle=\color{black},
+  sensitive=false,
+  comment=[l]{//},
+  morecomment=[s]{/*}{*/},
+  commentstyle=\color{purple}\ttfamily,
+  stringstyle=\color{red}\ttfamily,
+  morestring=[b]',
+  morestring=[b]"
+}
+
+\newcommand{\jslisting}{
+\lstset{
+   language=JavaScript,
+   backgroundcolor=\color{lightgray},
+   extendedchars=true,
+   basicstyle=\footnotesize\ttfamily,
+   showstringspaces=false,
+   showspaces=false,
+   numbers=left,
+   numberstyle=\footnotesize,
+   numbersep=9pt,
+   tabsize=2,
+   breaklines=true,
+   showtabs=false,
+   captionpos=b
+}}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -112,7 +157,9 @@ The aim of this dissertation project is to replace the current system for the ma
 \tableofcontents
 \newpage
 \listoffigures
+\newpage
 \listoftables
+\lstlistoflistings
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -125,11 +172,11 @@ The aim of this dissertation project is to replace the current system for the ma
 \pagenumbering{arabic}
 \section{Introduction}
 
-The current system for marking of computing science labs is to use multiple lab helpers, each given a list of students and the marking scheme for them. Generally marking schemes are a selection of tasks students must have completed and lab helpers tick them off when this has been achieved. The biggest problem with this part of the marking is the length of time it takes lab helpers to locate the students on the list. This causes frustration with increased waiting times for students.  Multiple other issues  can also  arise from this: students can be marked by two helpers and obtain different grades from both; the lab helper omits to  tick off a completed task; they assign  marks for the wrong student on the sheet or simply they misplace the actual marking sheet.
+The current system for marking of computing science labs is to use multiple lab helpers, each given a list of students and the marking scheme for them. Generally marking schemes consist of a selection of tasks which students must have completed and lab helpers tick them off when this has been achieved. The biggest problem with this part of the marking is the length of time it takes lab helpers to locate the students on the list. This causes frustration with increased waiting times for students.  Multiple other issues  can also  arise from this: students can be marked by two helpers and obtain different grades from both; the lab helper omits to  tick off a completed task; they assign  marks for the wrong student on the sheet or simply they misplace the actual marking sheet.
 
-After the lab helpers have completed their marking, the sheets are provided to the lecturer who collates them together into one spreadsheet to calculate marks. After that it is entered it into vision. This too can cause its own set of problems-the chances of transcription errors are increased as it is possible for the lecturer to misread marks when they are transferring them across. The lecturer may not enter the marks immediately into the spreadsheet increasing the chance that a marking sheet goes missing, and finally this system means that students are having to wait even longer to receive their results.
+After the lab helpers have completed their marking, the sheets are provided to the lecturer who collates them into one spreadsheet to calculate the marks. After that it is entered it into vision. This too can cause its own set of problems-the chances of transcription errors are increased as it is possible for the lecturer to misread marks when they are transferring them across. The lecturer may not enter the marks immediately into the spreadsheet increasing the chance that a marking sheet goes missing, and finally this system means that students are having to wait even longer to receive their results.
 
-The objective is to develop a system that will reduce and hopefully eliminate the problems of the current system. Along with this, it should hopefully reduce the amount of time taken to mark students’ work and therefore speed up labs in general. It should also enable students to see their grades immediately, allow lecturer to see the result of the assignments as they are being marked and make marking quicker for lab helpers.
+The objective is to develop a system that will reduce and hopefully eliminate the problems of the current system. Along with this, it should hopefully reduce the amount of time taken to mark students’ work and therefore speed up labs in general. It should also enable students to see their grades immediately, allow lecturers to see the result of the assignments as they are being marked and make marking quicker for lab helpers.
 
 
 
@@ -166,46 +213,50 @@ The aim of this dissertation is to design and implement a system for the digital
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
 \section{Background Information}
-This section contains the summaries of literature relating to the topic and should help to create a context for the development of a digital marking system. It will cover what marking systems that are currently being used, what current digital marking systems actually exist and why they are an improvement. Along with this it will also cover how to control what users are allowed to see, as well as explaining systems for creation of custom website forms, and finally it will cover the graphical displaying of statistics. 
+This section contains summaries of literature relating to the topic and should help to create a context for the development of a digital marking system. It will cover which marking systems are currently used, also which current digital marking systems actually exist and why they are an improvement. Along with this it will also cover how to control what users are allowed to see, as well as explaining systems for creation of custom website forms, and finally it will cover the graphical displaying of statistics. 
 
 
 \subsection{Web Applications}
 
+The digital lab marking system will be developed as a web application. To help understand how web applications are built this sub section covers the core technologies required to develop web applications.
+
 \subsection{HTML}
-Hypertext Markup Language (HTML) is a markup language that is used to create the structure of a website through the use of elements which are represents by tags (\textless html\textgreater, \textless href\textgreater, \textless a\textgreater). 
+HTML is short for Hypertext Markup Language and is a markup language which in fact is less a programming language and more a set of instructions \cite{brooks_introduction_2007}. It creates the structure of a website through the use of elements which are represented by: example tags include:\tag{html}, \tag{href}, \tag{a}. 
 
-\subsubsection{HTML Forms}
+\noindent An individual element is made up of an open tag (\tag{a}) and a closing tag which is the same as the opening tag but includes a back slash at the start (\tag{$\backslash$a}). Elements can exist inside other elements creating a hierarchical structure.
 
+\noindent Web browsers do not display the elements and tags directly \cite{w3_introduction_nodate} but instead they process these elements to decide how the web page should look and then renders it in the browser's screen for the user to interact with. The downside to web browsers deciding how to render elements is that different browsers can choose to render the same element two different ways. For instance if a web page was loaded using Google Chrome it may render a table where the column width is not defined with each column getting equal space, but if the same table was loaded using Fire-fox it may decide that each column only gets the minimum size required and therefore the table looks narrower. This can have a really major effect if the the website was designed with accurate measurements in one browser and another calculates sizes differently resulting in the website displaying wrongly.    
 
 
 \subsection{Cascading Style Sheets}
-Cascading Style sheets (CSS) is used to change the properties of elements created using HTML through the changing of these properties developers can change the look and response of a website. 
+Cascading Style sheets (CSS)\cite{lie_cascading_2005} are used to change the properties of elements created using HTML; through the changing of these properties developers can change the look and response of a website. Developers can also create classes and ids, both of which are given names and then element properties are set inside. This means for instance a class called "bigText", which makes the text large and bold- when a element uses this class all the specified properties are changed. HTML elements can have multiple classes but can only have one id which creates a priority system. 
 
- 
+The priority system \cite{noauthor_cascading_nodate} is where the cascading part of the style comes into effect, elements inherit the property of any class assigned to them, but if another class is added it cascades through the current set properties changing any that the class also declares. This means that classes declared later have a higher priority for example class=" bigText smallText", in this the element has a big and small text class. Since the smallText class is declared after bigText the elements properties will set to it. The only thing that would not have changed are properties declared by the id, since an element can only have one id it has a higher priority than any class and so will override properties with its own values.  
 
-Then it comes to websites there can be multiple different Cascading Style Sheets being used.  
+This priority and cascading system also works with multiple files. If two css files are being used by an HTML document and both declare a class called "bigText", then the "bigText" class from the css file that is declared last, will be the one that is used. This will be very useful for this project as it allows for the use of frameworks which will provide their own css files, but adding my own file afterwards will allow me to customise the initial css file.
 
-As part of this project I will be using CSS 3 which at time of write (2017) is the currently agreed standard \cite{noauthor_css_nodate}.
+As part of this project I will be using CSS 3 which at time of writing (2017) is the currently agreed standard \cite{noauthor_css_nodate}.
 
 
-\subsection{Java-script}
+\subsection{JavaScript}
+
+JavaScript is a high-level interpreted language and loosely typed, meaning that you do not need to declare the type of  variable. JavaScript programs are called scripts and can interact with the user, their web browser, and is capable of editing HTML content that is displayed inside the user's browser \cite{flanagan_javascript:_2006}. JavaScript is generally embedded into HTML web pages and is usually called client-side JavaScript as the scripts are run on the user's computer not the web page's server.
+
+
 
 \subsection{PHP}
 \label{sec:php}
 
-PHP stands for Hypertext Preprocessor and is an open source scripting language first developed in 1994 \cite{noauthor_php:_nodate} which can be embedded into HTML. Unlike HTML which is sent to the user and process by their computer, PHP scripts are instead processed by the website server. Once it has been processed HTML is generated and sent to the user. 
+PHP stands for Hypertext Preprocessor and is an open source scripting language first developed in 1994 \cite{noauthor_php:_nodate} which can be embedded into HTML. Unlike HTML which is sent to the user and processed by their computer, PHP scripts are instead processed by the website server. Once it has been processed HTML is generated and sent to the user. 
 
-It currently has two major version which are version 5.x and 7.x
-
-
-For this project I will be using version 5.6.25 as version 5 is still the most common version of PHP and allow for easy installation of the lab marking system into the universities server.
+PHP currently has two major versions which are version 5 and 7. For this project I will be using version 5.6.25 as version 5 is still the most common version of PHP \cite{noauthor_usage_nodate} with 95\% of websites that use PHP using version 5. It also allows for easy installation of the lab marking system into the university's server.
 
 
 
 \subsection{Marking Systems}
 
 \subsubsection{Lecturer Based}
-The way lecturer based marking works is that students complete their assignment, the lecturer or tutor marks it and provides result in a timely manner with useful feedback which can be majorly important in helping students improve their skills  \cite{tang_investigating_2011}.
+The way lecturer based marking works is that students complete their assignment, the lecturer or tutor marks it and provides results in a timely manner with useful feedback which can be majorly important in helping students improve their skills  \cite{tang_investigating_2011}.
 
 The advantage of this style of marking is that students can obtain useful feedback from their lecturer that can help improve their learning.  An article study \cite{higgins_conscientious_2002} found that of the students, when surveyed 82\% agreed to the question "I pay close attention to the comments I get" in response to assignment feedback.
 
@@ -224,11 +275,11 @@ Peer marking however has its own set of problems - for example, "Students may ha
 \subsection{Digital Marking Systems}
 
 \subsubsection{Reasons for Digital Marking}
-Digital marking systems are designed to mirror the current paper based marking systems but with the advantage of the electronic environment \cite{heinrich_online_2003}. These systems help to reduce the increasing workload caused by more and more students taking courses. Along with this it also allows administrative tasks associated with coursework to be automated enabling more time for other tasks.\cite{joy_effective_1998}.
+Digital marking systems are designed to mirror the current paper based marking systems but with the advantage of the electronic environment \cite{heinrich_online_2003}. These systems help to reduce the increasing workload caused by more and more students taking courses. Along with this it also allows administrative tasks associated with coursework to be automated, thus enabling more time for other tasks.\cite{joy_effective_1998}.
 
-For students digital marking is great as it allows for quick feedback as the assessor is able provide students feedback immediately after they have written it up, instead of having to wait for a class to receive it. In one study\cite{dahl_turnitin_2007} they found that 78\% of students would like get their feedback  electronically .
+For students digital marking is great as it allows for quick feedback as the assessor is able provide students with feedback immediately after they have written it up, instead of having to wait for a class to receive it. In one study\cite{dahl_turnitin_2007} they found that 78\% of students would like get their feedback  electronically .
 
-According to the highlighted article \cite{derby_duplication_2008} plagiarism is on the rise amongst student. This is where digital marking can help to reduce plagiarism as the programme can  do what a human marker cannot. They can compare a submission thousands of documents and judge if a person has plagiarised. They can also help to show patterns in assignments and marks that normally might go unnoticed.
+According to the highlighted article \cite{derby_duplication_2008} plagiarism is on the rise amongst student. This is where digital marking can help to reduce plagiarism as the programme can  do what a human marker cannot. They can compare a submission with thousands of documents and judge if a person has plagiarised. They can also help to show patterns in assignments and marks that normally might go unnoticed.
 
 
 \newpage
@@ -240,14 +291,30 @@ Current research highlighted \cite{dahl_turnitin_2007} conducted a questionnaire
 The BOSS system  was developed at the University of Warwick to help deal with their problem of having too many students for the number of staff and yet wanting students to have accurate and quickly available feedback \cite{joy_boss_2005}.
 It is an electronic submission and assessment system created to allow computing science students to submit their programming assignments and have them tested and marked online \cite{joy_effective_1998}. The system is not designed to remove human markers completely, instead simply "assist the instructor in achieving a quicker, more accurate and more consistent assessment of programming assignment"\cite{joy_boss_2005}.
 
-When a file is first submitted it is run through a plagiarism check to make sure that the submission is actually the student’s own work. It also checks that the submission passes pre-set tests to make sure it works. After this it goes into the evaluations stage, since evaluation attributes of code can be very subjective what the second step does is generate metrics about the submitted program. Some of these metric are a number of comments and percentage of methods declared \cite{joy_effective_1998}, which will help human markers evaluate the submission quicker.
+When a file is first submitted it is run through a plagiarism check to make sure that the submission is actually the student’s own work. It also checks that the submission passes pre-set tests to make sure it works. After this it goes into the evaluations stage, since evaluation attributes of code can be very subjective what the second step does is generate metrics about the submitted program. Some of these metrics are a number of comments and percentage of methods declared \cite{joy_effective_1998}, which will help human markers evaluate the submission quicker.
+
+
+
+
+\subsubsection{Ceilidh}
+
+The Ceilidh System was developed at Nottingham University, it is described as "a courseware assessment and management system" \cite{benford_ceilidh:_nodate}. It was designed to support teaching and to do so it was required to manage courses, process the assessment of students, support learning and present information to students. The requirement that is of most interest is that of the processing of student assignments.
+
+Ceilidh was to "perform automatic marking of students work in various forms" \cite{benford_ceilidh_1995} these forms included: Computer programs, multiple different types of questionnaires and exercised and finally reports. 
+
+According to the highlighted article \cite{benford_ceilidh_1995} at the time of Ceilidh's development Nottingham University computing classes contained roughly 160 students and required multiple staff and post graduate students to mark all the programming submissions. It would often result in a long time between submission and results being handed out, and the marking standard would vary quite significantly.
+
+This all changed with the creation of Ceilidh, students could submit their code and get a response in few seconds, and with it being a machine it was completely impartial- meaning that there was a uniform marking standard across all the students. As Ceilidh was further developed, lecturers gained more control over which statistics were immediately available to students. The digital system also allowed for easy storage of student submissions, so they could be easily referenced in case of plagiarism, also the centralised storage of student results meant that lecturers saved time by not having to gather up all the marked results from other people. 
+
+
+
 
 
 
 \subsection{User Access Views}
 
 \subsubsection{Social Media}
-Controlling the view that users have, based on their access level, is common practice. Social media websites for instance allow users to limit what others  can see, through the use of a privacy setting \cite{tufekci_can_2008}. This means that another user's view is determined by the access level they are given for example, a user that is a friend will have a higher access and be allowed to see their whole feed, while an other users access may only allow them see the profile name.
+Controlling the view that users have, based on their access level, is common practice. Social media websites for instance allow users to limit what others can see, through the use of a privacy setting \cite{tufekci_can_2008}. This means that another user's view is determined by the access level they are given: for example, a user that is a friend will have a higher access and be allowed to see their whole feed, while another user's access may only allow them see the profile name.
 
 \subsubsection{Database Controlled Access}
 The patent highlighted \cite{noauthor_system_1997}, describes a system of limiting user web page access through the use of relation databases. The system would work by using two databases; one would hold a list of all the url's and associated access level, while the second database would hold all the user id's along with their assigned access level. When a user requests a webpage, the access level for that webpage and the user are looked up. If the users do not have the appropriate access they are denied permission to load the page and depending on implementation may be redirected to another webpage.
@@ -257,9 +324,9 @@ The design of this system is well suited for scalability since no matter how lar
 \subsection{Custom Input Forms}
 
 \subsubsection{SurveyMonkey}
-Survey Monkey \cite{finley_surveymonkey_1999} is an example of custom web forms being created by users. Founded by Ryan Finley in 1999 Survey Monkey enables users to create their own surveys and easily distribute them. It builds the surveys by letting the user select the contents of the question and what the response type will be: The user can also decide if the responses are completely anonymous by default and the participants ip address is stored when they complete the survey. The users can continue to add as many questions as they would like, even after the survey is initially created. After designing the survey the user chooses how they would like to have their survey distributed. The available options that can be selected are a web link, social media, email or embeddable on a website \cite{waclawski_how_2012} .
+Survey Monkey \cite{finley_surveymonkey_1999} is an example of custom web forms being created by users. Founded by Ryan Finley in 1999 Survey Monkey enables users to create their own surveys and easily distribute them. It builds the surveys by letting the user select the contents of the question and what the response type will be: The user can also decide if the responses are completely anonymous by default and the participants ip address is stored when they complete the survey. The users can continue to add as many questions as they would like, even after the survey is initially created. After designing the survey the user chooses how they would like to have their survey distributed. The available options that can be selected are a web link, social media, email or embeddable on a website \cite{waclawski_how_2012}.
 
-When participants complete the survey their results are immediately stored and the results of the survey are visible to the user by login into their account on surveymonkey. They can choose to look at the responses individually or look at metrics about how participants responded.
+When participants complete the survey their results are immediately stored and the results of the survey are visible to the user by logging into their account on surveymonkey. They can choose to look at the responses individually or look at metrics about how participants responded.
 
 
 \subsubsection{Customizing Forms In Electronic Mail Systems}
@@ -276,25 +343,25 @@ A patent \cite{noauthor_customizing_2006} describes a process for user-customisa
 \end{wrapfigure}
 
 \noindent
-a field for address, subject and one for the the actual message to be sent. While an example of what the patent is suggesting can be seen in figure \ref{fig:emailform}, it shows the adding of additional fields allowing for wide variety of form to be created and not limit the  users to use the few forms that are precreated.\\
+a field for address, subject and one for the the actual message to be sent. While an example of what the patent is suggesting can be seen in figure \ref{fig:emailform}, it shows the inclusion of additional fields allowing for wide variety of form to be created and not limit the users to  the few forms that already are designed.\\
 This increased flexibility in email forms would allow for easier  interpretation of messages, making responding or providing information via email a lot simpler and quicker.
 
 
 \subsection{Development Tools}
-%TODO%
+
+As part of this developing the lab marking system there will be a wide variety of different development tools used. To help understand how the system is developed these different tools and how they function are explained here.  
 
 
 
 \subsubsection{jQuery} \label{sec:jquery}
-jQuery is an open source JavaScript library, that is designed to improve the default Javascript used for web development \cite{jquery.org_jquery_nodate}. It makes it easier to preform many actions such as: event handling, Ajax and animation. jQuery also functions on mobile devices meaning that developers do not have to worry that scripts developed for desktop computer will not function correctly on mobile devices.  
+jQuery is an open source JavaScript library, that is designed to improve the default Javascript used for web development \cite{jquery.org_jquery_nodate}. It makes it easier to perform many actions such as: event handling, Ajax and animation. jQuery also functions on mobile devices meaning that developers do not have to worry that scripts developed for desktop computers will not function correctly on mobile devices.  
 
 \subsubsection{Ajax}
-The way that normal websites function is that the user send a request to the server, the server then processes the the users requests and then creates and sends a response. Once the the user receives this response the web browser interprets it and displays the web page\cite{smith_simplifying_2006}. This process model causes long period of delay for users as they have to wait for the server to precess their request then wait for the browser to process the response. Meaning users have a very disjointed experiences as they have to wait for the whole page to reload every time they try to navigate through it, this is were Ajax comes in it provides a improved process model that improves users experience.  
+The way that normal websites function is that the user sends a request to the server, the server then processes the user's requests and then creates and sends a response. Once the the user receives this response the web browser interprets it and displays the web page\cite{smith_simplifying_2006}. This process model causes long periods of delay for users as they have to wait for the server to process their request and then wait for the browser to process the response. Meaning users have very disjointed experiences as they have to wait for the whole page to reload every time they try to navigate through it. This is where Ajax comes in as it provides an improved process model that enhances users' experience.  
 
- Ajax stands for asynchronous JavaScript and XML \cite{jquery.org_ajax_nodate}. It uses XMLHttpRequest (XHR) object to enable browsers to communicate with servers without needing a web page to reload. Ajaxs requests are triggered using javascript though as stated in the previous section (\ref{sec:jquery}) jQuery made the process of triggering Ajaxs requests a lot easier.  
+ Ajax stands for asynchronous JavaScript and XML \cite{jquery.org_ajax_nodate}. It enables browsers to communicate with servers without needing a web page to reload. Ajax's requests are triggered using javascript, though as stated in the previous section (\ref{sec:jquery}) jQuery made the process of triggering Ajax's requests a great deal easier.  
  
- 
- Ajax is not one technology but instead is a collection of different technology's, each individual technology can exist on their own \cite{garrett_ajax:_2005}. The technologies that make up Ajax are:
+ Ajax is made up of a collection of different technologies but each individual technology can exist on their own \cite{garrett_ajax:_2005}. The technologies that make up Ajax are:
  
  \begin{itemize}
  \item HTML and CSS
@@ -303,14 +370,24 @@ The way that normal websites function is that the user send a request to the ser
  \item Javascript
  \end{itemize}
 
-\subsubsection{Twitter Bootstrap}
-Twitter bootstrap is a front-end framework \cite{noauthor_bootstrap_nodate} designed to help developers create dynamical responsive websites quickly and easily. It provides pre-created cascadding style sheets (CSS)
+
+
+\subsubsection{Bootstrap}
+Bootstrap is a front-end framework \cite{noauthor_bootstrap_nodate} designed to help developers create dynamical responsive websites quickly and easily. It provides cascading style sheets and java-script files which are designed to work on all devices.
+
+The way which bootstrap helps create a dynamically responsive website is through the creation of a grid pattern. It breaks the screen up vertically with 12 equally sized sections calculated by percentage. When elements are created the developer declares how many sections wide the element will be. This means that if the screen is scaled down it will still maintain that percentage of the screen size, so the element will scale larger or smaller. Developers can also set an element to use a different number of sections depending on the size of the screen, which means that if a table is initially given four sections then when the screen squashes the table too much then it can be given more sections and therefore more room to expand.
+
+Bootstrap also provides pre-designed navigation bars, side bars, easily customisable button designs and form designs. Altogether this will help speed up the development of the user interface.
+
+The reason that I am using Bootstrap for this project is that is specifically designed for projects that use mobile devices. This will make is easier to build a desktop and mobile version of the lab marking system meaning more time can be spent of the development application's actual functionality.
+
+
 
 \subsubsection{PHP Unit}
 
 PHP Unit is a testing framework for PHP. It is designed to allow the easy creation of automated tests in the form of unit tests \cite{bergmann_phpunit_2005}. 
 
-The most recent stable version is PHPUnit 6.0, this version is only compatible with PHP version 7 and was released on the 8th of Feburary 2017. Since I am using PHP 5.6.25 as stated earlier in Section \ref{sec:php} I can not use this most recent version and will instead be be using an older stable version 5.7 which supports PHP version 5.6, 7.0 and 7.1. That version was released on 2nd December 2016.
+The most recent stable version is PHPUnit 6.0, this version is only compatible with PHP version 7 and was released on the 8th of February 2017. Since I am using PHP 5.6.25, as stated earlier in Section \ref{sec:php}, I cannot use this most recent version and will instead be be using an older stable version 5.7 which supports PHP version 5.6, 7.0 and 7.1. That version was released on 2nd December 2016.
 
 
 
@@ -321,9 +398,9 @@ Data-sets can also be bound to an SVG allowing for a visual way to interpret the
 
 
 \subsubsection{CakePHP}
-CakePHP is an open source framework for php, it is developed to help with rapid development of web application and make them simpler,fast and less complex to build \cite{noauthor_cakephp_nodate}. It allows the development of well structured and robust web applications \cite{plekhanova_evaluating_2009}, and its latest version is version 3.3 called "Red Velvet" it can be downloaded from (https://cakephp.org/).
+CakePHP is an open source framework for php. It is developed to help the rapid development of web applications and make them simpler,faster and less complex to build \cite{noauthor_cakephp_nodate}. It allows the development of well structured and robust web applications \cite{plekhanova_evaluating_2009}, and its latest version is version 3.3 called "Red Velvet" which can be downloaded from (https://cakephp.org/).
 
-The usefulness of the framework come in the form of its predefined functions, it allows for more secure code, since you cannot accidental forget to escape character from input as the functions do this anyway. Cakephp helps to improve the maintainability of systems as it is easy to understand with plenty of comments.
+The usefulness of the framework comes in the form of its predefined functions, which allows for a more secure code, since you cannot accidental forget to escape character from input as the functions automatically do this. Cakephp helps to improve the maintainability of systems as it is easy to understand with plenty of comments.
 
 A downside to cakephp is its testability, compared to other web frameworks it lacks in testing tools and does not contain a testing environment \cite{plekhanova_evaluating_2009}.
 
@@ -337,48 +414,47 @@ A downside to cakephp is its testability, compared to other web frameworks it la
 %										%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
-\section{Requirements}
-\label{section:require}
+\section{Requirements}\label{section:require}
 \newcounter{requirement} \stepcounter{requirement}
 
 
 \subsection{Requirements Analysis}
-To help find out the requirements of the lab marking system I preformed a requirements analysis questionnaire(Full questionnaire in Appendix \ref{app:requirements}), the questionnaire was given to lab helpers and lecturers to help understand what they would both want out of the system. 
+To help discover the requirements of the lab marking system I created a requirements analysis questionnaire(Full questionnaire in Appendix \ref{app:requirements}), the questionnaire was given both to lab helpers and to lecturers to help understand their individual requirements from the system. 
 
-The results of the requirements analysis was used to develop and refine the the list of requirements displayed, functional requirements can be found in section \ref{sec:func} and non-functional requirements in section \ref{sec:non-func}.
+The results of the requirements analysis were used to develop and refine the  list of requirements displayed- functional requirements can be found in section \ref{sec:func} and non-functional requirements in section \ref{sec:non-func}.
 
 
 
 \subsection{Requirements}
 \label{sec:requirements}
-Requirements for the system are each given an idea depending on the type of requirement: FR for functional requirements and NFR for non-functional requirements.
+Requirements for the system are each given an id depending on the type of requirement: FR for functional requirements and NFR for non-functional requirements.
 
-Along with this, each requirement has a description stating what the requirement is and a  priority is assigned using the MoSCoW prioritization method discussed in the next section (\ref{sec:moscow}).
+Along with this, each requirement has a description stating what the requirement is and a priority is assigned using the MoSCoW prioritization method discussed in the next section (\ref{sec:moscow}).
 
 
 \subsubsection{MoSCow Prioritisation}
 \label{sec:moscow}
 
-MoSCow Prioritisation \cite{noauthor_moscow_2015} was designed to be used in project that utilise agile development and have a fixed time limit in which to be completed. The way that it works is that all the requirements of the project are prioritised into four categories, these are:
+MoSCow Prioritisation \cite{noauthor_moscow_2015} was designed to be used in projects that utilise agile development and have a fixed time limit in which to be completed. Its method is that all the requirements of the project are prioritised into four categories, these are:
 
 \begin{itemize}
 
-\item \textbf{Must:} This category of requirements make up the "\underline{M}inimum \underline{U}sable \underline{S}ubse\underline{T}" of requirements that the project must implement to be successfully delivered.
+\item \textbf{Must:} This category of requirements makes up the "\underline{M}inimum \underline{U}sable \underline{S}ubse\underline{T}" of requirements that the project must implement to be successfully delivered.
 
-\item \textbf{Should:} This category contains requirements that are not vital to the delivery of the project, but their absence can effect the project overall. 
+\item \textbf{Should:} This category contains requirements that are not vital to the delivery of the project, but their absence can affect the project overall. 
 
-\item \textbf{Could:} This category contains requirements that are wanted in the system but are less important than the "should" priority. Reasons that a requirement would become a could instead of a should is if the amount of time take to implement the requirement outweighs the effect if will have on project.   
+\item \textbf{Could:} This category contains requirements that are wanted in the system but are less important than the "should" priority. Reasons that a requirement "would" become a "could" instead of a "should" are if the amount of time taken to implement the requirement and how much of an affect its absence would have on the project.   
 
 \item \textbf{Won't:} This category contains all the requirements that will not be implemented in the delivered project, but could be implemented in later development.
 \end{itemize}
 
-\noindent For this project I will be attempting to implementing all of the must priority functional and nonfunctional requirements, I will also try and implement all of the should requirements. Finally I will implement as many of the could priority requirements that I can starting with ones that best improve the system.
+\noindent For this project I will be attempting to implement all 'the must priority functional and nonfunctional requirements'. I will also try and implement all of the "should" requirements. Finally I will implement as many of the "could" priority requirements that I can, starting with ones which best improve the system.
 
 
 \def\arraystretch{1.5}
 \subsubsection{Functional Requirements} \label{sec:func}
 
-Functional requirements also include an access column which defines what users should be able to use. Some items are restricted to lecturers as some requirements should only be be usable by lecturers and lab-helpers and not by students. The table is sorted first by access level starting with widest allowed access then sorted in access order 1 - 4, it is secondly sorted by priority.
+Functional requirements also include an access column which defines what users should be able to use. Some requirements are restricted to lecturers and lab-helpers and not able to be accessed by students. The table is sorted first by access levels- starting with requirements accessible to all users, then sorted in access order 1 - 4. Secondly it is sorted by priority.
 
 The access levels are: 1-Admin, 2-Lecturers, 3-Lab Helpers and 4-Students
 
@@ -389,14 +465,14 @@ p{0.1\linewidth}|}
 \textbf{ID} & \textbf{Requirement} & \textbf{Access} & \textbf{Priority}\\
 \hline \hline
 
-\rowcolor{Gray} \rid{FR} & Login to view system & 1,2,3,4 & Must\\ \hline
+\rid{FR} &  Login to view system & 1,2,3,4 & Must\\ \hline
 \rid{FR} &  Accounts created for them & 1,2,3,4 & Must\\ \hline
 \rid{FR} &  Change password & 1,2,3,4 & Must\\ \hline
-\rid{FR} &  Login using university ID & 1,2,3,4 & Won't\\ \hline
 \rid{FR} &  Logout & 1,2,3,4 & Must \\ \hline
+\rid{FR} &  Login using university ID & 1,2,3,4 & Could\\ \hline
 
 \rid{FR} &  Remove students from courses & 1, 2 & Must\\ \hline
-\rid{FR} &  Update student accounts & 1,3 & Won't \\ \hline
+\rid{FR} &  Update student accounts & 1,3 & Could \\ \hline
 
 \rid{FR} &  Look up students in lab & 2,3 & Must\\ \hline
 \rid{FR} &  Select students from lab list & 2,3 & Must\\ \hline
@@ -404,7 +480,7 @@ p{0.1\linewidth}|}
 \rid{SR} &  Save marks & 2,3 & Must\\ \hline
 \rid{SR} &  Update marks & 2,3 & Must\\ \hline
 \rid{SR} &  Delete marks & 2,3 & Must\\ \hline
-\rid{FR} &  Search for student by name & 2,3 & Medium\\ \hline
+\rid{FR} &  Search for student by name & 2,3 & Should\\ \hline
 \rid{FR} &  Mark student even if they are not in the system & 2,3 & Could \\ \hline
 
 \rid{FR} &  Assign students to courses & 1 & Should\\ \hline
@@ -420,19 +496,19 @@ p{0.1\linewidth}|}
 \rid{FR} &  Set what parts of the marking scheme students can see & 2 & Could\\ \hline
 \rid{FR} &  Update marking scheme & 2 & Should \\ \hline
 \rid{FR} &  Delete marking schemes & 2 & Should\\ \hline
-\rid{FR} &  Able to assign students to set labs & 2 & Won't \\ \hline
-\rid{FR} &  Set penalties for late marking & 2 & Won't \\ \hline
-\rid{FR} &  Able to export to vision & 2 & Won't\\ \hline
+\rid{FR} &  Able to assign students to set labs & 2 & Could \\ \hline
+\rid{FR} &  Set penalties for late marking & 2 & Could \\ \hline
+\rid{FR} &  Able to export to vision & 2 & Could\\ \hline
 
 \rid{FR} &  Access Marking Scheme & 3 & Must\\ \hline
-\rid{FR} &  Enter selected students mark & 3 & Must\\ \hline
-\rid{FR} &  Submit student mark & 3 & Must\\ \hline
+\rid{FR} &  Enter selected student's mark & 3 & Must\\ \hline
+\rid{FR} &  Submit student's mark & 3 & Must\\ \hline
 \rid{FR} &  Select the lab they are helping in & 3 & Must\\ \hline
 
 \rid{FR} &  See current mark & 4 & Must\\ \hline
 
 \rid{FR} & Show different displays depending on access level & & Must\\ \hline
-\rid{FR} & Load students current lab mark scheme & & Must\\ \hline
+\rid{FR} & Load student's current lab mark scheme & & Must\\ \hline
 \rid{FR} & Apply penalty for late lab completion & & Could\\ \hline
 \rid{FR} & Create a set of useful stats based on lab & & Must\\ \hline
 \rid{FR} & Store what class student belong too & & Must\\ \hline
@@ -446,7 +522,7 @@ p{0.1\linewidth}|}
 \newpage
 \subsubsection{Non-Functional Requirements} \label{sec:non-func}
 
-Table \ref{table:non-func} lists all the non-functional requirements for the development of the system, they are ranked in order of priority.
+Table \ref{table:non-func} lists all the non-functional requirements for the development of the system which are ranked in order of priority.
 
 \begin{spacing}{1.5}
 \begin{longtable}{|p{0.1\linewidth}|p{0.7\linewidth}|p{0.1\linewidth}|}
@@ -461,27 +537,28 @@ Table \ref{table:non-func} lists all the non-functional requirements for the dev
 \rid{NFR} & Take less than 2 seconds to generate stats  & Must\\ \hline
 \rid{NFR} & PHP Should use prepared statements & Must\\ \hline
 \rid{NFR} & Website dynamically designed & Must\\ \hline
-\rid{NFR} & HTML, CSS and Javascript should be validated & Must\\ \hline
 \rid{NFR} & Should make sure inputs are valid & Must\\ \hline
 \rid{NFR} & Should prevent SQL Injection & Must\\ \hline
 
 
+\rid{NFR} & HTML, CSS and Javascript should be validated & Should\\ \hline
 \rid{NFR} & Function on a wide variety of smart phones and tablets & Should\\ \hline
 \rid{NFR} & Handle a large number of users without any faults & Should\\ \hline
 \rid{NFR} & Check passwords contain alphanumerics and have a minimum and maximum length  & Should\\ \hline
+\rid{NFR} & Take less than 2 second to load student marking scheme & Should\\ \hline
+
+
 \rid{NFR} & Auto save marks as they are entered & Could\\ \hline
 \rid{NFR} & Auto record what lab help marked what student & Could\\ \hline
-\rid{NFR} & List all students that did not attend the lab & Could\\ \hline
+\rid{NFR} & List all students who did not attend the lab & Could\\ \hline
 \rid{NFR} & Track how long it takes to mark a student & Could \\ \hline
+\rid{NFR} & Disability options (Increase text size, colour layout) & Could\\ \hline
+\rid{NFR} & Readable by screen readers & Could\\ \hline
+\rid{NFR} & Group marked people & Could \\ \hline
+\rid{NFR} & Backup database regularly & Could\\ \hline
 
 
-\rid{NFR} & Disability options (Increase text size, colour layout) & Won't\\ \hline
-\rid{NFR} & Readable by screen readers & Won't\\ \hline
-\rid{NFR} & Take less than 2 second to load student marking scheme & Won't\\ \hline
-\rid{NFR} & Group marked people & Won't \\ \hline
 \rid{NFR} & Retrieve student images from university system & Won't\\ \hline
-\rid{NFR} & Backup database regularly & Won't\\ \hline
-
 
 \end{longtable}
 \end{spacing}
@@ -495,35 +572,202 @@ Table \ref{table:non-func} lists all the non-functional requirements for the dev
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
 \section{Design}
-This sections is to explain all the design decision take in developing the marking system using sketches, models and diagrams and thus assist in the understanding of how the system works as a whole. The design aspect that are cover are: the user interface, database design and the main functionality required to make the system work. 
+This section is to explain all the design decisions taken in developing the marking system using sketches, models and diagrams and thus assisting in the understanding of how the system works as a whole. The design aspects that are covered are: the user interface, database design and the main functionality required to make the system work. 
 
 \subsection{User Interface Design}
-For the system to be useful the user interface must be easy to use and understand, along with this it will have to be functional on mobile devices as well. To achieve this I have developed mock-ups for main web pages required to make the system work, including a design for desktop and mobile. 
+For the system to be useful the user interface must be easy to use and understand, along with this it will have to be functional on mobile devices as well. To achieve this I have developed mock-ups for main web pages required to make the system work, including a design for both desktop and mobile. For both the desktop and mobile designs there will be explanations of why specific design decisions were made and how they are meant to function.
+
+
 
 \subsubsection{Lab Results}
-For the system to be useful students and lecturers both need to be able to see the results of a lab. For this apart of the application there needs to be two different views depending on the type of person signed in. This is because students need to only see their own results, while lecturers need to be able to select students and see their mark. To help develop the two different displays I have created a design for how lab results should displayed for students (figure [lfm]), and another one for lecturers (figure [lfm]). 
+To make the new digital lab marking system useful for students and lecturers both need to be able to see the results of a lab. For this part of the application there needs to be two different views depending on the type of person signed in. This is because students need to see only their own results, while lecturers need to be able to select students and see their marks. To help develop the two different displays I have created a design for how lab results should displayed for students and another one for lecturers.
+
+\subsubsection*{Desktop Design}
+
+The desktop views for both students and lecturers are designed in similar ways (figure \ref{fig:result-pc}), with the result of labs being shown in a table structure at the centre of screen. 
+
+The student view (figure \ref{fig:design-result-student-pc}) shows all the courses that the specific student is on, along with each of the labs that those courses have. The labs are then broken down into their individual marks making it easier for students to understand. The information contained in the break down is: what the question was, what the submitted answer was and how many marks they gained for the question. This makes it easy for students to find where they gained or lost marks and should help them understand how to improve for future labs.
+
+The lecturer view (figure \ref{fig:design-result-lecturer-pc}) has the results shown in a similar way. Though due to the fact that for each lab they will have x number of students it would be useless to display all of them at once as the lecturer would have to scroll far down to find specific labs and students. Instead the lecturer selects the course / lab for which they want the result from the side bar. Then all the students on that courses are shown with their marks underneath them. The lecturer can use the search bar at the top to find specific students.
+
+\begin{figure}[H]
+\caption{Results Page: Desktop Designs}
+\label{fig:result-pc}
+\centering
+\begin{subfigure}[c]{0.45\textwidth}
+    \centering
+    \includegraphics[width=0.70\textwidth]{images/design/result-student-desktop.png}
+    \caption{Student Results Screen}
+    \label{fig:design-result-student-pc}
+\end{subfigure}
+\hfill
+\begin{subfigure}[c]{0.45\textwidth}
+    \centering
+    \includegraphics[width=0.7\textwidth]{images/design/result-lecturer-desktop.png}
+    \caption{Lecturer Result Screen}
+    \label{fig:design-result-lecturer-pc}
+\end{subfigure}
+\end{figure}
+
+\subsubsection*{Mobile Design}
+
+\noindent The mobile design (figures \ref{fig:result-mb}) of the results page uses the same table display method for the displaying of the results and in the student version is identical. While for lecturers when they load the results page (figure \ref{fig:design-result-select-mb}) they select the course, lab and student they wish to view. This is to make it easier to navigate for the lecturer as they do not need to scroll through all the students. In addition when the results load there is a back button to return and select a different student.
+
+\begin{figure}[H]
+\caption{Results Page: Mobile Designs}
+\label{fig:result-mb}
+\centering
+\begin{subfigure}[c]{0.3\textwidth}
+    \centering
+    \includegraphics[width=0.4\textwidth]{images/design/result-student-mobile.png}
+    \caption{Student: Result Screen}
+    \label{fig:design-result-student-mb}
+\end{subfigure}
+\hfill
+\begin{subfigure}[c]{0.3\textwidth}
+    \centering
+    \includegraphics[width=0.4\textwidth]{images/design/result-select-mobile.png}
+    \caption{Lecturer: Result Selector}
+    \label{fig:design-result-select-mb}
+\end{subfigure}
+\hfill
+\begin{subfigure}[c]{0.3\textwidth}
+    \centering
+    \includegraphics[width=0.4\textwidth]{images/design/result-lecturer-mobile.png}
+    \caption{Lecturer: Result Screen}
+    \label{fig:design-result-lecturer-mb}
+\end{subfigure}
+\end{figure}
+
+
 
 
 \subsubsection{Lab Marking}
-The lab marking page is designed to allow lab helpers and lecturers to easily select which course and lab they are marking, and then be provided with list of students who can be marked.
+For the lab marking system to be useful lecturers and lab-helpers will have to be able to mark students. The process will also have to be simple as every student in a lab will need to be marked and this project is trying to make the process of marking easier and not harder. 
 
-I expect this page to be used more on mobile devices, since it easier carry a mobile device than log-in to each computer this is reflected in the mobile design shown in figures([lfm]).
+To facilitate this the "Lab Marking Page" is designed to make quick and easy to select which course and lab they would like to mark, and then be provided with a list of students for the lab- thus making it simple to select the student they which to mark.
+
+\subsubsection*{Desktop Design}
+
+The desktop design (figure \ref{fig:design-marking-pc}) uses the side bar to let lecturers / lab-helpers select the course they are wanting to mark. Once they have selected the course they wish to mark two drop down menus appear= one to select the lab they wish to mark,  and the other for the student. Once both are 
+
+\begin{wrapfigure}[8]{r}{0.6\textwidth}
+\vspace*{-\baselineskip}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{images/design/marking-desktop.png}
+    \caption{Marking Page: Desktop Design}
+    \label{fig:design-marking-pc}
+\end{figure}
+\end{wrapfigure}
+
+\noindent selected they click the load mark button which displayed the marking scheme for the lab. It will also be auto filled with the students previous marks, if they have already been marked.
+
+The markers then input their marks using a combination of different input types (depending on question type) and once they are happy with the mark they then click 'submit mark' and the student's mark is saved and is visible to the lecturer and student on the results page.
+
+
+\newpage
+\subsubsection*{Mobile Design}
+
+I would expect that a majority of markers will use the mobile devices to mark, since it easier carry a mobile device than to have to login to a computer every time they mark a student. The mobile design figure(\ref{fig:marking-mobile}) is designed with this in mind, the marking page is broken into two different pages.
+
+\begin{figure}[H]
+\caption{Marking Page: Mobile Designs}
+\label{fig:marking-mobile}
+\centering
+\begin{subfigure}[c]{0.45\textwidth}
+    \centering
+    \includegraphics[width=0.3\textwidth]{images/design/marking-select-mobile.png}
+    \caption{Selector Screen}
+    \label{fig:design-marking-select-mb}
+\end{subfigure}
+\hfill
+\begin{subfigure}[c]{0.45\textwidth}
+    \centering
+    \includegraphics[width=0.3\textwidth]{images/design/marking-mobile.png}
+    \caption{Marking Screen}
+    \label{fig:design-marking-mb}
+\end{subfigure}
+\end{figure}
+
+
+\noindent The first page (figure \ref{fig:design-marking-select-mb}) is the selector screen and replaces the course selection side bar buttons and the drop down menu from the desktop version. Instead the marker is provided with three drop down menus which are: course, lab and student. Once they are filled out, they click the retrieve button at the bottom which will take them to the second page.
+
+\noindent The second page (figure \ref{fig:design-marking-mb}) is where the lab marking scheme will be loaded. The marking of labs is the same as it was for the desktop design, when the 'submit mark' button is pressed the marker is taken back to the selector screen. This time the course and lab drop down menu are filled so the marker simply has to select a new student making the process quick to repeat. 
+
+
+
 
 
 \subsubsection{Lab Creation}
-The "Lab Creation" page will be very important for lecturers as they will have to use to to create all of their labs. Given that courses tend to have a fair number of labs it is likely lecturers will have to use this part of the system fairly often, therefore the process for creating a lab should be fairly simple. These idea are reflected in the designs shown in figures([lfm]).
+The "Lab Creation" page will be very important for lecturers as they will have to use it to create all their labs. Given that courses tend to have a large number of labs it is likely lecturers will have to use this part of the system fairly often, therefore the process for creating a lab should be as simple as possible. These ideas are reflected in the designs shown in figures(\ref{fig:design-maker-pc} \& \ref{fig:design-maker-mb}).
+
+\subsubsection*{Desktop Design}
+
+The desktop design shown in figure(\ref{fig:design-maker-pc}) shows a lab in the process of being created. When the lecturer first loads the "Lab Maker Page" the main section will be empty, except for the drop down menu to select the course and lab name input. Lecturers will be able to select question types from the side bar by clicking the button representing the question type; this will add a question tile to the main section. 
+
+The question tiles are designed with simplicity in mind; they state at the top what question type and  number it is. Lecturers will be able to input what the question will be, they will also, depending on the type of question, select how many marks it is worth from the drop down menu. For instance if the question is a scale they can select the minimum mark and maximum mark. 
+
+\begin{wrapfigure}[8]{l}{0.5\textwidth}
+\vspace*{-\baselineskip}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{images/design/maker-desktop.png}
+    \caption{Lab Creation Page: Desktop Design}
+    \label{fig:design-maker-pc}
+\end{figure}
+\end{wrapfigure}
+
+\noindent while if the question is a yes / no question they select marks that will be received if yes. 
+
+Once the lecturer has added all the questions that they would like to the lab, they then click the 'create lab' button. If something is missing in the lab and  an error will appear and highlight where the issue actually  occurred  or else the lecturer will be take to the lab management screen.
 
 
-\noindent In the desktop design the side bar contents have been swapped for buttons one for each of the different types of question that a lab can have. Along with this the main content area has a drop down menu to allow lecturers to select the course they would like to create the lab for, and next too that a input box to allow them to provide the labs name.
+\subsubsection*{Mobile Design}
 
-The questions themselves are designed with simplicity in mind, lecturers select what type of question they want by clicking it on the left hand side and a new question tile appears in the main content area. The question tiles state what type of question they are what question number they will be and have remove button. To add the question text lecturers just fill out the question input box, and depending on the type of question select how many marks it is worth from the drop down menu. 
+\begin{wrapfigure}[7]{r}{0.5\textwidth}
+\vspace*{-\baselineskip}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.28\textwidth]{images/design/maker-mobile.png}
+    \caption{Lab Creation Page: Mobile Design}
+    \label{fig:design-maker-mb}
+\end{figure}
+\end{wrapfigure}
 
-The mobile version is the same but with the side bar being moved to the top and the question type buttons being underneath the navigation bar.
-
+The mobile design (figure \ref{fig:design-maker-mb}) is the same as the desktop design but the side bar has been removed and replaced with a drop down selection box underneath the course and lab input. This drop down menu functions the same way as the buttons did, but now lecturers select the question type they are want to add then click the 'add Type' button, and this will add the question tile to the main screen.
 
 
 \subsubsection{Lab Manager}
-The "Lab Manager" page is what lecturers will use to control labs that they have already created. Functionality available from here include: the ability to delete a lab, edit a lab, set whether lab-helpers are able to mark a lab and being able to export all the results for a selected lab. The desktop and mobile designs can be seen in the figure below ([lfm]). 
+The "Lab Manager" page is what lecturers will use to control labs which they have already created. Functionality available from here will include: the ability to delete, edit and be able to export all the results for a selected lab. The desktop and mobile designs can be seen in the figure(\ref{fig:manage-page}). 
+
+
+\begin{figure}[H]
+\caption{Lab Manager Page}
+\label{fig:manage-page}
+\centering
+\begin{subfigure}[c]{0.65\textwidth}
+    \centering
+    \includegraphics[width=0.6\textwidth]{images/design/manager-desktop.png}
+    \caption{Desktop Design}
+    \label{fig:design-manager-pc}
+\end{subfigure}
+\hfill
+\begin{subfigure}[c]{0.3\textwidth}
+    \centering
+    \includegraphics[width=0.5\textwidth]{images/design/manager-mobile.png}
+    \caption{Mobile Design}
+    \label{fig:design-manager-mb}
+\end{subfigure}
+\end{figure}
+
+\subsubsection*{Desktop Design}
+
+The lab management page is designed to be easy to understand and allow lecturers to perform actions on labs without the need for complex menus. To allow this simplicity the desktop design for the lab management is laid out in a table structure with labs being broken down into their respective courses. This makes it easy for lecturers to find the lab they are wanting to manage. Then for each of the lab there are four buttons: 'edit' which will let the lecturer edit the lab, 'delete' which will delete the lab and finally 'export' which will export all the results of the lab as a spread sheet that can be uploaded to vision.
+
+\subsubsection*{Mobile Design}
+
+The mobile design for the lab management page is exactly same as that of the desktop design.
 
 
 
@@ -539,21 +783,59 @@ For the system to work there will need to be database that stores students, labs
 	\label{fig:dbschema}
 \end{figure}
 
-\noindent The database can be broken down into three section a shown in figure(\ref{fig:dbsections}). The first sections ([lfm]) is designed for storing all the users of the database, it is designed to be easily changed to allow for easy integration into already existing databases. As long as users have unique ID's the rest of the database will be able to function with no changes being required.
-
-Section two ([lfm]) is designed to storage information relating to users and courses. The Students on Courses table stores what students are on what course, The lab helpers table stores what courses a lab-helper is helping and finally the Course Lecturer tables stores what courses lectures are teaching.
-
-The third section ([lfm]) is entirely to do with the storage of information relating labs.
+\noindent The database can be broken down into three section a shown in figure(\ref{fig:dbsections}). The first section ([lfm]) is designed for storing all the users of the database, it is designed to be easily changed to allow for easy integration into already existing databases. As long as users have unique ID's the rest of the database will be able to function with no changes being required.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.5\textwidth]{images/design/DB_Sections.png}
+    \includegraphics[width=0.6\textwidth]{images/design/DB_Sections.png}
     \caption{Database Sections}
     \label{fig:dbsections}
 \end{figure}
 
+
+\noindent Section two ([lfm]) is comprised of the tables: Students On Courses, Lab Helpers, Course Lecturers and Courses and is used to know what users are on what specific course.
+\begin{itemize}
+    \item \textbf{Course Table} Stores all the university courses, each course is stored with its own unique ID, the course name and the course code.
+    \item \textbf{Students on Courses Table} Stores what students are on what course each record represents a student and one course they are on. The structure of the record is that it has its own unique ID, contains the user ID of a student and the course ID for the course they are on. 
+    \item \textbf{Lab Helpers Table} Stores the lab-helpers user ID and the course ID of the course they are a lab-helper for.
+    \item \textbf{Course Lecturer} tables stores lecturers user ID and the course ID for which they are a lecturer for.
+\end{itemize}
+
+
+
+The third section ([lfm]) is the most important part of the database design as it is to do entirely with the storage of information relating labs and marks, it contains the tables: Courses, Labs, Lab Questions, Question Types and Lab Answers.
+
+\begin{itemize}
+    \item \textbf{Labs Table:} This table stores all the different labs and the details about them. Each record has the course ID for the course the lab belongs to, it also contains a name for the lab and whether the lab can currently be marked by lab-helpers.  
+    
+    \item \textbf{Lab Question Table:} This table stores all lab questions, each question consists of a Question ID to identify the question, the ID of the lab it belongs to, the ID of what type it is, its question number, what the actual question is, what the maximum mark that can be given to the question is and finally whether the question results can be seen by students or not.
+    
+    \item \textbf{Question Type Table:} This table stores the different possible questions types. each record represents a question type and is made up of a ID number and the name of the question type.
+    
+    \item \textbf{Lab Question Answers:} This table is responsible for storing all the answers and marks given to students, each record contains the mark for one question for one specific student, meaning multiple records are needed to get the result of one lab for a student. The structure of a the record is firstly it has its on unique ID, then the ID of the question it is the answer for, followed by the ID of the student. Then because there can be different types of answers submitted there is a attribute for number answers, text answers and Boolean answers, usually only one of these will be used by the question. Finally it stores the mark that was given to the answer.
+\end{itemize}
+
+
 \subsection{Functionality Design}
-%TODO%
+
+To help build the system quickly it is important to figure out the key functionality that will be needed to implemented. To that end I created a UML diagram (figure [lfm]) that shows the major functions of the lab marking system and additionally shows what users will be able to preform what functionality.
+
+
+\subsubsection*{Students}
+Students are the simplest users of the system the only key functionality that they need to have access to is the ability to view there own lab results.
+
+
+\subsubsection*{Lab-Helper}
+Since Lab-Helpers are also student they have the same functionality to view their results as them, but in addition to this Lab-Helpers also have the ability to select and mark students on courses that they have been assigned too. 
+
+
+\subsubsection*{Lecturers}
+
+The majority of the functionality for the lab marking system is used by lecturers. They use the same functionality as lab-helpers (lab marking \& view result) but for view results they do not view their own but instead can select a student on their course and view their mark. Lecturers also have the ability to create labs, as well as edit or delete already created labs, they will also be able to export labs as spread sheets that can be uploaded to vision.  
+
+
+\subsubsection*{Admin}
+Admins have the same functionality as lecturers, but unlike lecturers are able to view all courses for both results and marking. Additional functions they will be able to access over lecturers are management of the database and assigning lecturers to courses.
 
 
 
@@ -605,8 +887,8 @@ This section is for the classes and functionality that are not dedicated to one 
 
 The ConnectDB class is designed to create a connection to the database and allow other classes to retrieve information through the connection. The class also has a secondary function of checking if a session has been started and if not starting one, this is to allow access to sessions that may be needed for querying the databse. The full code listing can be seen below (\ref{lst:connect-db}).
 
-\singlespacing
-\begin{lstlisting}[basicstyle=\linespread{0.8}, caption= Database Connection Class, label = lst:connect-db]
+\singlespacing \phplisting
+\begin{lstlisting}[caption= Database Connection Class - PHP, label = lst:connect-db]
 class ConnectDB
 {
     public $link;
@@ -632,12 +914,155 @@ class ConnectDB
 \subsubsection{Security}
 \label{sec:security}
 
+The Security PHP class was developed to handle checking users access rights. This is to make sure that only users with the required accesslevel are able to run functions. The security class is quite long so I have shortened it to only the key functions required to preform this task.
+
+\noindent The getAccessValue function shown below converts a passed in access name to what its access level is. It does this by first making a connection to the database and run a prepared mysqli statement that selects the access\_level for the provided access name. Once the result is receive the connection to the database is closed, the result is then checked to see that it exists if it does the access level is return. Otherwise -1 will be return to inform the check that access name does not exist and to not grant access.
+
+\singlespacing \phplisting
+\begin{lstlisting}[caption= Convert Access Name To Accesslevel - PHP, label = lst:security-value]
+    //Returns the access value of an access name
+    public function getAccessValue($access_name)
+    {
+        $con = new ConnectDB();
+
+        $get_access_level = mysqli_stmt_init($con->link);
+        mysqli_stmt_prepare($get_access_level, "SELECT access_level FROM user_access WHERE access_name= ?");
+        mysqli_stmt_bind_param($get_access_level, 's', $access_name);
+        mysqli_stmt_execute($get_access_level);
+        $result = mysqli_stmt_get_result($get_access_level);
+
+        mysqli_close($con->link);
+        ($result->num_rows === 0) ? $value = -1 : $value = $result->fetch_row()[0];
+        return $value;
+    }
+\end{lstlisting}\doublespacing
+
+\noindent The security class has two different check for a users access right. The first check is to see if the user has the required access. This is done by by calling the hasAccessLevel function and passing in the required access in the form of the access name. The function then uses the getAccessValue function describe earlier to retrieve its access level. The users access level that is stored in a session is then compared to retrieved access level, if the users is equal to or greater than the received one then true is returned allowing the user access to whatever the security check protected. How ever if the users access level is lower or retrieved result is less than zero (invalid access name) then false is returned preventing the user from preforming the protected action.
+
+\singlespacing
+\begin{lstlisting}[caption= Has Access Required  - PHP, label = lst:security-has]
+    //Returns true if user has at least the required access level
+    public function hasAccessLevel($access_name)
+    {
+        if (session_status() == PHP_SESSION_NONE)
+            session_start();
+        $required_access = $this->getAccessValue($access_name); //Gets access value for required accessname
+        return ($_SESSION["accesslevel"] >= $required_access && $required_access >= 0);              //Returns True if useraccess is greater or equal to required accesslevel
+    }
+\end{lstlisting}\doublespacing
+
+\noindent The second check works the exact same way as the first but instead of checking the user has has atleast the access requested, they must have a greater access level. This check is done using the hasGreaterAccess function and its code listing can be seen below.
+
+\singlespacing
+\begin{lstlisting}[caption= Has Great Access Than - PHP, label = lst:security-greater]
+    //Returns true if user has a greater access level than passed in
+    public function hasGreaterAccessThan($access_name)
+    {
+        if (session_status() == PHP_SESSION_NONE)
+            session_start();
+
+        $required_access = $this->getAccessValue($access_name); //Gets access value for required accessname
+        return ($_SESSION["accesslevel"] > $required_access && $required_access >= 0); //Returns True if useraccess is greater than required accesslevel
+    }
+}
+\end{lstlisting}
+\doublespacing
+
+
+\noindent These three functions make it easy to check if a user has required access through the use of if statements and the returned results from the checks. Examples of this in practise are visible in future sections when explaining other functionality. 
+
+
+\subsubsection{Dynamic Loading}
+
+Dynamic loading of the different selection screens and the marking scheme are important. Firstly it means that every click does not require the complete loading of a new page and therefor slow down how fast users can mark students.
+
+\subsubsection{Navigation Bar}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{images/implementation/nav-bar.png}
+    \caption{Navigation Bar}
+    \label{fig:nav-bar}
+\end{figure}
+
+The main navigation bar (figure \ref{fig:nav-bar}) at the top of each page is designed to change depending on what user is logged in. This controls what functionality each of the different access levels has, for instance students only have the Lab Results tab, while Lab-Helpers also have Marking tab. All the different navigation bar can be seen in figure(\ref{fig:nav-all}), the navigation bars from top are: admins, lecturers, lab-helpers and at the the students navigation bar.  
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{images/implementation/nav-all.png}
+    \caption{Navigation Bar}
+    \label{fig:nav-all}
+\end{figure}
+
+\noindent In addition the navigation bar is not hard coded in any of the lab managers HTML files. It is instead in its own file which is loaded very time a page is loaded. This is so that one change to the navigation bar occurs to all of them and time does not have to be spent going through each file update the navigation bar.
+
+\subsubsection*{Changing Navigation Bar}
+
+The navigation bars layout is done using a PHP script (figure \ref{lst:nav-button}) which is included in default structure of the navigation bar. The script decided what buttons should be included in the navigation bar and now how the navigation bar should look. This is done by using the  Security class described previously ([lfm]) to check the users access level and add the appropriate buttons. 
+
+\singlespacing \phplisting
+\begin{lstlisting}[caption= Navigation Bar Button Adder - PHP, label = lst:nav-button]
+require_once(dirname(__FILE__) . "/../core/classes/Security.php");
+$secure = new Security();
+
+$nav_bar_content = '<li id="results-nav"><a href="labresults.php">Lab Results</a></li>
+                    <li id="signoutbtn"><a href="../../php/core/signout.php">Signout</a></li>';
+
+if($secure->hasAccessLevel("lab helper")) {
+    $nav_bar_content = '<li id="marking-nav"><a href="marking.php"> Mark Lab </a></li>' . $nav_bar_content;
+
+if ($secure->hasAccessLevel("lecturer")) {
+
+$nav_bar_content = '<li id="labs-nav" class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Lecturer<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                    <li><a href="labresults.php">Lab Results</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li id="course-nav"><a href="coursemanager.php"> Course Manager </a></li>
+                    <li><a href="labmanager.php">Lab Manager</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="labmaker.php">Make Lab</a></li>
+                    </ul>
+                </li>' . $nav_bar_content;
+
+if ($secure->hasAccessLevel("admin")) {
+    $nav_bar_content = '<li id="admin-nav"><a href="admin.php"> Admin Section </a></li>' . $nav_bar_content;
+}}}
+echo $nav_bar_content;
+\end{lstlisting}
+\doublespacing
+
+The script creates a variable that contains default buttons (results and sign-out) it then uses a nested if statement to check how high an access level the user has by using the hasAccessLevel function from the Security Class. If the user has the required access level then the buttons related to that level are added to the variable, once all the access levels have been checked the variable is echoed adding its content to the navigation bar.
+
+
+\newpage
+\subsubsection*{Loading Navigation Bar}
+
+\singlespacing \jslisting
+\begin{lstlisting}[caption= Load Navigation - JavaScript, label = lst:nav-loading]
+function include_navbar (section) {
+
+    $(document).ready(function(){
+        $("#navbar_area").load("../components/navbar.php #navbar_code", function () {
+            $("#" + section +"-nav").addClass("active");
+        });
+    });
+}
+\end{lstlisting} \doublespacing
+
+\noindent The navigation bar is loaded by including the "navbar.js" file on any of the pages where the navigation bar is wanted. The function include\_navbar is then called passing in the name of the page that the user is currently one. The include\_navbar function can be seen in the code listing above (figure \ref{lst:nav-loading}), they way that is works is that it uses jQuery to wait until the web documents has been loaded "\$(document).ready". Once the web page is loaded the jQuery load function is used, load allows JavaScript to load html from another file into a specified area on the current page. In this case it loads the "navbar.php" file into an element with the id "\#navbar\_area", once it is loaded using the passed in section name jQuery highlights its respective section in the navigation bar so that users can easily tell what section they are in. 
 
 
 
 
+ 
+\newpage
 \subsection{Lab Creator}
-The design of the lab creation page can be seen in figure(\ref{fig:lab-creator}) is almost identical to what its initial design showed. 
+
+\subsubsection{Design}
+The design of the lab creation page can be seen in figure(\ref{fig:lab-creator}) is almost identical to what its initial design showed. There is only one difference and that is to the question tiles, there was the inclusion of a button that can be clicked to assign whether the questions results will be shown to students or not. 
+
+There are three key pieces of functionality required to make the creation of labs possible each are discussed in more detail later. The first is being able to click the question types and have the question tile be added to the page. The second is the most important and it is how the created lab is processed and stored in the database and finally being able to detect errors in the submitted lab before it is processed and uploaded to the database.
 
 \begin{figure}[H]
     \centering
@@ -646,11 +1071,294 @@ The design of the lab creation page can be seen in figure(\ref{fig:lab-creator})
     \label{fig:lab-creator}
 \end{figure}
 
+\subsubsection{Generating Question Tiles}
+
+Question tiles are generated using jQuery, Ajax to call a PHP class that creates the question and returns its. The function used to call the PHP is shown in listing(\ref{lst:question-add}), this function is run when one of the question type buttons is clicked. The button passes the type of the question to the Ajax request which posts then posts it, along with the question number and a unique Id number. All of which is used by the PHP class to create the new question tile. Once the PHP class has successfully process the input the result is then appended to the screen screen, if an error occurred an alert is shown to inform the user of an issue. 
+
+\singlespacing \jslisting
+\begin{lstlisting}[caption= Add Question - JavaScript, label = lst:question-add]
+function include_navbar (section) {
+var qCount = 0;
+var maxQ = 1;
+
+function add_question(type)
+{
+    $.ajax({
+        type: 'POST',
+        url: "../../php/labs/add_lab_question.php",
+        dataType: 'json',
+        data: {type:type, id: qCount, qnum: maxQ},
+        cache: false,
+        success: function(result){
+            qCount++;
+            maxQ ++;
+            $.when($("#form-area").append(result.question)).then(scroll_bottom());
+        },
+        error: function(xhr, status, error) {
+            alert(xhr);
+        }
+    });
+}
+\end{lstlisting} \doublespacing
+
+\noindent The PHP file called by the Ajax request (list \ref{lst:question-call}) checks that the three variables (type, question number \& id) were posted, it then creates an instance of the LabMaker() class. Finally it checks that the id and question number are both numbers and calls the createQuestion Function passing all three variables into it. The result of this function is then echoed therefor providing Ajax with its result data.
+
+\singlespacing \phplisting
+\begin{lstlisting}[caption= Call Create Question - PHP, label = lst:question-call]
+function include_navbar (section) {
+require_once "classes/LabMaker.php";
+if(isset($_POST["type"]) && isset($_POST["id"]) && isset($_POST["qnum"]))
+{
+    $maker = new LabMaker();
+    $type = $_POST["type"];
+    $id = $_POST["id"];
+    $qnum = $_POST["qnum"];
+
+    if(is_numeric($id) && is_numeric($qnum))
+        echo($maker->createQuestion($type,$id,$qnum));
+
+}
+\end{lstlisting} \doublespacing
+
+\noindent The LabMaker class is quite large, to better understand how questions are generated I have broken it down in to the main functions needed to create a new question. The first function is the createQuestion function which was called by the previous PHP script, this function takes the type of question then calls related function for making it through the use of a case statement. This is because different question types result in the question needing a different layout.
+
+\singlespacing \phplisting
+\begin{lstlisting}[caption= Create Question Function - PHP, label = lst:question-select]
+public function createQuestion($type,$id,$question_num)
+{
+    switch ($type)
+    {
+        case "boolean":
+            return $this->booleanQuestion($id, $question_num);
+            break;
+        case "scale":
+            return $this->scaleQuestion($id, $question_num);
+            break;
+        case "text":
+            return $this->textQuestion($id, $question_num);
+            break;
+        default:
+            return $this->unknownQuestion($id,$question_num);
+    }
+}
+\end{lstlisting} \doublespacing
+
+To show how a question is created we will use the scaleQuestion function (listing \ref{lst:question-scale}). The functions called by it are the same as for the other question types the only difference is that two input are provided one for max mark and the other for the minimum.
+
+\singlespacing \phplisting
+\begin{lstlisting}[caption= Scale Question - PHP, label = lst:question-scale]
+private function scaleQuestion($id, $question_num)
+{
+    $scale = $this->startQuestion($id);
+    $scale.= $this->title("Scale", $question_num);
+    $scale.= $this->questionType("scale");
+    $scale.= $this->textInput("question[]");
+    $scale.= $this->scaleInput("Select Questions Minimum Mark","min-value[]");
+    $scale.= $this->scaleInput("Select Questions Maximum Mark","max-value[]");
+    $scale.= $this->visablityButton($id);
+    $scale.= "</div>";
+
+    return json_encode(array('question'=>$scale));
+}
+\end{lstlisting} \doublespacing
+
+\noindent To make it easy to add in new question types the structure of a question is made up of calling different functions to add html tags and content to a variable which once all run creates a completed question. The first function "startQuestion" added the opening div tags and the closes button, the next function "title" add the tags for the provided tile and the question number. After this the "questionType" function adds a hidden input that stores what the type of the question is. Then the "textInput" adds a text box for users to enter the question text into. It is at this point that different functions are called depending on the type of function, in the case the scale type question two scale inputs are created. The question is then finished of by adding the visability button and the closing div tag the result is then returned as a json object which Ajax can decode and display in the browser. 
+
+
+
+
+
+\subsubsection{Create Lab}
+
+The lab is submitted using a form and all the inputs are  stored in arrays rather than individual variables, this allows the form to be expanded infinitely without having to make a custom PHP script for each combinations. Arrays are created by adding a pair of square brackets ([]) on to the end of a input name, this means that each inputs that uses that variable will store its value in the array rather than override the variable. For questions there are three name arrays that are used and forth one is used for scale type question these names are:
+
+\begin{itemize}
+    \item \textbf{question[]:} This name array is used to store the individual questions that are inputted into the question input box. 
+    \item \textbf{type[]:} This is used to store each of the questions different types, it gets its contents from a hidden variable which is set to the questions type when the question was created
+    \item \textbf{max-value[]:} This is used to store the maximum mark that each question can have.
+    \item \textbf{min-value[]:} This name array is only used by the scale type question and is used to set what the minimum mark for a question can be.
+\end{itemize}
+
+When the submit button is clicked the JavaScript function "submit\_new\_lab()" is called which first checks that the lab is valid by calling the "valid\_lab()" function which will be discussed later (section [lfm]). Once the validation checks are done the form is submitted using jQuery. 
+
+\singlespacing \jslisting
+\begin{lstlisting}[caption= Lab Submit - JavaScript, label = lst:create-submit]
+function submit_new_lab()
+{
+    if (valid_lab())
+        $('#form-area').get(0).submit();
+}
+\end{lstlisting} \doublespacing
+
+The PHP script called by form is "lab\_creator.php" this script is used to call the right function from the "LabCreator" class. The script first creates an instance of the LabCreator class, it then checks that the types, lab name and course name were posted. If they are posted then the "createLab" function is called, otherwise it checks if the form posted that it was updating a lab in which case it runs the "updateLab" function.
+
+\singlespacing \phplisting
+\begin{lstlisting}[caption= lab\_creator script - PHP, label = lst:create-select]
+require_once "classes/LabCreator.php";
+$create = new LabCreator();
+
+if (isset($_POST["type"]) && isset($_POST['lab-name']) && isset($_POST['course-name'])){
+    $create->createLab();
+}
+elseif(isset($_POST["update"])){
+    $create->updateLab($_POST["update"]);
+}
+\end{lstlisting} \doublespacing
+
+\noindent The "LabCreator" class is very large and as only the key functionality will be shown and an explanation on how it all works together will be provided.
+
+\subsubsection*{Constructor}
+
+\singlespacing \phplisting
+\begin{lstlisting}[caption= LabCreator Constructor - PHP, label = lst:create-const]
+function __construct(){
+    $this->courses = new Courses();
+
+    $this->questions = isset($_POST["question"]) ? $_POST["question"] : null;
+    $this->max_marks = isset($_POST["max-value"]) ? $_POST["max-value"] : null;
+    $this->min_marks = isset($_POST["min-value"]) ? $_POST["min-value"] : null;
+    $this->types = isset($_POST["type"]) ? $_POST["type"] : null;
+    $this->visibility = isset($_POST["visibility"]) ? $_POST["visibility"] : null;
+
+    $this->course = $this->courses->getCourseId($_POST['course-name']);
+    $this->lab_name = $_POST['lab-name'];  //Variable containing lab title
+}
+\end{lstlisting} \doublespacing
+
+\noindent When the LabCreator class is initialised the constructor function shown in listing(\ref{lst:create-const}). The constructor creates an instance of the "Courses" class which provides functions related to courses, it retrieves the posted information from the lab creation form and assigns them to class variables. Finally it retrieves the course Id of the retrieves course name using the Courses class function "getCourseId".
+
+
+\subsubsection*{Create Lab}
+
+The function "createLab" is shown in listing(\ref{lst:create-all}), the function is fairly large and to make it shorter sections of repeated code have been removed and replaced with ($\vdots$) to make it easy to tell where code was removed. 
+
+The first thing that happens in the function is that a connection is made to the database using the ConnectDB class. It then declares the variables for storing the question number, the current position in the minimum and maximum mark array, after this it retrieves the type ID for each of the different question types storing them each in their own variable. This section was shorted as it was the same command repeated for each of the types.
+
+The function then check that the provided inputs are valid using the validInput function which check that provided inputs were not empty. If the input is not valid then the page is redirected back to the lab creation page unfortunately due to the use of the php script the inputs are erased, this is why a javascript is used to check the inputs before submission. On the other hand if the inputs were valid it sets up a transcaction by using the "mysqli\_autocommit" function which disables the auto saving of the database meaning if an error occurs during the insertion the lab the database can be roled back and all insertions are undone.
+
+\singlespacing \phplisting
+\begin{lstlisting}[caption= createLab Function - PHP, label = lst:create-all]
+public function createLab(){
+$successful = false;
+$con = new ConnectDB();
+$this->link = $con->link;
+
+$qNum = 1;          //Question Number
+$minPos = 0;        //Array position of minMarks
+$maxPos = 0;        //Array position of maxMarks
+
+$booleanTypeID = $this->getTypeID("boolean");   //ID value of boolean type
+(*@\makebox[\linewidth][c]{$\smash{\vdots}$}@*)
+$textTypeID = $this->getTypeID("text");         //ID value of text type
+
+if ($this->validInput()) {  //Checks that input is valid before attempting to insert
+    mysqli_autocommit($con->link, FALSE);  //Sets up transaction for database insertion
+
+    $labID = $this->insertLabName($this->course, $this->lab_name);   //Inserts new lab in to labs table and gets the new ID it creates
+
+    if ($labID !== false) { //Checks that lab was successfully inserted
+
+        foreach ($this->types as $t) { //Loops through each question by its type
+            switch ($t) {  //Case statement checking what type each question is
+                case "boolean": //Inserts boolean type questions
+                    $successful = $this->insertQuestion($labID, $booleanTypeID, $qNum, $this->questions[$qNum - 1], NULL, $this->max_marks[$maxPos], $this->visibility[$qNum - 1]);
+                    $maxPos++;
+                    break;
+(*@\makebox[\linewidth][c]{$\smash{\vdots}$}@*).
+(*@\makebox[\linewidth][c]{$\smash{\vdots}$}@*)
+                default:
+                    echo "default";  //Default if type doesn't exist
+                    mysqli_rollback($con->link); //Undoes all inserts into the database during the transaction
+                    $successful = false; //Sets successful to false
+            }
+
+            if (!$successful)   //Checks if insertion was successful
+                break;
+            $qNum++;  //Increments the question number
+        }
+    }
+}
+
+mysqli_commit($con->link);
+mysqli_close($con->link);
+
+($successful) ?  $redirect = "../../html/pages/labmanager.php" : $redirect = "../../html/pages/labmaker.php";
+header("Location: " . $redirect);   //Redirects to webpage
+}
+\end{lstlisting} \doublespacing
+
+
+
+After this the "insertLabName" function which inserts the lab name into the database and returns the unique ID that it was given. This Id is then checked to make sure that insertion was successful, if it not the database is rolled back and user redirected to the lab creation screen. While if it was successful the function begins to to loop through the types of question that were provided, and using a switch statement to run the "insertQuestion" function with the correct variables. How this function works is explained later on (section \ref{sec:insert-question}) but what parameters mean starting from the first is: the Id of the lab, the Id of the question type, what its question number is, the actual question, the minimum mark, the maximum mark and the visibility of the question.
+
+Once all the question have been inserted successfully they are commited using the "mysqli\_commit" function which means that database is updated, then the user is redirected to the lab management page were they can see there new lab in the management panel.
+
+
+\subsubsection{Insert Lab Name}\label{sec:inset-lab}
+
+The way the "insertLabName" function (listing \ref{lst:create-lab}) described earlier works is that it provided the course Id and lab name for the new lab. It creates a prepared mysqli statement that inserts the course Id, lab name and the lab is not markable yet. This statement is then executed, if it failed to insets the database is rolled back and false is returned so that the "createLab" function knows an error occurred. Otherwise the Id for the new lab is returned thanks to the "mysqli\_insert\_id" function which obtains the newly created Id.
+
+\singlespacing \phplisting
+\begin{lstlisting}[caption= insertLabName Function - PHP, label = lst:create-lab]
+//Inserts the name of the lab and course into the database and returns its ID number or false if it failed
+private function insertLabName($course, $name)
+{
+    $state = "false";
+    $insertLab = mysqli_stmt_init($this->link);                                                                   //Initialises prepared statement
+    mysqli_stmt_prepare($insertLab, "INSERT INTO labs (courseRef, labName, canMark) VALUES (?, ?, ?)");     //Prepares the statement
+    mysqli_stmt_bind_param($insertLab, 'iss', $course, $name, $state);                                        //Binds parameter
+
+    if (!mysqli_stmt_execute($insertLab)) {    //Executes statement and check if it failed
+        mysqli_rollback($this->link);                 //Undoes all inserts into the database
+        echo "Error Inserting Lab Name";
+        return false;                           //Returns false to show insert failed
+    }
+    return mysqli_insert_id($this->link);             //Returns the ID number created by inserting
+}
+
+\end{lstlisting} \doublespacing
+
+
+
+\subsubsection{Insert Question}\label{sec:insert-question}
+
+The storing of questions is done using the same prepared statement in the "insertQuestion" function regardless of what the question type is. The function takes in 7 variables: lab Id, question type, question number, question text, minimum mark, maximum mark and its visibility to students. This means that any question type can be submitted as long at it matches these parameters. The parameters are then plugged into to a prepared statement that inserts them into the lab\_questions table, when the statement is executed it is check that the insertion was successful. If it failed to insert the database is rolled back and false is returned so that the "createLab" knows an error occurred and stops the insertion of the lab. While if it was successful true is returned to so that the lab insertion can continue.
+
+\singlespacing \phplisting
+\begin{lstlisting}[caption= insertQuestion Function - PHP, label = lst:create-quest]
+//Inserts question into the lab_questions table
+private function insertQuestion($labID, $type, $number, $question, $minValue, $maxValue, $visible){
+    $insertQuestionQuery = 'INSERT INTO lab_questions (labRef, questionType, questionNumber, question, minMark, maxMark, private) VALUES (?, ?, ?,?, ?, ?, ?)';
+    $insertQuestion = mysqli_stmt_init($this->link);
+    mysqli_stmt_prepare($insertQuestion, $insertQuestionQuery);
+    mysqli_stmt_bind_param($insertQuestion, 'iiisiis', $labID, $type, $number, $question, $minValue, $maxValue, $visible);
+
+    if (!mysqli_stmt_execute($insertQuestion)) { //Runs the insertion and checks if it failed
+        mysqli_rollback($this->link);   //Undoes all the inserts all ready done to the database
+        echo "Error Inserting";
+        return false;    //Returns false to show insert failed
+    }
+    return true;}
+\end{lstlisting} \doublespacing
+
+
+
+\subsubsection{Error Checking}
+
+ In addition to the error checking done by the PHP script there is additional error checking run before the lab is submitted. Using jQuery all the different inputs are check to make certain they are not empty and in the case of drop down menus that a value has been selected. If any errors are found the submission of the lab is cancelled, the errors are then highlighted in red using CSS and an alert stating what type of errors occurred is posted. 
+
+
+
+
+
+
+
+
 \subsection{Marking Labs}
 
 
 \subsubsection{Design}
-The lab marking page changed majorly forms its initial designs. The drop-down boxes for selecting courses, labs and students have instead been replaced with buttons. When the marker first loads the marking page they are showing buttons for each of courses they can mark (\ref{fig:marking-course}), by clicking the button they select the course. The labs for the selected class are then loaded and displayed (figure \ref{fig:marking-lab}) dynamical using ajax so the users does not have to wait for the whole page to load. Additionally a back button is added to the screen to allow markers to easily change the course they are marking. Once the marker has selected the lab they wish to mark by clicking on it the student list for that lab is loaded and displayed again using ajax.
+The lab marking page changed majorly from its initial designs. The drop-down boxes for selecting courses, labs and students have been replaced with buttons. When the marker first loads the marking page they are showing buttons for each of courses they can mark (\ref{fig:marking-course}), by clicking the button they select the course. The labs for the selected class are then loaded and displayed (figure \ref{fig:marking-lab}) dynamical using Ajax so the users does not have to wait for the whole page to load. Additionally a back button is added to the screen to allow markers to easily change the course they are marking. Once the marker has selected the lab they wish to mark by clicking on it the student list for that lab is loaded and displayed again using Ajax.
 
 \begin{figure}[H]
 \caption{Lab Marking Page}
@@ -670,7 +1378,6 @@ The lab marking page changed majorly forms its initial designs. The drop-down bo
 \end{figure}
 
 \noindent The student selection screen is designed differently from the course and lab selection screens. The student buttons are colour coded: blue means they have not been marked, orange means the student has been marked and green means the student was marked and got obtained full marks. There is a legend at the top of the page to make it easy to find out what the different colours means. Also included on this page is a search bar(figure \ref{fig:marking-search}), this is to make it easier for markers to find students, especially in labs that have large numbers of students.
-
 
 \begin{figure}[H]
 \caption{Selecting Student Page}
@@ -693,20 +1400,64 @@ The lab marking page changed majorly forms its initial designs. The drop-down bo
 
 Each of the different question types is displayed slightly differently. Question one in figure (\ref{fig:marking-not}) is a scale question and provides the marker with a drop-down menu to select the mark. Question two is a Boolean type question and is a simple button that can be clicked to switch between yes and no. Then question three is a text question which contains a text-box to allow markers to enter text which will be saved, additionally a drop-down menu can be included to allow for the selection of a mark for the question. 
 
+The key functionality behind the lab marking page is firstly dynamic loading which was discussed previously (section [lfm]), after that is being able to retrieve the course, labs and students. Similar to retrieving students being able to search for specific ones is vital to the usability of the system and the last pieces of functionality need are loading students previous marks and the most important function is the ability to proceess submitted mark.
 
+\subsubsection{Retrieving Courses, Labs and Students}
 
+The retrieval and displaying of the course, labs and students is done using JavaScript Ajax request. Each of the different sections runs a different Ajax function, when a courses button is clicked the "display\_labs\_for" function is called and the course Id is passed to a PHP function. This function retrieves all the labs for the course and then places HTML tags around so they can be displayed by the Ajax request, the course name is also stored in a session variable so it can be easily accessed. 
 
-
-
-\subsubsection{Dynamic Loading}
-
-Dynamic loading of the different selection screens and the marking scheme are important. Firstly it means that every click does not require the complete loading of a new page and therefor slow down how fast users can mark students.
-
-
+The same is done when a lab is clicked but instead of the "display\_labs\_for" function the "display\_students\_for" function is called. The PHP function called by its Ajax request uses the course name stored in the session variable to retrieve all the students on that course. As it places the student into the HTML tags to display them it 
 
 
 \subsubsection{Searching Students}
-The searching of students functionality is also done using Ajax that calls a function in the [lfm] class. The Ajax request passes the course and the search requirement. 
+The searching of students functionality is also done using Ajax that calls the "studentButtonsFilter" function in the "LabStudent" class, additionally it passes the the current text in the search box to act as the filter string. 
+
+The "studentButtonsFilter" functions (listing \ref{lst:marking-search}) uses the course name that is stored as a session variable along with the filter to call the "getStudents" function which will return an array of students that match the filter. Each of the students is then added into layout of a button so it can be displayed and then returned as a Json object which the Ajax request then displays on screen. Thus showing all the filtered students.
+
+\singlespacing \phplisting
+\begin{lstlisting}[caption= studentButtonFilter Function- PHP, label = lst:marking-search]
+public function studentButtonsFilter($filter){
+    $con = new ConnectDB();
+    $courseName = $_SESSION["MARKING_COURSE"];
+    $labID =$this->getQuestionID($this->get_lab_id($courseName, $this->lab), 1);
+    $result = $this->get_students($courseName, $filter);
+    $buttons = "";
+    while ($student = $result->fetch_row()) {
+        $buttonType = $this->buttonStyle($con->link, $student[2], $labID, $this->lab, $courseName);
+        $buttons .= "<div class='col-md-6 col-md-offset-3 col-sm-12 clickable-btn'>
+                  <button class='" . $buttonType . " btn-text-wrap btn-student' onclick='display_schema_for(\"" . $student[2] . "\")'>" . $student[0] . " " . $student[1] . "</button>
+                 </div>";
+    }
+    return json_encode(array('successful' => true, 'buttons' => $buttons));
+}
+\end{lstlisting} \doublespacing
+
+The "getStudents" function in the Lab class is designed to return all the the students on a course, it can also be passed a filter that limits what students are returned. The listing below (\ref{lst:maring-get}) show a simplified version of the "getStudents" function only showing the security check and the prepared statement used to retrieve students.
+
+
+\singlespacing \phplisting
+\begin{lstlisting}[caption= Simplified getStudents Function- PHP, label = lst:marking-get]
+public function getStudents($course, $filter="")
+{
+if ($this->can_mark_course($course)) {
+    $con = new ConnectDB();
+
+    $filter = "%$filter%";
+    mysqli_stmt_prepare($get_students, "SELECT d.firstname, d.surname, d.studentID FROM students_on_courses AS soc 
+                            JOIN user_details AS d ON soc.student = d.detailsId 
+                            JOIN courses AS c ON soc.course = c.courseID 
+                            WHERE c.courseName = ? AND (CONCAT(d.firstname,' ',d.surname) LIKE ?)
+                            ORDER BY d.surname, d.firstname");
+    mysqli_stmt_bind_param($get_students, 'ss', $course, $filter);
+    mysqli_stmt_execute($get_students);
+}
+\end{lstlisting} \doublespacing
+
+\noindent The security check just makes certain that the user trying to mark the course actually has the permission to mark the lab. While the prepared statement gets all the students on the course name provided, but added a like check that means that the resulting first-name or surname should look like the provided filter. This is what is used to filter the student list.
+
+
+
+\subsubsection{Loading Student Marks}
 
 \begin{figure}[H]
 \caption{Marking Student Page}
@@ -726,12 +1477,11 @@ The searching of students functionality is also done using Ajax that calls a fun
 \end{figure}
 
 
-\subsubsection{Loading Student Marks}
+\subsubsection{Processing Submitted Mark}
 
+\subsubsection*{Question Structure}
 
-\subsubsection{Question Structure}
-
-A key part of how marks can be saved is down to how each of the question tiles are structured. This structure allows for multiple different question types to be processed in one form rather than requiring a separate form for each of them. The HTML structure for both a scale question and a Boolean question can be seen in figures \ref{fig:struct-scale} and \ref{fig:struct-bool} respectively.  
+A huge part of how marks can be saved is down to how each of the question tiles are structured. This structure allows for multiple different question types to be processed in one form rather than requiring a separate form for each of them. The HTML structure for both a scale question and a Boolean question can be seen in figures \ref{fig:struct-scale} and \ref{fig:struct-bool} respectively.  
 
 \begin{figure}[H]
 \caption{HTML Structure Of Questions}
@@ -750,7 +1500,7 @@ A key part of how marks can be saved is down to how each of the question tiles a
 
 \end{figure}
 
-It can be seen that both types of questions share a similar structure. What allows saving of the different types is shown in the highlighted areas 2 \& 3 in both structures. Normally form information is passed to PHP scripts by naming the input for instance "\textless input name="title"/\textgreater, where the name of the input is title. If this 
+\noindent It can be seen that both types of questions share a similar structure. What allows saving of the different types is shown in the highlighted areas 2 \& 3 in both structures. Normally form information is passed to PHP scripts by naming the input for instance "\tag{input name="title"/}, where the name of the input is title. If this 
 
 
 
@@ -769,38 +1519,330 @@ The PHP script used to save marks is very large
 
 \subsection{Results Display}
 
-The implementation of the results page required that it only show students their own marks. While lecturers were able to select a student and see his mark for a lab. They way that I went about doing this was by designing two similar web pages one for students (section \ref{sec:results-student}) and one with more functionality (section \ref{sec:results-lecturer}). Through the use of the security class discussed earlier (section \ref{sec:security}) when the user access the results page, their access level is check and then using PHP the respective layout is shown to them. Details on the ways that the displays are different and how they both function are discussed in the next two sections.
+The implementation of the results page required that it only show students their own marks. While lecturers were able to select a student and see his mark for a lab. They way that I went about doing this was by designing two similar web pages one for students and one with more functionality. Through the use of the security class discussed earlier (section \ref{sec:security}) when the user access the results page, their access level is check and then using PHP the respective layout is shown to them. Details on the ways that the displays are different and how they both function are discussed in the next two sections.
 
 
 
-\subsubsection{Students View} \label{sec:results-student}
+\subsubsection{Different Views} \label{sec:results-student}
 
+The different views are done using a PHP script. when the results page is loaded a PHP file called "result\_page\_layout.php" (listing \ref{lst:result-layout} is run. It uses the Security class to check if the user is a lecturer, if they are it include the file that provides the lecturer layout along with adding the JavaScript files that provide functionality. If the user is not a lecturer then the file providing the student layout is loaded along with the JavaScript file for student functionality. 
+
+\singlespacing \phplisting
+\begin{lstlisting}[caption= Results Layout Selector - PHP, label = lst:result-layout]
+require_once(dirname(__FILE__)."/../core/classes/ConnectDB.php");
+require_once(dirname(__FILE__)."/../core/classes/Security.php");
+
+$sec = new Security();
+
+if($sec->hasAccessLevel("lecturer"))
+{
+    echo "<script type='text/javascript' src='../../js/lecturer/lecturer_lab_results.js'></script>";
+    include(dirname(__FILE__) . "/../lecturer/lecturer_lab_results.php");
+}
+else {
+    echo "<script type='text/javascript' src='../../js/student/student_lab_results.js'></script>";
+    include(dirname(__FILE__) . "/../students/display_lab_marks.php");
+}
+\end{lstlisting} \doublespacing
+
+
+\subsubsection*{Student View}
 The design of the students results page remained similar to the initial design, however there was one major design change. Which was that in the initial design the results for each lab was shown straight way in there own table. This was replaced with lab summary area that when clicked expand to show the individual marks for the questions. This was done to help make the area nicer and make it easier to distinguish when one lab ended another one began. The students view of the results page can be seen in figure(\ref{fig:results-student}).
 
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=1\textwidth]{images/implementation/student-results-page.png}
-    \caption{Students Results}
+    \caption{Results Page: Student View}
     \label{fig:results-student}
 \end{figure}
 
 
-\
+\subsubsection*{Lecturers View} \label{sec:results-lecturer}
 
-\subsubsection{Lecturers View} \label{sec:results-lecturer}
-%TODO%
+The design of the results page for lecturers was changed quite significantly form the initial design (figure \ref{fig:results-lecturer}), it has been made to look similar to the students results page with the removal of the side bar. The new design allows the lecturer to see all the course he teaches along with all the labs each course has. The statistics for each lab are easy to see, providing the lecturer with knowledge of how many students have been marked and the average mark percentage obtained.
+
+When the lecturer clicks on a specific lab the tab expand to show a list of students in the lab and a display area. When the lecturer selects a student there stats are shown in the display area along with a break down of each of the questions. This makes it quick and easy to find students results while also not overwhelming the user with too much information at any one time.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{images/implementation/lecturer-results-page.png}
+    \caption{Results Page: Lecturer View}
+    \label{fig:results-lecturer}
+\end{figure}
+
+
+\subsubsection{Retrieving Marks}
+
+The retrieve of lab marks works different for students and lecturers. Students have all there results loaded as the pages loads, while lecturers can select students and then there results are loaded using Ajax. But both types use the same function to retrieve student marks this function is called "studentLabAnswers" and is shown in listing (\ref{lst:result-retrieve}). 
+
+The function takes in four variables: the first is the name of the course and the second the lab these two together enables the function retrieve the answers to the right lab. The third variable is the username of the student that the results are wanted for and finally the last variable is to whether or not hidden questions should be shown. This is because students should not be able to see them but lecturers should, the inclusion of this variable allows for one function for both rather than needing two separate functions.
+
+\singlespacing \jslisting
+\begin{lstlisting}[caption= Expanding Row Size  - JavaScript, label = lst:result-retrieve]
+public function studentLabAnswers($course, $lab, $username, $visibility) {
+    $con = new ConnectDB();
+    $studentAnswers = mysqli_stmt_init($con->link);
+
+    if($visibility === "true"){
+        mysqli_stmt_prepare($studentAnswers,"SELECT lq.question, t.typeName, la.answerNumber , la.answerBoolean, la.answerText, la.mark, lq.maxMark
+            FROM lab_answers as la 
+            JOIN lab_questions as lq ON la.labQuestionRef = lq.questionID 
+            JOIN question_types AS t ON lq.questionType = t.questionTypeID 
+            JOIN labs as l ON lq.labRef = l.labID JOIN courses as c ON l.courseRef = c.courseID 
+            JOIN students_on_courses as soc ON la.socRef = soc.socID 
+            JOIN user_details AS ud ON soc.student = ud.detailsId 
+            WHERE c.courseName = ? AND l.labName = ? AND ud.studentID = ?");
+        mysqli_stmt_bind_param($studentAnswers, 'sss', $course, $lab, $username);
+    }
+    else {
+        mysqli_stmt_prepare($studentAnswers, "SELECT lq.question, t.typeName, la.answerNumber , la.answerBoolean, la.answerText, la.mark, lq.maxMark
+            FROM lab_answers AS la 
+            JOIN lab_questions AS lq ON la.labQuestionRef = lq.questionID 
+            JOIN question_types AS t ON lq.questionType = t.questionTypeID 
+            JOIN labs AS l ON lq.labRef = l.labID JOIN courses AS c ON l.courseRef = c.courseID 
+            JOIN students_on_courses AS soc ON la.socRef = soc.socID 
+            JOIN user_details AS ud ON soc.student = ud.detailsId 
+            WHERE c.courseName = ? AND l.labName = ? AND ud.studentID = ? AND lq.private = ? ");
+        mysqli_stmt_bind_param($studentAnswers, 'ssss', $course, $lab, $username, $visibility);
+    }
+
+    mysqli_stmt_execute($studentAnswers);
+    $result= mysqli_stmt_get_result($studentAnswers);
+
+    $outputArray = [];
+    while($output = $result->fetch_row())
+        array_push($outputArray, $output);
+    
+    mysqli_close($con->link);
+    return $outputArray;
+}
+\end{lstlisting} \doublespacing
+
+In the function depending on whether the visibility variable is set to true or false can results in two different prepared statements being run to retrieve the lab results. Lets go through prepared statement that is run is visibility is set to true, this prepared statement is designed to return all the answers a student had for a lab regardless of visibility of the individual questions. This prepared statement is used by lecturers to view all the results for a student. The information that this function returns is: the question text, type, question number, the three possible answer types, the answers mark and finally the questions max mark.
+
+The second function works the same way as the first but with an addition limitation on what answers can be returned. This limitation is that the visibility of the question if false (should not be shown), this prepared statement is used for when students are looking at there results. The statement returns the same information as the previous one just wont show know visible questions.
+
+The information returned by both prepared statements is then used by other other functions to generate the table designs for students and to insert the result in the view section for lecturers..
+
 
 
 \subsubsection{Expanding Table}
+
+The expandable tables are created using a combinations of JavaScript and CSS. Initially when the results pages are loaded all the content that can be seen when the rows are expended are loaded in, but thanks to css anything that expands outside of the row is shown. So what the JavaScript \ref{lst:result-expand} does is change the height of the row using jQuery so that it is tall enough to show all its contents. Also using jQuery made it so that rather than the size of the row suddenly changing it animates the change making it look nicer.
+
+\singlespacing \jslisting
+\begin{lstlisting}[caption= Expanding Row Size  - JavaScript, label = lst:result-expand]
+function change_div_size(divID)
+{
+    var selected = $(divID);
+    var count = 0;
+
+    $(".results-lab-row").each(function () {
+        if($(this).css("height") != "80px") {
+            $(this).animate({height: '80px'}, 500);
+            $("#result-row-arrow-"+count).toggleClass("glyphicon-triangle-right glyphicon-triangle-bottom");
+        }
+        count ++;
+    });
+
+    if(selected.css("height") == "80px") {
+        var curHeight = selected.height();
+        selected.css("height", "auto");
+        var newHeight = selected.height();
+        selected.height(curHeight).animate({height: newHeight}, 500);
+        selected.find("div[id^='result-row-arrow-']").toggleClass("glyphicon-triangle-right glyphicon-triangle-bottom");
+    }
+}
+\end{lstlisting} \doublespacing
+
+\noindent When ever a row is clicked on the "change\_div\_div" function is run passing the row numbers into the function. The first thing the function does is to go through all the rows and too close them so that only one row is expanded at a time. The script then uses jQuery to find the height the row needs to expands to and uses it as part of the animation function, along with this it also turns the arrow so as to know that the row is expande3d.
+
+
+
+
 
 
 
 
 \subsection{Lab Management}
-%TODO%
+
+The "Lab Management" page (figure \ref{fig:lab-management}) remained very similar to its initial designed it did have a few changes done to it. The most noticeable is the addition of the create new lab button at the top of the page which when clicked will take the lecturer to "Lab Creation" page, this was done as to bring all the management of labs into one screen. Along with this each lab also show the maximum available mark, and a key function I forgot to include in the initial design of being able to set if a lab can be marked has been added in the form a radio button.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{images/implementation/lab-management-page.png}
+    \caption{Lab Management Page}
+    \label{fig:lab-management}
+\end{figure}
+
+
+\subsubsection{Making Labs Mark-able}
+
+The ability to set if a lab can be marked is done through the use of JavaScript and PHP, the tick box contained the ID for the lab it relates to and the state it should change to (true/false). When the box is clicked it runs a function call lab\_markable (Listing \ref{lst:manage-markable}) and pass the two values to it. 
+
+The function then uses Ajax to run a PHP file and posts the id and state to it.  Then depending on the result it does one of two things. If it was successful function on the tick box is updated with the new state so that it can be clicked immediately if a mistake was make. While if it was not successful the tick box is set back to the state it was in previously and an error message is shown to the user. 
+
+\singlespacing \jslisting
+\begin{lstlisting}[caption= Lab Mark-able  - JavaScript, label = lst:manage-markable]
+function lab_markable(id,state)
+{
+$.ajax({
+    type: 'POST',
+    url: "../../php/labs/change_lab_markable.php",
+    dataType: 'json',
+    data: {labID: id, newState: state},
+    cache: false,
+    success: function(result) {
+        if(result.success)
+        {
+            (state === "true") ? state = "false" : state= "true";
+            $("#check-"+id).attr("onclick",'lab_markable('+id+',"'+state+'")');
+        }
+        else
+        {
+            if (state === "true")
+                $('#myCheckbox').attr('checked', false);
+            else
+                $('#myCheckbox').attr('checked', true);
+            alert("Failed to update please refresh and try again");
+        }
+    },
+    error: function(xhr, status, error) {
+        alert("Error Occurred Trying To Update If Lab Can Be Marked" + xhr);    //Displays an alert if error occurred
+    } }); }
+\end{lstlisting} \doublespacing
+
+\subsubsection{Export Lab Results}
+
+The export function could not be run using Ajax as it would cause an issue with the exporting of the file, so instead on the Lab Management page there is a hidden form. When the export button is clicked the value in the form is updated to that of the lab and posts its along with that it is the action type "export" to a PHP file called lab\_manager. The PHP script checks that the action and the lab ID were posted, creates and Instance of the LabManager() class then through an if statement runs the exportLabResults function.
+
+\subsubsection*{Lab Manger}
+
+The exportLabResults function is a long function but can be easily broken down and explained in small parts.
+\begin{enumerate}
+    \item All the question texts are retrieved from the database and stored in an array.  
+    \item The matriculation ID of all students on the course along with their mark for each question along with their total mark this stored as an array inside a separate array.
+    \item All students who have not been marked have their marks set to zero.
+    \item Finally the lab name and the two arrays are passes to the export function in the IO class.
+\end{enumerate}
+
+\subsubsection*{IO Class}
+
+The IO Class is designed to control all functions that input or output files from the system, at the moment it only contains two functions which both out put .csv files which can be open and read as spreadsheets. The first being exportUsers which exports all the users in the database this is for testing and transfer between systems. However the second function is called export and is whats used to export the data created in the Lab Manager Class.
+
+The export function (listing \ref{lst:io}) takes in a file name, an array of column titles and an array of data. All of this is provided by the Lab Manager class, were the array of questions is the column titles and the array containing student results is the data. The export function then creates a new file with the file name, it creates a new file write and adds the titles using the "fputcsv" which converts the array to a spreadsheet format. It then loops through all the students adding each one and their results to the file, and once this is complete the file writer is closed and the file is exported to the user.
+
+\singlespacing \phplisting
+\begin{lstlisting}[caption= IO Class Export Function - PHP, label = lst:io]
+public function export($file_name, $titles, $data)
+{
+    ob_clean();
+    header('Pragma: public');
+    header('Expires: 0');
+    header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
+    header('Cache-Control: private', false);
+    header('Content-Type: text/csv');
+    header('Content-Disposition: attachment;filename=' . $file_name . '.csv');
+
+    $output = fopen('php://output', 'w');
+    fputcsv($output, $titles);
+    foreach ($data AS $row) {
+        fputcsv($output, $row);
+    }
+    fclose($output);
+
+}
+\end{lstlisting} \doublespacing
+
+
+\subsubsection{Edit Labs}
+The edit labs button provides away for lecturers to change labs they have already created. The editing of labs is limited they can only change questions that already exists, new ones cannot be added and the type of currently existing question cannot be change either. This is to prevent lecturers from changing labs that have already been marked and causing issues to arise with the currently stored data. If a lecturer wishes to do these actions they will have to create a new lab.
+
+
+
+\noindent The way that the editing functionality works is that when  the edit button is clicked the "editLab" JavaScript (listing \ref{lst:edit}) function is called, the button passes the name of the lab and its id to the
+
+\begin{wrapfigure}[7]{r}{0.5\textwidth}
+\vspace*{-\baselineskip}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{images/implementation/edit-lab-page.png}
+    \caption{Editing A Lab}
+    \label{fig:edit-lab}
+\end{figure}
+\end{wrapfigure}
+
+\noindent function. The "editLab" function uses Ajax to the "editable\_lab" PHP file which returns the lab in the same style used to in the Lab Creation page providing a away to change them. The script then replaces the content of the screen with the received layout(\ref{fig:edit-lab}) and adds a submit button to confirm the edit and a back button easily go back to the lab management table.
+
+\noindent The displayed question tiles have the same editable ability as the lab creation page. This means that lecturers can change the questions text, marking range and whether or not its results can be seen by students. Questions are updated in the same way as they were inserted into the database but instead of insertion and update query is run that changes the currently stored questions.
+
+\singlespacing \jslisting
+\begin{lstlisting}[caption= Load Editable Lab - JavaScript, label = lst:edit]
+function editLab(lab_name, labID)
+{
+    $.ajax({
+        type: 'POST',
+        url: "../../php/labs/editable_lab.php",
+        dataType: 'json',
+        data: {labID: labID},
+        cache: false,
+        success: function(result) {
+            $("#main-text-area").html("<legend>"+lab_name+"</legend>");
+            $("#main-text-area").append("<button class='col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-12 btn btn-warning' id='back' onclick='display_table()'>Back</button>");
+            $("#main-text-area").append(result.questions);
+            $("#main-text-area").append("<button class='col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-12 btn btn-success' onclick='submitEdit()'>Submit</button>");
+            $(".remove-btn").remove();
+            fillLab(labID);
+        },
+        error: function(xhr, status, error) {
+            alert("Error Occurred Trying To Retrieve Lab" + xhr);    //Displays an alert if error occurred
+        }
+    });
+}
+\end{lstlisting} \doublespacing
+
+ 
+\subsubsection{Delete Lab}
+
+The delete function allows lecturers to remove labs that they have created, and thanks to the structure of the database all the marks related to the lab are also deleted. To prevent a lab accidently being deleted when the delete button is clicked a popup window appears informing the lecturer of what will happen and asked them to confirm that they wish to delete a lab. Apon clicking the delete button a Javascript function is called that uses Ajax to run the "lab\_manager" PHP file describe previously in the export functionality section ([lfm]). This time script calls the "deleteLab" function from the LabManager this function is shown in listing(\ref{lst:delete}). 
+
+\singlespacing \jslisting
+\begin{lstlisting}[caption= Load Editable Lab - JavaScript, label = lst:delete]
+function editLab(lab_name, labID)
+    public function deleteLab()
+    {
+        $deletion = false;
+        if ($this->hasAccessLevel("lecturer")) {
+            if ($this->labID !== null) {
+                $con = new ConnectDB();
+                $course = $this->courseFromLabID($this->labID);
+
+                if ($this->isLecturerOfCourse($course)) //Checks if user has access to delete the course
+                {
+                    $delete_lab = mysqli_stmt_init($con->link);                                              //Init Prepared Statment
+                    mysqli_stmt_prepare($delete_lab, "DELETE FROM labs WHERE labID = ?");               //Query deletes labs that match the labID
+                    mysqli_stmt_bind_param($delete_lab, "i", $this->labID);                                  //Bind labID to query
+                    mysqli_stmt_execute($delete_lab);                                                   //Execute prepared statement
+
+                    $deletion = true;
+                }
+                mysqli_close($con->link);                                                                    //Closes DB connection
+            }
+        }
+        return json_encode(array("success" => $deletion));
+    }
+\end{lstlisting} \doublespacing
+
+The "deleteLab" function first checks that the user is a lecturer using the Security Class functions, this prevents unauthorised people from preforming the delete function. It then checks that the user is actually a lecturer of the course for which the lab belongs too, therefor stopping lecturers deleting other courses labs.It then deletes the lab that matches the labID that was passed by the JavaScript function. Finally it returns whether the deletion was successful so that the JavaScript knows to display an error or not.
+
 
 \subsection{Admin Panel}
+
+The Admin Panel did not have an initial design. This was because I was not certain what functionality it would have and therefor could not think of a design for it, instead I designed it as I went along knowing that I wanted it to be simple to preform any of the admin functionality. As development went on I decided that I should break up the functionality into two sections, the first being to manage users currently in lab marking system. The second section contained the functions that related to the database.  
+
+When the admin first loaded the admin page (figure [lfm]) the buttons for the "Manage User" and "Manage Database" section are shown. Then depending on which one the admin clicks the functionality buttons and a back button are loaded (figures [lfm]) using aJax to provide a nice user experience. 
+
 
 
 
@@ -830,7 +1872,7 @@ The security class does all the checks on whether a user has the required access
 To test the security class but the hasAccessLevel and hasGreaterAccessThan functions were tested. Since the hasAccessLevel function checks if a users has equal to or greater access than that being requesting, all possible combinations of user access and requested access were tested and the expected outcomes compared to the actual result. The code for this can be seen in listing(\ref{lst:hasAccess-test})
 
 \singlespacing
-\begin{lstlisting}[basicstyle=\linespread{0.8}, caption= hasAccessLevel Test, label = lst:hasAccess-test]
+\begin{lstlisting}[caption= hasAccessLevel Function Test, label = lst:hasAccess-test]
 public function testHasAccessLevel($user_access, $required_acess, $expected)
 {
     if(session_status() == PHP_SESSION_NONE)
@@ -891,7 +1933,7 @@ The table below (table \ref{table:usability}) contains the mean, median, mode an
 \begin{longtable}{@{\extracolsep{\fill}}|c|l|c|c|c|c|}
 \caption{Usability Case Study: Scale Question Results} \label{table:usability} \\ \hline
 
-\textbf{Question Number} & \textbf{Question} & \textbf{Mean} & \textbf{Median} & \textbf{Mode} & \textbf{Difficulty}\\ \hline
+\textbf{Number} & \textbf{Question} & \textbf{Mean} & \textbf{Median} & \textbf{Mode} & \textbf{Difficulty}\\ \hline
 
 Q1.1 & Difficulty to find the students mark & 1.08 & 1 & 1 & Easy\\ \hline
 Q1.3 & Difficulty to sign out & 1 & 1 & 1 & Easy \\ \hline
@@ -910,6 +1952,7 @@ Q3.18 & Difficulty to remove and add lab helpers & 1.08 & 1 & 1 & Easy \\ \hline
 
 \noindent The graph below (figure \ref{graph:results}) displays how challenging all the participant found each of the questions, The y-axis represents the number of participants that thought at specific task was that difficulty. The x-axis represents each of the questions and are broken up into five bars each representing a difficulty. The left most bar represents easy and as the bars go to the right the difficulty increases until final one which represents impossible.  
 
+\noindent
 \begin{figure}[H]
 \caption{Bar Graph of Question Results}
 \label{graph:results}
@@ -938,7 +1981,7 @@ Q3.18 & Difficulty to remove and add lab helpers & 1.08 & 1 & 1 & Easy \\ \hline
 The first thing that can be noticed is that overall the participants found the lab marking system to be fairly easy to use and understand. The two task that users found the hardest to do were mark students and create labs, which are the most complex part of the lab marking system . It would be expected that first time users of the system would find these are to understand at first. Tho it can be seen with the change student mark task that once the participant understood how to mark one student they could easy update their mark.\\ 
 
 %Difficulty of creating labs%
-\noindent It can be seen thanks to graph shown in figure(\ref{graph:results} that many users found the creating of new labs to be a difficult task to complete. While watching participants  I noticed that many of them were confused on how questions were added to labs.\\ 
+\noindent It can be seen thanks to graph shown in figure(\ref{graph:results}) that many users found the creating of new labs to be a difficult task to complete. While watching participants  I noticed that many of them were confused on how questions were added to labs.\\ 
 
 %Simplicity of student section%
 \noindent Question 1.1 tasked participants to sign in as a student and see what mark they were given. As the results of both the table(\ref{table:usability}) and the graph(\ref{graph:results}) all participants found this to be easy to do. This is great to see, as the lab marking system is meant to make it easier for students to find out their marks and this task has shown that process for a student finding there marks is very straight forward.
@@ -949,21 +1992,27 @@ Three of the questions in the usability study were yes and no questions. These q
 
 \subsubsection*{Q2.3: Student Button Colours}
 
-The first question was to check if participants understood what the different coloured buttons for students represented and 75\% did understand what they represented. The fact that 25\% of the participants did not understand does that the legend that shows the what colours correlate too should be improved.
-
+\begin{wrapfigure}[7]{r}{0.5\textwidth}
+\vspace*{-\baselineskip}
 \begin{figure}[H]
 \caption{Q2.3: Know what the different student colours mean?}
 
-\begin{tikzpicture} 
+\begin{tikzpicture}
     \pie[rotate=90,radius =2, color={red!60, blue!60}]{75/Yes, 25/No}
 \end{tikzpicture}
 
 \end{figure}
+\end{wrapfigure}
+
+The first question was to check if participants understood what the different coloured buttons for students represented and 75\% did understand what they represented. The fact that 25\% of the participants did not understand does that the legend that shows the what colours correlate too should be improved.
+
+
+
 
 \subsubsection*{Q3.6: Visibility Button}
 
-The second yes / no question was to do with the creation of new labs and the understand of what the visible / not visible button for individual questions. Only 58.3\% of participants understood what this button meant. Since this is a key piece of functionality and allows lecturers to control what questions students can see in their result, it must be improved. Many participants suggested the inclusion of tool tips to help understand what the button was meant to do. 
-
+\begin{wrapfigure}[7]{l}{0.5\textwidth}
+\vspace*{-\baselineskip}
 \begin{figure}[H]
 \caption{Q3.6 Know what visible / not visible means?}
 
@@ -972,8 +2021,19 @@ The second yes / no question was to do with the creation of new labs and the und
 \end{tikzpicture}
 
 \end{figure}
+\end{wrapfigure}
+
+The second yes/no question was to do with the creation of new labs and the understand of what the visible / not visible button for individual questions. Only 58.3\% of participants understood what this button meant. Since this is a key piece of functionality and allows lecturers to control what questions students can see in their result, it must be improved. Many participants suggested the inclusion of tool tips to help understand what the button was meant to do. 
 
 
+\subsubsection{Q3.8 Creation Alerts}
+
+
+
+The final yes/no question delete with the error handling of the lab creation page. Participants were asked to create a lab that was not complete and attempt to submit it. They were then
+
+\begin{wrapfigure}[7]{r}{0.5\textwidth}
+\vspace*{-\baselineskip}
 \begin{figure}[H]
 \caption{Q3.8: Did an alert appear}
 
@@ -982,6 +2042,9 @@ The second yes / no question was to do with the creation of new labs and the und
 \end{tikzpicture}
 
 \end{figure}
+\end{wrapfigure}
+
+\noindent asked to note if an alert appeared informing of an incomplete lab. It was expected that this question would have a 100\% yes response, however one participant managed to find a combination of inputs that was not complete but did submit. The participant in question provided how he got this outcome and I fixed the error detection to prevent it from occurring again.
 
 
 \subsubsection{Qualitative Questions}
@@ -996,8 +2059,102 @@ As part of each of the task participants were asked to provide feedback about th
 
 \subsection{Implementation Of Feedback}
 
-Using the feedback obtained through the usability case study I have have implemented a few changes to the design of the lab marking system. This is to help improve the overall usefulness of the system and make certain parts of the system easier to understand and interact with. The improvements done to the system are listed below with description and comparison showing the lab marking system before and after the changes.   
+Using the feedback obtained through the usability case study I have have implemented a few changes to the design of the lab marking system. This is to help improve the overall usefulness of the system and make certain parts of the system easier to understand and interact with. The improvements done to the system are listed below with description and comparison showing the lab marking system before and after the changes.  
 
+
+\subsection{Evaluate Requirements}
+
+In addition to the usability case study, to evaluate the lab marking system I must check how successful the project was at implementing the requirements of a the digital lab marking system. 
+
+To evaluate if the project matches the requirements of for the digital lab marking system, the functional requirements originally show in section \ref{sec:requirements} have been repeated here. Thought this time each requirement has been highlighted according to its implementations. The colour code is: Green means the requirement was implemented in the project, Yellow means that the requirement was not implemented but not guaranteed to be and finally Red is for requirements that were promised but did not get implemented.   
+
+
+
+\begin{spacing}{1.1}
+\begin{longtable}{|p{0.09\linewidth}|p{0.6\linewidth}|p{0.1\linewidth}|
+p{0.1\linewidth}|}
+\caption{Functional Requirements} \label{table:eval-funct-user} \\ \hline
+\textbf{ID} & \textbf{Requirement} & \textbf{Access} & \textbf{Priority}\\
+\hline \hline
+
+\rowcolor{Green} \rid{FR} &  Login to view system & 1,2,3,4 & Must\\ \hline
+\rowcolor{Green} \rid{FR} &  Accounts created for them & 1,2,3,4 & Must\\ \hline
+\rowcolor{Red} \rid{FR} &  Change password & 1,2,3,4 & Must\\ \hline
+\rowcolor{Green} \rid{FR} &  Logout & 1,2,3,4 & Must \\ \hline
+\rowcolor{Yellow} \rid{FR} &  Login using university ID & 1,2,3,4 & Could\\ \hline
+
+\rowcolor{Green} \rid{FR} &  Remove students from courses & 1, 2 & Must\\ \hline
+\rowcolor{Yellow} \rid{FR} &  Update student accounts & 1,3 & Could \\ \hline
+
+\rowcolor{Green} \rid{FR} &  Look up students in lab & 2,3 & Must\\ \hline
+\rowcolor{Green} \rid{FR} &  Select students from lab list & 2,3 & Must\\ \hline
+\rowcolor{Green} \rid{FR} &  Leave comments about students & 2,3 & Must\\ \hline
+\rowcolor{Green} \rid{SR} &  Save marks & 2,3 & Must\\ \hline
+\rowcolor{Green} \rid{SR} &  Update marks & 2,3 & Must\\ \hline
+\rowcolor{Red} \rid{SR} &  Delete marks & 2,3 & Must\\ \hline
+\rowcolor{Green} \rid{FR} &  Search for student by name & 2,3 & Should\\ \hline
+\rowcolor{Yellow} \rid{FR} &  Mark student even if they are not in the system & 2,3 & Could \\ \hline
+
+\rowcolor{Green} \rid{FR} &  Assign students to courses & 1 & Should\\ \hline
+\rowcolor{Green} \rid{FR} &  Assign lectures to courses & 1 & Should\\ \hline
+
+\rowcolor{Green} \rid{FR} &  Create marking schemes & 2 & Must\\ \hline
+\rowcolor{Green} \rid{FR} &  Display generated stats & 2 & Must\\ \hline
+\rowcolor{Green} \rid{FR} &  See submitted marks & 2 & Must\\ \hline
+\rowcolor{Yellow} \rid{FR} &  Generate end of year spread sheets & 2 & Should\\ \hline
+\rowcolor{Green} \rid{FR} &  Editing of students in class & 2 & Should\\ \hline
+\rowcolor{Green} \rid{FR} &  Look at students stats & 2 & Should\\ \hline
+\rowcolor{Green} \rid{FR} &  Update marking scheme & 2 & Should \\ \hline
+\rowcolor{Green} \rid{FR} &  Delete marking schemes & 2 & Should\\ \hline
+\rowcolor{Yellow} \rid{FR} &  Able to assign students to set labs & 2 & Could \\ \hline
+\rowcolor{Yellow} \rid{FR} &  Set penalties for late marking & 2 & Could \\ \hline
+\rowcolor{Green} \rid{FR} &  Able to export to vision & 2 & Could\\ \hline
+\rowcolor{Green} \rid{FR} &  Set what parts of the marking scheme students can see & 2 & Could\\ \hline
+\rowcolor{Yellow} \rid{FR} &  Create peer marking scheme & 2 & Could\\ \hline
+
+\rowcolor{Green} \rid{FR} &  Access Marking Scheme & 3 & Must\\ \hline
+\rowcolor{Green} \rid{FR} &  Enter selected students mark & 3 & Must\\ \hline
+\rowcolor{Green} \rid{FR} &  Submit student mark & 3 & Must\\ \hline
+\rowcolor{Green} \rid{FR} &  Select the lab they are helping in & 3 & Must\\ \hline
+
+\rowcolor{Green} \rid{FR} &  See current mark & 4 & Must\\ \hline
+
+\rowcolor{Green} \rid{FR} & Show different displays depending on access level & & Must\\ \hline
+\rowcolor{Green} \rid{FR} & Load students current lab mark scheme & & Must\\ \hline
+\rowcolor{Yellow} \rid{FR} & Apply penalty for late lab completion & & Could\\ \hline
+\rowcolor{Green} \rid{FR} & Create a set of useful stats based on lab & & Must\\ \hline
+\rowcolor{Green} \rid{FR} & Store what class student belong too & & Must\\ \hline
+\rowcolor{Green} \rid{FR} & List of all students in class & & Must\\ \hline
+
+\end{longtable}
+\end{spacing}
+\setcounter{requirement}{1}
+
+The table of requirements makes it easier to tell how many of the requirements the project meets. This projects covers 75\% of the requirements having implemented 31 of the 41 possible requirements for a lab marking system. This leaves only ten non-implemented requirements and of those ten only two of them were must requirements, one of them was a should and the remaining seven were coulds.
+
+\subsubsection*{Miniumum Requirements}
+
+The fact that only twenty-two out of the twenty-four (91\%) of the  must requirements were  implemented shows that the developed lab marking system does meet the minimum requirements of the system. The two requirements that the system did not meet are the ability for users to change their password and the ability to delete marks.
+
+As this project was meant to provide a prototype version of digital lab marking system whose focus was on being able to create a mark labs. The inability of users to update their passwords is not a major issue, firstly because when accounts are created random passwords are generated meaning there is some security for accounts and secondly if the marking system was to be integrated with existing university accounts users would already have a way to change their password.
+
+The inability to delete marks is a more major issue, though during development I did not see any reason on why a mark would need to be deleted. Currently the only way to delete a mark complete for the database is to remove a student form a course and then add them back on to it. This has its on issue in that it is time consuming to do and deletes all the lab marks for the student not just a specific one. A mark can also be updated to its default which would be the equivilant of the mark being deleted.
+
+\subsubsection*{Could and Should}
+
+
+\subsection{Aim and Objective}
+
+In addition to evaluating the project on how successful it was at meting the requirements for a lab marking system, it can also be evaluated on how successful it was at reaching its aim and its multiple objectives.
+
+Firstly lets start with the objective of this project which was to "implement  a  system  for  the  digital  marking  and analysis of computer labs and to help improve the speed at which they are marked". 
+
+
+\subsection{Overall Evaluation}
+
+Overall the evaluation of the system shows it to be a good implementation of a digital marking system. 
+
+It needs some improvements, especially the lab creation section which is shown to be a little complex
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %										%
@@ -1006,19 +2163,56 @@ Using the feedback obtained through the usability case study I have have impleme
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
 \section{Discussion}
-%TODO%
+
+This section is for discussion of the digital lab marking system as a whole. It includes discussion about the overall development of the system, limitations that currently exist in the lab marking system, improvements that can be implemented later and a conclusion cover all the different parts of the project.
 
 \subsection{Development}
-%TODO%
+
+\subsubsection{Issues}
+
+Originally I had be planning to develop the lab marking system using cakePHP, as I did more research I quickly found out that it would take more time to setup my computer at home and at the university than the framework would help me save. I therefore decided to not to use it and just no framework when developing the system.
+
+In addition to not using cakePHP I did not manage to use d3 to provide graphical representations of statistics. This was because when I started trying to implement d3 I discovered that it was naturally dynamically responsive, this meant that any change in the screen size would result in elements moving expectantly and cause the website to look bad. There is a way to make d3 graphs responsive but given the amount graphs would add to the lab marking system I decided instead to focus my time on more important functionality. 
+
+
 
 \subsection{Limitations}
-%TODO%
+
+The aim of this project that would enable lecturers to mark students using a digital marking system. This project was successful in creating this marking system, but it has limitations on what it is able to do. These limitations are all discussed here, long with how to solve them or mitigate the effect they have on the system as a whole.
+
+\subsubsection{Only Three Question Types}
+
+The current version of the lab marking system only allows lecturers to create lab questions of three different types, these being : scale questions, Boolean questions and text questions. This lack of question variety can be seen as a limitation of the system, though I have designed the system so that it is easy to create new types of questions.
+
+\subsubsection{Student Only Lab Helpers}
+
+
+
 
 \subsection{Future Improvements}
-The electronic marking system has many improvements that can be implemented some are requirements that I was not able to implement 
+The digital lab marking system has many improvements that can be implemented; some of these are requirements that I was not able to implement in the time available. Other improvements for the system came from feedback obtained from the usability case study. 
+
+With a bit more time d3 could be converted to be dynamically responsive and make it possible to generate graphs for the statistics being generated.
+
+\subsubsection{Peer Marking}
+
+Adding to the ability to do peer marking using the lab marking system would make it more useful.
+
+\subsubsection{Comparing Students}
+
+It was suggested by a few of the participants of the usability case study that lecturers should be able to select multiple students and see their marks.
+
+\subsubsection{Track Who Marked What Student}
+
+One of the original requirements which was then brought up again during the usability case study, was the ability to track who lab-helpers were marking. This is to make it easy to find out who marked a student if an issue arises, and helps lecturers analyse the quality of a lab-helper's marking. 
+I was unable to implement this functionality into the lab marking system due to time constraints and the need to redesign part of the database to store the markers details. I feel that it would provide a very useful tool for lecturers and should be implemented in the next version.
+
 
 \subsection{Conclusion}
-%TODO%
+
+In conclusion this project to develop a digital lab marking system has provided a variety of challenges
+
+Overall I would state that this project was successful in developing a digital system for the marking of labs. It has a few flaws at the moment but nothing that could not be sorted out in the next version of the system.
 
 
 
@@ -1057,7 +2251,6 @@ The electronic marking system has many improvements that can be implemented some
 % \includepdf[scale=0.85, pages=-]{pdf/UseabilityCaseStudy.pdf}
 
 
-
 %Requirements Analysis Document
 % \includepdf[scale=0.9,clip,trim=0cm 0cm 0cm 2cm,pages={1},pagecommand={\section{Requirements Questionaire} \label{app:requirements}}]{pdf/RequirementsQuestionaire.pdf} 
 % \includepdf[scale=0.9,clip,trim=0cm 0cm 0cm 2cm,pages={2-6},pagecommand={}]{pdf/RequirementsQuestionaire.pdf}
@@ -1069,5 +2262,4 @@ The electronic marking system has many improvements that can be implemented some
 
 
 \end{appendices}
-
 \end{document}

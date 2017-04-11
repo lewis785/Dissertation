@@ -33,7 +33,7 @@ class LecturerResults extends LabStats
         $id = 0;
         foreach ($courses as $course) {
             $labs = $this->lab->getLabs($course);
-            $students = $this->lab->get_students($course);
+            $students = $this->lab->getStudents($course);
             $studentSelector = $this->create_student_selector($students, $course);
 
             $resultsTable .= "<div class='col-md-12 results-course-row'><div class='col-md-6 col-md-offset-3'>$course</div></div><ul class='labs-list'>";

@@ -123,7 +123,7 @@ class Student
     }
 
 
-    public function get_student_matric($link, $username)
+    public function getStudentMatric($link, $username)
     {
         $getMatric = mysqli_stmt_init($link);
         mysqli_stmt_prepare($getMatric, "SELECT ud.studentID FROM user_login as ul
@@ -136,7 +136,7 @@ class Student
 
     }
 
-    public function get_student_courses($student, $filter = null)
+    public function getStudentCourses($student, $filter = null)
     {
         $con = new ConnectDB();
 
@@ -173,22 +173,22 @@ class Student
 
 
 
-    public function has_full_marks($link, $student,$courseName, $labName)
+    public function hasFullMarks($link, $student, $courseName, $labName)
     {
-        $maxMark = $this->lab->lab_total_mark($courseName,$labName);
-        $studentMark = $this->lab_mark_for_student($link, $student, $courseName, $labName);
+        $maxMark = $this->lab->labTotalMark($courseName,$labName);
+        $studentMark = $this->labMarkForStudent($link, $student, $courseName, $labName);
         return $studentMark == $maxMark;
     }
 
 
     public function has_no_marks($link, $student,$courseName, $labName)
     {
-        $studentMark = $this->lab_mark_for_student($link, $student, $courseName, $labName);
+        $studentMark = $this->labMarkForStudent($link, $student, $courseName, $labName);
         return $studentMark == 0;
     }
 
 
-    public function lab_mark_for_student($link, $matricID, $courseName, $labName)
+    public function labMarkForStudent($link, $matricID, $courseName, $labName)
     {
         $labMark = mysqli_stmt_init($link);
         mysqli_stmt_prepare($labMark, "SELECT sum(mark) FROM lab_answers AS la
@@ -207,7 +207,7 @@ class Student
     }
 
 
-    public function student_lab_answers($course, $lab, $username, $visibility) {
+    public function studentLabAnswers($course, $lab, $username, $visibility) {
 
         $con = new ConnectDB();
 
@@ -243,7 +243,6 @@ class Student
         while($output = $result->fetch_row())
             array_push($outputArray, $output);
 
-
         mysqli_close($con->link);
         return $outputArray;
     }
@@ -251,7 +250,7 @@ class Student
 
     public function student_lab_answers_json($course, $lab, $username, $visibility)
     {
-        return json_encode(array("answers"=>$this->student_lab_answers($course, $lab, $username, $visibility)));
+        return json_encode(array("answers"=>$this->studentLabAnswers($course, $lab, $username, $visibility)));
     }
 
 

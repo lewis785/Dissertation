@@ -13,6 +13,6 @@ if(isset($_POST["type"])) {
     if(isset($_POST["filter"]))
         echo($student->studentButtonsFilter($_POST["filter"]));
     else
-        echo($student->get_students_buttons());
+        echo($student->getStudentsButtons());
 
 }

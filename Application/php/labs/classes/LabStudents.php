@@ -28,7 +28,7 @@ class LabStudents extends Lab
     }
 
 
-    public function get_students_buttons()
+    public function getStudentsButtons()
     {
         $con = new ConnectDB();
 
@@ -40,9 +40,9 @@ class LabStudents extends Lab
                 $this->lab = $_SESSION["MARKING_LAB"];
             }
             $courseName = $_SESSION["MARKING_COURSE"];
-            $labID = $this->get_questionID($this->get_lab_id($courseName, $this->lab), 1);
+            $labID = $this->getQuestionID($this->getLabId($courseName, $this->lab), 1);
 
-            $result = $this->get_students($courseName);
+            $result = $this->getStudents($courseName);
 
             $colour_key = "<div class='col-md-12 colour-keys'>
                            <div class='col-md-2 col-md-offset-3 col-sm-2 col-sm-offset-2 colour-key'><div class='colour-box not-marked-colour'/> <span>Not Marked</span></div>
@@ -56,7 +56,7 @@ class LabStudents extends Lab
             $buttons = "";
             while ($student = $result->fetch_row()) {
 
-                $buttonType = $this->button_style($con->link, $student[2], $labID, $this->lab, $courseName);
+                $buttonType = $this->buttonStyle($con->link, $student[2], $labID, $this->lab, $courseName);
                 $buttons .= "<div class='col-md-6 col-md-offset-3 col-sm-12 clickable-btn'>
                       <button class='" . $buttonType . " btn-text-wrap btn-student' onclick='display_schema_for(\"" . $student[2] . "\")'>" . $student[0] . " " . $student[1] . "</button>
                      </div>";
@@ -74,24 +74,23 @@ class LabStudents extends Lab
     {
         $con = new ConnectDB();
         $courseName = $_SESSION["MARKING_COURSE"];
-        $labID =$this->get_questionID($this->get_lab_id($courseName, $this->lab), 1);
-        $result = $this->get_students($courseName, $filter);
+        $labID =$this->getQuestionID($this->getLabId($courseName, $this->lab), 1);
+        $result = $this->getStudents($courseName, $filter);
         $buttons = "";
         while ($student = $result->fetch_row()) {
 
-            $buttonType = $this->button_style($con->link, $student[2], $labID, $this->lab, $courseName);
+            $buttonType = $this->buttonStyle($con->link, $student[2], $labID, $this->lab, $courseName);
             $buttons .= "<div class='col-md-6 col-md-offset-3 col-sm-12 clickable-btn'>
                       <button class='" . $buttonType . " btn-text-wrap btn-student' onclick='display_schema_for(\"" . $student[2] . "\")'>" . $student[0] . " " . $student[1] . "</button>
                      </div>";
         }
         return json_encode(array('successful' => true, 'buttons' => $buttons));
-
     }
 
-    private function button_style($link,$matric, $qID, $labName, $courseName)
+    private function buttonStyle($link, $matric, $qID, $labName, $courseName)
     {
-        if ($this->marking->already_marked($matric, $qID)) {
-            if ($this->student->has_full_marks($link, $matric, $courseName, $labName))
+        if ($this->marking->alreadyMarked($matric, $qID)) {
+            if ($this->student->hasFullMarks($link, $matric, $courseName, $labName))
                 $style = "btn btn-success";
             else
                 $style = "btn btn-warning";

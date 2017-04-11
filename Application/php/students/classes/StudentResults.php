@@ -22,8 +22,8 @@ class StudentResults extends Student
     {
         $con = new ConnectDB();
 
-        $matricNum = $this->get_student_matric($con->link, $_SESSION["username"]);
-        $courses = $this->get_student_courses($matricNum);
+        $matricNum = $this->getStudentMatric($con->link, $_SESSION["username"]);
+        $courses = $this->getStudentCourses($matricNum);
 
         $resultsTable = "";
 
@@ -36,9 +36,9 @@ class StudentResults extends Student
             if(sizeof($labs) > 0) {
                 foreach ($labs as $lab) {
 
-                    $resultsTable .= $this->get_lab_summary($con->link, $matricNum, $course, $lab[0], $id);
+                    $resultsTable .= $this->getLabSummary($con->link, $matricNum, $course, $lab[0], $id);
 
-                    $labAnswers = $this->student_lab_answers($course, $lab[0], $matricNum, "false");
+                    $labAnswers = $this->studentLabAnswers($course, $lab[0], $matricNum, "false");
 
                     $rowNumOdd = true;
 
@@ -98,11 +98,11 @@ class StudentResults extends Student
         return $resultsTable;
     }
 
-    private function get_lab_summary($link, $matricNum, $course, $lab, $id)
+    private function getLabSummary($link, $matricNum, $course, $lab, $id)
     {
         $curvedEdge = "";
-        $labMark = $this->lab_mark_for_student($link, $matricNum, $course, $lab);
-        $maxMark = $this->lab->lab_total_mark($course, $lab);
+        $labMark = $this->labMarkForStudent($link, $matricNum, $course, $lab);
+        $maxMark = $this->lab->labTotalMark($course, $lab);
 
         if ($labMark != "") {
             $onclick = "onclick='open_close_div($id)'";
@@ -127,6 +127,3 @@ class StudentResults extends Student
 
 
 }
-//
-//$result = new StudentResults();
-//echo ($result->getStudentResults());

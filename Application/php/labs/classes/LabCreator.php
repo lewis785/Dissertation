@@ -61,38 +61,36 @@ class LabCreator extends LabChecks
         $minPos = 0;                                            //Array position of minMarks
         $maxPos = 0;                                            //Array position of maxMarks
 
-        $booleanTypeID = $this->get_type_ID("boolean");                //ID value of boolean type question
-        $scaleTypeID = $this->get_type_ID("scale");                    //ID value of scale type questions
-        $valueTypeID = $this->get_type_ID("value");                    //ID value of value type questions
-        $textTypeID = $this->get_type_ID("text");                      //ID value of text type questions
+        $booleanTypeID = $this->getTypeID("boolean");                //ID value of boolean type question
+        $scaleTypeID = $this->getTypeID("scale");                    //ID value of scale type questions
+        $valueTypeID = $this->getTypeID("value");                    //ID value of value type questions
+        $textTypeID = $this->getTypeID("text");                      //ID value of text type questions
 
-        if ($this->valid_input()) {                                    //Checks that input is valid before attempting to insert
+        if ($this->validInput()) {                                    //Checks that input is valid before attempting to insert
             mysqli_autocommit($con->link, FALSE);                    //Sets up transaction for database insertion
 
-            $labID = $this->insert_lab_name($this->course, $this->lab_name);   //Inserts new lab in to labs table and gets the new ID it creates
+            $labID = $this->insertLabName($this->course, $this->lab_name);   //Inserts new lab in to labs table and gets the new ID it creates
 
             if ($labID !== false) {                                     //Checks that lab was successfully inserted
 
                 foreach ($this->types as $t) {                                //Loops through each question by its type
                     switch ($t) {                                       //Case statement checking what type each question is
                         case "boolean":                                 //Inserts boolean type questions
-                            $successful = $this->insert_question($labID, $booleanTypeID, $qNum, $this->questions[$qNum - 1], NULL, $this->max_marks[$maxPos], $this->visibility[$qNum - 1]);
+                            $successful = $this->insertQuestion($labID, $booleanTypeID, $qNum, $this->questions[$qNum - 1], NULL, $this->max_marks[$maxPos], $this->visibility[$qNum - 1]);
                             $maxPos++;
                             break;
                         case "scale":                                   //Inserts scale type questions
-                            $successful = $this->insert_question($labID, $scaleTypeID, $qNum, $this->questions[$qNum - 1], $this->min_marks[$minPos], $this->max_marks[$maxPos], $this->visibility[$qNum - 1]);
+                            $successful = $this->insertQuestion($labID, $scaleTypeID, $qNum, $this->questions[$qNum - 1], $this->min_marks[$minPos], $this->max_marks[$maxPos], $this->visibility[$qNum - 1]);
                             $maxPos++;
                             $minPos++;
                             break;
                         case "value":                                   //Inserts value type questions
-                            $successful = $this->insert_question($labID, $valueTypeID, $qNum, $this->questions[$qNum - 1], NULL, $this->max_marks[$minPos], $this->visibility[$qNum - 1]);
+                            $successful = $this->insertQuestion($labID, $valueTypeID, $qNum, $this->questions[$qNum - 1], NULL, $this->max_marks[$minPos], $this->visibility[$qNum - 1]);
                             $maxPos++;
-                            $minPos++;
                             break;
                         case "text":                                   //Inserts value type questions
-                            $successful = $this->insert_question($labID, $textTypeID, $qNum, $this->questions[$qNum - 1], 0, $this->max_marks[$maxPos], $this->visibility[$qNum - 1]);
+                            $successful = $this->insertQuestion($labID, $textTypeID, $qNum, $this->questions[$qNum - 1], 0, $this->max_marks[$maxPos], $this->visibility[$qNum - 1]);
                             $maxPos++;
-                            $minPos++;
                             break;
                         default:
                             echo "default";                             //Default if type doesn't exist
@@ -107,15 +105,10 @@ class LabCreator extends LabChecks
             }
         }
 
-
         mysqli_commit($con->link);
         mysqli_close($con->link);
 
-        if ($successful)
-            $redirect = "../../html/pages/labmanager.php";
-        else
-            $redirect = "../../html/pages/labmaker.php";
-
+        ($successful) ?  $redirect = "../../html/pages/labmanager.php" : $redirect = "../../html/pages/labmaker.php";
         header("Location: " . $redirect);                                 //Redirects to webpage
     }
 
@@ -135,24 +128,24 @@ class LabCreator extends LabChecks
             mysqli_autocommit($con->link, FALSE);                    //Sets up transaction for database insertion
             $successful = false;
             foreach ($this->types as $index => $t) {                                //Loops through each question by its type
-                $qID = $Lab->get_questionID($labID,$index+1);
+                $qID = $Lab->getQuestionID($labID,$index+1);
                 switch ($t) {                                       //Case statement checking what type each question is
                     case "boolean":                                 //Inserts boolean type questions
-                        $successful = $this->updateQuestion($qID, $this->get_type_ID("boolean"), $this->questions[$index], NULL, $this->max_marks[$maxPos], $this->visibility[$index]);
+                        $successful = $this->updateQuestion($qID, $this->getTypeID("boolean"), $this->questions[$index], NULL, $this->max_marks[$maxPos], $this->visibility[$index]);
                         $maxPos++;
                         break;
                     case "scale":                                   //Inserts scale type questions
-                        $successful = $this->updateQuestion($qID, $this->get_type_ID("scale"), $this->questions[$index], $this->min_marks[$minPos], $this->max_marks[$maxPos], $this->visibility[$index]);
+                        $successful = $this->updateQuestion($qID, $this->getTypeID("scale"), $this->questions[$index], $this->min_marks[$minPos], $this->max_marks[$maxPos], $this->visibility[$index]);
                         $maxPos++;
                         $minPos++;
                         break;
                     case "value":                                   //Inserts value type questions
-                        $successful = $this->updateQuestion($qID, $this->get_type_ID("value"), $this->questions[$index], NULL, $this->max_marks[$minPos], $this->visibility[$index]);
+                        $successful = $this->updateQuestion($qID, $this->getTypeID("value"), $this->questions[$index], NULL, $this->max_marks[$minPos], $this->visibility[$index]);
                         $maxPos++;
                         $minPos++;
                         break;
                     case "text":                                   //Inserts value type questions
-                        $successful = $this->updateQuestion($qID, $this->get_type_ID("text"), $this->questions[$index], 0, $this->max_marks[$maxPos], $this->visibility[$index]);
+                        $successful = $this->updateQuestion($qID, $this->getTypeID("text"), $this->questions[$index], 0, $this->max_marks[$maxPos], $this->visibility[$index]);
                         $maxPos++;
                         $minPos++;
                         break;
@@ -174,11 +167,11 @@ class LabCreator extends LabChecks
     }
 
 //Function checks that all inputs are valid and returns true / false accordingly
-    private function valid_input()
+    private function validInput()
     {
         if (is_numeric($this->course)) {                   //Checks that valid course was selected
             if ($this->lab_name !== "")                    //Checks if a lab name was entered
-                if (!$this->lab_already_exists($this->course, $this->lab_name)) {
+                if (!$this->labAlreadyExists($this->course, $this->lab_name)) {
                     {
                         foreach ($this->questions as $q)         //Checks all questions have text in them
                             if ($q === "")
@@ -202,12 +195,9 @@ class LabCreator extends LabChecks
     }
 
 
-    //Returns true if name of lab is already used by the course
-
-
 
 //Function returns ID number of passed in type
-    private function get_type_ID($typeName)
+    private function getTypeID($typeName)
     {
         $getTypeIDQuery = 'SELECT questionTypeID FROM question_types WHERE typeName = ?';
         $getTypeID = mysqli_stmt_init($this->link);
@@ -219,7 +209,7 @@ class LabCreator extends LabChecks
     }
 
 //Inserts the name of the lab and course into the database and returns its ID number or false if it failed
-    private function insert_lab_name($course, $name)
+    private function insertLabName($course, $name)
     {
         $state = "false";
         $insertLab = mysqli_stmt_init($this->link);                                                                   //Initialises prepared statement
@@ -236,7 +226,7 @@ class LabCreator extends LabChecks
 
 
 //Inserts question into the lab_questions table
-    private function insert_question($labID, $type, $number, $question, $minValue, $maxValue, $visible)
+    private function insertQuestion($labID, $type, $number, $question, $minValue, $maxValue, $visible)
     {
         $insertQuestionQuery = 'INSERT INTO lab_questions (labRef, questionType, questionNumber, question, minMark, maxMark, private) VALUES (?, ?, ?,?, ?, ?, ?)';
         $insertQuestion = mysqli_stmt_init($this->link);

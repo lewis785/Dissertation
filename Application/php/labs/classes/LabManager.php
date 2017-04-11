@@ -45,7 +45,7 @@ class LabManager extends CourseChecks
                 if (sizeof($labs) > 0) {                                                         //Checks that there is at least one lab
                     foreach ($labs as $lab) {                                                   //For loop through each lab the course has
                         $id = $this->LabDisplay->get_lab_id($course, $lab[0]);                              //Gets the labID for the lab
-                        $totalMark = $stats->lab_total_mark($course, $lab[0]);
+                        $totalMark = $stats->labTotalMark($course, $lab[0]);
 
 
                         if ($this->LabDisplay->is_lab_markable($course, $lab[0]))
