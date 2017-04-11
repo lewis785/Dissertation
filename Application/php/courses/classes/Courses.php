@@ -55,8 +55,9 @@ class Courses extends Security
                                         JOIN courses AS c ON lh.course = c.courseID 
                                         WHERE username = ?  ORDER BY courseName");
             mysqli_stmt_bind_param($get_courses, 's', $_SESSION["username"]);
-
         }
+        else
+            return [];
 
         mysqli_stmt_execute($get_courses);
         $result = mysqli_stmt_get_result($get_courses);
@@ -69,7 +70,7 @@ class Courses extends Security
         return $outputArray;
     }
 
-    function courseFromLabID($labID)
+    public function courseFromLabID($labID)
     {
         $con = new ConnectDB();
 

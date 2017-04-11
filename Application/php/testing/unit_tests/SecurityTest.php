@@ -1,12 +1,7 @@
 <?php
 
-/**
- * Created by PhpStorm.
- * User: Lewis
- * Date: 03/04/2017
- * Time: 17:11
- */
 require_once(dirname(__FILE__) . "/../../core/classes/Security.php");
+
 class SecurityTest extends PHPUnit_Framework_TestCase
 {
     private $security;

@@ -32,7 +32,7 @@ class LabStudents extends Lab
     {
         $con = new ConnectDB();
 
-        if ($this->can_mark_course($_SESSION["MARKING_COURSE"])) {
+        if ($this->canMarkCourse($_SESSION["MARKING_COURSE"])) {
             if ($this->type === "next")
                 $_SESSION["MARKING_LAB"] = $this->lab;
             else {
