@@ -17,27 +17,30 @@ class CourseChecks extends Courses
     {
         if ($this->hasAccessLevel("admin"))
             return true;
+        else if($this->hasAccessLevel("lecturer")) {
+            $con = new ConnectDB();
 
-        $con = new ConnectDB();
-
-        $check_if_course_lecturer = mysqli_stmt_init($con->link);
-        mysqli_stmt_prepare($check_if_course_lecturer, "SELECT count(*) FROM user_login AS l
+            $check_if_course_lecturer = mysqli_stmt_init($con->link);
+            mysqli_stmt_prepare($check_if_course_lecturer, "SELECT count(*) FROM user_login AS l
                                               JOIN course_lecturer AS cl ON l.userID = cl.lecturer 
                                               JOIN courses AS c ON cl.course = c.courseID 
                                               WHERE l.username = ? AND c.courseName = ?");
-        mysqli_stmt_bind_param($check_if_course_lecturer, 'ss', $_SESSION["username"], $course);
-        mysqli_stmt_execute($check_if_course_lecturer);
-        $result = mysqli_stmt_get_result($check_if_course_lecturer);
-        $lecturerCount = $result->fetch_row();
+            mysqli_stmt_bind_param($check_if_course_lecturer, 'ss', $_SESSION["username"], $course);
+            mysqli_stmt_execute($check_if_course_lecturer);
+            $result = mysqli_stmt_get_result($check_if_course_lecturer);
+            $lecturerCount = $result->fetch_row();
 
-        mysqli_close($con->link);
+            mysqli_close($con->link);
 
-        return $lecturerCount[0] === 1;
+            return $lecturerCount[0] === 1;
+        }
+        else
+            return false;
     }
 
 
     //Returns true if user is a lab helper of the course
-    public function is_lab_helper_of_course($course)
+    public function isLabHelperOfCourse($course)
     {
         $con = new ConnectDB();
 
@@ -57,7 +60,7 @@ class CourseChecks extends Courses
 
 
     //Checks if user is allowed to mark course returns true if they are
-    public function can_mark_course($course)
+    public function canMarkCourse($course)
     {
         if($this->hasAccessLevel("admin"))
             return true;
@@ -65,7 +68,7 @@ class CourseChecks extends Courses
         if ($this->hasAccessLevel("lecturer")) {                                                  //Checks if user is a lecturer
             return $this->isLecturerOfCourse($course);                                           //Returns true if user is lecturer of specified course
         } elseif ($this->hasAccessLevel("lab helper")) {                                          //Checks if user is a lab helper
-            return $this->is_lab_helper_of_course($course);                                          //Returns true if user is lab helper of specified course
+            return $this->isLabHelperOfCourse($course);                                          //Returns true if user is lab helper of specified course
         }
     }
 

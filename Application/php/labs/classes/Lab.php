@@ -18,7 +18,7 @@ class Lab extends CourseChecks
     public function getStudents($course, $filter="")
     {
         $output = [];
-        if ($this->can_mark_course($course)) {
+        if ($this->canMarkCourse($course)) {
             $con = new ConnectDB();
 
             $get_students = mysqli_stmt_init($con->link);

@@ -29,7 +29,7 @@ class LabMarking extends Lab
         $con = new ConnectDB();
 
         $labs = [];
-        if ($this->can_mark_course($course)) {
+        if ($this->canMarkCourse($course)) {
             $labs = $this->getLabs($course);
         }
         mysqli_close($con->link);
