@@ -15,7 +15,7 @@
                     <span class="icon-bar"></span>
                 </button>
             </div>
-            <div class="col-xs-12 col-sm-3 col-md-2 sidebar side_nav_area" id="bs-sidebar-navbar-collapse-1">
+            <div class="hidden-sm hidden-xs col-md-2 sidebar side_nav_area" id="bs-sidebar-navbar-collapse-1">
                 <ul class="nav nav-sidebar">
                     <li class="active"><a href="admin.php">Overview<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-home"></span></a></li>
                     <li ><a href="manageusers.php">Manage Users<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-user"></span></a></li>

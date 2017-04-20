@@ -42,7 +42,6 @@ class LoginManager
     {
         session_start();
         session_unset();
-
         header("Location:../../html/pages/login.php"); //Send user to login screen
     }
 
@@ -99,10 +98,4 @@ class LoginManager
         }
 
     }
-
-
-
-//verify is called from form and the user name and pass are set run code
-
-
 }

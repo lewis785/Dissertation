@@ -17,7 +17,7 @@ class UserManager extends Security
     {
         echo "Adding user... <br>";
         $valid_username = false;
-        $password = "test123";
+        $password = $this->generatePassword(8);
 
         while (!$valid_username) {
             $username = substr($first, 0, 1) . substr($surname, 0, 1) . rand(0, 9) . rand(0, 9) . rand(0, 9);
@@ -62,6 +62,7 @@ class UserManager extends Security
         mysqli_commit($link);
     }
 
+
     public function updateAccess($username, $new_access_level)
     {
         $con = new ConnectDB();
@@ -72,7 +73,6 @@ class UserManager extends Security
         mysqli_stmt_bind_param($updateAccess, 'is', $accessID, $username);
         mysqli_stmt_execute($updateAccess);
     }
-
 
 
     public function matricExists($link, $matric)
@@ -98,7 +98,25 @@ class UserManager extends Security
     }
 
 
-}
+    private function generatePassword($length) {
+        $valid = false;
+        $randomString = '';
 
-$manage = new UserManager();
-$manage->updateAccess("Jack", "lab helper");
+        while(!$valid){
+            $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            $charactersLength = strlen($characters);
+            for ($i = 0; $i < $length; $i++) {
+                $randomString .= $characters[rand(0, $charactersLength - 1)];
+            }
+
+            $uppercase = preg_match('@[A-Z]@', $randomString);
+            $lowercase = preg_match('@[a-z]@', $randomString);
+            $numbercheck    = preg_match('@[0-9]@', $randomString);
+
+            if($uppercase || $lowercase || $numbercheck || strlen($randomString) >= 8) {
+                $valid = true;
+            }
+        }
+        return $randomString;
+    }
+}

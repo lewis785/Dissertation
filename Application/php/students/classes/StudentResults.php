@@ -124,6 +124,4 @@ class StudentResults extends Student
                             </div>";
         return $output;
     }
-
-
 }

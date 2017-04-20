@@ -256,5 +256,3 @@ class Student
 
 
 }
-//$student = new Student();
-//print_r($student->studentNotOnCourse("Software Development 1", "M"));

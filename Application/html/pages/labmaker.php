@@ -47,7 +47,7 @@
 
 <!--            Main area top-->
             <form class="col-lg-12" id="form-area" accept-charset="UTF-8" role="form"  name="create-lab-form" method="post" action="../../php/labs/lab_creator.php">
-                <div class="page-header col-md-12">
+                <div class="page-header col-md-12 col-sm-12 col-xs-12">
                     <div class="form-group col-md-4 col-md-offset-1">
                         <label for="course-input" class="col-md-4 col-form-label">Course:</label>
                         <div class="col-md-8">
@@ -58,13 +58,23 @@
                         </div>
                     </div>
 
-                    <div class="form-group col-md-4 col-md-offset-2 ">
+                    <div class="form-group col-md-4 col-md-offset-2 col-sm-12 col-xs-12 ">
                         <label for="labname-input" class="col-md-3 col-form-label">Lab Title</label>
-                        <div class="col-md-9">
-                            <input class="form-control" type="text" value="" name="lab-name" id="labname-input">
+                        <div class="col-md-9 col-sm-12 col-xs-12">
+                            <input class="form-control col-sm-12 col-xs-12" type="text" value="" name="lab-name" id="labname-input">
                         </div>
                     </div>
+
+                    <div class="hidden-md hidden-lg col-md-12 col-sm-12">
+                        <select class="col-sm-offset-2 col-sm-6 col-xs-12" id="question-adder">
+                            <option value="no-selection">No Selection</option>
+                            <?php include"../../php/labs/get_lab_types.php"?>
+                        </select>
+                        <button type="button" class="btn btn-default col-sm-offset-1 col-sm-2 col-xs-12" onclick="add_question($('#question-adder').val())">Add Type</button>
+                    </div>
                 </div>
+
+
 
 
             </form>

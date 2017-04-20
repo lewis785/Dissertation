@@ -114,7 +114,7 @@ class LabMaker
 
     private function startQuestion($id)
     {
-        $start_div = "<div class='col-sm-6 col-sm-offset-3 col-md-8 col-md-offset-2 tile'  id='question-$id'>";
+        $start_div = "<div class='col-xs-12 col-sm-6 col-sm-offset-3 col-md-8 col-md-offset-2 tile'  id='question-$id'>";
         $close_btn = "<span class='remove-btn glyphicon glyphicon-remove close-btn' aria-hidden='true' onclick='update_numbers(".$id.")'/>";
         return $start_div . $close_btn;
     }
@@ -134,11 +134,9 @@ class LabMaker
 
     private function textInput($name)
     {
-        return "<div class='form-group row tile-text-input'>
+        return "<div class='form-group col-md-6 col-md-offset-3 row tile-text-input'>
                     <label for='question-label-input' class='col-md-12 col-md-offset-1 col-form-label'>Question</label>
-                    <div class='col-md-10 col-md-offset-1'>
-                        <input class='form-control question-input' type='text' value='' name='$name'>
-                    </div>
+                    <input class='form-control question-input' type='text' value='' name='$name'>
                 </div>";
     }
 
@@ -162,7 +160,7 @@ class LabMaker
 
     private function visablityButton($id)
     {
-        return "<div style='display: table;' class='form-group col-md-12 '>
+        return "<div style='display: table;' class='form-group col-md-12 col-sm-12 col-xs-12 ' id='visible-area' >
                  <input id='hidden-visibility-$id' type='hidden' name='visibility[]' value='false'>
                   <span style='display: table-cell; vertical-align: middle; text-align: right;' class='col-md-4 col-xs-12'>Result is </span> 
                   <button type='button' id='visibility-btn-$id' class='btn btn-success col-md-4 col-xs-12' onclick='change_visibility(" . $id . ")' >Visible</button> 

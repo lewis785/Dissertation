@@ -70,6 +70,33 @@ class Lab extends CourseChecks
     }
 
 
+    public function getLabTypes()
+    {
+        $con = new ConnectDB();
+        $get_types = mysqli_stmt_init($con->link);
+        mysqli_stmt_prepare($get_types, "SELECT typeName FROM question_types");
+        mysqli_stmt_execute($get_types);
+        $result = mysqli_stmt_get_result($get_types);
+
+        $output_array = [];
+        while ($type = $result->fetch_row())
+            array_push($output_array,$type[0]);
+
+        mysqli_close($con->link);
+        return $output_array;
+    }
+
+
+    public function labTypeSelect()
+    {
+        $types = $this->getLabTypes();
+
+        $output = "";
+        foreach ($types as $type)
+            $output .= '<option value="' . $type .'">'. ucfirst($type) . '</option>';
+        return $output;
+    }
+
 
     public function getLabs($course)
     {
